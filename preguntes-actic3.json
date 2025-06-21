@@ -1,33 +1,330 @@
 {
-  "seccio1": {
-    "titol": "Secció 1: Fonaments",
-    "preguntes": [
-      {
-        "id": "p1",
-        "text": "Quina és la extensió d'un fitxer d'imatge raster?",
-        "opcions": [".mp3", ".png", ".docx", ".exe"],
-        "correcta": 1,
-        "tipus": "seleccio"
-      },
-      {
-        "id": "p2",
-        "text": "Quins formats d’àudio són lossless?",
-        "opcions": ["MP3", "WAV", "FLAC", "AAC"],
-        "correcta": [1, 2],
-        "tipus": "multiseleccio"
-      }
-    ]
-  },
-  "seccio2": {
-    "titol": "Secció 2: Processament de vídeo",
-    "preguntes": [
-      {
-        "id": "p3",
-        "text": "Quina propietat no influeix en la qualitat del vídeo?",
-        "opcions": ["Resolució", "FPS", "Bitrate", "Color del fons"],
-        "correcta": 3,
-        "tipus": "seleccio"
-      }
-    ]
-  }
+  "Creació d'imatges gràfiques": [
+    {
+      "id": "IMG001",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus d'imatge és més adequat per a un logotip que necessita escalar-se a qualsevol mida sense perdre qualitat?",
+      "opcions": [
+        "Mapa de bits (Bitmap)",
+        "Vectorial",
+        "Rasteritzada",
+        "GIF"
+      ],
+      "resposta_correcta": "Vectorial"
+    },
+    {
+      "id": "IMG002",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents afirmacions són certes sobre les imatges de mapa de bits?",
+      "opcions": [
+        "Estan formades per píxels.",
+        "Són independents de la resolució.",
+        "La seva qualitat pot degradar-se en escalar-les.",
+        "Són ideals per a il·lustracions complexes amb poc detall."
+      ],
+      "resposta_correcta": [
+        "Estan formades per píxels.",
+        "La seva qualitat pot degradar-se en escalar-les."
+      ]
+    },
+    {
+      "id": "IMG003",
+      "tipus": "seleccio",
+      "pregunta": "Quin dels següents formats d'imatge admet transparència de 8 bits (canal alfa)?",
+      "opcions": [
+        "JPG",
+        "BMP",
+        "PNG",
+        "GIF"
+      ],
+      "resposta_correcta": "PNG",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMG004",
+      "tipus": "seleccio",
+      "pregunta": "En un programari d'edició d'imatges, quina eina s'utilitza principalment per retallar una part específica d'una imatge?",
+      "opcions": [
+        "Llàpis",
+        "Raspall",
+        "Llapis",
+        "Retallar (Crop)"
+      ],
+      "resposta_correcta": "Retallar (Crop)"
+    },
+    {
+      "id": "IMG005",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents accions es poden realitzar amb un programa d'edició d'imatges digitals?",
+      "opcions": [
+        "Canviar la mida de la imatge",
+        "Ajustar la brillantor i el contrast",
+        "Eliminar ulls vermells",
+        "Crear un document de text"
+      ],
+      "resposta_correcta": [
+        "Canviar la mida de la imatge",
+        "Ajustar la brillantor i el contrast",
+        "Eliminar ulls vermells"
+      ]
+    },
+    {
+      "id": "IMG006",
+      "tipus": "seleccio",
+      "pregunta": "Quina propietat defineix el nombre de píxels per polzada (DPI o PPI) en una imatge de mapa de bits?",
+      "opcions": [
+        "Profunditat de color",
+        "Grandària de fitxer",
+        "Resolució",
+        "Paleta de colors"
+      ],
+      "resposta_correcta": "Resolució"
+    },
+    {
+      "id": "IMG007",
+      "tipus": "multiseleccio",
+      "pregunta": "Observa la següent imatge. Quins formats serien els més adequats per guardar aquesta imatge per a ús web, prioritzant una bona relació qualitat/grandària i suport per a transparències si n'hi hagués? (Assumeix que `media/imatge1.jpg` és una fotografia amb transparència parcial.)",
+      "multimedia": "media/imatge1.jpg",
+      "opcions": [
+        "BMP",
+        "JPEG",
+        "GIF (si té poques colors)",
+        "PNG"
+      ],
+      "resposta_correcta": [
+        "JPEG",
+        "PNG",
+        "GIF (si té poques colors)"
+      ]
+    }
+  ],
+  "Edició avançada de so": [
+    {
+      "id": "SO001",
+      "tipus": "seleccio",
+      "pregunta": "Quina unitat de mesura s'utilitza per indicar la freqüència de mostreig en l'àudio digital?",
+      "opcions": [
+        "Bits per segon (bps)",
+        "Hertz (Hz)",
+        "Decibels (dB)",
+        "Kilobytes (KB)"
+      ],
+      "resposta_correcta": "Hertz (Hz)"
+    },
+    {
+      "id": "SO002",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents accions es poden realitzar amb un programari d'edició d'àudio?",
+      "opcions": [
+        "Eliminar soroll de fons",
+        "Aplicar efectes (reverberació, eco)",
+        "Tallar i unir fragments d'àudio",
+        "Afegir subtítols a un vídeo"
+      ],
+      "resposta_correcta": [
+        "Eliminar soroll de fons",
+        "Aplicar efectes (reverberació, eco)",
+        "Tallar i unir fragments d'àudio"
+      ]
+    },
+    {
+      "id": "SO003",
+      "tipus": "seleccio",
+      "pregunta": "Quina funció s'utilitza per augmentar o disminuir gradualment el volum d'una pista d'àudio al principi o al final?",
+      "opcions": [
+        "Normalització",
+        "Equalització",
+        "Fundir (Fade in/out)",
+        "Compressió"
+      ],
+      "resposta_correcta": "Fundir (Fade in/out)"
+    },
+    {
+      "id": "SO004",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins dels següents són formats d'àudio sense compressió o amb compressió sense pèrdues (lossless)?",
+      "opcions": [
+        "MP3",
+        "WAV",
+        "FLAC",
+        "AAC"
+      ],
+      "resposta_correcta": [
+        "WAV",
+        "FLAC"
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SO005",
+      "tipus": "seleccio",
+      "pregunta": "Si has d'escoltar el següent so i identificar-ne un fragment per eliminar-lo per soroll, quina seria l'eina més adequada en un editor d'àudio? (Assumeix que `media/so1.mp3` conté una gravació amb un tros de soroll)",
+      "multimedia": "media/so1.mp3",
+      "opcions": [
+        "Eina de selecció de temps",
+        "Eina de dibuix de freqüència",
+        "Eina de compressió",
+        "Eina de normalització"
+      ],
+      "resposta_correcta": "Eina de selecció de temps"
+    }
+  ],
+  "Edició de vídeo": [
+    {
+      "id": "VID001",
+      "tipus": "seleccio",
+      "pregunta": "Quin concepte fa referència al nombre d'imatges fixes (fotogrames) que es mostren per segon en un vídeo?",
+      "opcions": [
+        "Resolució",
+        "Relació d'aspecte",
+        "Taxa de fotogrames (FPS)",
+        "Profunditat de color"
+      ],
+      "resposta_correcta": "Taxa de fotogrames (FPS)"
+    },
+    {
+      "id": "VID002",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins elements solen formar part de la línia de temps (timeline) d'un programari d'edició de vídeo?",
+      "opcions": [
+        "Pistes de vídeo",
+        "Pistes d'àudio",
+        "Pistes de subtítols",
+        "Capes de text"
+      ],
+      "resposta_correcta": [
+        "Pistes de vídeo",
+        "Pistes d'àudio",
+        "Capes de text"
+      ]
+    },
+    {
+      "id": "VID003",
+      "tipus": "seleccio",
+      "pregunta": "Quina de les següents opcions és una tècnica per passar d'una escena a una altra de manera suau en un vídeo?",
+      "opcions": [
+        "Tall directe",
+        "Transició",
+        "Keyframe",
+        "Renderitzat"
+      ],
+      "resposta_correcta": "Transició"
+    },
+    {
+      "id": "VID004",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins formats de vídeo són habituals per a la distribució web a causa de la seva eficiència en la compressió?",
+      "opcions": [
+        "AVI",
+        "MP4",
+        "MKV",
+        "WMV"
+      ],
+      "resposta_correcta": [
+        "MP4",
+        "MKV",
+        "WMV"
+      ]
+    },
+    {
+      "id": "VID005",
+      "tipus": "seleccio",
+      "pregunta": "Què és el 'renderitzat' en el context de l'edició de vídeo?",
+      "opcions": [
+        "El procés de capturar el vídeo de la càmera.",
+        "El procés de previsualitzar el vídeo sense guardar els canvis.",
+        "El procés de generar el fitxer de vídeo final a partir de la línia de temps.",
+        "El procés d'afegir efectes especials."
+      ],
+      "resposta_correcta": "El procés de generar el fitxer de vídeo final a partir de la línia de temps.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID006",
+      "tipus": "multiseleccio",
+      "pregunta": "Després de visualitzar aquest curt clip de vídeo, quines de les següents accions podries realitzar per millorar-lo en un editor de vídeo? (Assumeix que `media/video1.mp4` és un clip curt amb un problema de coloració i un so baix).",
+      "multimedia": "media/video1.mp4",
+      "opcions": [
+        "Ajustar el balanç de blancs per corregir el color.",
+        "Augmentar el volum de l'àudio.",
+        "Afegir una transició entre dos clips si n'hi hagués un altre.",
+        "Reduir la taxa de fotogrames per estalviar espai."
+      ],
+      "resposta_correcta": [
+        "Ajustar el balanç de blancs per corregir el color.",
+        "Augmentar el volum de l'àudio.",
+        "Afegir una transició entre dos clips si n'hi hagués un altre."
+      ]
+    }
+  ],
+  "Formats, compressió i drets": [
+    {
+      "id": "DRETS001",
+      "tipus": "seleccio",
+      "pregunta": "Quina llicència permet a qualsevol persona utilitzar, modificar i distribuir obres, sempre que les obres derivades mantinguin la mateixa llicència?",
+      "opcions": [
+        "Copyright",
+        "Creative Commons (CC BY-NC-ND)",
+        "Domini Públic",
+        "Copyleft (p. ex., CC BY-SA)"
+      ],
+      "resposta_correcta": "Copyleft (p. ex., CC BY-SA)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "DRETS002",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins dels següents són tipus de compressió amb pèrdues (lossy compression)?",
+      "opcions": [
+        "ZIP",
+        "JPEG",
+        "MP3",
+        "PNG"
+      ],
+      "resposta_correcta": [
+        "JPEG",
+        "MP3"
+      ]
+    },
+    {
+      "id": "DRETS003",
+      "tipus": "seleccio",
+      "pregunta": "Quan una obra es troba en 'Domini Públic', què implica?",
+      "opcions": [
+        "Que l'autor ha cedit els drets a una empresa privada.",
+        "Que els drets d'explotació de l'obra han caducat o mai han existit.",
+        "Que l'obra només es pot utilitzar amb finalitats educatives.",
+        "Que cal demanar permís a l'autor original per a qualsevol ús."
+      ],
+      "resposta_correcta": "Que els drets d'explotació de l'obra han caducat o mai han existit."
+    },
+    {
+      "id": "DRETS004",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són consideracions importants a l'hora de triar un format de fitxer multimèdia?",
+      "opcions": [
+        "La compatibilitat amb diferents dispositius i programaris.",
+        "La qualitat desitjada del contingut.",
+        "La mida del fitxer resultant.",
+        "El color de la carcassa del disc dur."
+      ],
+      "resposta_correcta": [
+        "La compatibilitat amb diferents dispositius i programaris.",
+        "La qualitat desitjada del contingut.",
+        "La mida del fitxer resultant."
+      ]
+    },
+    {
+      "id": "DRETS005",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme es refereix al conjunt de normes legals que protegeixen els drets dels autors sobre les seves creacions?",
+      "opcions": [
+        "Llicència GPL",
+        "Copyleft",
+        "Drets d'autor (Copyright)",
+        "Codi obert"
+      ],
+      "resposta_correcta": "Drets d'autor (Copyright)"
+    }
+  ]
 }
