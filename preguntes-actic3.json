@@ -1,0 +1,33 @@
+{
+  "seccio1": {
+    "titol": "Secció 1: Fonaments",
+    "preguntes": [
+      {
+        "id": "p1",
+        "text": "Quina és la extensió d'un fitxer d'imatge raster?",
+        "opcions": [".mp3", ".png", ".docx", ".exe"],
+        "correcta": 1,
+        "tipus": "seleccio"
+      },
+      {
+        "id": "p2",
+        "text": "Quins formats d’àudio són lossless?",
+        "opcions": ["MP3", "WAV", "FLAC", "AAC"],
+        "correcta": [1, 2],
+        "tipus": "multiseleccio"
+      }
+    ]
+  },
+  "seccio2": {
+    "titol": "Secció 2: Processament de vídeo",
+    "preguntes": [
+      {
+        "id": "p3",
+        "text": "Quina propietat no influeix en la qualitat del vídeo?",
+        "opcions": ["Resolució", "FPS", "Bitrate", "Color del fons"],
+        "correcta": 3,
+        "tipus": "seleccio"
+      }
+    ]
+  }
+}
