@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment. Nivell avançat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-4">
+    <div class="max-w-4xl w-full bg-white p-6 rounded-2xl shadow-xl">
+      <h1 class="text-2xl font-bold mb-4 text-center">
+        Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment. Nivell avançat
+      </h1>
+
+      <div id="section-selector" class="mb-6 hidden">
+        <p class="mb-2 text-center">Vols continuar on ho vas deixar?</p>
+        <div class="flex justify-center gap-4 mb-4">
+          <button id="continueBtn" class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700">Continuar</button>
+          <button id="resetBtn" class="bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700">Començar de nou</button>
+        </div>
+        <div id="sectionButtons" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-center">
+          <!-- Aquí es carregaran les seccions -->
+        </div>
+      </div>
+
+      <div id="test-container"></div>
+
+      <div id="resultat" class="mt-8 hidden">
+        <h2 class="text-xl font-bold mb-2">Resultats</h2>
+        <p id="resultatText" class="mb-2"></p>
+        <p class="text-sm italic">* Les preguntes difícils es poden revisar més tard.</p>
+      </div>
+    </div>
+
+    <script>
+      let dadesJSON;
+      let estatUsuari = JSON.parse(localStorage.getItem("progresACTIC3")) || null;
+
+      function carregarJSON() {
+        fetch("preguntes-actic3.json")
+          .then((r) => {
+            if (!r.ok) throw new Error("No s'ha trobat el fitxer JSON.");
+            return r.json();
+          })
+          .then((data) => {
+            dadesJSON = data;
+            if (estatUsuari) {
+              mostrarSeccions();
+            } else {
+              // Si no hi ha progrés, mostra directament la primera secció
+              const primerClau = Object.keys(dadesJSON)[0];
+              mostrarPreguntesSeccio(primerClau);
+            }
+          })
+          .catch((e) => {
+            alert("Error carregant dades: " + e.message);
+          });
+      }
+
+      function mostrarSeccions() {
+        const sectionSelector = document.getElementById("section-selector");
+        sectionSelector.classList.remove("hidden");
+        const sectionButtons = document.getElementById("sectionButtons");
+        sectionButtons.innerHTML = "";
+        Object.keys(dadesJSON).forEach((clau) => {
+          const boto = document.createElement("button");
+          boto.textContent = dadesJSON[clau].titol;
+          boto.className = "bg-gray-200 hover:bg-gray-300 rounded-xl py-2 px-4";
+          boto.onclick = () => {
+            document.getElementById("resultat").classList.add("hidden");
+            mostrarPreguntesSeccio(clau);
+          };
+          sectionButtons.appendChild(boto);
+        });
+      }
+
+      function mostrarPreguntesSeccio(clauSeccio) {
+        const container = document.getElementById("test-container");
+        const seccio = dadesJSON[clauSeccio];
+        const preguntes = seccio.preguntes;
+        container.innerHTML = `<h2 class="text-xl font-semibold mb-4">${seccio.titol}</h2>`;
+        preguntes.forEach((preg, idx) => {
+          const div = document.createElement("div");
+          div.className = "mb-6 p-4 border rounded-xl bg-gray-50";
+          div.innerHTML = `<p class="font-medium mb-2">${idx + 1}. ${preg.text}</p>`;
+          preg.opcions.forEach((opcio, i) => {
+            const input = document.createElement("input");
+            input.type = preg.tipus === "multiseleccio" ? "checkbox" : "radio";
+            input.name = preg.id;
+            input.value = i;
+            input.className = "mr-2";
+
+            // Recupera la resposta seleccionada si hi ha progrés
+            if (estatUsuari && estatUsuari[clauSeccio] && estatUsuari[clauSeccio].respostes) {
+              const seleccionades = estatUsuari[clauSeccio].respostes[preg.id] || [];
+              if (seleccionades.includes(i)) input.checked = true;
+            }
+
+            const label = document.createElement("label");
+            label.className = "block mb-1";
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(opcio));
+            div.appendChild(label);
+          });
+          const marcaBtn = document.createElement("button");
+          marcaBtn.textContent = "Marca com a difícil";
+          marcaBtn.className = "mt-2 text-sm text-blue-600 underline hover:text-blue-800";
+          marcaBtn.onclick = () => alert("Marcada com a difícil (funció en desenvolupament)");
+          div.appendChild(marcaBtn);
+          container.appendChild(div);
+        });
+
+        const correcioBtn = document.createElement("button");
+        correcioBtn.textContent = "Corregir";
+        correcioBtn.className = "mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700";
+        correcioBtn.onclick = () => mostrarResultats(clauSeccio);
+        container.appendChild(correcioBtn);
+      }
+
+      function mostrarResultats(clauSeccio) {
+        const seccio = dadesJSON[clauSeccio];
+        const preguntes = seccio.preguntes;
+        let encerts = 0;
+
+        estatUsuari = estatUsuari || {};
+        estatUsuari[clauSeccio] = estatUsuari[clauSeccio] || { respostes: {}, encerts: 0 };
+
+        preguntes.forEach((preg) => {
+          const seleccionats = Array.from(document.querySelectorAll(`[name='${preg.id}']:checked`)).map((el) => parseInt(el.value));
+          const correcta = Array.isArray(preg.correcta) ? preg.correcta : [preg.correcta];
+          estatUsuari[clauSeccio].respostes[preg.id] = seleccionats;
+
+          if (JSON.stringify(seleccionats.sort()) === JSON.stringify(correcta.sort())) {
+            encerts++;
+          }
+        });
+
+        estatUsuari[clauSeccio].encerts = encerts;
+        localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+
+        document.getElementById("resultatText").textContent = `Has encertat ${encerts} de ${preguntes.length} preguntes.`;
+        document.getElementById("resultat").classList.remove("hidden");
+      }
+
+      document.getElementById("continueBtn").onclick = () => {
+        mostrarSeccions();
+        document.getElementById("section-selector").classList.add("hidden");
+      };
+
+      document.getElementById("resetBtn").onclick = () => {
+        localStorage.removeItem("progresACTIC3");
+        estatUsuari = null;
+        carregarJSON();
+        document.getElementById("section-selector").classList.add("hidden");
+        document.getElementById("resultat").classList.add("hidden");
+      };
+
+      // Inici
+      if (localStorage.getItem("progresACTIC3")) {
+        document.getElementById("section-selector").classList.remove("hidden");
+      } else {
+        carregarJSON();
+      }
+    </script>
+  </body>
+</html>
