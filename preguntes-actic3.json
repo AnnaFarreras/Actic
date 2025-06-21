@@ -1,9 +1,9 @@
 {
-  "Creació d'imatges gràfiques": [
+  "Mòdul 1: Imatge digital": [
     {
-      "id": "IMG001",
+      "id": "IMD001",
       "tipus": "seleccio",
-      "pregunta": "Quin tipus d'imatge és més adequat per a un logotip que necessita escalar-se a qualsevol mida sense perdre qualitat?",
+      "pregunta": "Quin tipus d'imatge és més adequat per a un logotip que necessita escalar-se a qualsevol mida sense perdre qualitat i es basa en equacions matemàtiques?",
       "opcions": [
         "Mapa de bits (Bitmap)",
         "Vectorial",
@@ -13,24 +13,24 @@
       "resposta_correcta": "Vectorial"
     },
     {
-      "id": "IMG002",
+      "id": "IMD002",
       "tipus": "multiseleccio",
-      "pregunta": "Quines de les següents afirmacions són certes sobre les imatges de mapa de bits?",
+      "pregunta": "Quines de les següents afirmacions són certes sobre les **imatges de mapa de bits** o **rasteritzades**?",
       "opcions": [
         "Estan formades per píxels.",
         "Són independents de la resolució.",
-        "La seva qualitat pot degradar-se en escalar-les.",
+        "La seva qualitat es degrada en augmentar-les de mida.",
         "Són ideals per a il·lustracions complexes amb poc detall."
       ],
       "resposta_correcta": [
         "Estan formades per píxels.",
-        "La seva qualitat pot degradar-se en escalar-les."
+        "La seva qualitat es degrada en augmentar-les de mida."
       ]
     },
     {
-      "id": "IMG003",
+      "id": "IMD003",
       "tipus": "seleccio",
-      "pregunta": "Quin dels següents formats d'imatge admet transparència de 8 bits (canal alfa)?",
+      "pregunta": "Quin dels següents formats d'imatge admet transparència de 8 bits (canal alfa) i és ideal per a la web mantenint una alta qualitat?",
       "opcions": [
         "JPG",
         "BMP",
@@ -41,37 +41,9 @@
       "dificultat": "difícil"
     },
     {
-      "id": "IMG004",
+      "id": "IMD004",
       "tipus": "seleccio",
-      "pregunta": "En un programari d'edició d'imatges, quina eina s'utilitza principalment per retallar una part específica d'una imatge?",
-      "opcions": [
-        "Llàpis",
-        "Raspall",
-        "Llapis",
-        "Retallar (Crop)"
-      ],
-      "resposta_correcta": "Retallar (Crop)"
-    },
-    {
-      "id": "IMG005",
-      "tipus": "multiseleccio",
-      "pregunta": "Quines de les següents accions es poden realitzar amb un programa d'edició d'imatges digitals?",
-      "opcions": [
-        "Canviar la mida de la imatge",
-        "Ajustar la brillantor i el contrast",
-        "Eliminar ulls vermells",
-        "Crear un document de text"
-      ],
-      "resposta_correcta": [
-        "Canviar la mida de la imatge",
-        "Ajustar la brillantor i el contrast",
-        "Eliminar ulls vermells"
-      ]
-    },
-    {
-      "id": "IMG006",
-      "tipus": "seleccio",
-      "pregunta": "Quina propietat defineix el nombre de píxels per polzada (DPI o PPI) en una imatge de mapa de bits?",
+      "pregunta": "Quina propietat d'una imatge de mapa de bits es mesura en **DPI** (dots per inch) o **PPI** (pixels per inch) i influeix directament en la qualitat d'impressió?",
       "opcions": [
         "Profunditat de color",
         "Grandària de fitxer",
@@ -81,28 +53,1816 @@
       "resposta_correcta": "Resolució"
     },
     {
-      "id": "IMG007",
+      "id": "IMD005",
       "tipus": "multiseleccio",
-      "pregunta": "Observa la següent imatge. Quins formats serien els més adequats per guardar aquesta imatge per a ús web, prioritzant una bona relació qualitat/grandària i suport per a transparències si n'hi hagués? (Assumeix que `media/imatge1.jpg` és una fotografia amb transparència parcial.)",
-      "multimedia": "media/imatge1.jpg",
+      "pregunta": "Quins dels següents modes de color són els més utilitzats en l'edició digital d'imatges?",
       "opcions": [
-        "BMP",
-        "JPEG",
-        "GIF (si té poques colors)",
-        "PNG"
+        "RGB",
+        "CMYK",
+        "Escala de grisos",
+        "HSB"
       ],
       "resposta_correcta": [
-        "JPEG",
+        "RGB",
+        "CMYK",
+        "Escala de grisos"
+      ]
+    },
+    {
+      "id": "IMD006",
+      "tipus": "seleccio",
+      "pregunta": "Quin mode de color és més adequat per a imatges destinades a ser impreses professionalment, ja que utilitza colors sostractius?",
+      "opcions": [
+        "RGB",
+        "CMYK",
+        "HSL",
+        "HSV"
+      ],
+      "resposta_correcta": "CMYK"
+    },
+    {
+      "id": "IMD007",
+      "tipus": "seleccio",
+      "pregunta": "Quin format d'imatge s'utilitza principalment per a animacions web senzilles i admet una paleta de 256 colors?",
+      "opcions": [
+        "JPG",
         "PNG",
-        "GIF (si té poques colors)"
+        "GIF",
+        "SVG"
+      ],
+      "resposta_correcta": "GIF"
+    },
+    {
+      "id": "IMD008",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins factors afecten la grandària del fitxer d'una imatge de mapa de bits?",
+      "opcions": [
+        "La resolució (amplada x alçada en píxels).",
+        "La profunditat de color (nombre de bits per píxel).",
+        "El format del fitxer i el tipus de compressió aplicat.",
+        "El nom de l'arxiu."
+      ],
+      "resposta_correcta": [
+        "La resolució (amplada x alçada en píxels).",
+        "La profunditat de color (nombre de bits per píxel).",
+        "El format del fitxer i el tipus de compressió aplicat."
+      ]
+    },
+    {
+      "id": "IMD009",
+      "tipus": "seleccio",
+      "pregunta": "Si un projecte gràfic ha de ser escalable des d'una targeta de visita fins a una lona publicitària sense pixelar-se, quin tipus d'eina de disseny s'hauria d'utilitzar principalment?",
+      "opcions": [
+        "Programari d'edició de mapa de bits (ex. GIMP)",
+        "Programari de disseny vectorial (ex. Illustrator)",
+        "Editor de fotos online",
+        "Programa de retoc fotogràfic"
+      ],
+      "resposta_correcta": "Programari de disseny vectorial (ex. Illustrator)"
+    },
+    {
+      "id": "IMD010",
+      "tipus": "multiseleccio",
+      "pregunta": "Què implica una profunditat de color de 24 bits (True Color) en una imatge?",
+      "opcions": [
+        "Que pot representar aproximadament 16,7 milions de colors.",
+        "Que cada píxel es defineix amb 8 bits per a cada canal RGB.",
+        "Que la imatge té un canal alfa per a transparència.",
+        "Que la imatge és d'alta resolució."
+      ],
+      "resposta_correcta": [
+        "Que pot representar aproximadament 16,7 milions de colors.",
+        "Que cada píxel es defineix amb 8 bits per a cada canal RGB."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD011",
+      "tipus": "seleccio",
+      "pregunta": "Quin format d'arxiu és el format natiu de Photoshop i permet guardar capes, màscares i altres elements d'edició?",
+      "opcions": [
+        "JPG",
+        "PNG",
+        "PSD",
+        "BMP"
+      ],
+      "resposta_correcta": "PSD"
+    },
+    {
+      "id": "IMD012",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els elements clau d'una bona composició visual en el disseny d'imatges?",
+      "opcions": [
+        "Equilibri (simetria, asimetria).",
+        "Punt focal (centre d'atenció).",
+        "Regla dels terços.",
+        "Ús exclusiu de colors primaris."
+      ],
+      "resposta_correcta": [
+        "Equilibri (simetria, asimetria).",
+        "Punt focal (centre d'atenció).",
+        "Regla dels terços."
+      ]
+    },
+    {
+      "id": "IMD013",
+      "tipus": "seleccio",
+      "pregunta": "Si necessites afegir text a una imatge de manera que es pugui editar fàcilment posteriorment, quina és la millor pràctica en un editor d'imatges?",
+      "opcions": [
+        "Rasteritzar el text immediatament.",
+        "Afegir el text com a una capa de píxels separada.",
+        "Afegir el text com a una capa de text editable.",
+        "Dibuixar el text amb l'eina de pinzell."
+      ],
+      "resposta_correcta": "Afegir el text com a una capa de text editable."
+    },
+    {
+      "id": "IMD014",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els beneficis de treballar amb capes en un programa de disseny gràfic?",
+      "opcions": [
+        "Permet una edició no destructiva.",
+        "Facilita la reorganització i manipulació d'elements individuals.",
+        "Permet aplicar efectes o ajustos a elements específics sense afectar els altres.",
+        "Augmenta dràsticament la mida final del fitxer exportat independentment del format."
+      ],
+      "resposta_correcta": [
+        "Permet una edició no destructiva.",
+        "Facilita la reorganització i manipulació d'elements individuals.",
+        "Permet aplicar efectes o ajustos a elements específics sense afectar els altres."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD015",
+      "tipus": "seleccio",
+      "pregunta": "Quin format s'utilitza sovint per a la intercanviabilitat entre diferents programes d'edició d'imatges, mantenint capes i transparències, sense ser un format natiu d'un programa concret?",
+      "opcions": [
+        "BMP",
+        "JPG",
+        "PSD",
+        "XCF (format natiu de GIMP)"
+      ],
+      "resposta_correcta": "PSD"
+    },
+    {
+      "id": "IMD016",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins paràmetres s'utilitzen per ajustar la lluminositat d'una imatge?",
+      "opcions": [
+        "Brillantor",
+        "Contrast",
+        "Gamma",
+        "Saturació"
+      ],
+      "resposta_correcta": [
+        "Brillantor",
+        "Gamma"
+      ]
+    },
+    {
+      "id": "IMD017",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'paleta de colors' en el context de les imatges digitals?",
+      "opcions": [
+        "Un conjunt limitat de colors que s'utilitzen en una imatge, especialment en formats com GIF.",
+        "Una eina per barrejar colors.",
+        "Un efecte que fa que els colors es vegin més vibrants.",
+        "El nombre total de píxels d'una imatge."
+      ],
+      "resposta_correcta": "Un conjunt limitat de colors que s'utilitzen en una imatge, especialment en formats com GIF."
+    },
+    {
+      "id": "IMD018",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són exemples de filtres que es poden aplicar a les imatges per a efectes artístics o de millora?",
+      "opcions": [
+        "Desenfoque (Blur)",
+        "Nítid (Sharpen)",
+        "Sepia",
+        "Convertir a text"
+      ],
+      "resposta_correcta": [
+        "Desenfoque (Blur)",
+        "Nítid (Sharpen)",
+        "Sepia"
+      ]
+    },
+    {
+      "id": "IMD019",
+      "tipus": "seleccio",
+      "pregunta": "Quina eina és la més adequada per seleccionar una àrea amb un color similar o un rang de colors contigu en una imatge de mapa de bits?",
+      "opcions": [
+        "Eina de selecció rectangular",
+        "Eina Llaç magnètic",
+        "Vareta Màgica (Magic Wand)",
+        "Eina Pinzell"
+      ],
+      "resposta_correcta": "Vareta Màgica (Magic Wand)"
+    },
+    {
+      "id": "IMD020",
+      "tipus": "multiseleccio",
+      "pregunta": "Quan preparem una imatge per a la impressió, quins són els aspectes més importants a tenir en compte?",
+      "opcions": [
+        "Resolució d'almenys 300 DPI.",
+        "Mode de color CMYK.",
+        "Inclusió de sagnat (bleed) si cal.",
+        "Grandària del fitxer en kilobytes."
+      ],
+      "resposta_correcta": [
+        "Resolució d'almenys 300 DPI.",
+        "Mode de color CMYK.",
+        "Inclusió de sagnat (bleed) si cal."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD021",
+      "tipus": "seleccio",
+      "pregunta": "Quin format d'imatge és ideal per a fotografies digitals a la web per la seva bona relació qualitat-compressió, tot i que no suporta transparència?",
+      "opcions": [
+        "PNG",
+        "GIF",
+        "JPG",
+        "BMP"
+      ],
+      "resposta_correcta": "JPG"
+    },
+    {
+      "id": "IMD022",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins elements solen aparèixer en la interfície d'un programa d'edició gràfica?",
+      "opcions": [
+        "Barra d'eines.",
+        "Paleta de capes.",
+        "Paleta de colors.",
+        "Gestor de correu electrònic."
+      ],
+      "resposta_correcta": [
+        "Barra d'eines.",
+        "Paleta de capes.",
+        "Paleta de colors."
+      ]
+    },
+    {
+      "id": "IMD023",
+      "tipus": "seleccio",
+      "pregunta": "Què és el 'canal alfa' en una imatge digital?",
+      "opcions": [
+        "Un canal que conté informació sobre la brillantor de la imatge.",
+        "Un canal que defineix la transparència o opacitat d'una imatge o d'una part d'ella.",
+        "Un dels canals de color primaris (vermell, verd, blau).",
+        "Un canal per a l'àudio incrustat en la imatge."
+      ],
+      "resposta_correcta": "Un canal que defineix la transparència o opacitat d'una imatge o d'una part d'ella.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD024",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són alguns dels mètodes per canviar la mida d'una imatge en un editor gràfic?",
+      "opcions": [
+        "Redimensionar el llenç (canvas).",
+        "Escalar la imatge (image size).",
+        "Retallar la imatge (crop).",
+        "Canviar el mode de color."
+      ],
+      "resposta_correcta": [
+        "Redimensionar el llenç (canvas).",
+        "Escalar la imatge (image size).",
+        "Retallar la imatge (crop)."
+      ]
+    },
+    {
+      "id": "IMD025",
+      "tipus": "seleccio",
+      "pregunta": "Quan s'utilitza el mode de color indexat?",
+      "opcions": [
+        "Per a fotografies d'alta qualitat.",
+        "Per a impressions professionals.",
+        "Quan es vol reduir dràsticament la mida del fitxer limitant els colors a una paleta específica (com en els GIF).",
+        "Per a imatges que necessiten canal alfa."
+      ],
+      "resposta_correcta": "Quan es vol reduir dràsticament la mida del fitxer limitant els colors a una paleta específica (com en els GIF)."
+    },
+    {
+      "id": "IMD026",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins efectes pot tenir una compressió excessiva en una imatge JPG?",
+      "opcions": [
+        "Pèrdua de detall.",
+        "Aparició d'artefactes o blocs de color.",
+        "Disminució de la mida del fitxer.",
+        "Augment de la qualitat de la imatge."
+      ],
+      "resposta_correcta": [
+        "Pèrdua de detall.",
+        "Aparició d'artefactes o blocs de color.",
+        "Disminució de la mida del fitxer."
+      ]
+    },
+    {
+      "id": "IMD027",
+      "tipus": "seleccio",
+      "pregunta": "Quina eina s'utilitza per aplicar una transició suau entre dos colors o més en una àrea seleccionada?",
+      "opcions": [
+        "Pinzell",
+        "Goma d'esborrar",
+        "Degradat (Gradient Tool)",
+        "Selecció"
+      ],
+      "resposta_correcta": "Degradat (Gradient Tool)"
+    },
+    {
+      "id": "IMD028",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els conceptes bàsics de la teoria del color aplicables al disseny gràfic?",
+      "opcions": [
+        "Colors primaris, secundaris i terciaris.",
+        "Colors complementaris i anàlegs.",
+        "Temperatura del color (càlids i freds).",
+        "L'ordre alfabètic dels noms dels colors."
+      ],
+      "resposta_correcta": [
+        "Colors primaris, secundaris i terciaris.",
+        "Colors complementaris i anàlegs.",
+        "Temperatura del color (càlids i freds)."
+      ]
+    },
+    {
+      "id": "IMD029",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els modes de color amb el seu ús principal:",
+      "opcions": [
+        {"text": "RGB", "correcta": "Pantalles digitals"},
+        {"text": "CMYK", "correcta": "Impressió offset"},
+        {"text": "Escala de grisos", "correcta": "Imatges en blanc i negre"}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD030",
+      "tipus": "completar",
+      "pregunta": "Una imatge vectorial es basa en ______________ matemàtiques, la qual cosa li permet escalar-se a qualsevol mida sense perdre qualitat.",
+      "opcions": [
+        "píxels",
+        "equacions",
+        "fotogrames",
+        "mapes de bits"
+      ],
+      "resposta_correcta": "equacions"
+    },
+    {
+      "id": "IMD031",
+      "tipus": "seleccio",
+      "pregunta": "Quin format d'imatge és conegut per la seva compressió sense pèrdues i és molt utilitzat per a imatges mèdiques o fotografia professional, tot i que genera fitxers grans?",
+      "opcions": [
+        "JPG",
+        "PNG",
+        "TIFF",
+        "GIF"
+      ],
+      "resposta_correcta": "TIFF",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD032",
+      "tipus": "seleccio",
+      "pregunta": "Quin és l'efecte de l'eina de 'nítid' (sharpen) en una imatge?",
+      "opcions": [
+        "Redueix la claredat i els detalls.",
+        "Augmenta el contrast entre píxels adjacents per fer que els detalls semblin més definits.",
+        "Elimina el soroll visual.",
+        "Suavitza les vores dels objectes."
+      ],
+      "resposta_correcta": "Augmenta el contrast entre píxels adjacents per fer que els detalls semblin més definits."
+    },
+    {
+      "id": "IMD033",
+      "tipus": "multiseleccio",
+      "pregunta": "Quan es redueix la resolució d'una imatge (downsampling), quins efectes pot tenir?",
+      "opcions": [
+        "Reducció de la mida del fitxer.",
+        "Pèrdua de detall.",
+        "Millora de la qualitat per a la impressió.",
+        "Acceleració de la càrrega en web."
+      ],
+      "resposta_correcta": [
+        "Reducció de la mida del fitxer.",
+        "Pèrdua de detall.",
+        "Acceleració de la càrrega en web."
+      ]
+    },
+    {
+      "id": "IMD034",
+      "tipus": "seleccio",
+      "pregunta": "Quina tècnica permet modificar la perspectiva d'una imatge per corregir distorsions o crear efectes tridimensionals?",
+      "opcions": [
+        "Invertir colors",
+        "Correcció de perspectiva",
+        "Rotació",
+        "Retall"
+      ],
+      "resposta_correcta": "Correcció de perspectiva",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD035",
+      "tipus": "completar",
+      "pregunta": "El terme ______________ es refereix a la línia imaginària que divideix la imatge en tres parts iguals horitzontalment i verticalment, usat per a una composició equilibrada.",
+      "opcions": [
+        "punt focal",
+        "regla dels terços",
+        "diagonal d'or",
+        "simetria axial"
+      ],
+      "resposta_correcta": "regla dels terços",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD036",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins tipus d'eines de selecció són habituals en programes d'edició de mapa de bits?",
+      "opcions": [
+        "Selecció rectangular/el·líptica.",
+        "Llaç poligonal/magnètic.",
+        "Vareta màgica/selecció ràpida.",
+        "Eina de ploma (per a traçats vectorials)."
+      ],
+      "resposta_correcta": [
+        "Selecció rectangular/el·líptica.",
+        "Llaç poligonal/magnètic.",
+        "Vareta màgica/selecció ràpida."
+      ]
+    },
+    {
+      "id": "IMD037",
+      "tipus": "seleccio",
+      "pregunta": "Quin concepte descriu l'ús d'un color per representar la transparència d'una imatge, com s'observa en alguns GIF?",
+      "opcions": [
+        "Canal RGB",
+        "Color indexat",
+        "Transparència d'un sol color",
+        "Canal alfa"
+      ],
+      "resposta_correcta": "Transparència d'un sol color"
+    },
+    {
+      "id": "IMD038",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona les descripcions amb les tècniques d'edició d'imatges:",
+      "opcions": [
+        {"text": "Ajustar la tonalitat general i la gamma de colors.", "correcta": "Correcció de color"},
+        {"text": "Retirar parts no desitjades de la vora d'una imatge.", "correcta": "Retall (Crop)"},
+        {"text": "Canviar la mida de la imatge en píxels.", "correcta": "Escalat"}
+      ],
+      "dificultat": "fàcil"
+    },
+    {
+      "id": "IMD039",
+      "tipus": "completar",
+      "pregunta": "La tècnica de _______________ permet combinar elements de diverses imatges en una sola, utilitzant capes i màscares.",
+      "opcions": [
+        "recolorejar",
+        "compostatge (compositing)",
+        "rasterització",
+        "vectorització"
+      ],
+      "resposta_correcta": "compostatge (compositing)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD040",
+      "tipus": "seleccio",
+      "pregunta": "Quin dels següents programaris és principalment un editor d'imatges de mapa de bits de codi obert i gratuït?",
+      "opcions": [
+        "Adobe Illustrator",
+        "Inkscape",
+        "GIMP",
+        "CorelDRAW"
+      ],
+      "resposta_correcta": "GIMP"
+    },
+    {
+      "id": "IMD041",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins avantatges tenen les imatges vectorials respecte a les de mapa de bits?",
+      "opcions": [
+        "Ocupen menys espai per a dissenys complexos.",
+        "Són escalables sense pèrdua de qualitat.",
+        "Són més fàcils de manipular pixel a píxel.",
+        "Són ideals per a il·lustracions, logotips i tipografies."
+      ],
+      "resposta_correcta": [
+        "Ocupen menys espai per a dissenys complexos.",
+        "Són escalables sense pèrdua de qualitat.",
+        "Són ideals per a il·lustracions, logotips i tipografies."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD042",
+      "tipus": "completar",
+      "pregunta": "Per a una imatge de mapa de bits, la ______________ de color determina el nombre de colors que pot contenir cada píxel, influint en la fidelitat cromàtica.",
+      "opcions": [
+        "resolució",
+        "paleta",
+        "profunditat",
+        "gamma"
+      ],
+      "resposta_correcta": "profunditat"
+    },
+    {
+      "id": "IMD043",
+      "tipus": "seleccio",
+      "pregunta": "Quin mode de color s'utilitza en dispositius de visualització com monitors i televisions?",
+      "opcions": [
+        "CMYK",
+        "RGB",
+        "LAB",
+        "Spot Color"
+      ],
+      "resposta_correcta": "RGB"
+    },
+    {
+      "id": "IMD044",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els formats d'imatge amb les seves característiques principals:",
+      "opcions": [
+        {"text": "JPG", "correcta": "Compressió amb pèrdues, ideal per a fotografies."},
+        {"text": "PNG", "correcta": "Compressió sense pèrdues, suporta transparències."},
+        {"text": "GIF", "correcta": "Animacions senzilles, paleta de 256 colors."},
+        {"text": "SVG", "correcta": "Format vectorial basat en XML."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "IMD045",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme fa referència al procés de convertir una imatge vectorial en una imatge de mapa de bits?",
+      "opcions": [
+        "Vectorització",
+        "Dessaturació",
+        "Rasterització",
+        "Normalització"
+      ],
+      "resposta_correcta": "Rasterització"
+    },
+    {
+      "id": "IMD046",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són considerades 'seleccions geomètriques' en un editor d'imatges?",
+      "opcions": [
+        "Selecció el·líptica.",
+        "Selecció rectangular.",
+        "Llaç a mà alçada.",
+        "Varita màgica."
+      ],
+      "resposta_correcta": [
+        "Selecció el·líptica.",
+        "Selecció rectangular."
       ]
     }
   ],
-  "Edició avançada de so": [
+  "Mòdul 2: Edició d’imatges": [
     {
-      "id": "SO001",
+      "id": "EIM001",
+      "tipus": "multiseleccio",
+      "pregunta": "Per retocar una fotografia digital, quines de les següents accions són habituals utilitzant programari d'edició d'imatges com GIMP o Photoshop?",
+      "opcions": [
+        "Ajustar la brillantor i el contrast.",
+        "Eliminar ulls vermells o imperfeccions.",
+        "Aplicar filtres artístics.",
+        "Crear fulls de càlcul."
+      ],
+      "resposta_correcta": [
+        "Ajustar la brillantor i el contrast.",
+        "Eliminar ulls vermells o imperfeccions.",
+        "Aplicar filtres artístics."
+      ]
+    },
+    {
+      "id": "EIM002",
       "tipus": "seleccio",
-      "pregunta": "Quina unitat de mesura s'utilitza per indicar la freqüència de mostreig en l'àudio digital?",
+      "pregunta": "Què és una **'capa' (layer)** en un programa d'edició d'imatges com Photoshop o GIMP?",
+      "opcions": [
+        "Un mode de color que s'aplica a tota la imatge.",
+        "Un element independent dins la imatge que pot ser editat sense afectar altres parts.",
+        "Un tipus de filtre de correcció de color.",
+        "L'historial de les accions realitzades."
+      ],
+      "resposta_correcta": "Un element independent dins la imatge que pot ser editat sense afectar altres parts.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM003",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines tècniques s'utilitzen per fer seleccions complexes en imatges de mapa de bits?",
+      "opcions": [
+        "Eina Llaç (Lasso Tool)",
+        "Vareta Màgica (Magic Wand Tool)",
+        "Màscares de capa (Layer Masks)",
+        "Eina Pinzell (Brush Tool)"
+      ],
+      "resposta_correcta": [
+        "Eina Llaç (Lasso Tool)",
+        "Vareta Màgica (Magic Wand Tool)",
+        "Màscares de capa (Layer Masks)"
+      ]
+    },
+    {
+      "id": "EIM004",
+      "tipus": "seleccio",
+      "pregunta": "Quin format d'imatge s'utilitza sovint per a la intercanviabilitat entre diferents programes d'edició d'imatges, mantenint capes i transparències, sense ser un format natiu d'un programa concret?",
+      "opcions": [
+        "BMP",
+        "JPG",
+        "PSD",
+        "XCF (format natiu de GIMP)"
+      ],
+      "resposta_correcta": "PSD"
+    },
+    {
+      "id": "EIM005",
+      "tipus": "seleccio",
+      "pregunta": "Quina és la funció principal de l'eina 'clonar' o 'tampó de clonar' en programes d'edició d'imatges?",
+      "opcions": [
+        "Duplicar una imatge sencera en una nova capa.",
+        "Copiar píxels d'una àrea i aplicar-los a una altra per eliminar imperfeccions o estendre contingut.",
+        "Crear un reflex mirall de la imatge.",
+        "Ajustar la transparència d'una selecció."
+      ],
+      "resposta_correcta": "Copiar píxels d'una àrea i aplicar-los a una altra per eliminar imperfeccions o estendre contingut."
+    },
+    {
+      "id": "EIM006",
+      "tipus": "multiseleccio",
+      "pregunta": "Per què és important l'optimització d'imatges per a la web?",
+      "opcions": [
+        "Perquè les pàgines web es carreguin més ràpidament.",
+        "Per reduir el consum de dades dels usuaris.",
+        "Per millorar el posicionament en buscadors (SEO).",
+        "Per garantir que les imatges tinguin una resolució de 300 DPI."
+      ],
+      "resposta_correcta": [
+        "Perquè les pàgines web es carreguin més ràpidament.",
+        "Per reduir el consum de dades dels usuaris.",
+        "Per millorar el posicionament en buscadors (SEO)."
+      ]
+    },
+    {
+      "id": "EIM007",
+      "tipus": "seleccio",
+      "pregunta": "En disseny gràfic, què significa 'bleed' (sagnat)?",
+      "opcions": [
+        "L'espai en blanc al voltant del contingut principal.",
+        "Una àrea d'impressió que s'estén més enllà de la línia de tall per evitar vores blanques no desitjades.",
+        "La distorsió del color en la impressió.",
+        "Un tipus de filtre que s'aplica a les imatges."
+      ],
+      "resposta_correcta": "Una àrea d'impressió que s'estén més enllà de la línia de tall per evitar vores blanques no desitjades.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM008",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins avantatges ofereix l'ús de màscares de capa en l'edició d'imatges?",
+      "opcions": [
+        "Permeten aplicar efectes o ajustos a una part de la imatge de manera no destructiva.",
+        "Faciliten la composició d'imatges combinant elements de diferents capes de forma controlada.",
+        "Són útils per ocultar o revelar parts d'una capa sense esborrar-les permanentment.",
+        "Bloqueixen la imatge perquè no es pugui editar."
+      ],
+      "resposta_correcta": [
+        "Permeten aplicar efectes o ajustos a una part de la imatge de manera no destructiva.",
+        "Faciliten la composició d'imatges combinant elements de diferents capes de forma controlada.",
+        "Són útils per ocultar o revelar parts d'una capa sense esborrar-les permanentment."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM009",
+      "tipus": "seleccio",
+      "pregunta": "Quina funció permet igualar la tonalitat de colors d'una imatge a una referència específica per a una aparença més consistent?",
+      "opcions": [
+        "Filtre de desenfoque",
+        "Harmonització de color",
+        "Retallar",
+        "Escala de grisos"
+      ],
+      "resposta_correcta": "Harmonització de color",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM010",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són tècniques comunes per eliminar o reduir el soroll digital en una fotografia?",
+      "opcions": [
+        "Aplicar filtres de reducció de soroll.",
+        "Augmentar l'exposició a valors extrems.",
+        "Utilitzar la funció 'desenfoque de superfície'.",
+        "Rebaixar la saturació de colors."
+      ],
+      "resposta_correcta": [
+        "Aplicar filtres de reducció de soroll.",
+        "Utilitzar la funció 'desenfoque de superfície'."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM011",
+      "tipus": "seleccio",
+      "pregunta": "Què permet l'eina 'ulleres de sol' o 'dodge and burn' en edició fotogràfica?",
+      "opcions": [
+        "Ajustar la saturació global de la imatge.",
+        "Aclarir (dodge) o enfosquir (burn) selectivament àrees de la imatge.",
+        "Aplicar un filtre de color blau.",
+        "Retallar la imatge en forma rodona."
+      ],
+      "resposta_correcta": "Aclarir (dodge) o enfosquir (burn) selectivament àrees de la imatge."
+    },
+    {
+      "id": "EIM012",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona l'eina amb la seva funció principal en edició d'imatges:",
+      "opcions": [
+        {"text": "Histograma", "correcta": "Representació gràfica de la distribució de tons."},
+        {"text": "Capes d'ajust", "correcta": "Aplicar correccions de color o to de forma no destructiva."},
+        {"text": "Punt de fuga (Vanishing Point)", "correcta": "Edició de contingut en perspectiva."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM013",
+      "tipus": "completar",
+      "pregunta": "L'eina de _______________ en Photoshop permet corregir distorsions de lent, com la distorsió de barrilet o coixí.",
+      "opcions": [
+        "deformar",
+        "lent",
+        "correcció de lent",
+        "perspectiva"
+      ],
+      "resposta_correcta": "correcció de lent",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM014",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents són tècniques de 'retoc digital' de retrats?",
+      "opcions": [
+        "Suavitzar la pell.",
+        "Eliminar arrugues o taques.",
+        "Ajustar el color dels ulls.",
+        "Redimensionar la imatge sense proporció."
+      ],
+      "resposta_correcta": [
+        "Suavitzar la pell.",
+        "Eliminar arrugues o taques.",
+        "Ajustar el color dels ulls."
+      ]
+    },
+    {
+      "id": "EIM015",
+      "tipus": "seleccio",
+      "pregunta": "Què fa la funció 'nivells' o 'curves' en un editor d'imatges?",
+      "opcions": [
+        "Ajusta la saturació del color.",
+        "Permet un control precís sobre la gamma tonal i el contrast de la imatge.",
+        "Elimina objectes no desitjats.",
+        "Converteix la imatge a blanc i negre."
+      ],
+      "resposta_correcta": "Permet un control precís sobre la gamma tonal i el contrast de la imatge.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM016",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins tipus d'eines de 'retoque' (spot healing, patch tool) s'utilitzen per eliminar petits defectes en una imatge?",
+      "opcions": [
+        "Eina de pinzell corrector puntual.",
+        "Eina de pedaç.",
+        "Eina de clonar.",
+        "Eina de text."
+      ],
+      "resposta_correcta": [
+        "Eina de pinzell corrector puntual.",
+        "Eina de pedaç.",
+        "Eina de clonar."
+      ]
+    },
+    {
+      "id": "EIM017",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de 'filtre' s'utilitza per crear un efecte de fons desenfocat, simulant la poca profunditat de camp d'una càmera?",
+      "opcions": [
+        "Filtre de nitidesa",
+        "Filtre de desenfoque gaussià (Gaussian Blur)",
+        "Filtre d'aguditzar",
+        "Filtre de distorsió"
+      ],
+      "resposta_correcta": "Filtre de desenfoque gaussià (Gaussian Blur)"
+    },
+    {
+      "id": "EIM018",
+      "tipus": "completar",
+      "pregunta": "L'eina de ______________ permet 'treure' un objecte del seu fons per col·locar-lo en un altre context.",
+      "opcions": [
+        "pintura",
+        "retall",
+        "selecció de subjecte",
+        "duplicació"
+      ],
+      "resposta_correcta": "selecció de subjecte"
+    },
+    {
+      "id": "EIM019",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són alguns dels mètodes per crear un efecte 'HDR' (High Dynamic Range) en fotografia?",
+      "opcions": [
+        "Combinar diverses exposicions de la mateixa escena.",
+        "Utilitzar una única fotografia i ajustar els seus tons localment.",
+        "Augmentar dràsticament la saturació dels colors.",
+        "Aplicar un filtre de blanc i negre."
+      ],
+      "resposta_correcta": [
+        "Combinar diverses exposicions de la mateixa escena.",
+        "Utilitzar una única fotografia i ajustar els seus tons localment."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM020",
+      "tipus": "seleccio",
+      "pregunta": "Quina eina d'edició és fonamental per eliminar elements no desitjats d'una imatge de fons complex, basant-se en el contingut circumdant?",
+      "opcions": [
+        "Eina de retall",
+        "Relleno segons el contingut (Content-Aware Fill)",
+        "Eina de pinzell",
+        "Ajust de brillantor"
+      ],
+      "resposta_correcta": "Relleno segons el contingut (Content-Aware Fill)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM021",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona les tècniques de selecció amb la seva aplicació:",
+      "opcions": [
+        {"text": "Vareta Màgica", "correcta": "Seleccionar àrees de color similar."},
+        {"text": "Eina Ploma", "correcta": "Crear seleccions precises amb corbes de Bézier."},
+        {"text": "Selecció ràpida", "correcta": "Seleccionar objectes complexos arrossegant el ratolí."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM022",
+      "tipus": "seleccio",
+      "pregunta": "Si un fotògraf vol conservar la màxima informació possible d'una imatge després de la captura per a una edició flexible, quin format de fitxer hauria de preferir?",
+      "opcions": [
+        "JPG",
+        "PNG",
+        "RAW",
+        "GIF"
+      ],
+      "resposta_correcta": "RAW",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM023",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines propietats es poden ajustar en un objecte intel·ligent o una capa de text editable en Photoshop sense rasteritzar-la?",
+      "opcions": [
+        "Mida.",
+        "Rotació.",
+        "Aplicació de filtres de forma no destructiva.",
+        "Modificació pixel a píxel amb el pinzell."
+      ],
+      "resposta_correcta": [
+        "Mida.",
+        "Rotació.",
+        "Aplicació de filtres de forma no destructiva."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM024",
+      "tipus": "completar",
+      "pregunta": "La tècnica de _______________ permet canviar la perspectiva d'una imatge per simular una vista diferent o corregir distorsions òptiques.",
+      "opcions": [
+        "rotació",
+        "transformació lliure",
+        "distorsió de perspectiva",
+        "escalat"
+      ],
+      "resposta_correcta": "distorsió de perspectiva",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM025",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'nitidesa selectiva' en l'edició d'imatges?",
+      "opcions": [
+        "Aplicar nitidesa a tota la imatge per igual.",
+        "Augmentar la nitidesa només en àrees específiques de la imatge.",
+        "Reduir la nitidesa per crear un efecte artístic.",
+        "Eliminar la nitidesa de les vores dels objectes."
+      ],
+      "resposta_correcta": "Augmentar la nitidesa només en àrees específiques de la imatge."
+    },
+    {
+      "id": "EIM026",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són alguns dels avantatges d'utilitzar màscares de capa respecte a esborrar directament els píxels?",
+      "opcions": [
+        "No destrueix la informació original de la imatge.",
+        "Permet una edició reversible i ajustable en qualsevol moment.",
+        "Permet aplicar gradacions de transparència (semitransparències).",
+        "És una manera més ràpida de fer seleccions senzilles."
+      ],
+      "resposta_correcta": [
+        "No destrueix la informació original de la imatge.",
+        "Permet una edició reversible i ajustable en qualsevol moment.",
+        "Permet aplicar gradacions de transparència (semitransparències)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM027",
+      "tipus": "seleccio",
+      "pregunta": "Quina eina permet pintar amb mostres de color d'una altra part de la imatge per a reparacions subtils o correcció de to?",
+      "opcions": [
+        "Pinzell",
+        "Eina de mostreig de color",
+        "Pinzell corrector",
+        "Cub de pintura"
+      ],
+      "resposta_correcta": "Pinzell corrector"
+    },
+    {
+      "id": "EIM028",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els components que es poden controlar o ajustar en una 'corba de tons' (curves adjustment) en l'edició d'imatges?",
+      "opcions": [
+        "Llums (highlights).",
+        "Mitjos tons (midtones).",
+        "Ombres (shadows).",
+        "Saturació global de la imatge."
+      ],
+      "resposta_correcta": [
+        "Llums (highlights).",
+        "Mitjos tons (midtones).",
+        "Ombres (shadows)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM029",
+      "tipus": "completar",
+      "pregunta": "Per a una edició no destructiva, és recomanable utilitzar ______________ en lloc d'aplicar canvis directament a la capa de píxels.",
+      "opcions": [
+        "filtres automàtics",
+        "capes d'ajust",
+        "objectes rasteritzats",
+        "tall directes"
+      ],
+      "resposta_correcta": "capes d'ajust",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM030",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'temperatura de color' en fotografia i edició?",
+      "opcions": [
+        "La sensació tèrmica que transmet una imatge.",
+        "Una característica del color que descriu si els colors són més 'freds' (blaus) o més 'càlids' (taronges/grocs).",
+        "La lluminositat d'una imatge.",
+        "El nombre de colors que pot mostrar la imatge."
+      ],
+      "resposta_correcta": "Una característica del color que descriu si els colors són més 'freds' (blaus) o més 'càlids' (taronges/grocs)."
+    },
+    {
+      "id": "EIM031",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins elements es poden gestionar en la paleta de 'capes' d'un editor gràfic?",
+      "opcions": [
+        "Visibilitat de la capa.",
+        "Opacitat de la capa.",
+        "Mode de fusió (blending mode).",
+        "Tipus de fitxer de la imatge."
+      ],
+      "resposta_correcta": [
+        "Visibilitat de la capa.",
+        "Opacitat de la capa.",
+        "Mode de fusió (blending mode)."
+      ]
+    },
+    {
+      "id": "EIM032",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de retall s'utilitza per eliminar el fons d'un objecte i fer-lo transparent, generalment amb molta precisió?",
+      "opcions": [
+        "Retall rectangular",
+        "Retall lliure",
+        "Retall basat en traçats o màscares",
+        "Retall automàtic"
+      ],
+      "resposta_correcta": "Retall basat en traçats o màscares",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM033",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona les descripcions amb les eines de correcció tonal:",
+      "opcions": [
+        {"text": "Ajusta els punts blancs, negres i grisos.", "correcta": "Nivells"},
+        {"text": "Controla la relació entre les entrades i sortides de tons.", "correcta": "Corbes"},
+        {"text": "Ajusta la brillantor i el contrast de manera bàsica.", "correcta": "Brillantor/Contrast"}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM034",
+      "tipus": "completar",
+      "pregunta": "La tècnica de _______________ s'utilitza per eliminar elements no desitjats de la vora d'una imatge, millorant la composició.",
+      "opcions": [
+        "canvi de mida",
+        "retall (cropping)",
+        "redimensionament",
+        "escalat"
+      ],
+      "resposta_correcta": "retall (cropping)"
+    },
+    {
+      "id": "EIM035",
+      "tipus": "seleccio",
+      "pregunta": "Quin efecte s'utilitza per simular la profunditat de camp en una fotografia, desenfocant selectivament el fons o el primer pla?",
+      "opcions": [
+        "Nitidesa",
+        "Desenfoque selectiu (Tilt-Shift o Bokeh)",
+        "Contorn",
+        "Granulat"
+      ],
+      "resposta_correcta": "Desenfoque selectiu (Tilt-Shift o Bokeh)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM036",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins mètodes es poden utilitzar per convertir una imatge a blanc i negre en un editor d'imatges?",
+      "opcions": [
+        "Desaturar la imatge.",
+        "Utilitzar una capa d'ajust de 'blanc i negre'.",
+        "Aplicar un filtre monocromàtic.",
+        "Canviar el mode de color a CMYK."
+      ],
+      "resposta_correcta": [
+        "Desaturar la imatge.",
+        "Utilitzar una capa d'ajust de 'blanc i negre'.",
+        "Aplicar un filtre monocromàtic."
+      ]
+    },
+    {
+      "id": "EIM037",
+      "tipus": "seleccio",
+      "pregunta": "Què significa aplicar un 'filtre no destructiu'?",
+      "opcions": [
+        "Que el filtre no es pot modificar un cop aplicat.",
+        "Que el filtre s'aplica directament als píxels i no es pot desfer.",
+        "Que el filtre s'aplica com una capa o efecte que es pot activar, desactivar o modificar posteriorment sense alterar els píxels originals.",
+        "Que el filtre només funciona amb imatges en format PNG."
+      ],
+      "resposta_correcta": "Que el filtre s'aplica com una capa o efecte que es pot activar, desactivar o modificar posteriorment sense alterar els píxels originals.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM038",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona les accions amb les eines o conceptes:",
+      "opcions": [
+        {"text": "Eliminar ulls vermells.", "correcta": "Eina de pinzell corrector d'ulls vermells."},
+        {"text": "Ajustar colors per a la impressió.", "correcta": "Mode CMYK."},
+        {"text": "Unir múltiples fotos en una panoràmica.", "correcta": "Fotocomposició / Panoràmiques."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM039",
+      "tipus": "completar",
+      "pregunta": "L'eina de ______________ permet canviar la mida i la forma d'una imatge de forma no proporcional per crear efectes artístics o corregir distorsions.",
+      "opcions": [
+        "retall",
+        "escalat",
+        "deformació (warp)",
+        "rotació"
+      ],
+      "resposta_correcta": "deformació (warp)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM040",
+      "tipus": "seleccio",
+      "pregunta": "Si vols canviar el color d'un objecte específic en una imatge sense afectar la resta, quina combinació d'eines seria més eficient?",
+      "opcions": [
+        "Retallar la imatge i canviar el mode de color.",
+        "Fer una selecció precisa de l'objecte i aplicar una capa d'ajust de to/saturació a aquesta selecció.",
+        "Usar l'eina de cub de pintura directament sobre l'objecte.",
+        "Aplicar un filtre de color a tota la imatge."
+      ],
+      "resposta_correcta": "Fer una selecció precisa de l'objecte i aplicar una capa d'ajust de to/saturació a aquesta selecció.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM041",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents accions són tècniques de 'manipulació fotogràfica' avançada?",
+      "opcions": [
+        "Compostatge de diverses imatges.",
+        "Retoc de la forma corporal d'una persona.",
+        "Creació de textures a partir de fotografies.",
+        "Càlcul de la resolució òptima per a la impressió."
+      ],
+      "resposta_correcta": [
+        "Compostatge de diverses imatges.",
+        "Retoc de la forma corporal d'una persona.",
+        "Creació de textures a partir de fotografies."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "EIM042",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de 'pinzell' s'utilitza per pintar o clonar àrees basant-se en un patró predefinit?",
+      "opcions": [
+        "Pinzell normal",
+        "Pinzell d'historial",
+        "Pinzell de patró",
+        "Goma d'esborrar"
+      ],
+      "resposta_correcta": "Pinzell de patró"
+    }
+  ],
+  "Mòdul 3: Edició de vídeo": [
+    {
+      "id": "VID001",
+      "tipus": "seleccio",
+      "pregunta": "Quin concepte fa referència al nombre d'imatges fixes (fotogrames) que es mostren per segon en un vídeo, i que és clau per a la fluïdesa del moviment percebuda?",
+      "opcions": [
+        "Resolució",
+        "Relació d'aspecte",
+        "Taxa de fotogrames (FPS - Frames Per Second)",
+        "Profunditat de color"
+      ],
+      "resposta_correcta": "Taxa de fotogrames (FPS - Frames Per Second)"
+    },
+    {
+      "id": "VID002",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins elements solen formar part de la **línia de temps (timeline)** d'un programari d'edició de vídeo professional?",
+      "opcions": [
+        "Pistes de vídeo (amb els clips visuals)",
+        "Pistes d'àudio (música, veu en off, efectes de so)",
+        "Capes de text o títols i gràfics",
+        "Un gestor de correu electrònic"
+      ],
+      "resposta_correcta": [
+        "Pistes de vídeo (amb els clips visuals)",
+        "Pistes d'àudio (música, veu en off, efectes de so)",
+        "Capes de text o títols i gràfics"
+      ]
+    },
+    {
+      "id": "VID003",
+      "tipus": "seleccio",
+      "pregunta": "Quina de les següents opcions és una tècnica per passar d'una escena a una altra de manera suau o amb un efecte visual, com una dissolució o un esborrat?",
+      "opcions": [
+        "Tall directe",
+        "Transició",
+        "Keyframe",
+        "Renderitzat"
+      ],
+      "resposta_correcta": "Transició"
+    },
+    {
+      "id": "VID004",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins formats de vídeo són habituals per a la distribució web a causa de la seva eficiència en la compressió i la seva àmplia compatibilitat amb navegadors?",
+      "opcions": [
+        "AVI (Audio Video Interleave)",
+        "MP4 (MPEG-4 Part 14)",
+        "MOV (QuickTime Movie)",
+        "WebM"
+      ],
+      "resposta_correcta": [
+        "MP4 (MPEG-4 Part 14)",
+        "WebM"
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID005",
+      "tipus": "seleccio",
+      "pregunta": "Què és el **'renderitzat'** en el context de l'edició de vídeo?",
+      "opcions": [
+        "El procés de capturar el vídeo de la càmera a l'ordinador.",
+        "El procés de previsualitzar el vídeo sense guardar els canvis.",
+        "El procés de generar el fitxer de vídeo final a partir de la línia de temps, aplicant tots els efectes, transicions i compressions.",
+        "El procés d'afegir subtítols automàticament."
+      ],
+      "resposta_correcta": "El procés de generar el fitxer de vídeo final a partir de la línia de temps, aplicant tots els efectes, transicions i compressions.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID006",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme s'utilitza per descriure la relació entre l'amplada i l'alçada de la imatge d'un vídeo, com 16:9 (panoràmic) o 4:3 (estàndard)?",
+      "opcions": [
+        "Resolució",
+        "Relació d'aspecte (Aspect Ratio)",
+        "Taxa de bits",
+        "Profunditat de color"
+      ],
+      "resposta_correcta": "Relació d'aspecte (Aspect Ratio)"
+    },
+    {
+      "id": "VID007",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els components principals que solen formar un fitxer de vídeo digital (a banda del contenidor)?",
+      "opcions": [
+        "Un còdec de vídeo (per la part visual).",
+        "Un còdec d'àudio (per la part sonora).",
+        "Una seqüència de frames (fotogrames).",
+        "Un fitxer de text amb la transcripció completa."
+      ],
+      "resposta_correcta": [
+        "Un còdec de vídeo (per la part visual).",
+        "Un còdec d'àudio (per la part sonora).",
+        "Una seqüència de frames (fotogrames)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID008",
+      "tipus": "seleccio",
+      "pregunta": "Què són els **'keyframes'** en l'edició de vídeo i animació?",
+      "opcions": [
+        "Fotogrames que s'insereixen automàticament per accelerar la reproducció.",
+        "Punts en el temps on es defineixen canvis en les propietats d'un efecte o animació (p. ex., posició, escala, opacitat), entre els quals el programari interpole.",
+        "Els fitxers de so que acompanyen el vídeo, especialment els de la banda sonora.",
+        "Les miniatures de previsualització dels clips en la safata de projecte."
+      ],
+      "resposta_correcta": "Punts en el temps on es defineixen canvis en les propietats d'un efecte o animació (p. ex., posició, escala, opacitat), entre els quals el programari interpole.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID009",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines resolucions de vídeo són considerades d'alta definició (HD)?",
+      "opcions": [
+        "640x480 (VGA)",
+        "1280x720 (720p)",
+        "1920x1080 (1080p / Full HD)",
+        "3840x2160 (4K UHD)"
+      ],
+      "resposta_correcta": [
+        "1280x720 (720p)",
+        "1920x1080 (1080p / Full HD)"
+      ]
+    },
+    {
+      "id": "VID010",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus d'efecte s'utilitza sovint per reemplaçar un fons de color sòlid (generalment verd o blau) per una altra imatge o vídeo?",
+      "opcions": [
+        "Estabilització",
+        "Croma key (Pantalla verda/blava)",
+        "Etalonatge",
+        "Màscara"
+      ],
+      "resposta_correcta": "Croma key (Pantalla verda/blava)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID011",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins dels següents programes són eines d'edició de vídeo professionals?",
+      "opcions": [
+        "DaVinci Resolve",
+        "Adobe Premiere Pro",
+        "Final Cut Pro (per a macOS)",
+        "Microsoft Word"
+      ],
+      "resposta_correcta": [
+        "DaVinci Resolve",
+        "Adobe Premiere Pro",
+        "Final Cut Pro (per a macOS)"
+      ]
+    },
+    {
+      "id": "VID012",
+      "tipus": "seleccio",
+      "pregunta": "Què implica l'**etalonatge** (color grading) en el procés de postproducció de vídeo?",
+      "opcions": [
+        "Ajustar la velocitat de reproducció dels clips.",
+        "Corregir i millorar els colors del vídeo per establir un to visual o estil.",
+        "Afegir efectes de so a la banda sonora.",
+        "Renderitzar el vídeo final a una resolució inferior."
+      ],
+      "resposta_correcta": "Corregir i millorar els colors del vídeo per establir un to visual o estil.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID013",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els principals objectius de l'optimització d'un vídeo per a la seva publicació en plataformes de streaming (YouTube, Vimeo, etc.)?",
+      "opcions": [
+        "Reduir la mida del fitxer per a una càrrega més ràpida.",
+        "Assegurar la compatibilitat amb una àmplia gamma de dispositius i connexions a internet.",
+        "Mantenir una qualitat visual i d'àudio acceptable.",
+        "Augmentar la resolució del vídeo per a totes les pantalles."
+      ],
+      "resposta_correcta": [
+        "Reduir la mida del fitxer per a una càrrega més ràpida.",
+        "Assegurar la compatibilitat amb una àmplia gamma de dispositius i connexions a internet.",
+        "Mantenir una qualitat visual i d'àudio acceptable."
+      ]
+    },
+    {
+      "id": "VID014",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme es refereix a la quantitat de dades (bits) processades per unitat de temps en un vídeo, i que afecta directament la qualitat i la mida del fitxer?",
+      "opcions": [
+        "Resolució",
+        "FPS (Frames Per Second)",
+        "Taxa de bits (Bitrate)",
+        "Relació d'aspecte"
+      ],
+      "resposta_correcta": "Taxa de bits (Bitrate)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID015",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són alguns dels elements que poden incorporar-se en un títol o gràfic animat en un vídeo?",
+      "opcions": [
+        "Text",
+        "Formes i línies.",
+        "Imatges fixes.",
+        "Àudio de fons."
+      ],
+      "resposta_correcta": [
+        "Text",
+        "Formes i línies.",
+        "Imatges fixes.",
+        "Àudio de fons."
+      ]
+    },
+    {
+      "id": "VID016",
+      "tipus": "seleccio",
+      "pregunta": "Quina eina d'edició de vídeo s'utilitza per suavitzar moviments bruscos de càmera i fer que el vídeo sembli més professional?",
+      "opcions": [
+        "Croma key",
+        "Etalonatge",
+        "Estabilització",
+        "Tall directe"
+      ],
+      "resposta_correcta": "Estabilització"
+    },
+    {
+      "id": "VID017",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els còdecs de vídeo més comuns utilitzats per a la compressió i la reproducció en línia?",
+      "opcions": [
+        "H.264 (AVC)",
+        "H.265 (HEVC)",
+        "MPEG-2",
+        "AVI (és un contenidor, no un còdec)"
+      ],
+      "resposta_correcta": [
+        "H.264 (AVC)",
+        "H.265 (HEVC)",
+        "MPEG-2"
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID018",
+      "tipus": "seleccio",
+      "pregunta": "En l'edició de vídeo, què s'entén per 'sincronització d'àudio i vídeo'?",
+      "opcions": [
+        "Ajustar el volum de la música de fons.",
+        "Assegurar que la imatge i el so estiguin perfectament alineats en el temps.",
+        "Afegir efectes d'àudio que coincideixin amb les transicions visuals.",
+        "Exportar l'àudio del vídeo per separat."
+      ],
+      "resposta_correcta": "Assegurar que la imatge i el so estiguin perfectament alineats en el temps."
+    },
+    {
+      "id": "VID019",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són les resolucions de vídeo més comunes per a la televisió i el cinema d'alta definició?",
+      "opcions": [
+        "720p (HD Ready)",
+        "1080p (Full HD)",
+        "2160p (4K UHD)",
+        "480p (SD)"
+      ],
+      "resposta_correcta": [
+        "720p (HD Ready)",
+        "1080p (Full HD)",
+        "2160p (4K UHD)"
+      ]
+    },
+    {
+      "id": "VID020",
+      "tipus": "seleccio",
+      "pregunta": "Què és un 'codec' en el context de vídeo?",
+      "opcions": [
+        "Un tipus de connector de vídeo.",
+        "Un programa que permet comprimir i descomprimir dades de vídeo i àudio.",
+        "Un format de fitxer de vídeo.",
+        "Una tècnica d'edició de color."
+      ],
+      "resposta_correcta": "Un programa que permet comprimir i descomprimir dades de vídeo i àudio.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID021",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents accions formen part del procés de postproducció de vídeo?",
+      "opcions": [
+        "Edició (muntatge, transicions).",
+        "Correcció de color i etalonatge.",
+        "Mescla i masterització d'àudio.",
+        "Captura de material amb la càmera."
+      ],
+      "resposta_correcta": [
+        "Edició (muntatge, transicions).",
+        "Correcció de color i etalonatge.",
+        "Mescla i masterització d'àudio."
+      ]
+    },
+    {
+      "id": "VID022",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme es refereix a la previsualització d'una secció editada del vídeo que ja ha estat processada per mostrar els efectes aplicats abans del renderitzat final?",
+      "opcions": [
+        "Importació",
+        "Caching / Pre-renderitzat",
+        "Exportació",
+        "Captura"
+      ],
+      "resposta_correcta": "Caching / Pre-renderitzat"
+    },
+    {
+      "id": "VID023",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins tipus de connectors físics s'utilitzen habitualment per a la transmissió de senyals de vídeo d'alta qualitat?",
+      "opcions": [
+        "HDMI",
+        "DisplayPort",
+        "USB-C (amb mode alternatiu de vídeo)",
+        "VGA"
+      ],
+      "resposta_correcta": [
+        "HDMI",
+        "DisplayPort",
+        "USB-C (amb mode alternatiu de vídeo)"
+      ]
+    },
+    {
+      "id": "VID024",
+      "tipus": "seleccio",
+      "pregunta": "Quin és el propòsit principal de l'ús de 'proxies' en l'edició de vídeo professional?",
+      "opcions": [
+        "Afegir marques d'aigua al vídeo.",
+        "Utilitzar versions de baixa resolució dels clips originals per a una edició més fluida, sense afectar la qualitat final del renderitzat.",
+        "Reemplaçar automàticament els clips d'àudio per música de fons.",
+        "Exportar ràpidament el vídeo per a xarxes socials."
+      ],
+      "resposta_correcta": "Utilitzar versions de baixa resolució dels clips originals per a una edició més fluida, sense afectar la qualitat final del renderitzat.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID025",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els conceptes de vídeo amb la seva definició:",
+      "opcions": [
+        {"text": "Muntatge", "correcta": "Organització i unió de clips de vídeo a la línia de temps."},
+        {"text": "Transcodificació", "correcta": "Conversió d'un fitxer de vídeo d'un format o còdec a un altre."},
+        {"text": "Motion Graphics", "correcta": "Creació de gràfics animats per a vídeo."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID026",
+      "tipus": "completar",
+      "pregunta": "La tècnica de _______________ és crucial per assegurar que el metratge de vídeo capturat tingui una aparença visual consistent entre preses.",
+      "opcions": [
+        "sincronització",
+        "correcció de color",
+        "tall directe",
+        "estabilització"
+      ],
+      "resposta_correcta": "correcció de color",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID027",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de 'pista' en un editor de vídeo està dedicada exclusivament a la informació sonora?",
+      "opcions": [
+        "Pista de vídeo",
+        "Pista de text",
+        "Pista d'àudio",
+        "Pista de keyframes"
+      ],
+      "resposta_correcta": "Pista d'àudio"
+    },
+    {
+      "id": "VID028",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són alguns dels aspectes a considerar per exportar un vídeo per a la web?",
+      "opcions": [
+        "Triar un còdec de vídeo eficient (ex. H.264/H.265).",
+        "Seleccionar una taxa de bits adequada per a la qualitat desitjada sense fer el fitxer massa gran.",
+        "Definir una resolució compatible amb els dispositius més comuns.",
+        "Utilitzar exclusivament formats no comprimits."
+      ],
+      "resposta_correcta": [
+        "Triar un còdec de vídeo eficient (ex. H.264/H.265).",
+        "Seleccionar una taxa de bits adequada per a la qualitat desitjada sense fer el fitxer massa gran.",
+        "Definir una resolució compatible amb els dispositius més comuns."
+      ]
+    },
+    {
+      "id": "VID029",
+      "tipus": "seleccio",
+      "pregunta": "Què és un 'clip' en l'edició de vídeo?",
+      "opcions": [
+        "Un efecte de so.",
+        "Un fragment individual de metratge (vídeo o àudio) utilitzat en el projecte.",
+        "La transició entre dues escenes.",
+        "Un fitxer de projecte d'edició."
+      ],
+      "resposta_correcta": "Un fragment individual de metratge (vídeo o àudio) utilitzat en el projecte."
+    },
+    {
+      "id": "VID030",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els tipus de resolució amb els seus noms comuns:",
+      "opcions": [
+        {"text": "1280x720 píxels", "correcta": "720p (HD Ready)"},
+        {"text": "1920x1080 píxels", "correcta": "1080p (Full HD)"},
+        {"text": "3840x2160 píxels", "correcta": "4K UHD"}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID031",
+      "tipus": "completar",
+      "pregunta": "Els _______________ són punts de control que defineixen el valor d'una propietat (com la posició, l'opacitat o el color) en un moment concret de la línia de temps per crear animacions.",
+      "opcions": [
+        "marcadors",
+        "keyframes",
+        "clips",
+        "segments"
+      ],
+      "resposta_correcta": "keyframes",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID032",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme fa referència al procés de 'tallar' un clip de vídeo per eliminar les parts no desitjades abans o després d'un punt específic?",
+      "opcions": [
+        "Unir",
+        "Retallar (Trim)",
+        "Esborrar",
+        "Muntatge"
+      ],
+      "resposta_correcta": "Retallar (Trim)"
+    },
+    {
+      "id": "VID033",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són les etapes clau en la producció de vídeo?",
+      "opcions": [
+        "Preproducció (planificació i guió).",
+        "Producció (gravació).",
+        "Postproducció (edició, efectes, so).",
+        "Distribució (publicació)."
+      ],
+      "resposta_correcta": [
+        "Preproducció (planificació i guió).",
+        "Producció (gravació).",
+        "Postproducció (edició, efectes, so).",
+        "Distribució (publicació)."
+      ]
+    },
+    {
+      "id": "VID034",
+      "tipus": "seleccio",
+      "pregunta": "Quina tècnica s'utilitza per crear un 'lapso de temps' (timelapse) a partir de fotografies?",
+      "opcions": [
+        "Accelerar un vídeo normal.",
+        "Capturar una sèrie de fotografies a intervals regulars i unir-les en un vídeo.",
+        "Aplicar un efecte de càmera lenta.",
+        "Estabilitzar una gravació inestable."
+      ],
+      "resposta_correcta": "Capturar una sèrie de fotografies a intervals regulars i unir-les en un vídeo."
+    },
+    {
+      "id": "VID035",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els efectes de vídeo amb la seva funció:",
+      "opcions": [
+        {"text": "Desenfoque de moviment", "correcta": "Simular el moviment ràpid dels objectes."},
+        {"text": "Grana de pel·lícula", "correcta": "Afegir una textura visual analògica."},
+        {"text": "Vinyeta", "correcta": "Enfosquir les vores de la imatge per centrar l'atenció."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID036",
+      "tipus": "completar",
+      "pregunta": "L'eina de _______________ permet canviar la velocitat de reproducció d'un clip de vídeo, ja sigui accelerant-lo o ralentitzant-lo.",
+      "opcions": [
+        "retall",
+        "renderitzat",
+        "remapatge de temps",
+        "sincronització"
+      ],
+      "resposta_correcta": "remapatge de temps",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID037",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de 'màscara' en edició de vídeo s'utilitza per aïllar una àrea específica d'un fotograma per aplicar un efecte només a aquesta zona?",
+      "opcions": [
+        "Màscara de capa (Layer Mask)",
+        "Màscara de clip",
+        "Màscara de text",
+        "Màscara de resolució"
+      ],
+      "resposta_correcta": "Màscara de capa (Layer Mask)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID038",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els principals tipus de transicions de vídeo?",
+      "opcions": [
+        "Tall (cut).",
+        "Dissolució (dissolve).",
+        "Esborrat (wipe).",
+        "Renderitzat ràpid."
+      ],
+      "resposta_correcta": [
+        "Tall (cut).",
+        "Dissolució (dissolve).",
+        "Esborrat (wipe)."
+      ]
+    },
+    {
+      "id": "VID039",
+      "tipus": "seleccio",
+      "pregunta": "Què és un 'clip de text' o 'títol' en l'edició de vídeo?",
+      "opcions": [
+        "Un clip de vídeo sense àudio.",
+        "Un element de text superposat al vídeo que pot ser animat o estàtic.",
+        "Un subtítol generat automàticament.",
+        "El nom d'un efecte de vídeo."
+      ],
+      "resposta_correcta": "Un element de text superposat al vídeo que pot ser animat o estàtic."
+    },
+    {
+      "id": "VID040",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona les eines d'edició de vídeo amb la seva funció principal:",
+      "opcions": [
+        {"text": "Eina de tall (Razor Tool)", "correcta": "Dividir clips en fragments."},
+        {"text": "Eina de selecció (Selection Tool)", "correcta": "Seleccionar i moure clips."},
+        {"text": "Eina de text", "correcta": "Afegir títols i rètols."}
+      ],
+      "dificultat": "fàcil"
+    },
+    {
+      "id": "VID041",
+      "tipus": "completar",
+      "pregunta": "Per aconseguir un so ambient uniforme en un vídeo, s'utilitza la tècnica de _______________, que consisteix a reduir la diferència entre les parts més fortes i més febles de l'àudio.",
+      "opcions": [
+        "normalització",
+        "compressió",
+        "equalització",
+        "reverberació"
+      ],
+      "resposta_correcta": "compressió",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID042",
+      "tipus": "seleccio",
+      "pregunta": "Quin és el propòsit de les 'pistes' en la línia de temps d'un editor de vídeo?",
+      "opcions": [
+        "Organitzar els clips de vídeo i àudio en capes independents.",
+        "Definir el tipus de format d'exportació.",
+        "Aplicar efectes globals a tot el projecte.",
+        "Limitar el nombre de clips que es poden afegir."
+      ],
+      "resposta_correcta": "Organitzar els clips de vídeo i àudio en capes independents."
+    },
+    {
+      "id": "VID043",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents accions són essencials per a un 'bon muntatge' en edició de vídeo?",
+      "opcions": [
+        "Mantenir un ritme adequat.",
+        "Assegurar la continuïtat visual i narrativa.",
+        "Utilitzar transicions que s'adaptin a l'estil del vídeo.",
+        "Incloure tots els plans gravats, sense seleccionar."
+      ],
+      "resposta_correcta": [
+        "Mantenir un ritme adequat.",
+        "Assegurar la continuïtat visual i narrativa.",
+        "Utilitzar transicions que s'adaptin a l'estil del vídeo."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID044",
+      "tipus": "seleccio",
+      "pregunta": "Quan és apropiat utilitzar una 'dissolució' (dissolve) com a transició entre dos clips?",
+      "opcions": [
+        "Per crear un canvi abrupte d'escena.",
+        "Per indicar un pas del temps o un canvi gradual.",
+        "Quan es vol que el següent clip aparegui instantàniament.",
+        "Només per a vídeos musicals."
+      ],
+      "resposta_correcta": "Per indicar un pas del temps o un canvi gradual."
+    },
+    {
+      "id": "VID045",
+      "tipus": "completar",
+      "pregunta": "Un _______________ de vídeo és el programa o l'algoritme que s'utilitza per comprimir i descomprimir dades visuals digitals.",
+      "opcions": [
+        "contenidor",
+        "editor",
+        "còdec",
+        "reproductor"
+      ],
+      "resposta_correcta": "còdec"
+    },
+    {
+      "id": "VID046",
+      "tipus": "seleccio",
+      "pregunta": "Quin programa de vídeo de codi obert i gratuït és una alternativa popular a programes comercials com Premiere Pro?",
+      "opcions": [
+        "Adobe After Effects",
+        "Shotcut",
+        "Vegas Pro",
+        "Camtasia"
+      ],
+      "resposta_correcta": "Shotcut"
+    },
+    {
+      "id": "VID047",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins aspectes es poden controlar amb precisió utilitzant 'keyframes' en l'edició de vídeo?",
+      "opcions": [
+        "La posició d'un títol en pantalla.",
+        "L'opacitat d'una capa de vídeo.",
+        "El volum d'una pista d'àudio al llarg del temps.",
+        "La resolució global del projecte."
+      ],
+      "resposta_correcta": [
+        "La posició d'un títol en pantalla.",
+        "L'opacitat d'una capa de vídeo.",
+        "El volum d'una pista d'àudio al llarg del temps."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "VID048",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'taxa de dades variable' (VBR - Variable Bit Rate) en l'exportació de vídeo?",
+      "opcions": [
+        "Una taxa de bits fixa que no canvia.",
+        "Un mètode de compressió que assigna més bits a les escenes complexes i menys a les senzilles per optimitzar la qualitat i la mida.",
+        "Un tipus de relació d'aspecte.",
+        "Un error en el procés de renderitzat."
+      ],
+      "resposta_correcta": "Un mètode de compressió que assigna més bits a les escenes complexes i menys a les senzilles per optimitzar la qualitat i la mida.",
+      "dificultat": "difícil"
+    }
+  ],
+  "Mòdul 4: So i tractament sonor": [
+    {
+      "id": "SOT001",
+      "tipus": "seleccio",
+      "pregunta": "Quina unitat de mesura s'utilitza per indicar la **freqüència de mostreig** en l'àudio digital, determinant el rang de freqüències que es poden capturar i la qualitat de l'àudio?",
       "opcions": [
         "Bits per segon (bps)",
         "Hertz (Hz)",
@@ -112,25 +1872,25 @@
       "resposta_correcta": "Hertz (Hz)"
     },
     {
-      "id": "SO002",
+      "id": "SOT002",
       "tipus": "multiseleccio",
-      "pregunta": "Quines de les següents accions es poden realitzar amb un programari d'edició d'àudio?",
+      "pregunta": "Quines de les següents accions es poden realitzar amb un programari d'edició d'àudio professional com Audacity o Adobe Audition?",
       "opcions": [
-        "Eliminar soroll de fons",
-        "Aplicar efectes (reverberació, eco)",
-        "Tallar i unir fragments d'àudio",
-        "Afegir subtítols a un vídeo"
+        "Eliminar soroll de fons (reducció de soroll).",
+        "Aplicar efectes d'àudio (reverberació, eco, distorsió).",
+        "Tallar, copiar i enganxar fragments d'àudio.",
+        "Generar gràfics estadístics de les ones sonores."
       ],
       "resposta_correcta": [
-        "Eliminar soroll de fons",
-        "Aplicar efectes (reverberació, eco)",
-        "Tallar i unir fragments d'àudio"
+        "Eliminar soroll de fons (reducció de soroll).",
+        "Aplicar efectes d'àudio (reverberació, eco, distorsió).",
+        "Tallar, copiar i enganxar fragments d'àudio."
       ]
     },
     {
-      "id": "SO003",
+      "id": "SOT003",
       "tipus": "seleccio",
-      "pregunta": "Quina funció s'utilitza per augmentar o disminuir gradualment el volum d'una pista d'àudio al principi o al final?",
+      "pregunta": "Quina funció s'utilitza per augmentar o disminuir gradualment el volum d'una pista d'àudio al principi o al final, sovint per crear transicions suaus?",
       "opcions": [
         "Normalització",
         "Equalització",
@@ -140,9 +1900,9 @@
       "resposta_correcta": "Fundir (Fade in/out)"
     },
     {
-      "id": "SO004",
+      "id": "SOT004",
       "tipus": "multiseleccio",
-      "pregunta": "Quins dels següents són formats d'àudio sense compressió o amb compressió sense pèrdues (lossless)?",
+      "pregunta": "Quins dels següents són formats d'àudio sense compressió o amb compressió sense pèrdues (lossless), que mantenen tota la informació original del so?",
       "opcions": [
         "MP3",
         "WAV",
@@ -156,112 +1916,499 @@
       "dificultat": "difícil"
     },
     {
-      "id": "SO005",
+      "id": "SOT005",
       "tipus": "seleccio",
-      "pregunta": "Si has d'escoltar el següent so i identificar-ne un fragment per eliminar-lo per soroll, quina seria l'eina més adequada en un editor d'àudio? (Assumeix que `media/so1.mp3` conté una gravació amb un tros de soroll)",
-      "multimedia": "media/so1.mp3",
+      "pregunta": "La **'profunditat de bits'** en àudio digital es refereix a:",
       "opcions": [
-        "Eina de selecció de temps",
-        "Eina de dibuix de freqüència",
-        "Eina de compressió",
-        "Eina de normalització"
+        "La quantitat de dades per segon que s'enregistra.",
+        "El nombre de valors possibles per a cada mostra d'àudio, determinant el rang dinàmic.",
+        "La velocitat de reproducció de l'àudio.",
+        "La freqüència més alta que pot registrar-se."
       ],
-      "resposta_correcta": "Eina de selecció de temps"
-    }
-  ],
-  "Edició de vídeo": [
-    {
-      "id": "VID001",
-      "tipus": "seleccio",
-      "pregunta": "Quin concepte fa referència al nombre d'imatges fixes (fotogrames) que es mostren per segon en un vídeo?",
-      "opcions": [
-        "Resolució",
-        "Relació d'aspecte",
-        "Taxa de fotogrames (FPS)",
-        "Profunditat de color"
-      ],
-      "resposta_correcta": "Taxa de fotogrames (FPS)"
+      "resposta_correcta": "El nombre de valors possibles per a cada mostra d'àudio, determinant el rang dinàmic."
     },
     {
-      "id": "VID002",
+      "id": "SOT006",
       "tipus": "multiseleccio",
-      "pregunta": "Quins elements solen formar part de la línia de temps (timeline) d'un programari d'edició de vídeo?",
+      "pregunta": "Quins factors influeixen directament en la mida d'un fitxer d'àudio digital sense comprimir?",
       "opcions": [
-        "Pistes de vídeo",
-        "Pistes d'àudio",
-        "Pistes de subtítols",
-        "Capes de text"
+        "La durada de la gravació.",
+        "La freqüència de mostreig.",
+        "La profunditat de bits.",
+        "El tipus de micròfon utilitzat."
       ],
       "resposta_correcta": [
-        "Pistes de vídeo",
-        "Pistes d'àudio",
-        "Capes de text"
+        "La durada de la gravació.",
+        "La freqüència de mostreig.",
+        "La profunditat de bits."
       ]
     },
     {
-      "id": "VID003",
+      "id": "SOT007",
       "tipus": "seleccio",
-      "pregunta": "Quina de les següents opcions és una tècnica per passar d'una escena a una altra de manera suau en un vídeo?",
+      "pregunta": "Quin efecte d'àudio s'utilitza per fer que un so sembli que prové de diversos punts a la vegada, simulant un espai gran o una sala de concerts?",
       "opcions": [
-        "Tall directe",
-        "Transició",
-        "Keyframe",
-        "Renderitzat"
+        "Compressió",
+        "Equalització",
+        "Reverberació",
+        "Distorsió"
       ],
-      "resposta_correcta": "Transició"
+      "resposta_correcta": "Reverberació"
     },
     {
-      "id": "VID004",
+      "id": "SOT008",
       "tipus": "multiseleccio",
-      "pregunta": "Quins formats de vídeo són habituals per a la distribució web a causa de la seva eficiència en la compressió?",
+      "pregunta": "Quins dels següents són exemples de formats d'àudio amb compressió amb pèrdues (lossy compression)?",
       "opcions": [
-        "AVI",
-        "MP4",
-        "MKV",
-        "WMV"
+        "MP3",
+        "OGG Vorbis",
+        "WAV",
+        "AAC"
       ],
       "resposta_correcta": [
-        "MP4",
-        "MKV",
-        "WMV"
+        "MP3",
+        "OGG Vorbis",
+        "AAC"
       ]
     },
     {
-      "id": "VID005",
+      "id": "SOT009",
       "tipus": "seleccio",
-      "pregunta": "Què és el 'renderitzat' en el context de l'edició de vídeo?",
+      "pregunta": "Quina funció d'edició d'àudio permet ajustar el volum de les diferents freqüències per equilibrar el so (p. ex., pujar els greus o baixar els aguts)?",
       "opcions": [
-        "El procés de capturar el vídeo de la càmera.",
-        "El procés de previsualitzar el vídeo sense guardar els canvis.",
-        "El procés de generar el fitxer de vídeo final a partir de la línia de temps.",
-        "El procés d'afegir efectes especials."
+        "Panoràmica",
+        "Normalització",
+        "Equalització",
+        "Limitació"
       ],
-      "resposta_correcta": "El procés de generar el fitxer de vídeo final a partir de la línia de temps.",
+      "resposta_correcta": "Equalització"
+    },
+    {
+      "id": "SOT010",
+      "tipus": "multiseleccio",
+      "pregunta": "Quan es grava àudio, quins aspectes són crucials per obtenir una bona qualitat de captura?",
+      "opcions": [
+        "Selecció del micròfon adequat.",
+        "Nivell de guany (gain) correcte per evitar saturació o soroll.",
+        "Entorn de gravació amb la menor reverberació possible.",
+        "El color de la interfície del programari."
+      ],
+      "resposta_correcta": [
+        "Selecció del micròfon adequat.",
+        "Nivell de guany (gain) correcte per evitar saturació o soroll.",
+        "Entorn de gravació amb la menor reverberació possible."
+      ]
+    },
+    {
+      "id": "SOT011",
+      "tipus": "seleccio",
+      "pregunta": "Quina eina d'edició d'àudio s'utilitza per reduir la diferència entre les parts més fortes i més febles d'una gravació, fent el so més uniforme i controlant els pics?",
+      "opcions": [
+        "Reverberació",
+        "Compressor",
+        "Delay",
+        "Wah"
+      ],
+      "resposta_correcta": "Compressor",
       "dificultat": "difícil"
     },
     {
-      "id": "VID006",
+      "id": "SOT012",
       "tipus": "multiseleccio",
-      "pregunta": "Després de visualitzar aquest curt clip de vídeo, quines de les següents accions podries realitzar per millorar-lo en un editor de vídeo? (Assumeix que `media/video1.mp4` és un clip curt amb un problema de coloració i un so baix).",
-      "multimedia": "media/video1.mp4",
+      "pregunta": "Quines són les unitats de mesura utilitzades per la intensitat o volum del so en l'àudio digital?",
       "opcions": [
-        "Ajustar el balanç de blancs per corregir el color.",
-        "Augmentar el volum de l'àudio.",
-        "Afegir una transició entre dos clips si n'hi hagués un altre.",
-        "Reduir la taxa de fotogrames per estalviar espai."
+        "Decibels (dB)",
+        "Volts (V)",
+        "Amperes (A)",
+        "LUFS (Loudness Units Full Scale)"
       ],
       "resposta_correcta": [
-        "Ajustar el balanç de blancs per corregir el color.",
-        "Augmentar el volum de l'àudio.",
-        "Afegir una transició entre dos clips si n'hi hagués un altre."
+        "Decibels (dB)",
+        "LUFS (Loudness Units Full Scale)"
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT013",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'panoràmica' (pan) en la mescla d'àudio?",
+      "opcions": [
+        "L'ajust del volum d'una pista.",
+        "La posició d'un so en l'espai estèreo (esquerra-dreta).",
+        "L'aplicació d'un efecte de reverberació.",
+        "La reproducció de l'àudio en bucle."
+      ],
+      "resposta_correcta": "La posició d'un so en l'espai estèreo (esquerra-dreta)."
+    },
+    {
+      "id": "SOT014",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins tipus de connectors d'àudio són comuns en equips professionals o de consum?",
+      "opcions": [
+        "XLR",
+        "Jack (TRS/TS)",
+        "RCA",
+        "HDMI"
+      ],
+      "resposta_correcta": [
+        "XLR",
+        "Jack (TRS/TS)",
+        "RCA"
       ]
+    },
+    {
+      "id": "SOT015",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de micròfon és ideal per a gravar veus amb molta fidelitat en estudis gràcies a la seva alta sensibilitat i resposta de freqüència àmplia?",
+      "opcions": [
+        "Micròfon dinàmic",
+        "Micròfon de condensador",
+        "Micròfon de corbata",
+        "Micròfon USB"
+      ],
+      "resposta_correcta": "Micròfon de condensador",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT016",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines propietats o paràmetres s'utilitzen per descriure un senyal d'àudio digital?",
+      "opcions": [
+        "Freqüència de mostreig.",
+        "Profunditat de bits.",
+        "Nombre de canals (mono/estèreo).",
+        "La mida del disc dur on està guardat."
+      ],
+      "resposta_correcta": [
+        "Freqüència de mostreig.",
+        "Profunditat de bits.",
+        "Nombre de canals (mono/estèreo)."
+      ]
+    },
+    {
+      "id": "SOT017",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'latència' en el context de l'àudio digital?",
+      "opcions": [
+        "El retard entre l'entrada d'un so i la seva sortida processada.",
+        "La qualitat de la gravació d'àudio.",
+        "El volum màxim que pot assolir un so.",
+        "La capacitat de compressió d'un format d'àudio."
+      ],
+      "resposta_correcta": "El retard entre l'entrada d'un so i la seva sortida processada.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT018",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines tasques són típiques de la fase de 'mescla' en la producció d'àudio?",
+      "opcions": [
+        "Ajustar el volum de cada pista.",
+        "Aplicar equalització i efectes a pistes individuals.",
+        "Ajustar la panoràmica dels instruments.",
+        "Gravar les veus principals."
+      ],
+      "resposta_correcta": [
+        "Ajustar el volum de cada pista.",
+        "Aplicar equalització i efectes a pistes individuals.",
+        "Ajustar la panoràmica dels instruments."
+      ]
+    },
+    {
+      "id": "SOT019",
+      "tipus": "seleccio",
+      "pregunta": "Si un fitxer d'àudio té una freqüència de mostreig de 44.1 kHz, què significa?",
+      "opcions": [
+        "Que es prenen 44.1 milions de mostres per segon.",
+        "Que es prenen 44.1 mil mostres per segon.",
+        "Que té una profunditat de bits de 44.1 bits.",
+        "Que la seva durada és de 44.1 segons."
+      ],
+      "resposta_correcta": "Que es prenen 44.1 mil mostres per segon."
+    },
+    {
+      "id": "SOT020",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins tipus de pistes es poden gestionar en un programari de seqüenciació d'àudio (DAW - Digital Audio Workstation)?",
+      "opcions": [
+        "Pistes d'àudio (per a enregistraments de veu/instruments).",
+        "Pistes MIDI (per a instruments virtuals i seqüències).",
+        "Pistes d'efectes (per a enviar senyal a efectes compartits).",
+        "Pistes de vídeo per editar imatges."
+      ],
+      "resposta_correcta": [
+        "Pistes d'àudio (per a enregistraments de veu/instruments).",
+        "Pistes MIDI (per a instruments virtuals i seqüències).",
+        "Pistes d'efectes (per a enviar senyal a efectes compartits)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT021",
+      "tipus": "seleccio",
+      "pregunta": "Què és un 'gate' o 'porta de soroll' en l'edició d'àudio?",
+      "opcions": [
+        "Un efecte que afegeix eco a un so.",
+        "Una eina que elimina el so quan el seu nivell cau per sota d'un determinat llindar, útil per eliminar sorolls no desitjats de fons.",
+        "Un filtre que canvia les freqüències del so.",
+        "Una funció per unir diversos clips d'àudio."
+      ],
+      "resposta_correcta": "Una eina que elimina el so quan el seu nivell cau per sota d'un determinat llindar, útil per eliminar sorolls no desitjats de fons.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT022",
+      "tipus": "multiseleccio",
+      "pregunta": "Quan preparem àudio per a la publicació en línia (streaming), quins factors són crucials per optimitzar-lo?",
+      "opcions": [
+        "Ús de formats amb compressió amb pèrdues (MP3, AAC) per reduir la mida.",
+        "Normalització del volum per assegurar una reproducció consistent.",
+        "Elecció d'una freqüència de mostreig adequada per a la qualitat desitjada (p. ex., 44.1 kHz).",
+        "Gravar l'àudio en una habitació sense eco."
+      ],
+      "resposta_correcta": [
+        "Ús de formats amb compressió amb pèrdues (MP3, AAC) per reduir la mida.",
+        "Normalització del volum per assegurar una reproducció consistent.",
+        "Elecció d'una freqüència de mostreig adequada per a la qualitat desitjada (p. ex., 44.1 kHz)."
+      ]
+    },
+    {
+      "id": "SOT023",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de processament d'àudio s'enfoca a modificar el rang de freqüències d'un so per aclarir-lo o donar-li més presència?",
+      "opcions": [
+        "Delay",
+        "Reverberació",
+        "Equalització (EQ)",
+        "Distorsió"
+      ],
+      "resposta_correcta": "Equalització (EQ)"
+    },
+    {
+      "id": "SOT024",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els efectes d'àudio amb la seva descripció:",
+      "opcions": [
+        {"text": "Reverberació", "correcta": "Simula l'acústica d'un espai."},
+        {"text": "Eco (Delay)", "correcta": "Repetició del so original amb un retard."},
+        {"text": "Flanger/Chorus", "correcta": "Creen un efecte de doblatge o d'onatge."},
+        {"text": "Distorsió", "correcta": "Altera el timbre del so, afegint harmònics."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT025",
+      "tipus": "completar",
+      "pregunta": "La _______________ d'un micròfon fa referència a la direcció o direccions des de les quals capta el so amb més sensibilitat.",
+      "opcions": [
+        "resposta de freqüència",
+        "sensibilitat",
+        "impedància",
+        "polaritat"
+      ],
+      "resposta_correcta": "polaritat",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT026",
+      "tipus": "seleccio",
+      "pregunta": "Quin procés s'utilitza per ajustar el volum general d'una pista d'àudio perquè arribi al màxim nivell sense distorsió (0 dBFS)?",
+      "opcions": [
+        "Compressió",
+        "Equalització",
+        "Normalització",
+        "Mescla"
+      ],
+      "resposta_correcta": "Normalització"
+    },
+    {
+      "id": "SOT027",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins formats de fitxer d'àudio són generalment recomanats per a l'edició professional per la seva qualitat sense compressió amb pèrdues?",
+      "opcions": [
+        "MP3",
+        "WAV",
+        "AIFF",
+        "OGG"
+      ],
+      "resposta_correcta": [
+        "WAV",
+        "AIFF"
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT028",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'mescla (mixing)' en la producció d'àudio?",
+      "opcions": [
+        "La gravació de noves pistes d'àudio.",
+        "El procés de combinar i equilibrar totes les pistes individuals (volum, panoràmica, efectes) per crear una sola pista estèreo final.",
+        "La conversió d'un format d'àudio a un altre.",
+        "L'eliminació de soroll de fons."
+      ],
+      "resposta_correcta": "El procés de combinar i equilibrar totes les pistes individuals (volum, panoràmica, efectes) per crear una sola pista estèreo final."
+    },
+    {
+      "id": "SOT029",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els tipus de micròfons amb el seu ús típic:",
+      "opcions": [
+        {"text": "Micròfon de condensador", "correcta": "Estudis de gravació, veus, instruments acústics."},
+        {"text": "Micròfon dinàmic", "correcta": "Concerts en viu, veus fortes, instruments de percussió."},
+        {"text": "Micròfon de corbata (Lavalier)", "correcta": "Entrevistes, presentacions, discreció."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT030",
+      "tipus": "completar",
+      "pregunta": "El _______________ d'una targeta de so (audio interface) és el maquinari que converteix els senyals analògics en digitals i viceversa, essencial per a la gravació i reproducció d'àudio.",
+      "opcions": [
+        "processador",
+        "convertidor AD/DA",
+        "preamplificador",
+        "mesclador"
+      ],
+      "resposta_correcta": "convertidor AD/DA",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT031",
+      "tipus": "seleccio",
+      "pregunta": "Què significa que una pista d'àudio estigui en 'mono'?",
+      "opcions": [
+        "Que té un sol canal de so i es reprodueix igual per tots els altaveus.",
+        "Que té dos canals de so diferenciats per als altaveus esquerre i dret.",
+        "Que el seu volum és molt baix.",
+        "Que s'ha gravat sense efectes."
+      ],
+      "resposta_correcta": "Que té un sol canal de so i es reprodueix igual per tots els altaveus."
+    },
+    {
+      "id": "SOT032",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són tècniques habituals de 'neteja' d'àudio?",
+      "opcions": [
+        "Reducció de soroll (noise reduction).",
+        "Eliminació de clics i pops.",
+        "Reducció de sibilància (de-esser).",
+        "Afegir eco i reverberació."
+      ],
+      "resposta_correcta": [
+        "Reducció de soroll (noise reduction).",
+        "Eliminació de clics i pops.",
+        "Reducció de sibilància (de-esser)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT033",
+      "tipus": "seleccio",
+      "pregunta": "Quin terme s'utilitza per a la 'taxa de bits' (bitrate) en l'àudio, indicant la quantitat de dades per segon que s'utilitzen per codificar el so?",
+      "opcions": [
+        "FPS (Frames per Second)",
+        "Kbps (Kilobits per segon)",
+        "Hz (Hertz)",
+        "DPI (Dots per Inch)"
+      ],
+      "resposta_correcta": "Kbps (Kilobits per segon)"
+    },
+    {
+      "id": "SOT034",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els conceptes de mescla amb la seva funció:",
+      "opcions": [
+        {"text": "Volum (Gain)", "correcta": "Controla la intensitat del senyal d'àudio."},
+        {"text": "Automatització", "correcta": "Canvis programats de volum, panoràmica o efectes al llarg del temps."},
+        {"text": "Bus (Send/Return)", "correcta": "Enviament de senyal a efectes compartits o grups de pistes."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT035",
+      "tipus": "completar",
+      "pregunta": "Un _______________ és un programari que afegeix funcionalitats addicionals a un programa principal, com ara nous efectes o instruments virtuals en un DAW.",
+      "opcions": [
+        "driver",
+        "códec",
+        "plugin",
+        "format"
+      ],
+      "resposta_correcta": "plugin",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT036",
+      "tipus": "seleccio",
+      "pregunta": "Què és la 'masterització' en la producció musical?",
+      "opcions": [
+        "La primera etapa de la gravació d'instruments.",
+        "El procés final d'ajustament de l'àudio (volum global, equalització final, compressió) per preparar-lo per a la distribució en diversos formats.",
+        "L'eliminació de les pistes de veu d'una cançó.",
+        "La creació de la portada d'un disc."
+      ],
+      "resposta_correcta": "El procés final d'ajustament de l'àudio (volum global, equalització final, compressió) per preparar-lo per a la distribució en diversos formats.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT037",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són les parts principals d'una ona sonora digital mostrada en un editor d'àudio?",
+      "opcions": [
+        "Amplitud (volum).",
+        "Freqüència (to).",
+        "Durada (temps).",
+        "Nom de l'artista."
+      ],
+      "resposta_correcta": [
+        "Amplitud (volum).",
+        "Freqüència (to).",
+        "Durada (temps)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT038",
+      "tipus": "seleccio",
+      "pregunta": "Quina funció permet dividir un clip d'àudio en dos o més fragments independents?",
+      "opcions": [
+        "Unir",
+        "Tallar (Split)",
+        "Normalitzar",
+        "Esborrar"
+      ],
+      "resposta_correcta": "Tallar (Split)"
+    },
+    {
+      "id": "SOT039",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona les freqüències amb la seva descripció:",
+      "opcions": [
+        {"text": "Baixes freqüències (graves)", "correcta": "Sentiments de potència i fonament."},
+        {"text": "Mitges freqüències (vocals)", "correcta": "La major part de la informació vocal i instrumental."},
+        {"text": "Altes freqüències (aguts)", "correcta": "Brillantor, claredat, però també soroll."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "SOT040",
+      "tipus": "completar",
+      "pregunta": "La qualitat del so gravat depèn directament de la _______________ de mostreig i de la profunditat de bits.",
+      "opcions": [
+        "durada",
+        "freqüència",
+        "taxa de compressió",
+        "potència"
+      ],
+      "resposta_correcta": "freqüència"
     }
   ],
-  "Formats, compressió i drets": [
+  "Mòdul 5: Formats, drets, compressió, etc.": [
     {
-      "id": "DRETS001",
+      "id": "FDC001",
       "tipus": "seleccio",
-      "pregunta": "Quina llicència permet a qualsevol persona utilitzar, modificar i distribuir obres, sempre que les obres derivades mantinguin la mateixa llicència?",
+      "pregunta": "Quina llicència permet a qualsevol persona utilitzar, modificar i distribuir obres, sempre que les obres derivades mantinguin la mateixa llicència, promovent la lliure circulació del coneixement i la creació?",
       "opcions": [
         "Copyright",
         "Creative Commons (CC BY-NC-ND)",
@@ -272,52 +2419,52 @@
       "dificultat": "difícil"
     },
     {
-      "id": "DRETS002",
+      "id": "FDC002",
       "tipus": "multiseleccio",
-      "pregunta": "Quins dels següents són tipus de compressió amb pèrdues (lossy compression)?",
+      "pregunta": "Quins dels següents són exemples de **compressió amb pèrdues (lossy compression)**, on s'elimina informació per reduir la mida del fitxer de manera significativa, amb una certa degradació de la qualitat?",
       "opcions": [
-        "ZIP",
-        "JPEG",
-        "MP3",
-        "PNG"
+        "ZIP (per a arxius de dades)",
+        "JPEG (per a imatges)",
+        "MP3 (per a àudio)",
+        "PNG (per a imatges)"
       ],
       "resposta_correcta": [
-        "JPEG",
-        "MP3"
+        "JPEG (per a imatges)",
+        "MP3 (per a àudio)"
       ]
     },
     {
-      "id": "DRETS003",
+      "id": "FDC003",
       "tipus": "seleccio",
-      "pregunta": "Quan una obra es troba en 'Domini Públic', què implica?",
+      "pregunta": "Quan una obra es troba en **'Domini Públic'**, què implica principalment?",
       "opcions": [
         "Que l'autor ha cedit els drets a una empresa privada.",
-        "Que els drets d'explotació de l'obra han caducat o mai han existit.",
-        "Que l'obra només es pot utilitzar amb finalitats educatives.",
-        "Que cal demanar permís a l'autor original per a qualsevol ús."
+        "Que els drets d'explotació de l'obra han caducat o mai han existit, i pot ser utilitzada, modificada i distribuïda lliurement per qualsevol persona sense restriccions de copyright.",
+        "Que l'obra només es pot utilitzar amb finalitats educatives i no comercials.",
+        "Que cal demanar permís a l'autor original per a qualsevol ús, fins i tot si ha mort fa més de 70 anys."
       ],
-      "resposta_correcta": "Que els drets d'explotació de l'obra han caducat o mai han existit."
+      "resposta_correcta": "Que els drets d'explotació de l'obra han caducat o mai han existit, i pot ser utilitzada, modificada i distribuïda lliurement per qualsevol persona sense restriccions de copyright."
     },
     {
-      "id": "DRETS004",
+      "id": "FDC004",
       "tipus": "multiseleccio",
-      "pregunta": "Quines són consideracions importants a l'hora de triar un format de fitxer multimèdia?",
+      "pregunta": "Quines són consideracions importants a l'hora de triar un format de fitxer multimèdia per a un projecte digital?",
       "opcions": [
-        "La compatibilitat amb diferents dispositius i programaris.",
-        "La qualitat desitjada del contingut.",
-        "La mida del fitxer resultant.",
-        "El color de la carcassa del disc dur."
+        "La compatibilitat amb diferents dispositius i programaris (reproductors, sistemes operatius).",
+        "La qualitat desitjada del contingut (fidelitat vs. compressió).",
+        "La mida del fitxer resultant i l'espai d'emmagatzematge necessari.",
+        "El color de la interfície del programa utilitzat."
       ],
       "resposta_correcta": [
-        "La compatibilitat amb diferents dispositius i programaris.",
-        "La qualitat desitjada del contingut.",
-        "La mida del fitxer resultant."
+        "La compatibilitat amb diferents dispositius i programaris (reproductors, sistemes operatius).",
+        "La qualitat desitjada del contingut (fidelitat vs. compressió).",
+        "La mida del fitxer resultant i l'espai d'emmagatzematge necessari."
       ]
     },
     {
-      "id": "DRETS005",
+      "id": "FDC005",
       "tipus": "seleccio",
-      "pregunta": "Quin terme es refereix al conjunt de normes legals que protegeixen els drets dels autors sobre les seves creacions?",
+      "pregunta": "Quin terme es refereix al conjunt de normes legals que protegeixen els drets morals i patrimonials dels autors sobre les seves creacions originals, atorgant-les un monopoli temporal sobre la seva explotació?",
       "opcions": [
         "Llicència GPL",
         "Copyleft",
@@ -325,6 +2472,492 @@
         "Codi obert"
       ],
       "resposta_correcta": "Drets d'autor (Copyright)"
+    },
+    {
+      "id": "FDC006",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents afirmacions són certes respecte a les llicències **Creative Commons (CC)**?",
+      "opcions": [
+        "Permeten als autors triar el grau de permís d'ús de les seves obres, oferint una alternativa al 'tots els drets reservats'.",
+        "Totes les llicències CC són equivalents al Domini Públic.",
+        "Sempre requereixen que es citi l'autor original (BY - Atribució).",
+        "Permeten l'ús comercial de l'obra en tots els casos."
+      ],
+      "resposta_correcta": [
+        "Permeten als autors triar el grau de permís d'ús de les seves obres, oferint una alternativa al 'tots els drets reservats'.",
+        "Sempre requereixen que es citi l'autor original (BY - Atribució)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC007",
+      "tipus": "seleccio",
+      "pregunta": "Quin tipus de compressió redueix la mida del fitxer sense eliminar cap dada original, permetent una reconstrucció exacta de l'original?",
+      "opcions": [
+        "Compressió amb pèrdues (Lossy compression)",
+        "Compressió sense pèrdues (Lossless compression)",
+        "Compressió de vídeo",
+        "Compressió d'àudio"
+      ],
+      "resposta_correcta": "Compressió sense pèrdues (Lossless compression)"
+    },
+    {
+      "id": "FDC008",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els **atributs principals** que pots trobar combinats en una llicència Creative Commons per definir els permisos?",
+      "opcions": [
+        "BY (Atribució)",
+        "NC (No Comercial)",
+        "SA (Compartir Igual)",
+        "HD (Alta Definició)"
+      ],
+      "resposta_correcta": [
+        "BY (Atribució)",
+        "NC (No Comercial)",
+        "SA (Compartir Igual)"
+      ]
+    },
+    {
+      "id": "FDC009",
+      "tipus": "seleccio",
+      "pregunta": "Per què és important optimitzar els fitxers multimèdia (imatges, àudios, vídeos) per a la seva publicació en una pàgina web?",
+      "opcions": [
+        "Perquè les pàgines carreguin més ràpid.",
+        "Per augmentar la qualitat visual i sonora a qualsevol dispositiu.",
+        "Per complir amb la normativa de privacitat de dades.",
+        "Per fer els fitxers més grans i de més qualitat."
+      ],
+      "resposta_correcta": "Perquè les pàgines carreguin més ràpid."
+    },
+    {
+      "id": "FDC010",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són alguns dels elements que es poden protegir mitjançant els drets d'autor?",
+      "opcions": [
+        "Fotografies i il·lustracions.",
+        "Composicions musicals i cançons.",
+        "Programari i bases de dades.",
+        "Idees abstractes sense plasmar-se en una obra."
+      ],
+      "resposta_correcta": [
+        "Fotografies i il·lustracions.",
+        "Composicions musicals i cançons.",
+        "Programari i bases de dades."
+      ]
+    },
+    {
+      "id": "FDC011",
+      "tipus": "seleccio",
+      "pregunta": "Quina llicència Creative Commons obliga a que qualsevol obra derivada utilitzada amb fins comercials o no comercials, es distribueixi sota la mateixa llicència?",
+      "opcions": [
+        "CC BY-ND (No Derivades)",
+        "CC BY-SA (Compartir Igual)",
+        "CC BY-NC (No Comercial)",
+        "CC0 (Domini Públic)"
+      ],
+      "resposta_correcta": "CC BY-SA (Compartir Igual)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC012",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines característiques són comunes als formats de fitxer multimèdia més utilitzats avui dia?",
+      "opcions": [
+        "Són formats contenidor que poden albergar diversos tipus de dades (vídeo, àudio, subtítols).",
+        "Utilitzen algun tipus de compressió per optimitzar la mida.",
+        "Són compatibles amb la majoria de plataformes i reproductors.",
+        "Són exclusius d'un únic sistema operatiu."
+      ],
+      "resposta_correcta": [
+        "Són formats contenidor que poden albergar diversos tipus de dades (vídeo, àudio, subtítols).",
+        "Utilitzen algun tipus de compressió per optimitzar la mida.",
+        "Són compatibles amb la majoria de plataformes i reproductors."
+      ]
+    },
+    {
+      "id": "FDC013",
+      "tipus": "seleccio",
+      "pregunta": "Què significa l'atribut 'ND' (No Derivades) en una llicència Creative Commons?",
+      "opcions": [
+        "Que l'obra no pot ser distribuïda.",
+        "Que l'obra pot ser utilitzada però no es poden crear obres derivades o modificades a partir d'ella.",
+        "Que l'obra no es pot utilitzar amb finalitats comercials.",
+        "Que s'ha de citar l'autor original."
+      ],
+      "resposta_correcta": "Que l'obra pot ser utilitzada però no es poden crear obres derivades o modificades a partir d'ella.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC014",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins formats de fitxer són adequats per compartir documents amb elements multimèdia incrustats, assegurant que la presentació es mantingui fidel a l'original?",
+      "opcions": [
+        "DOCX",
+        "PDF",
+        "PPTX",
+        "TXT"
+      ],
+      "resposta_correcta": [
+        "PDF",
+        "PPTX"
+      ]
+    },
+    {
+      "id": "FDC015",
+      "tipus": "seleccio",
+      "pregunta": "Quin concepte legal permet l'ús de material amb copyright sense permís de l'autor, sota certes condicions (p. ex., per a crítica, comentari, notícies o ensenyament)?",
+      "opcions": [
+        "Domini Públic",
+        "Copyleft",
+        "Ús Just (Fair Use / Fair Dealing)",
+        "Llicència de programari lliure"
+      ],
+      "resposta_correcta": "Ús Just (Fair Use / Fair Dealing)",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC016",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins avantatges ofereix l'ús de còdecs de vídeo moderns com H.265 (HEVC) en comparació amb H.264 (AVC)?",
+      "opcions": [
+        "Major eficiència de compressió (mida de fitxer més petita per a la mateixa qualitat).",
+        "Suport per a resolucions més altes (4K, 8K).",
+        "Reducció del bitrate necessari.",
+        "Menor temps de renderitzat."
+      ],
+      "resposta_correcta": [
+        "Major eficiència de compressió (mida de fitxer més petita per a la mateixa qualitat).",
+        "Suport per a resolucions més altes (4K, 8K).",
+        "Reducció del bitrate necessari."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC017",
+      "tipus": "seleccio",
+      "pregunta": "Què és un 'DRM' (Digital Rights Management)?",
+      "opcions": [
+        "Un format de fitxer de música d'alta qualitat.",
+        "Un sistema tecnològic utilitzat per controlar l'accés i l'ús de continguts digitals protegits per drets d'autor.",
+        "Un tipus de llicència de codi obert.",
+        "Un mètode de compressió de vídeo."
+      ],
+      "resposta_correcta": "Un sistema tecnològic utilitzat per controlar l'accés i l'ús de continguts digitals protegits per drets d'autor."
+    },
+    {
+      "id": "FDC018",
+      "tipus": "multiseleccio",
+      "pregunta": "Què cal fer si es vol utilitzar una obra protegida per Copyright per a un ús diferent del que permet l'autor (p. ex., comercial o modificació significativa)?",
+      "opcions": [
+        "Assumir que es pot usar lliurement si es troba a Internet.",
+        "Contactar amb el titular dels drets per obtenir permís o una llicència.",
+        "Buscar una obra amb llicència Creative Commons que permeti l'ús desitjat.",
+        "Simplement citar l'autor original, sense permís."
+      ],
+      "resposta_correcta": [
+        "Contactar amb el titular dels drets per obtenir permís o una llicència.",
+        "Buscar una obra amb llicència Creative Commons que permeti l'ús desitjat."
+      ]
+    },
+    {
+      "id": "FDC019",
+      "tipus": "seleccio",
+      "pregunta": "Quin és el risc principal d'utilitzar formats de fitxer obsolets per a projectes multimèdia nous?",
+      "opcions": [
+        "La mida del fitxer serà excessivament petita.",
+        "Poden no ser compatibles amb els reproductors i programaris moderns, dificultant la visualització o edició.",
+        "Sempre tindran una qualitat superior als formats nous.",
+        "Són més econòmics d'utilitzar."
+      ],
+      "resposta_correcta": "Poden no ser compatibles amb els reproductors i programaris moderns, dificultant la visualització o edició."
+    },
+    {
+      "id": "FDC020",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins factors cal considerar quan s'ha d'escollir un format per a un fitxer d'àudio destinat a ser part d'una presentació multimèdia en línia?",
+      "opcions": [
+        "La qualitat desitjada (si és només veu, música, etc.).",
+        "La mida del fitxer resultant per a una càrrega ràpida.",
+        "La compatibilitat amb els navegadors web i dispositius.",
+        "El fabricant del dispositiu de reproducció de l'usuari."
+      ],
+      "resposta_correcta": [
+        "La qualitat desitjada (si és només veu, música, etc.).",
+        "La mida del fitxer resultant per a una càrrega ràpida.",
+        "La compatibilitat amb els navegadors web i dispositius."
+      ]
+    },
+    {
+      "id": "FDC021",
+      "tipus": "seleccio",
+      "pregunta": "Què s'entén per 'watermark' (marca d'aigua) en continguts digitals?",
+      "opcions": [
+        "Un tipus de filtre de color.",
+        "Una marca visible o invisible afegida a una imatge, vídeo o àudio per indicar la seva propietat o autoria.",
+        "Un mètode de compressió d'arxius.",
+        "Un error de codificació en el fitxer."
+      ],
+      "resposta_correcta": "Una marca visible o invisible afegida a una imatge, vídeo o àudio per indicar la seva propietat o autoria."
+    },
+    {
+      "id": "FDC022",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins elements poden estar protegits per drets d'autor en una obra multimèdia complexa?",
+      "opcions": [
+        "Les fotografies utilitzades.",
+        "La banda sonora i els efectes de so.",
+        "El guió o text.",
+        "Les idees o conceptes subjacents de l'obra."
+      ],
+      "resposta_correcta": [
+        "Les fotografies utilitzades.",
+        "La banda sonora i els efectes de so.",
+        "El guió o text."
+      ]
+    },
+    {
+      "id": "FDC023",
+      "tipus": "seleccio",
+      "pregunta": "Quina extensió de fitxer és típicament associada a un fitxer contenidor de vídeo que pot utilitzar una gran varietat de còdecs i és popular per a vídeos d'alta qualitat?",
+      "opcions": [
+        ".mp3",
+        ".jpg",
+        ".mkv",
+        ".txt"
+      ],
+      "resposta_correcta": ".mkv",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC024",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins elements es poden personalitzar en una llicència Creative Commons per adaptar-la a les necessitats de l'autor?",
+      "opcions": [
+        "Si es permet l'ús comercial (NC).",
+        "Si es permeten obres derivades (ND).",
+        "Si les obres derivades han de compartir la mateixa llicència (SA).",
+        "Si l'autor pot recuperar els drets en qualsevol moment sense preavís."
+      ],
+      "resposta_correcta": [
+        "Si es permet l'ús comercial (NC).",
+        "Si es permeten obres derivades (ND).",
+        "Si les obres derivades han de compartir la mateixa llicència (SA)."
+      ]
+    },
+    {
+      "id": "FDC025",
+      "tipus": "seleccio",
+      "pregunta": "Què significa 'citar la font' o 'atribuir' en el context de l'ús de continguts protegits?",
+      "opcions": [
+        "Que es pot utilitzar el contingut sense cap restricció.",
+        "Que s'ha de fer referència a l'autor original o la font de la qual prové el contingut.",
+        "Que es pot vendre el contingut sense permís.",
+        "Que el contingut passa a ser de domini públic."
+      ],
+      "resposta_correcta": "Que s'ha de fer referència a l'autor original o la font de la qual prové el contingut."
+    },
+    {
+      "id": "FDC026",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins beneficis pot aportar la compressió de fitxers multimèdia?",
+      "opcions": [
+        "Reducció de la mida del fitxer, estalviant espai d'emmagatzematge.",
+        "Temps de càrrega i descàrrega més ràpids.",
+        "Millora de la qualitat original del contingut.",
+        "Facilitació de la transmissió per xarxes (streaming)."
+      ],
+      "resposta_correcta": [
+        "Reducció de la mida del fitxer, estalviant espai d'emmagatzematge.",
+        "Temps de càrrega i descàrrega més ràpids.",
+        "Facilitació de la transmissió per xarxes (streaming)."
+      ]
+    },
+    {
+      "id": "FDC027",
+      "tipus": "seleccio",
+      "pregunta": "Quan no cal demanar permís per utilitzar una obra amb drets d'autor?",
+      "opcions": [
+        "Quan l'obra es troba en Domini Públic.",
+        "Quan s'utilitza només un petit fragment de l'obra.",
+        "Quan l'ús és per a fins personals i no comercials.",
+        "Quan l'obra s'ha descarregat d'Internet."
+      ],
+      "resposta_correcta": "Quan l'obra es troba en Domini Públic.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC028",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els elements que es combinen per formar una llicència Creative Commons completa (per exemple, CC BY-NC-SA)?",
+      "opcions": [
+        "BY (Atribució)",
+        "NC (No Comercial)",
+        "SA (Compartir Igual)",
+        "ND (No Derivades)"
+      ],
+      "resposta_correcta": [
+        "BY (Atribució)",
+        "NC (No Comercial)",
+        "SA (Compartir Igual)",
+        "ND (No Derivades)"
+      ]
+    },
+    {
+      "id": "FDC029",
+      "tipus": "seleccio",
+      "pregunta": "Què diferencia un format 'contenidor' (com MP4 o MKV) d'un 'còdec' (com H.264 o AAC)?",
+      "opcions": [
+        "El contenidor comprimeix les dades, mentre que el còdec les empaqueta.",
+        "El contenidor és el fitxer que empaqueta les dades de vídeo, àudio i altres, mentre que el còdec és l'algoritme que comprimeix i descomprimeix aquestes dades.",
+        "El contenidor és per a imatges, el còdec per a vídeo.",
+        "No hi ha diferència, són sinònims."
+      ],
+      "resposta_correcta": "El contenidor és el fitxer que empaqueta les dades de vídeo, àudio i altres, mentre que el còdec és l'algoritme que comprimeix i descomprimeix aquestes dades.",
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC030",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines són les conseqüències d'utilitzar contingut protegit per drets d'autor sense el permís adequat?",
+      "opcions": [
+        "Multes econòmiques.",
+        "Eliminació del contingut de plataformes públiques (YouTube, etc.).",
+        "Pèrdua de reputació.",
+        "Obtenció de beneficis addicionals."
+      ],
+      "resposta_correcta": [
+        "Multes econòmiques.",
+        "Eliminació del contingut de plataformes públiques (YouTube, etc.).",
+        "Pèrdua de reputació."
+      ]
+    },
+    {
+      "id": "FDC031",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els conceptes de compressió amb el seu tipus:",
+      "opcions": [
+        {"text": "MP3", "correcta": "Compressió amb pèrdues (Lossy)."},
+        {"text": "WAV", "correcta": "Sense compressió."},
+        {"text": "FLAC", "correcta": "Compressió sense pèrdues (Lossless)."},
+        {"text": "ZIP", "correcta": "Compressió de dades general (Lossless)."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC032",
+      "tipus": "completar",
+      "pregunta": "Una llicència Creative Commons que inclou l'atribut 'NC' significa que l'obra no pot ser utilitzada amb finalitats _______________.",
+      "opcions": [
+        "educatives",
+        "personals",
+        "comercials",
+        "culturals"
+      ],
+      "resposta_correcta": "comercials"
+    },
+    {
+      "id": "FDC033",
+      "tipus": "seleccio",
+      "pregunta": "Quin és l'objectiu principal de la 'compressió de dades' en multimèdia?",
+      "opcions": [
+        "Augmentar la qualitat del contingut.",
+        "Fer els fitxers més grans per a una millor edició.",
+        "Reduir la mida dels fitxers per estalviar espai i facilitar la transmissió.",
+        "Protegir els drets d'autor."
+      ],
+      "resposta_correcta": "Reduir la mida dels fitxers per estalviar espai i facilitar la transmissió."
+    },
+    {
+      "id": "FDC034",
+      "tipus": "multiseleccio",
+      "pregunta": "Quines de les següents plataformes ofereixen contingut sota llicències Creative Commons o de Domini Públic?",
+      "opcions": [
+        "Wikimedia Commons.",
+        "Pixabay (per a imatges i vídeos).",
+        "Freesound (per a àudios).",
+        "Plataformes de streaming de música comercial."
+      ],
+      "resposta_correcta": [
+        "Wikimedia Commons.",
+        "Pixabay (per a imatges i vídeos).",
+        "Freesound (per a àudios)."
+      ]
+    },
+    {
+      "id": "FDC035",
+      "tipus": "seleccio",
+      "pregunta": "Quin format de fitxer permet incrustar vídeo, àudio, subtítols i altres dades en un sol fitxer, però no és en si mateix un còdec de compressió?",
+      "opcions": [
+        "H.264",
+        "MP4",
+        "JPEG",
+        "WAV"
+      ],
+      "resposta_correcta": "MP4"
+    },
+    {
+      "id": "FDC036",
+      "tipus": "relacionar",
+      "pregunta": "Relaciona els tipus de drets d'autor amb la seva durada general:",
+      "opcions": [
+        {"text": "Drets morals", "correcta": "Imprescriptibles i inalienables."},
+        {"text": "Drets patrimonials", "correcta": "Durant la vida de l'autor + 70 anys post-mortem (a la majoria de països)."},
+        {"text": "Domini Públic", "correcta": "Sense restriccions de copyright."}
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC037",
+      "tipus": "completar",
+      "pregunta": "Per assegurar que un arxiu multimèdia es reprodueixi correctament en la majoria de dispositius, és fonamental considerar la seva _______________ amb el maquinari i el programari.",
+      "opcions": [
+        "compressió",
+        "complexitat",
+        "compatibilitat",
+        "seguretat"
+      ],
+      "resposta_correcta": "compatibilitat"
+    },
+    {
+      "id": "FDC038",
+      "tipus": "seleccio",
+      "pregunta": "Quin dels següents formats NO s'utilitza habitualment per a la publicació d'àudio en streaming a internet per la seva gran mida de fitxer?",
+      "opcions": [
+        "MP3",
+        "AAC",
+        "WAV",
+        "OGG"
+      ],
+      "resposta_correcta": "WAV"
+    },
+    {
+      "id": "FDC039",
+      "tipus": "multiseleccio",
+      "pregunta": "Quins són els atributs clau de la 'cita' o 'atribució' correcte d'una obra sota llicència Creative Commons (BY)?",
+      "opcions": [
+        "El nom de l'autor o titular dels drets.",
+        "El títol de l'obra.",
+        "La llicència específica sota la qual es distribueix (amb enllaç si és possible).",
+        "La data de la teva publicació de l'obra derivada."
+      ],
+      "resposta_correcta": [
+        "El nom de l'autor o titular dels drets.",
+        "El títol de l'obra.",
+        "La llicència específica sota la qual es distribueix (amb enllaç si és possible)."
+      ],
+      "dificultat": "difícil"
+    },
+    {
+      "id": "FDC040",
+      "tipus": "seleccio",
+      "pregunta": "Quina pràctica és més respectuosa amb els drets d'autor quan es vol incloure una cançó en un vídeo per a YouTube?",
+      "opcions": [
+        "Descarregar la cançó de qualsevol lloc i afegir-la.",
+        "Utilitzar una cançó lliure de drets o amb llicència Creative Commons compatible, o obtenir una llicència d'ús.",
+        "Simplement mencionar l'artista a la descripció del vídeo.",
+        "Modificar lleugerament la cançó per evitar la detecció."
+      ],
+      "resposta_correcta": "Utilitzar una cançó lliure de drets o amb llicència Creative Commons compatible, o obtenir una llicència d'ús."
     }
   ]
 }
