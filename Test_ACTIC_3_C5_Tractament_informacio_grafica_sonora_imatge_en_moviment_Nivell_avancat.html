@@ -275,28 +275,6 @@
         reader.readAsText(fitxer);
       }
 
-      // Afegim botons d'import/export a la interfície
-      window.addEventListener("DOMContentLoaded", () => {
-        const div = document.createElement("div");
-        div.className = "mt-6 flex flex-wrap justify-center gap-4";
-
-        const botoExport = document.createElement("button");
-        botoExport.textContent = "Exportar progrés";
-        botoExport.className = "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700";
-        botoExport.onclick = exportarEstat;
-
-        const botoImport = document.createElement("label");
-        botoImport.className = "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 cursor-pointer";
-        botoImport.innerHTML = 'Importar progrés<input type="file" accept=".json" hidden>';
-
-        botoImport.querySelector("input").addEventListener("change", importarEstat);
-
-        div.appendChild(botoExport);
-        div.appendChild(botoImport);
-
-        document.querySelector(".max-w-4xl").appendChild(div);
-      });
-
       // Inici del test
       carregarJSON();
     </script>
