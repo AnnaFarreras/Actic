@@ -1,6 +1,4 @@
-# Crear l'estructura base del fitxer JSON amb els títols dels mòduls segons el temari oficial ACTIC 3 – C5N3
-
-estructura_actic3 = {
+{
   "modul_1": {
     "titol": "Coneixements bàsics sobre la imatge digital",
     "preguntes": [
@@ -4247,11 +4245,3 @@ estructura_actic3 = {
     ]
   }
 }
-
-
-# Guardar l'estructura com a fitxer JSON
-estructura_path = "/mnt/data/estructura-preguntes-actic3.json"
-with open(estructura_path, "w", encoding="utf-8") as f:
-    json.dump(estructura_actic3, f, ensure_ascii=False, indent=2)
-
-estructura_path
