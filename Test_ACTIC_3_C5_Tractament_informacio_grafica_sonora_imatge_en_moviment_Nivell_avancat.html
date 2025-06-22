@@ -128,7 +128,7 @@
         Object.keys(dadesJSON).forEach((clau) => {
           const boto = document.createElement("button");
           boto.textContent = dadesJSON[clau].titol;
-          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-2 rounded text-center leading-tight whitespace-normal break-words max-w-[10ch]";
+          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-2 rounded text-center leading-tight whitespace-normal break-words max-w-[8ch]";
 
           boto.onclick = () => {
             document.querySelectorAll("#sectionButtons button").forEach((b) => b.classList.remove("bg-blue-600", "text-white"));
