@@ -14,9 +14,7 @@
 
       <div id="section-selector" class="mb-6">
         <p class="mb-2 text-center">Selecciona una secció per començar:</p>
-        <div id="sectionButtons" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-center">
-          <!-- Seccions carregades -->
-        </div>
+        <div id="sectionButtons" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-center"></div>
       </div>
 
       <div id="progress-container" class="w-full bg-gray-200 rounded-full h-4 mb-4 hidden">
@@ -34,7 +32,9 @@
 
     <script>
       let dadesJSON;
-      let estatUsuari = JSON.parse(localStorage.getItem("progresACTIC3")) || null;
+      let estatUsuari = JSON.parse(localStorage.getItem("progresACTIC3")) || {};
+      let preguntaIndex = 0;
+      let seccioActual = null;
 
       function carregarJSON() {
         fetch("preguntes-actic3.json")
@@ -59,52 +59,77 @@
           boto.textContent = dadesJSON[clau].titol;
           boto.className = "bg-gray-200 hover:bg-gray-300 rounded-xl py-2 px-4";
           boto.onclick = () => {
+            seccioActual = clau;
+            preguntaIndex = 0;
+            estatUsuari[clau] = estatUsuari[clau] || { respostes: {}, encerts: 0, dificils: [] };
+            mostrarPregunta(clau);
             document.getElementById("resultat").classList.add("hidden");
-            mostrarPreguntesSeccio(clau);
+            document.getElementById("progress-container").classList.remove("hidden");
           };
           sectionButtons.appendChild(boto);
         });
       }
 
-      function mostrarPreguntesSeccio(clauSeccio) {
+      function mostrarPregunta(clau) {
         const container = document.getElementById("test-container");
-        const seccio = dadesJSON[clauSeccio];
-        const preguntes = seccio.preguntes;
-        container.innerHTML = `<h2 class="text-xl font-semibold mb-4">${seccio.titol}</h2>`;
-        preguntes.forEach((preg, idx) => {
-          const div = document.createElement("div");
-          div.className = "mb-6 p-4 border rounded-xl bg-gray-50";
-          div.innerHTML = `<p class="font-medium mb-2">${idx + 1}. ${preg.text}</p>`;
-          preg.opcions.forEach((opcio, i) => {
-            const input = document.createElement("input");
-            input.type = preg.tipus === "multiseleccio" ? "checkbox" : "radio";
-            input.name = preg.id;
-            input.value = i;
-            input.className = "mr-2";
+        const preguntes = dadesJSON[clau].preguntes;
+        const preg = preguntes[preguntaIndex];
+        if (!preg) return;
 
-            const label = document.createElement("label");
-            label.className = "block mb-1";
-            label.appendChild(input);
-            label.appendChild(document.createTextNode(opcio));
-            div.appendChild(label);
-          });
+        updateProgressBar(preguntaIndex, preguntes.length);
 
-          const marcaBtn = document.createElement("button");
-          marcaBtn.textContent = "Marca com a difícil";
-          marcaBtn.className = "mt-2 text-sm text-blue-600 underline hover:text-blue-800";
-          marcaBtn.onclick = () => alert("Marcada com a difícil (funció en desenvolupament)");
-          div.appendChild(marcaBtn);
-          container.appendChild(div);
+        container.innerHTML = `<div class="mb-6 p-4 border rounded-xl bg-gray-50">
+          <p class="font-medium mb-2">${preguntaIndex + 1}. ${preg.text}</p>
+        </div>`;
+
+        const bloc = container.querySelector("div");
+        preg.opcions.forEach((opcio, i) => {
+          const input = document.createElement("input");
+          input.type = preg.tipus === "multiseleccio" ? "checkbox" : "radio";
+          input.name = preg.id;
+          input.value = i;
+          input.className = "mr-2";
+
+          const label = document.createElement("label");
+          label.className = "block mb-1";
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(opcio));
+          bloc.appendChild(label);
         });
 
-        document.getElementById("progress-container").classList.remove("hidden");
-        updateProgressBar(0, preguntes.length);
+        const marcaBtn = document.createElement("button");
+        marcaBtn.textContent = "Marca com a difícil";
+        marcaBtn.className = "mt-2 text-sm text-blue-600 underline hover:text-blue-800";
+        marcaBtn.onclick = () => {
+          const llista = estatUsuari[clau].dificils;
+          if (!llista.includes(preg.id)) llista.push(preg.id);
+          localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+          alert("Pregunta marcada com a difícil");
+        };
+        bloc.appendChild(marcaBtn);
 
-        const correcioBtn = document.createElement("button");
-        correcioBtn.textContent = "Corregir";
-        correcioBtn.className = "mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700";
-        correcioBtn.onclick = () => mostrarResultats(clauSeccio);
-        container.appendChild(correcioBtn);
+        const botoSeguent = document.createElement("button");
+        botoSeguent.textContent = "Següent";
+        botoSeguent.className = "mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700";
+        botoSeguent.onclick = () => {
+          const seleccionats = Array.from(document.querySelectorAll(`[name='${preg.id}']:checked`)).map(el => parseInt(el.value));
+          estatUsuari[clau].respostes[preg.id] = seleccionats;
+
+          const correcta = Array.isArray(preg.correcta) ? preg.correcta : [preg.correcta];
+          if (JSON.stringify(seleccionats.sort()) === JSON.stringify(correcta.sort())) {
+            estatUsuari[clau].encerts++;
+          }
+
+          preguntaIndex++;
+          localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+
+          if (preguntaIndex < preguntes.length) {
+            mostrarPregunta(clau);
+          } else {
+            mostrarResultats(clau);
+          }
+        };
+        bloc.appendChild(botoSeguent);
       }
 
       function updateProgressBar(respostes, total) {
@@ -115,43 +140,7 @@
       function mostrarResultats(clauSeccio) {
         const seccio = dadesJSON[clauSeccio];
         const preguntes = seccio.preguntes;
-        let encerts = 0;
-
-        estatUsuari = estatUsuari || {};
-        estatUsuari[clauSeccio] = estatUsuari[clauSeccio] || { respostes: {}, encerts: 0 };
-
-        preguntes.forEach((preg) => {
-          const seleccionats = Array.from(document.querySelectorAll(`[name='${preg.id}']:checked`)).map((el) => parseInt(el.value));
-          const correcta = Array.isArray(preg.correcta) ? preg.correcta : [preg.correcta];
-          estatUsuari[clauSeccio].respostes[preg.id] = seleccionats;
-
-          const correctaText = correcta.map((i) => preg.opcions[i]).join(", ");
-          const divPreg = document.querySelector(`[name='${preg.id}']`).closest("div");
-
-          if (JSON.stringify(seleccionats.sort()) === JSON.stringify(correcta.sort())) {
-            encerts++;
-          } else {
-            const missatge = document.createElement("p");
-            missatge.textContent = `Resposta correcta: ${correctaText}`;
-            missatge.className = "text-sm text-blue-700 italic mt-1";
-            divPreg.appendChild(missatge);
-          }
-
-          preg.opcions.forEach((opcio, i) => {
-            const input = document.querySelector(`[name='${preg.id}'][value='${i}']`);
-            if (!input) return;
-            const label = input.closest("label");
-
-            if (correcta.includes(i)) {
-              label.classList.add("text-green-700", "font-semibold");
-            } else if (input.checked) {
-              label.classList.add("text-red-700", "line-through");
-            }
-          });
-        });
-
-        estatUsuari[clauSeccio].encerts = encerts;
-        localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+        const encerts = estatUsuari[clauSeccio].encerts;
 
         document.getElementById("resultatText").textContent = `Has encertat ${encerts} de ${preguntes.length} preguntes.`;
         document.getElementById("resultat").classList.remove("hidden");
@@ -163,3 +152,4 @@
     </script>
   </body>
 </html>
+
