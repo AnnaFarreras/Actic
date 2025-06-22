@@ -8,33 +8,29 @@
   </head>
   <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-2">
     <div class="max-w-4xl w-full bg-white p-4 rounded-xl shadow-lg text-sm">
-      <!-- Títol reduït -->
-      <h1 class="text-lg font-semibold mb-3 text-center leading-tight">
-        Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment
-      </h1>
+      <!-- Títol i botons d'import/export a la mateixa fila -->
+      <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
+        <h1 class="text-lg font-semibold leading-tight">
+          Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment
+        </h1>
+        <div class="flex flex-col gap-2 text-xs text-right">
+          <button id="exportarBtn" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
+            Exportar progrés
+          </button>
+          <label class="bg-yellow-400 text-white px-2 py-1 rounded hover:bg-yellow-500 cursor-pointer text-center">
+            Importar progrés
+            <input type="file" accept=".json" hidden id="importarInput" />
+          </label>
+        </div>
+      </div>
 
-<!-- Contenidor amb selector de secció + botons d'import/export -->
-<div class="flex flex-wrap md:flex-nowrap justify-between items-start gap-4 mb-4">
-  <!-- Selector de seccions -->
-  <div id="section-selector" class="flex-1">
-    <p class="mb-1 text-center text-xs font-medium">Selecciona una secció:</p>
-    <div id="sectionButtons" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-      <!-- Botons de secció es creen dinàmicament -->
-    </div>
-  </div>
-
-  <!-- Botons d'import/export -->
-  <div class="flex flex-col self-start gap-2 text-xs mt-2 md:mt-0">
-    <button id="exportarBtn" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
-      Exportar progrés
-    </button>
-    <label class="bg-yellow-400 text-white px-2 py-1 rounded hover:bg-yellow-500 cursor-pointer text-center">
-      Importar progrés
-      <input type="file" accept=".json" hidden id="importarInput" />
-    </label>
-  </div>
-</div>
-
+      <!-- Selector de seccions en línia -->
+      <div id="section-selector" class="mb-4">
+        <p class="mb-1 text-center text-xs font-medium">Selecciona una secció:</p>
+        <div id="sectionButtons" class="flex flex-wrap justify-center gap-2">
+          <!-- Botons de secció es creen dinàmicament -->
+        </div>
+      </div>
 
       <!-- Modal de continuar/reiniciar -->
       <div id="continuar-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
@@ -52,24 +48,36 @@
         <div id="progress-bar" class="bg-blue-600 h-3 rounded-full" style="width: 0%"></div>
       </div>
 
+      <!-- Contenidor de preguntes -->
+      <div id="test-container"></div>
+
+      <!-- Resultats finals -->
+      <div id="resultat" class="mt-6 hidden text-sm">
+        <h2 class="text-base font-bold mb-2">Resultats</h2>
+        <p id="resultatText" class="mb-2"></p>
+        <p class="text-xs italic">* Les preguntes difícils es poden revisar més tard.</p>
+      </div>
+    </div>
+
     <script>
       let dadesJSON;
       let estatUsuari = JSON.parse(localStorage.getItem("progresACTIC3")) || {};
-      let cuaPreguntes = [];
-      let preguntaActual = null;
       let seccioActual = null;
+      let cuaPreguntes = [];
 
       function carregarJSON() {
         fetch("preguntes-actic3.json")
-          .then(r => {
+          .then((r) => {
             if (!r.ok) throw new Error("No s'ha trobat el fitxer JSON.");
             return r.json();
           })
-          .then(data => {
+          .then((data) => {
             dadesJSON = data;
             mostrarSeccions();
           })
-          .catch(e => alert("Error carregant dades: " + e.message));
+          .catch((e) => {
+            alert("Error carregant dades: " + e.message);
+          });
       }
 
       function mostrarSeccions() {
@@ -83,6 +91,7 @@
 
           continuarBtn.onclick = () => {
             modal.classList.add("hidden");
+            sectionButtons.innerHTML = "";
             carregarSeccions();
           };
 
@@ -90,6 +99,7 @@
             localStorage.removeItem("progresACTIC3");
             estatUsuari = {};
             modal.classList.add("hidden");
+            sectionButtons.innerHTML = "";
             carregarSeccions();
           };
         } else {
@@ -99,14 +109,16 @@
 
       function carregarSeccions() {
         const sectionButtons = document.getElementById("sectionButtons");
-        sectionButtons.innerHTML = "";
-        Object.keys(dadesJSON).forEach(clau => {
+        Object.keys(dadesJSON).forEach((clau) => {
           const boto = document.createElement("button");
           boto.textContent = dadesJSON[clau].titol;
           boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-1 rounded text-center break-words whitespace-normal";
+
           boto.onclick = () => {
             seccioActual = clau;
-            prepararPreguntes(clau);
+            estatUsuari[clau] = estatUsuari[clau] || { respostes: {}, encerts: 0, dificils: [] };
+            cuaPreguntes = dadesJSON[clau].preguntes.filter((p) => !estatUsuari[clau].respostes[p.id]);
+            mostrarPregunta();
             document.getElementById("resultat").classList.add("hidden");
             document.getElementById("progress-container").classList.remove("hidden");
           };
@@ -114,169 +126,97 @@
         });
       }
 
-      function prepararPreguntes(clau) {
-        const preguntes = dadesJSON[clau].preguntes.slice();
-        cuaPreguntes = preguntes.map(p => ({ ...p }));
-        estatUsuari[clau] = estatUsuari[clau] || { respostes: {}, encerts: 0, dificils: [] };
-        mostrarPregunta();
-      }
       function mostrarPregunta() {
         const container = document.getElementById("test-container");
-        container.innerHTML = "";
+        if (cuaPreguntes.length === 0) return mostrarResultats();
 
-        if (cuaPreguntes.length === 0) {
-          mostrarResultats(seccioActual);
-          return;
-        }
+        const pregunta = cuaPreguntes[0];
+        const respostesUsuari = estatUsuari[seccioActual].respostes;
 
-        preguntaActual = cuaPreguntes.shift();
-        const { id, text, opcions, correcta, tipus } = preguntaActual;
+        updateProgressBar(
+          Object.keys(respostesUsuari).length,
+          dadesJSON[seccioActual].preguntes.length
+        );
 
-        updateProgressBar(estatUsuari[seccioActual].encerts, dadesJSON[seccioActual].preguntes.length);
+        container.innerHTML = `
+          <div class="mb-4 p-4 border rounded-xl bg-gray-50">
+            <p class="font-medium mb-2">${pregunta.text}</p>
+            <div id="opcions" class="space-y-2"></div>
+            <button id="marcaDificil" class="mt-2 text-sm text-blue-600 underline">Marca com a difícil</button>
+            <div class="mt-4">
+              <button id="seguentBtn" class="hidden bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Següent</button>
+            </div>
+          </div>
+        `;
 
-        const bloc = document.createElement("div");
-        bloc.className = "mb-6 p-4 border rounded-xl bg-gray-50";
-        bloc.innerHTML = `<p class="font-medium mb-4">${text}</p>`;
-
-        const respostesContainer = document.createElement("div");
-        respostesContainer.className = "space-y-2";
-
-        opcions.forEach((opcio, index) => {
+        const opcionsDiv = document.getElementById("opcions");
+        pregunta.opcions.forEach((text, index) => {
           const label = document.createElement("label");
-          label.className = "flex items-center gap-2 p-2 rounded cursor-pointer border hover:bg-gray-100 transition";
+          label.className = "block bg-white border px-3 py-2 rounded cursor-pointer hover:bg-blue-50";
+          label.innerHTML = `
+            <input type="radio" name="opcio" value="${index}" class="mr-2">${text}
+          `;
+          opcionsDiv.appendChild(label);
 
-          const input = document.createElement("input");
-          input.type = tipus === "multiseleccio" ? "checkbox" : "radio";
-          input.name = "resposta";
-          input.value = index;
-          input.className = "form-radio text-blue-600";
-          input.onclick = () => {
-            mostrarFeedback(index, label, input, correcta);
-            botoSeguent.disabled = false;
-          };
+          label.querySelector("input").addEventListener("change", () => {
+            const correcta = Array.isArray(pregunta.correcta) ? pregunta.correcta : [pregunta.correcta];
+            const seleccionada = parseInt(label.querySelector("input").value);
+            const encert = correcta.includes(seleccionada);
 
-          const span = document.createElement("span");
-          span.textContent = opcio;
+            opcionsDiv.querySelectorAll("label").forEach((el, i) => {
+              el.classList.remove("bg-green-100", "bg-red-100", "border-green-500", "border-red-500");
+              if (correcta.includes(i)) el.classList.add("bg-green-100", "border-green-500");
+              if (i === seleccionada && !correcta.includes(i)) el.classList.add("bg-red-100", "border-red-500");
+            });
 
-          label.appendChild(input);
-          label.appendChild(span);
-          respostesContainer.appendChild(label);
+            if (encert) estatUsuari[seccioActual].encerts++;
+            estatUsuari[seccioActual].respostes[pregunta.id] = [seleccionada];
+            localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+            document.getElementById("seguentBtn").classList.remove("hidden");
+          });
         });
 
-        bloc.appendChild(respostesContainer);
-
-        // Botó "Marca com a difícil"
-        const marcaBtn = document.createElement("button");
-        marcaBtn.textContent = "Marca com a difícil";
-        marcaBtn.className = "mt-3 text-sm text-blue-600 underline hover:text-blue-800";
-        marcaBtn.onclick = () => {
-          const llista = estatUsuari[seccioActual].dificils;
-          if (!llista.includes(id)) llista.push(id);
+        document.getElementById("marcaDificil").onclick = () => {
+          const dif = estatUsuari[seccioActual].dificils;
+          if (!dif.includes(pregunta.id)) dif.push(pregunta.id);
           localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
           alert("Pregunta marcada com a difícil");
         };
-        bloc.appendChild(marcaBtn);
 
-        // Botó "Següent"
-        const botoSeguent = document.createElement("button");
-        botoSeguent.textContent = "Següent";
-        botoSeguent.disabled = true;
-        botoSeguent.className = "mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700";
-        botoSeguent.onclick = () => {
-          container.innerHTML = "";
+        document.getElementById("seguentBtn").onclick = () => {
+          cuaPreguntes.shift();
           mostrarPregunta();
         };
-        bloc.appendChild(botoSeguent);
-
-        container.appendChild(bloc);
       }
 
-      function mostrarFeedback(respostaUsuari, labelClicat, input, correcta) {
-        const correctaArray = Array.isArray(correcta) ? correcta : [correcta];
-        const labels = document.querySelectorAll("#test-container label");
-
-        labels.forEach((label, index) => {
-          const input = label.querySelector("input");
-          const esCorrecta = correctaArray.includes(index);
-
-          if (input.checked && !esCorrecta) {
-            label.classList.add("bg-red-200", "border-red-500");
-          }
-
-          if (esCorrecta) {
-            label.classList.add("bg-green-200", "border-green-500");
-          }
-
-          input.disabled = true;
-        });
-
-        // Guardem si s’ha encertat o no
-        const haEncertat =
-          correctaArray.length === 1
-            ? correctaArray[0] === respostaUsuari
-            : false; // per si després vols ampliar a multiselecció
-
-        estatUsuari[seccioActual].respostes[preguntaActual.id] = [respostaUsuari];
-        if (haEncertat) {
-          estatUsuari[seccioActual].encerts++;
-        } else {
-          cuaPreguntes.push(preguntaActual); // reincorpora la pregunta si l'ha fallada
-        }
-
-        localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
-      }
-
-      function updateProgressBar(respostesCorrectes, total) {
-        const percent = (respostesCorrectes / total) * 100;
+      function updateProgressBar(respostes, total) {
+        const percent = (respostes / total) * 100;
         document.getElementById("progress-bar").style.width = `${percent}%`;
       }
-      function mostrarResultats(clauSeccio) {
-        const seccio = dadesJSON[clauSeccio];
-        const preguntes = seccio.preguntes;
-        const encerts = estatUsuari[clauSeccio].encerts;
-        const total = preguntes.length;
-        const percentatge = Math.round((encerts / total) * 100);
 
-        document.getElementById("resultatText").textContent = `Has encertat ${encerts} de ${total} preguntes (${percentatge}%).`;
+      function mostrarResultats() {
+        const seccio = dadesJSON[seccioActual];
+        const preguntes = seccio.preguntes;
+        const encerts = estatUsuari[seccioActual].encerts;
+
+        document.getElementById("resultatText").textContent = `Has encertat ${encerts} de ${preguntes.length} preguntes.`;
         document.getElementById("resultat").classList.remove("hidden");
 
-        updateProgressBar(total, total);
+        updateProgressBar(preguntes.length, preguntes.length);
       }
 
-      // Exportar estat a fitxer JSON
-      function exportarEstat() {
-        const dades = JSON.stringify(estatUsuari, null, 2);
-        const blob = new Blob([dades], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "progres-actic3.json";
-        link.click();
-        URL.revokeObjectURL(url);
-      }
-
-      // Importar estat des de fitxer JSON
-      function importarEstat(event) {
-        const fitxer = event.target.files[0];
-        if (!fitxer) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          try {
-            const dadesImportades = JSON.parse(e.target.result);
-            estatUsuari = dadesImportades;
-            localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
-            alert("Progrés importat correctament!");
-            location.reload();
-          } catch (e) {
-            alert("Fitxer no vàlid.");
-          }
-        };
-        reader.readAsText(fitxer);
-      }
-
-      // Inici del test
       carregarJSON();
+    </script>
+
+    <!-- Script per redimensionar si està dins un iframe -->
+    <script>
+      if (window !== window.parent) {
+        window.addEventListener('load', () => {
+          const height = document.documentElement.scrollHeight;
+          parent.postMessage({ type: 'resize-iframe', height }, '*');
+        });
+      }
     </script>
   </body>
 </html>
+
