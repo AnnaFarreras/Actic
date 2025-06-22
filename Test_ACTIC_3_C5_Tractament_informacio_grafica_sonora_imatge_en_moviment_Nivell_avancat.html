@@ -12,6 +12,16 @@
         Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment. Nivell avançat
       </h1>
 
+      <div id="continuar-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-xl shadow-xl text-center max-w-md">
+          <p class="mb-4">Vols continuar on ho vas deixar o començar de nou?</p>
+          <div class="flex justify-center gap-4">
+            <button id="continuarBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Continuar</button>
+            <button id="reiniciarBtn" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Començar de nou</button>
+          </div>
+        </div>
+      </div>
+
       <div id="section-selector" class="mb-6">
         <p class="mb-2 text-center">Selecciona una secció per començar:</p>
         <div id="sectionButtons" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-center"></div>
@@ -52,15 +62,41 @@
       }
 
       function mostrarSeccions() {
+        const modal = document.getElementById("continuar-modal");
+        const continuarBtn = document.getElementById("continuarBtn");
+        const reiniciarBtn = document.getElementById("reiniciarBtn");
         const sectionButtons = document.getElementById("sectionButtons");
-        sectionButtons.innerHTML = "";
+
+        if (Object.keys(estatUsuari).length > 0) {
+          modal.classList.remove("hidden");
+
+          continuarBtn.onclick = () => {
+            modal.classList.add("hidden");
+            sectionButtons.innerHTML = "";
+            carregarSeccions();
+          };
+
+          reiniciarBtn.onclick = () => {
+            localStorage.removeItem("progresACTIC3");
+            estatUsuari = {};
+            modal.classList.add("hidden");
+            sectionButtons.innerHTML = "";
+            carregarSeccions();
+          };
+        } else {
+          carregarSeccions();
+        }
+      }
+
+      function carregarSeccions() {
+        const sectionButtons = document.getElementById("sectionButtons");
         Object.keys(dadesJSON).forEach((clau) => {
           const boto = document.createElement("button");
           boto.textContent = dadesJSON[clau].titol;
           boto.className = "bg-gray-200 hover:bg-gray-300 rounded-xl py-2 px-4";
           boto.onclick = () => {
             seccioActual = clau;
-            preguntaIndex = 0;
+            preguntaIndex = Object.keys(estatUsuari[clau]?.respostes || {}).length || 0;
             estatUsuari[clau] = estatUsuari[clau] || { respostes: {}, encerts: 0, dificils: [] };
             mostrarPregunta(clau);
             document.getElementById("resultat").classList.add("hidden");
@@ -152,4 +188,3 @@
     </script>
   </body>
 </html>
-
