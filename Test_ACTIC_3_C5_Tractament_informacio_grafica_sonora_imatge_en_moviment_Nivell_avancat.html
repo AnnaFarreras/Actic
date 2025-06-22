@@ -12,7 +12,7 @@
     </style>
   </head>
   <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-2">
-    <div class="max-w-4xl w-full bg-white p-4 rounded-xl shadow-lg text-sm">
+    <div class="w-full bg-white p-4 rounded-xl shadow-lg text-sm">
       <!-- Títol centrat -->
       <h1 class="text-lg font-semibold text-center mb-2 leading-tight">
         Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment
@@ -20,20 +20,29 @@
 
       <!-- Selector de seccions i botons d'import/export en línia -->
       <div class="flex flex-wrap justify-between items-end gap-2 mb-4">
-        <div class="flex flex-col justify-end">
-          <p class="text-xs font-medium mb-1 text-center">Selecciona <br>una secció:</p>
-          <div id="sectionButtons" class="flex flex-wrap gap-2 justify-center">
+        <div class="flex items-end gap-4 w-full">
+          <!-- Text selecciona secció -->
+          <div class="flex flex-col justify-end">
+            <p class="text-xs font-medium mb-1 text-left leading-tight">
+              Selecciona<br />una secció:
+            </p>
+          </div>
+
+          <!-- Botons de secció -->
+          <div id="sectionButtons" class="flex flex-wrap gap-2 flex-1">
             <!-- Botons de secció es creen dinàmicament -->
           </div>
-        </div>
-        <div class="flex flex-col gap-2 text-xs text-right">
-          <button id="exportarBtn" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
-            Exportar progrés
-          </button>
-          <label class="bg-yellow-400 text-white px-2 py-1 rounded hover:bg-yellow-500 cursor-pointer text-center">
-            Importar progrés
-            <input type="file" accept=".json" hidden id="importarInput" />
-          </label>
+
+          <!-- Botons Importar / Exportar -->
+          <div class="flex flex-col gap-2 text-xs text-right">
+            <button id="exportarBtn" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
+              Exportar progrés
+            </button>
+            <label class="bg-yellow-400 text-white px-2 py-1 rounded hover:bg-yellow-500 cursor-pointer text-center">
+              Importar progrés
+              <input type="file" accept=".json" hidden id="importarInput" />
+            </label>
+          </div>
         </div>
       </div>
 
