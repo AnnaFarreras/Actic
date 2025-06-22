@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Test ACTIC 3 – C5</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .active-section {
+        @apply bg-blue-600 text-white;
+      }
+    </style>
   </head>
   <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-2">
     <div class="max-w-4xl w-full bg-white p-4 rounded-xl shadow-lg text-sm">
-      <!-- Títol i botons d'import/export a la mateixa fila -->
-      <div class="flex justify-between items-end flex-wrap gap-2 mb-2">
-        <h1 class="text-lg font-semibold leading-tight">
-          Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment
-        </h1>
+      <!-- Títol centrat -->
+      <h1 class="text-lg font-semibold text-center mb-2 leading-tight">
+        Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment
+      </h1>
+
+      <!-- Selector de seccions i botons d'import/export en línia -->
+      <div class="flex flex-wrap justify-between items-end gap-2 mb-4">
+        <div class="flex flex-col justify-end">
+          <p class="text-xs font-medium mb-1 text-center">Selecciona <br>una secció:</p>
+          <div id="sectionButtons" class="flex flex-wrap gap-2 justify-center">
+            <!-- Botons de secció es creen dinàmicament -->
+          </div>
+        </div>
         <div class="flex flex-col gap-2 text-xs text-right">
           <button id="exportarBtn" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
             Exportar progrés
@@ -21,14 +34,6 @@
             Importar progrés
             <input type="file" accept=".json" hidden id="importarInput" />
           </label>
-        </div>
-      </div>
-
-      <!-- Selector de seccions en línia -->
-      <div id="section-selector" class="mb-4 -mt-1">
-        <p class="mb-1 text-left text-xs font-medium">Selecciona una secció:</p>
-        <div id="sectionButtons" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-          <!-- Botons de secció es creen dinàmicament -->
         </div>
       </div>
 
@@ -109,12 +114,17 @@
 
       function carregarSeccions() {
         const sectionButtons = document.getElementById("sectionButtons");
+        sectionButtons.innerHTML = "";
+
         Object.keys(dadesJSON).forEach((clau) => {
           const boto = document.createElement("button");
           boto.textContent = dadesJSON[clau].titol;
-          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-2 rounded text-center break-words whitespace-normal";
+          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-2 rounded text-center break-words whitespace-normal min-w-[9rem] max-w-[11rem]";
 
           boto.onclick = () => {
+            document.querySelectorAll("#sectionButtons button").forEach((b) => b.classList.remove("bg-blue-600", "text-white"));
+            boto.classList.add("bg-blue-600", "text-white");
+
             seccioActual = clau;
             estatUsuari[clau] = estatUsuari[clau] || { respostes: {}, encerts: 0, dificils: [] };
             cuaPreguntes = dadesJSON[clau].preguntes.filter((p) => !estatUsuari[clau].respostes[p.id]);
@@ -122,6 +132,7 @@
             document.getElementById("resultat").classList.add("hidden");
             document.getElementById("progress-container").classList.remove("hidden");
           };
+
           sectionButtons.appendChild(boto);
         });
       }
@@ -219,4 +230,5 @@
     </script>
   </body>
 </html>
+
 
