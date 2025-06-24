@@ -1,34 +1,11 @@
 <!DOCTYPE html>
 <html lang="ca">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Test ACTIC 3 – C5</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Estils personalitzats per ajustar el primer i l'últim botó */
-    #sectionButtons button:first-child {
-      /* Reduir el padding horitzontal del primer botó */
-      /* px-3 és 0.75rem. Per reduir, anem a 0.5rem (px-2) o menys */
-      padding-left: 0.5rem; /* Ajusta segons necessitat */
-      padding-right: 0.5rem; /* Ajusta segons necessitat */
-
-      /* Opcional: Reduir lleugerament la mida de la font si el text ho permet */
-      /* Descomenta la línia de sota si el padding no és suficient i el text ho suporta */
-      /* font-size: 0.8rem; */ 
-    }
-
-    #sectionButtons button:last-child {
-      /* Reduir el padding horitzontal de l'últim botó */
-      padding-left: 0.5rem; /* Ajusta segons necessitat */
-      padding-right: 0.5rem; /* Ajusta segons necessitat */
-
-      /* Opcional: Reduir lleugerament la mida de la font si el text ho permet */
-      /* Descomenta la línia de sota si el padding no és suficient i el text ho suporta */
-      /* font-size: 0.8rem; */
-    }
-  </style>
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test ACTIC 3 – C5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
   <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-2">
     <div class="w-full max-w-6xl bg-white p-4 rounded-xl shadow-lg text-sm">
       <h1 class="text-lg font-semibold text-center leading-tight mb-2">
@@ -39,20 +16,18 @@
         <div class="bg-white p-6 rounded-xl shadow-xl text-center max-w-md">
           <p class="mb-4">Vols continuar on ho vas deixar o començar de nou?</p>
           <div class="flex justify-center gap-4">
-            <button id="continuarBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Continuar</button>
-            <button id="reiniciarBtn" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Començar de nou</button>
+            <button id="continuarBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200">Continuar</button>
+            <button id="reiniciarBtn" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition-colors duration-200">Començar de nou</button>
           </div>
         </div>
       </div>
 
       <div class="flex justify-between items-start gap-4 mb-4">
-        <div class="flex flex-col items-start gap-1 flex-1">
-          <p class="text-sm leading-tight text-left">Selecciona<br>una secció:</p>
-          <div id="sectionButtons" class="flex flex-nowrap items-start gap-2 flex-1 [&>button]:min-h-[1.5rem] [&>button]:flex [&>button]:items-center [&>button]:text-sm [&>button]:text-center [&>button]:px-2 [&>button]:py-1 [&>button]:bg-blue-500/50 [&>button]:hover:bg-blue-500 [&>button]:text-white [&>button]:rounded"></div>
+        <div class="flex flex-col items-start gap-1 w-full"> <p class="text-sm leading-tight text-left mb-2">Selecciona<br>una secció:</p> <div id="sectionButtons" class="flex flex-nowrap items-center gap-2 overflow-x-auto w-full">
+            </div>
         </div>
-        <div class="flex flex-col gap-2">
-          <button id="exportarBtn" class="bg-green-600 text-white text-sm px-3 py-1 rounded hover:bg-green-700">Exportar progrés</button>
-          <label class="bg-yellow-500 text-white text-sm px-3 py-1 rounded hover:bg-yellow-600 cursor-pointer">
+        <div class="flex flex-col gap-2 flex-shrink-0"> <button id="exportarBtn" class="bg-green-600 text-white text-sm px-3 py-1 rounded hover:bg-green-700 transition-colors duration-200">Exportar progrés</button>
+          <label class="bg-yellow-500 text-white text-sm px-3 py-1 rounded hover:bg-yellow-600 cursor-pointer transition-colors duration-200">
             Importar progrés
             <input type="file" accept=".json" hidden id="importarInput" />
           </label>
@@ -75,4 +50,3 @@
     <script src="test-actic3.js"></script>
   </body>
 </html>
-
