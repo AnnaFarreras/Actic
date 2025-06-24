@@ -13,27 +13,20 @@
   </head>
   <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-2">
     <div class="w-full bg-white p-4 rounded-xl shadow-lg text-sm">
-      <!-- Títol centrat -->
       <h1 class="text-lg font-semibold text-center mb-2 leading-tight">
         Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment
       </h1>
 
-      <!-- Selector de seccions i botons d'import/export en línia -->
       <div class="flex flex-wrap justify-between items-end gap-2 mb-4">
         <div class="flex items-end gap-4 w-full">
-          <!-- Text selecciona secció -->
           <div class="flex flex-col justify-end">
             <p class="text-xs font-medium mb-1 text-left leading-tight">
               Selecciona<br />una secció:
             </p>
           </div>
 
-          <!-- Botons de secció -->
-          <div id="sectionButtons" class="flex flex-wrap gap-2 flex-1">
-            <!-- Botons de secció es creen dinàmicament -->
-          </div>
+          <div id="sectionButtons" class="flex flex-wrap gap-2 flex-1"></div>
 
-          <!-- Botons Importar / Exportar -->
           <div class="flex flex-col gap-2 text-xs text-right">
             <button id="exportarBtn" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
               Exportar progrés
@@ -46,7 +39,6 @@
         </div>
       </div>
 
-      <!-- Modal de continuar/reiniciar -->
       <div id="continuar-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white p-4 rounded-xl shadow-xl text-center max-w-md text-sm">
           <p class="mb-3">Vols continuar on ho vas deixar o començar de nou?</p>
@@ -57,15 +49,12 @@
         </div>
       </div>
 
-      <!-- Barra de progrés -->
       <div id="progress-container" class="w-full bg-gray-200 rounded-full h-3 mb-3 hidden">
         <div id="progress-bar" class="bg-blue-600 h-3 rounded-full" style="width: 0%"></div>
       </div>
 
-      <!-- Contenidor de preguntes -->
       <div id="test-container"></div>
 
-      <!-- Resultats finals -->
       <div id="resultat" class="mt-6 hidden text-sm">
         <h2 class="text-base font-bold mb-2">Resultats</h2>
         <p id="resultatText" class="mb-2"></p>
@@ -127,8 +116,8 @@
 
         Object.keys(dadesJSON).forEach((clau) => {
           const boto = document.createElement("button");
-          boto.textContent = dadesJSON[clau].titol;
-          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-1 rounded text-center break-words whitespace-normal min-w-[8rem] max-w-[8rem]";
+          boto.textContent = dadesJSON[clau].titol;8
+          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-[10px] px-1.5 py-1.5 rounded text-center break-words whitespace-normal min-w-[6rem] max-w-[8rem]";
 
           boto.onclick = () => {
             document.querySelectorAll("#sectionButtons button").forEach((b) => b.classList.remove("bg-blue-600", "text-white"));
@@ -162,6 +151,7 @@
           <div class="mb-4 p-4 border rounded-xl bg-gray-50">
             <p class="font-medium mb-2">${pregunta.text}</p>
             <div id="opcions" class="space-y-2"></div>
+            <p id="feedback" class="text-sm font-medium mt-2"></p>
             <button id="marcaDificil" class="mt-2 text-sm text-blue-600 underline">Marca com a difícil</button>
             <div class="mt-4">
               <button id="seguentBtn" class="hidden bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Següent</button>
@@ -170,7 +160,10 @@
         `;
 
         const opcionsDiv = document.getElementById("opcions");
-        pregunta.opcions.forEach((text, index) => {
+        const feedback = document.getElementById("feedback");
+        const correcta = Array.isArray(pregunta.correcta) ? pregunta.correcta : [pregunta.correcta];
+
+        pregunta.opcions?.forEach((text, index) => {
           const label = document.createElement("label");
           label.className = "block bg-white border px-3 py-2 rounded cursor-pointer hover:bg-blue-50";
           label.innerHTML = `
@@ -178,40 +171,24 @@
           `;
           opcionsDiv.appendChild(label);
 
-          label.querySelector("input").addEventListener("change", () => {
-            const correcta = Array.isArray(pregunta.correcta) ? pregunta.correcta : [pregunta.correcta];
-            const seleccionada = parseInt(label.querySelector("input").value);
+          label.querySelector("input").addEventListener("change", (e) => {
+            const seleccionada = parseInt(e.target.value);
             const encert = correcta.includes(seleccionada);
 
             opcionsDiv.querySelectorAll("label").forEach((el, i) => {
-              const input = el.querySelector("input");
-              input.disabled = true;
-              el.classList.remove("bg-green-100", "bg-red-100", "border-green-500", "border-red-500");
-
-              if (correcta.includes(i)) {
-                el.classList.add("bg-green-100", "border-green-500");
-              }
-              if (i === seleccionada && !correcta.includes(i)) {
-                el.classList.add("bg-red-100", "border-red-500");
-              }
+              el.classList.remove("bg-green-100", "bg-red-100", "border-green-500", "border-red-500", "cursor-pointer", "hover:bg-blue-50");
+              el.querySelector("input").disabled = true;
+              if (correcta.includes(i)) el.classList.add("bg-green-100", "border-green-500");
+              if (i === seleccionada && !correcta.includes(i)) el.classList.add("bg-red-100", "border-red-500");
             });
 
-            const feedback = document.createElement("p");
-            feedback.className = "mt-3 text-sm font-medium";
-            if (encert) {
-              feedback.innerHTML = "✅ Molt bé! Has encertat! 😊";
-              feedback.classList.add("text-green-600");
-            } else {
-              const correcteText = correcta.map(i => pregunta.opcions[i]).join(" / ");
-              feedback.innerHTML = `❌ Ohhh! Ho sento. La resposta correcta és: <strong>${correcteText}</strong>`;
-              feedback.classList.add("text-red-600");
-            }
-            opcionsDiv.parentElement.appendChild(feedback);
+            feedback.innerHTML = encert
+              ? "<span class='text-green-600'>Molt bé! Has encertat! 😊</span>"
+              : `<span class='text-red-600'>Ohhh! Ho sento. La resposta correcta és: ${correcta.map(i => pregunta.opcions[i]).join(", ")}</span>`;
 
-            estatUsuari[seccioActual].respostes[pregunta.id] = [seleccionada];
             if (encert) estatUsuari[seccioActual].encerts++;
+            estatUsuari[seccioActual].respostes[pregunta.id] = [seleccionada];
             localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
-
             document.getElementById("seguentBtn").classList.remove("hidden");
           });
         });
@@ -248,7 +225,6 @@
       carregarJSON();
     </script>
 
-    <!-- Script per redimensionar si està dins un iframe -->
     <script>
       if (window !== window.parent) {
         window.addEventListener('load', () => {
