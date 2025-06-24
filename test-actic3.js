@@ -1,12 +1,11 @@
-// test-actic3.js
 let dadesJSON;
 let estatUsuari = JSON.parse(localStorage.getItem("progresACTIC3")) || {};
 let seccioActual = null;
 let cuaPreguntes = [];
 
 fetch("preguntes-actic3.json")
-  .then((res) => res.json())
-  .then((data) => {
+  .then(r => r.json())
+  .then(data => {
     dadesJSON = data;
     mostrarModal();
   });
@@ -36,26 +35,29 @@ function mostrarModal() {
 }
 
 function carregarSeccions() {
-  const container = document.getElementById("sectionButtons");
-  container.innerHTML = "";
-  Object.keys(dadesJSON).forEach((clau) => {
+  const sectionButtons = document.getElementById("sectionButtons");
+  sectionButtons.innerHTML = "";
+
+  Object.keys(dadesJSON).forEach(clau => {
     const boto = document.createElement("button");
     boto.textContent = dadesJSON[clau].titol;
-    boto.className = "bg-blue-500/50 hover:bg-blue-500 text-[10px] px-2 py-1 rounded leading-tight break-words max-w-[10rem] w-fit";
+    boto.className = "px-3 py-1 rounded bg-blue-500/50 hover:bg-blue-500 text-white text-sm";
     boto.onclick = () => {
-      document.querySelectorAll("#sectionButtons button").forEach((b) => b.classList.remove("active-section"));
+      document.querySelectorAll("#sectionButtons button").forEach(b => b.classList.remove("active-section"));
       boto.classList.add("active-section");
 
       seccioActual = clau;
       estatUsuari[clau] = estatUsuari[clau] || { respostes: {}, encerts: 0, dificils: [] };
-      cuaPreguntes = dadesJSON[clau].preguntes.filter((p) => !estatUsuari[clau].respostes[p.id]);
+      cuaPreguntes = dadesJSON[clau].preguntes.filter(p => !estatUsuari[clau].respostes[p.id]);
+
       document.getElementById("resultat").classList.add("hidden");
       document.getElementById("progress-container").classList.remove("hidden");
       mostrarPregunta();
     };
-    container.appendChild(boto);
+    sectionButtons.appendChild(boto);
   });
 
+  // Botons import/export
   document.getElementById("exportarBtn").onclick = () => {
     const blob = new Blob([JSON.stringify(estatUsuari)], { type: "application/json" });
     const link = document.createElement("a");
@@ -65,15 +67,15 @@ function carregarSeccions() {
   };
 
   document.getElementById("importarInput").addEventListener("change", (e) => {
-    const fitxer = e.target.files[0];
-    if (!fitxer) return;
+    const file = e.target.files[0];
+    if (!file) return;
     const reader = new FileReader();
     reader.onload = (event) => {
       estatUsuari = JSON.parse(event.target.result);
       localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
       location.reload();
     };
-    reader.readAsText(fitxer);
+    reader.readAsText(file);
   });
 }
 
@@ -82,12 +84,9 @@ function mostrarPregunta() {
   if (cuaPreguntes.length === 0) return mostrarResultats();
 
   const pregunta = cuaPreguntes[0];
-  const respostesUsuari = estatUsuari[seccioActual].respostes;
   const correcta = Array.isArray(pregunta.correcta) ? pregunta.correcta : [pregunta.correcta];
 
-  updateProgressBar(Object.keys(respostesUsuari).length, dadesJSON[seccioActual].preguntes.length);
-
-  let contingut = `<div class="p-4 border rounded-xl bg-gray-50">
+  container.innerHTML = `<div class="p-4 border rounded-xl bg-gray-50">
     <p class="font-medium mb-2">${pregunta.text}</p>
     <div id="opcions" class="space-y-2"></div>
     <p id="feedback" class="text-sm font-medium mt-2"></p>
@@ -97,76 +96,36 @@ function mostrarPregunta() {
     </div>
   </div>`;
 
-  container.innerHTML = contingut;
-
   const opcionsDiv = document.getElementById("opcions");
+  const tipus = pregunta.tipus === "multiseleccio" ? "checkbox" : "radio";
 
-  if (pregunta.tipus === "relacionar") {
-    pregunta.parells.forEach((parell, i) => {
-      const div = document.createElement("div");
-      div.className = "flex items-center gap-2";
-      div.innerHTML = `<span>${parell[0]}</span>
-        <select class="border p-1 rounded" data-index="${i}">
-          <option value="">Selecciona</option>
-          ${pregunta.parells.map((p, idx) => `<option value="${idx}">${p[1]}</option>`).join('')}
-        </select>`;
-      opcionsDiv.appendChild(div);
-    });
-  } else if (pregunta.tipus === "completar") {
-    const select = document.createElement("select");
-    select.className = "border p-1 rounded";
-    select.innerHTML = pregunta.opcions.map((opcio, i) => `<option value="${i}">${opcio}</option>`).join('');
-    opcionsDiv.appendChild(select);
-  } else {
-    const tipus = pregunta.tipus === "multiseleccio" ? "checkbox" : "radio";
-    pregunta.opcions.forEach((text, i) => {
-      const label = document.createElement("label");
-      label.className = "block bg-white border px-3 py-2 rounded cursor-pointer hover:bg-blue-50";
-      label.innerHTML = `<input type="${tipus}" name="preg-${pregunta.id}" value="${i}" class="mr-2">${text}`;
-      opcionsDiv.appendChild(label);
-    });
-  }
+  pregunta.opcions.forEach((text, i) => {
+    const label = document.createElement("label");
+    label.className = "block bg-white border px-3 py-2 rounded cursor-pointer hover:bg-blue-50";
+    label.innerHTML = `<input type="${tipus}" name="preg-${pregunta.id}" value="${i}" class="mr-2">${text}`;
+    opcionsDiv.appendChild(label);
+  });
 
   const feedback = document.getElementById("feedback");
 
-  const comprovarResposta = () => {
-    let seleccionats = [];
+  opcionsDiv.querySelectorAll("input").forEach(input => {
+    input.addEventListener("change", () => {
+      const seleccionats = Array.from(opcionsDiv.querySelectorAll("input:checked")).map(i => parseInt(i.value));
+      const encert = JSON.stringify([...seleccionats].sort()) === JSON.stringify([...correcta].sort());
 
-    if (pregunta.tipus === "relacionar") {
-      const selects = opcionsDiv.querySelectorAll("select");
-      seleccionats = Array.from(selects).map(s => parseInt(s.value));
-      const encert = seleccionats.every((val, idx) => val === idx);
+      opcionsDiv.querySelectorAll("label").forEach((label, i) => {
+        label.classList.remove("bg-green-100", "bg-red-100", "border-green-500", "border-red-500", "cursor-pointer", "hover:bg-blue-50");
+        label.querySelector("input").disabled = true;
+        if (correcta.includes(i)) label.classList.add("bg-green-100", "border-green-500");
+        if (seleccionats.includes(i) && !correcta.includes(i)) label.classList.add("bg-red-100", "border-red-500");
+      });
+
       mostrarFeedback(encert, correcta, pregunta);
       estatUsuari[seccioActual].respostes[pregunta.id] = seleccionats;
-    } else if (pregunta.tipus === "completar") {
-      const valor = parseInt(opcionsDiv.querySelector("select").value);
-      const encert = correcta.includes(valor);
-      mostrarFeedback(encert, correcta, pregunta);
-      estatUsuari[seccioActual].respostes[pregunta.id] = [valor];
-    } else {
-      const inputs = opcionsDiv.querySelectorAll("input");
-      seleccionats = Array.from(inputs).filter(i => i.checked).map(i => parseInt(i.value));
-      const encert = JSON.stringify(seleccionats.sort()) === JSON.stringify(correcta.sort());
-      mostrarFeedback(encert, correcta, pregunta);
-      estatUsuari[seccioActual].respostes[pregunta.id] = seleccionats;
-      inputs.forEach(i => i.disabled = true);
-    }
-
-    localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
-    document.getElementById("seguentBtn").classList.remove("hidden");
-  };
-
-  if (["relacionar", "completar"].includes(pregunta.tipus)) {
-    const btn = document.createElement("button");
-    btn.textContent = "Comprovar";
-    btn.className = "mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700";
-    btn.onclick = comprovarResposta;
-    opcionsDiv.appendChild(btn);
-  } else {
-    opcionsDiv.querySelectorAll("input").forEach(input => {
-      input.addEventListener("change", comprovarResposta);
+      localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+      document.getElementById("seguentBtn").classList.remove("hidden");
     });
-  }
+  });
 
   document.getElementById("marcaDificil").onclick = () => {
     const dif = estatUsuari[seccioActual].dificils;
@@ -187,25 +146,9 @@ function mostrarFeedback(encert, correcta, pregunta) {
     estatUsuari[seccioActual].encerts++;
     feedback.innerHTML = "<span class='text-green-600'>Molt bé! Has encertat! 😊</span>";
   } else {
-    let correcteText = "";
-
-    if (pregunta.tipus === "relacionar") {
-      correcteText = correcta
-        .map((val, idx) => `${pregunta.parells[idx][0]} → ${pregunta.parells[val][1]}`)
-        .join("<br>");
-    } else if (pregunta.tipus === "completar") {
-      correcteText = pregunta.opcions[correcta[0]];
-    } else {
-      correcteText = correcta.map(i => pregunta.opcions[i]).join("<br>");
-    }
-
+    const correcteText = correcta.map(i => pregunta.opcions[i]).join("<br>");
     feedback.innerHTML = `<span class='text-red-600'>Ohhh! Ho sento. La resposta correcta és:<br><span class="text-sm text-gray-800">${correcteText}</span></span>`;
   }
-}
-
-function updateProgressBar(respostes, total) {
-  const percent = (respostes / total) * 100;
-  document.getElementById("progress-bar").style.width = `${percent}%`;
 }
 
 function mostrarResultats() {
@@ -217,4 +160,11 @@ function mostrarResultats() {
   document.getElementById("resultat").classList.remove("hidden");
 
   updateProgressBar(preguntes.length, preguntes.length);
+}
+
+function updateProgressBar(respostes, total) {
+  const percent = (respostes / total) * 100;
+  document.getElementById("progress-bar").style.width = `${percent}%`;
+}
+
 }
