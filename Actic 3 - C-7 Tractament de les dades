@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test ACTIC 3 – C5</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .opcio.correcta {
+      background-color: #d1fae5; /* Green 100 */
+      border-color: #34d399; /* Green 400 */
+    }
+    .opcio.incorrecta {
+      background-color: #fee2e2; /* Red 100 */
+      border-color: #ef4444; /* Red 400 */
+    }
+    .opcio.seleccionada {
+      border: 2px solid #3b82f6; /* Blue 500 */
+    }
+    .opcio.bloquejada {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .parella-target {
+      min-height: 40px; /* Suficient espai per al text */
+      background-color: #e0f2fe; /* Light blue for targets */
+      border: 1px dashed #93c5fd;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.5rem;
+    }
+    .parella-item {
+      background-color: #dbeafe; /* Lighter blue for items */
+      border: 1px solid #93c5fd;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      cursor: grab;
+      margin-bottom: 0.5rem;
+    }
+    .parella-item.dragging {
+      opacity: 0.6;
+    }
+    .drag-over {
+      border: 2px dashed #10b981; /* Green dashed when dragging over */
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen p-4">
+  <div id="app" class="max-w-xl mx-auto bg-white shadow-xl rounded-xl p-6">
+    <h1 class="text-2xl font-bold mb-4 text-center">Test ACTIC 3 – C5 Tractament de la informació gràfica, sonora i de la imatge en moviment</h1>
+    <div id="barra-nivells" class="flex gap-2 flex-wrap justify-center mb-4">
+      <button onclick="iniciaNivell(1)" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Coneixements bàsics sobre la imatge digital</button>
+      <button onclick="iniciaNivell(2)" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Tractament i edició d’imatges digitals</button>
+      <button onclick="iniciaNivell(3)" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edició i creació de material multimèdia amb eines específiques</button>
+      <button onclick="iniciaNivell(4)" class="bg-purple-500 text-white px-3 py-1 rounded hover:bg-purple-600">Integració de material multimèdia en produccions audiovisuals</button>
+      <button onclick="iniciaNivell(5)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Aspectes legals i socials del tractament de la informació gràfica, sonora i de la imatge en moviment</button>
+    </div>
+
+    <div id="progress-container" class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+      <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+    </div>
+
+    <div id="quiz-container" class="border p-4 rounded-lg bg-gray-50">
+      <p id="question-count" class="text-sm text-gray-600 mb-2"></p>
+      <div id="question" class="font-semibold text-lg mb-4"></div>
+      <div id="options" class="space-y-2"></div>
+      <div id="pairing-section" class="hidden grid grid-cols-2 gap-4">
+        <div id="pairing-left" class="space-y-2"></div>
+        <div id="pairing-right" class="space-y-2 bg-gray-200 p-2 rounded"></div>
+      </div>
+      <div id="feedback" class="mt-4 text-center text-sm"></div>
+      <div class="flex justify-between items-center mt-6">
+        <button id="checkBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Comprova</button>
+        <p id="score" class="text-lg font-bold">Encerts: 0 / 0</p>
+        <button id="nextBtn" class="bg-gray-400 text-white px-4 py-2 rounded hidden hover:bg-gray-500">Següent</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let preguntes = {
+      "modul_1": {
+        "titol": "Coneixements bàsics sobre la imatge digital",
+        "preguntes": [
+          {
+            "id": "C7M1Q1",
+            "tipus": "unica",
+            "text": "Quin tipus d'imatge és més adequat per a un logotip que necessita escalar-se a qualsevol mida sense perdre qualitat i es basa en equacions matemàtiques?",
+            "opcions": ["Mapa de bits (Bitmap)", "Vectorial", "Rasteritzada", "GIF"],
+            "correcta": "Vectorial",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q2",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions són certes sobre les **imatges de mapa de bits** o **rasteritzades**?",
+            "opcions": ["Estan formades per píxels.", "Són independents de la resolució.", "La seva qualitat es degrada en augmentar-les de mida.", "Són ideals per a il·lustracions complexes amb poc detall."],
+            "correcta": ["Estan formades per píxels.", "La seva qualitat es degrada en augmentar-les de mida."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q3",
+            "tipus": "unica",
+            "text": "Quina propietat d'una imatge de mapa de bits es mesura en **DPI** (Dots Per Inch) o **PPP** (Punts Per Polzada)?",
+            "opcions": ["Profunditat de color", "Mida de l'arxiu", "Resolució", "Dimensions"],
+            "correcta": "Resolució",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q4",
+            "tipus": "multiseleccio",
+            "text": "Quins dels següents són formats d'imatge de **mapa de bits**?",
+            "opcions": ["SVG", "PNG", "JPEG", "AI", "BMP"],
+            "correcta": ["PNG", "JPEG", "BMP"],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q5",
+            "tipus": "unica",
+            "text": "Quin mode de color utilitza una combinació de cian, magenta, groc i negre, sent ideal per a la impressió?",
+            "opcions": ["RGB", "CMYK", "HSB", "Escala de grisos"],
+            "correcta": "CMYK",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q6",
+            "tipus": "unica",
+            "text": "Quina profunditat de color permet representar més d'16 milions de colors diferents?",
+            "opcions": ["8 bits", "16 bits", "24 bits (True Color)", "32 bits"],
+            "correcta": "24 bits (True Color)",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q7",
+            "tipus": "multiseleccio",
+            "text": "Quins factors influeixen principalment en la **mida de l'arxiu** d'una imatge de mapa de bits?",
+            "opcions": ["Dimensions (amplada i alçada)", "Profunditat de color", "Tipus de compressió", "Nom de l'arxiu", "Data de creació"],
+            "correcta": ["Dimensions (amplada i alçada)", "Profunditat de color", "Tipus de compressió"],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q8",
+            "tipus": "unica",
+            "text": "Quin format d'imatge és conegut per utilitzar compressió amb pèrdua (lossy compression), ideal per a fotografies al web?",
+            "opcions": ["PNG", "GIF", "JPEG", "BMP"],
+            "correcta": "JPEG",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q9",
+            "tipus": "unica",
+            "text": "Què representa l'acrònim **RGB** en el context dels modes de color?",
+            "opcions": ["Red, Green, Blue (Vermell, Verd, Blau)", "Resolution, Graphics, Bytes", "Raster, Grey, Black", "Relative, Gamma, Brightness"],
+            "correcta": "Red, Green, Blue (Vermell, Verd, Blau)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q10",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents característiques són pròpies de les **imatges vectorials**?",
+            "opcions": ["Es basen en píxels.", "Mantenen la qualitat al escalar-se.", "Són creades amb equacions matemàtiques.", "Són ideals per a fotografies realistes.", "Tenen arxius de mida gran per defecte."],
+            "correcta": ["Mantenen la qualitat al escalar-se.", "Són creades amb equacions matemàtiques."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q11",
+            "tipus": "unica",
+            "text": "Quin terme es refereix al nombre de píxels que conté una imatge en les seves dimensions d'amplada i alçada?",
+            "opcions": ["Profunditat de bits", "Resolució", "Densitat", "Relació d'aspecte"],
+            "correcta": "Resolució",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q12",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions sobre la **profunditat de color** són correctes?",
+            "opcions": ["Es mesura en bits per píxel.", "Com més bits, més gran és la gamma de colors que es pot representar.", "Una profunditat de 1 bit només permet blanc i negre pur.", "No té relació amb la qualitat visual de la imatge.", "24 bits és el mateix que 8 bits per canal (RGB)."],
+            "correcta": ["Es mesura en bits per píxel.", "Com més bits, més gran és la gamma de colors que es pot representar.", "Una profunditat de 1 bit només permet blanc i negre pur.", "24 bits és el mateix que 8 bits per canal (RGB)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q13",
+            "tipus": "unica",
+            "text": "Quin és un avantatge clau de les imatges **PNG** respecte a les JPEG?",
+            "opcions": ["Compressió amb pèrdua més eficient.", "Millor per a fotografies.", "Suport per a transparències (canal alfa).", "Mida d'arxiu més petita en tots els casos."],
+            "correcta": "Suport per a transparències (canal alfa).",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q14",
+            "tipus": "parelles",
+            "text": "Relaciona el terme amb la seva definició correcta:",
+            "parelles": [
+              {"esquerra": "Píxel", "correcta": "El punt més petit d'una imatge de mapa de bits."},
+              {"esquerra": "Vector", "correcta": "Element gràfic definit per equacions matemàtiques."},
+              {"esquerra": "Resolució", "correcta": "Densitat de píxels per unitat de mesura."},
+              {"esquerra": "Compressió Lossy", "correcta": "Reducció de la mida de l'arxiu amb pèrdua de qualitat."},
+              {"esquerra": "Profunditat de color", "correcta": "Nombre de bits usats per representar el color d'un píxel."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q15",
+            "tipus": "unica",
+            "text": "Quin és l'impacte principal d'augmentar la resolució d'una imatge de mapa de bits sense canviar les seves dimensions físiques?",
+            "opcions": ["Disminueix la qualitat.", "Augmenta la mida de l'arxiu.", "No té cap impacte.", "Converteix la imatge en vectorial."],
+            "correcta": "Augmenta la mida de l'arxiu.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q16",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions són veritables sobre el format **GIF**?",
+            "opcions": ["Admet animació.", "Suporta fins a 16 milions de colors.", "És ideal per a fotografies amb molts colors.", "Permet transparència simple (totalment transparent o opac).", "Utilitza compressió sense pèrdua (lossless)."],
+            "correcta": ["Admet animació.", "Permet transparència simple (totalment transparent o opac).", "Utilitza compressió sense pèrdua (lossless)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q17",
+            "tipus": "unica",
+            "text": "Per a què serveix principalment el canal alfa en una imatge digital?",
+            "opcions": ["Per augmentar la brillantor.", "Per definir el nivell de transparència d'un píxel.", "Per controlar el contrast.", "Per aplicar filtres artístics."],
+            "correcta": "Per definir el nivell de transparència d'un píxel.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q18",
+            "tipus": "multiseleccio",
+            "text": "Quins elements són fonamentals per a la representació d'imatges vectorials?",
+            "opcions": ["Píxels", "Punts d'ancoratge", "Camins (paths)", "Mapes de bits", "Vectors matemàtics"],
+            "correcta": ["Punts d'ancoratge", "Camins (paths)", "Vectors matemàtics"],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q19",
+            "tipus": "unica",
+            "text": "Si una imatge digital té una profunditat de color de 8 bits, quants colors pot representar com a màxim?",
+            "opcions": ["256", "65.536", "16.7 milions", "Infinit"],
+            "correcta": "256",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q20",
+            "tipus": "parelles",
+            "text": "Relaciona cada format d'imatge amb la seva característica principal:",
+            "parelles": [
+              {"esquerra": "JPEG", "correcta": "Ideal per a fotografies, compressió amb pèrdua."},
+              {"esquerra": "PNG", "correcta": "Suport per a transparències, compressió sense pèrdua."},
+              {"esquerra": "GIF", "correcta": "Admet animació, paleta de 256 colors."},
+              {"esquerra": "SVG", "correcta": "Format vectorial basat en XML."},
+              {"esquerra": "BMP", "correcta": "Sense compressió, grans arxius."}
+            ],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q21",
+            "tipus": "unica",
+            "text": "Quina de les següents eines és típicament utilitzada per a la creació i edició d'imatges vectorials?",
+            "opcions": ["Adobe Photoshop", "GIMP", "Adobe Illustrator", "Paint"],
+            "correcta": "Adobe Illustrator",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q22",
+            "tipus": "multiseleccio",
+            "text": "Quines afirmacions són certes sobre la **resolució d'impressió** d'una imatge?",
+            "opcions": ["Es mesura en DPI (Dots Per Inch).", "Una resolució més alta sempre significa una impressió de millor qualitat.", "Per a una impressió de qualitat fotogràfica, es recomanen 300 DPI.", "No té relació amb la resolució de pantalla.", "Una resolució baixa pot resultar en una imatge pixelada a la impressió."],
+            "correcta": ["Es mesura en DPI (Dots Per Inch).", "Per a una impressió de qualitat fotogràfica, es recomanen 300 DPI.", "Una resolució baixa pot resultar en una imatge pixelada a la impressió."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q23",
+            "tipus": "unica",
+            "text": "Quin és l'efecte de la **compressió lossless** en una imatge digital?",
+            "opcions": ["Redueix la mida de l'arxiu amb pèrdua irreversible de dades.", "Redueix la mida de l'arxiu sense pèrdua de qualitat de la imatge.", "Augmenta la qualitat de la imatge.", "Només afecta les imatges vectorials."],
+            "correcta": "Redueix la mida de l'arxiu sense pèrdua de qualitat de la imatge.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q24",
+            "tipus": "unica",
+            "text": "Quan s'hauria d'utilitzar el mode de color **CMYK** en lloc de **RGB**?",
+            "opcions": ["Quan es treballa amb imatges per a web.", "Quan es volen colors més vibrants en pantalla.", "Quan la imatge està destinada a ser impresa.", "Quan es creen gràfics per a videojocs."],
+            "correcta": "Quan la imatge està destinada a ser impresa.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q25",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions sobre el **balanç de blancs** en fotografia digital són correctes?",
+            "opcions": ["Ajusta els colors d'una imatge per a que els blancs es vegin blancs purs.", "Compensa les diferents temperatures de color de la llum.", "És un ajust que només es pot fer abans de prendre la foto.", "Si no s'ajusta correctament, els colors poden semblar anormals o tenir un to dominant.", "No té cap impacte en la qualitat general de la imatge."],
+            "correcta": ["Ajusta els colors d'una imatge per a que els blancs es vegin blancs purs.", "Compensa les diferents temperatures de color de la llum.", "Si no s'ajusta correctament, els colors poden semblar anormals o tenir un to dominant."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q26",
+            "tipus": "unica",
+            "text": "Quin terme s'utilitza per descriure la gamma de colors que un dispositiu (com una pantalla o una impressora) pot reproduir?",
+            "opcions": ["Gamma dinàmica", "Espai de color", "Profunditat de color", "Resolució"],
+            "correcta": "Espai de color",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q27",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents són eines o programes per crear o editar imatges vectorials?",
+            "opcions": ["Adobe Photoshop", "Inkscape", "CorelDRAW", "GIMP", "Affinity Designer"],
+            "correcta": ["Inkscape", "CorelDRAW", "Affinity Designer"],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q28",
+            "tipus": "unica",
+            "text": "Quina és la funció principal dels perfils de color (ICC profiles) en la gestió del color?",
+            "opcions": ["Augmentar la saturació de les imatges.", "Garantir la consistència de color entre diferents dispositius.", "Comprimir imatges per reduir la mida de l'arxiu.", "Convertir imatges de mapa de bits a vectorials."],
+            "correcta": "Garantir la consistència de color entre diferents dispositius.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q29",
+            "tipus": "parelles",
+            "text": "Associa cada concepte amb el seu ús o definició:",
+            "parelles": [
+              {"esquerra": "Model RGB", "correcta": "Colors per a pantalles i web."},
+              {"esquerra": "Model CMYK", "correcta": "Colors per a impressió."},
+              {"esquerra": "Paleta de colors", "correcta": "Conjunt limitat de colors disponibles per a una imatge."},
+              {"esquerra": "Antialiasing", "correcta": "Tècnica per suavitzar les vores dentades en gràfics digitals."},
+              {"esquerra": "Metadades (EXIF)", "correcta": "Informació addicional incrustada en l'arxiu d'imatge."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q30",
+            "tipus": "unica",
+            "text": "Quina tècnica s'utilitza per suavitzar les vores 'pixelades' dels objectes en les imatges digitals, especialment en fonts o línies diagonals?",
+            "opcions": ["Blurring", "Sharpening", "Antialiasing", "Dithering"],
+            "correcta": "Antialiasing",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q31",
+            "tipus": "multiseleccio",
+            "text": "Quins són factors importants a considerar en la selecció del format d'una imatge per a un projecte web?",
+            "opcions": ["Mida de l'arxiu.", "Qualitat de la imatge.", "Suport de transparències (si és necessari).", "Compatibilitat amb navegadors.", "Data de creació de la imatge."],
+            "correcta": ["Mida de l'arxiu.", "Qualitat de la imatge.", "Suport de transparències (si és necessari).", "Compatibilitat amb navegadors."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q32",
+            "tipus": "unica",
+            "text": "Quin tipus de gràfic és més adequat per a il·lustracions amb àrees de color sòlid i línies ben definides?",
+            "opcions": ["Mapa de bits d'alta resolució", "Fotografia JPEG", "Gràfic vectorial", "Imatge amb efecte de gra"],
+            "correcta": "Gràfic vectorial",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q33",
+            "tipus": "unica",
+            "text": "Què és el 'dithering' en el context de les imatges digitals?",
+            "opcions": ["Una tècnica per augmentar la resolució.", "Una forma d'afegir soroll a una imatge.", "Una tècnica per simular més colors dels que una paleta pot representar, barrejant píxels de colors propers.", "Un mètode de compressió amb pèrdua."],
+            "correcta": "Una tècnica per simular més colors dels que una paleta pot representar, barrejant píxels de colors propers.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q34",
+            "tipus": "multiseleccio",
+            "text": "Quins avantatges ofereix la utilització de formats d'imatge amb compressió (com JPEG o PNG) per a la web?",
+            "opcions": ["Reducció del temps de càrrega de la pàgina.", "Menor consum d'amplada de banda.", "Augment de la resolució real de la imatge.", "Millora de l'experiència d'usuari.", "Compatibilitat universal amb tots els navegadors, independentment de la versió."],
+            "correcta": ["Reducció del temps de càrrega de la pàgina.", "Menor consum d'amplada de banda.", "Millora de l'experiència d'usuari."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q35",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal de la **normalització de color** en la fotografia digital?",
+            "opcions": ["Fer que tots els colors siguin idèntics.", "Eliminar els colors que no són primaris.", "Ajustar els colors per a que siguin coherents i realistes entre diferents imatges o sessions.", "Convertir els colors a escala de grisos."],
+            "correcta": "Ajustar els colors per a que siguin coherents i realistes entre diferents imatges o sessions.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M1Q36",
+            "tipus": "parelles",
+            "text": "Relaciona els termes amb les seves característiques:",
+            "parelles": [
+              {"esquerra": "Histograma", "correcta": "Representació gràfica de la distribució tonal d'una imatge."},
+              {"esquerra": "Gamma", "correcta": "Ajust de la brillantor dels tons mitjans d'una imatge."},
+              {"esquerra": "Saturació", "correcta": "Intensitat o puresa d'un color."},
+              {"esquerra": "To (Hue)", "correcta": "La qualitat del color que el distingeix d'altres (vermell, blau, verd)."},
+              {"esquerra": "Contrast", "correcta": "Diferència entre les àrees més clares i més fosques d'una imatge."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q37",
+            "tipus": "unica",
+            "text": "Quina afirmació és correcta sobre l'ús de la **compressió JPEG2000**?",
+            "opcions": ["És un format de compressió exclusivament sense pèrdua.", "Ofereix compressió amb i sense pèrdua, i millor qualitat que JPEG a taxes de compressió similars.", "Està àmpliament suportat per tots els navegadors web actualment.", "Només s'utilitza per a imatges mèdiques i científiques."],
+            "correcta": "Ofereix compressió amb i sense pèrdua, i millor qualitat que JPEG a taxes de compressió similars.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q38",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions sobre l'**espai de color sRGB** són correctes?",
+            "opcions": ["És l'espai de color més comú per a la web i monitors.", "Ofereix una gamma de colors més àmplia que Adobe RGB.", "Està optimitzat per a la consistència entre diferents dispositius de visualització.", "És el mode de color recomanat per a treballs d'impressió professional.", "Representa una gamma de colors més limitada que altres espais com Adobe RGB."],
+            "correcta": ["És l'espai de color més comú per a la web i monitors.", "Està optimitzat per a la consistència entre diferents dispositius de visualització.", "Representa una gamma de colors més limitada que altres espais com Adobe RGB."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M1Q39",
+            "tipus": "unica",
+            "text": "Si necessites una imatge amb fons transparent per superposar-la sobre diferents colors en un disseny web, quin format és el més adequat?",
+            "opcions": ["JPEG", "BMP", "PNG", "GIF (si no hi ha molts colors)"],
+            "correcta": "PNG",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M1Q40",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents són aplicacions del format **SVG**?",
+            "opcions": ["Creació de logotips escalables.", "Mapes interactius en línia.", "Gràfics per a interfícies d'usuari.", "Fotografies d'alta resolució.", "Animacions web lleugeres."],
+            "correcta": ["Creació de logotips escalables.", "Mapes interactius en línia.", "Gràfics per a interfícies d'usuari.", "Animacions web lleugeres."],
+            "dificultat": "mitjà"
+          }
+        ]
+      },
+      "modul_2": {
+        "titol": "Tractament i edició d’imatges digitals",
+        "preguntes": [
+          {
+            "id": "C7M2Q1",
+            "tipus": "unica",
+            "text": "Quina eina d'edició d'imatges s'utilitza per aïllar una part específica d'una imatge?",
+            "opcions": ["Retallar (Crop)", "Redimensionar (Resize)", "Rotar", "Invertir colors"],
+            "correcta": "Retallar (Crop)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q2",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents accions es poden realitzar amb una eina de **selecció** en un editor d'imatges?",
+            "opcions": ["Copiar una àrea específica.", "Aplicar un filtre només a una part de la imatge.", "Moure un objecte dins de la imatge.", "Canviar la resolució de tota la imatge.", "Crear una nova capa a partir de la selecció."],
+            "correcta": ["Copiar una àrea específica.", "Aplicar un filtre només a una part de la imatge.", "Moure un objecte dins de la imatge.", "Crear una nova capa a partir de la selecció."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q3",
+            "tipus": "unica",
+            "text": "Quina funció permet ajustar la lluminositat de les zones més clares i més fosques d'una imatge?",
+            "opcions": ["Saturació", "To (Hue)", "Contrast", "Balanc de color"],
+            "correcta": "Contrast",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q4",
+            "tipus": "multiseleccio",
+            "text": "Quins són els mètodes habituals per **eliminar elements no desitjats** d'una imatge?",
+            "opcions": ["Eina de clonar (Stamp tool).", "Eina de curació (Healing brush).", "Eina de selecció i supressió.", "Augmentar la brillantor de la imatge.", "Aplicar un efecte de desenfocament a tota la imatge."],
+            "correcta": ["Eina de clonar (Stamp tool).", "Eina de curació (Healing brush).", "Eina de selecció i supressió."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q5",
+            "tipus": "unica",
+            "text": "Quina eina permet corregir la **temperatura de color** d'una fotografia per eliminar dominants de color no desitjades?",
+            "opcions": ["Balanc de blancs", "Histograma", "Corbes", "Nivells"],
+            "correcta": "Balanc de blancs",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q6",
+            "tipus": "unica",
+            "text": "En edició d'imatges, què és una **capa (layer)**?",
+            "opcions": ["Una eina per retallar imatges.", "Una forma d'organitzar elements visuals de manera independent en una imatge.", "Un tipus de filtre de color.", "La resolució d'una imatge."],
+            "correcta": "Una forma d'organitzar elements visuals de manera independent en una imatge.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q7",
+            "tipus": "multiseleccio",
+            "text": "Quins són avantatges d'utilitzar **capes d'ajust** en un editor d'imatges no destructiu?",
+            "opcions": ["Permeten modificar la imatge sense alterar els píxels originals.", "Es poden activar o desactivar fàcilment.", "Poden ser reeditades en qualsevol moment.", "No afegeixen mida a l'arxiu.", "Són exclusives de les imatges vectorials."],
+            "correcta": ["Permeten modificar la imatge sense alterar els píxels originals.", "Es poden activar o desactivar fàcilment.", "Poden ser reeditades en qualsevol moment."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q8",
+            "tipus": "unica",
+            "text": "Quina eina s'utilitza per millorar la nitidesa de les vores d'una imatge?",
+            "opcions": ["Desenfocament (Blur)", "Enfocament (Sharpen)", "Esponja (Sponge)", "Dodge/Burn"],
+            "correcta": "Enfocament (Sharpen)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q9",
+            "tipus": "parelles",
+            "text": "Relaciona cada terme amb la seva funció en l'edició d'imatges:",
+            "parelles": [
+              {"esquerra": "Histograma", "correcta": "Representació gràfica de la distribució tonal."},
+              {"esquerra": "Corbes", "correcta": "Ajust precís de tons i contrast mitjançant un gràfic."},
+              {"esquerra": "Nivells", "correcta": "Ajust de punts blancs, negres i grisos mitjans."},
+              {"esquerra": "Mascareta de capa", "correcta": "Controla la visibilitat d'una capa sense eliminar píxels."},
+              {"esquerra": "Transformació lliure", "correcta": "Rotar, escalar, inclinar o distorsionar una selecció o capa."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q10",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal de la **normalització de color** en un flux de treball d'edició d'imatges?",
+            "opcions": ["Fer que tots els colors siguin més saturats.", "Garantir la consistència i precisió del color entre diferents dispositius i sortides.", "Reduir el nombre de colors en una imatge.", "Convertir totes les imatges a escala de grisos."],
+            "correcta": "Garantir la consistència i precisió del color entre diferents dispositius i sortides.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q11",
+            "tipus": "multiseleccio",
+            "text": "Quins són els propòsits de les **mascaretes de capa** en programes d'edició d'imatges (com Photoshop o GIMP)?",
+            "opcions": ["Ocultar selectivament parts d'una capa sense esborrar-les.", "Aplicar efectes a una àrea específica d'una imatge.", "Crear textures complexes.", "Preservar la informació original dels píxels de la capa.", "Fusionar dues capes en una de sola de manera permanent."],
+            "correcta": ["Ocultar selectivament parts d'una capa sense esborrar-les.", "Aplicar efectes a una àrea específica d'una imatge.", "Preservar la informació original dels píxels de la capa."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q12",
+            "tipus": "unica",
+            "text": "Quin tipus de retoc fotogràfic implica la millora de la pell, eliminació d'imperfeccions i suavització de línies, mantenint un aspecte natural?",
+            "opcions": ["HDR", "Retoc de bellesa", "Blanquejament", "Colorització"],
+            "correcta": "Retoc de bellesa",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q13",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents accions es consideren part de l'**optimització d'imatges per a la web**?",
+            "opcions": ["Redimensionar la imatge a les dimensions desitjades.", "Comprimir la imatge utilitzant un format adequat (JPEG, PNG, WebP).", "Canviar la resolució a 300 DPI.", "Eliminar metadades innecessàries.", "Convertir al mode de color CMYK."],
+            "correcta": ["Redimensionar la imatge a les dimensions desitjades.", "Comprimir la imatge utilitzant un format adequat (JPEG, PNG, WebP).", "Eliminar metadades innecessàries."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q14",
+            "tipus": "unica",
+            "text": "Quina eina és la més adequada per a la **eliminació de la perspectiva distorsionada** en fotografies de paisatges o arquitectura?",
+            "opcions": ["Eina de clonar", "Correcció de lent/perspectiva", "Eina de pinzell", "Filtre d'enfocament"],
+            "correcta": "Correcció de lent/perspectiva",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q15",
+            "tipus": "parelles",
+            "text": "Relaciona cada concepte amb el seu ús o definició en edició d'imatges:",
+            "parelles": [
+              {"esquerra": "Filtre", "correcta": "Efecte predefinit que s'aplica a una imatge o selecció."},
+              {"esquerra": "Màscara de retall", "correcta": "Una capa s'utilitza per definir la visibilitat d'una altra capa."},
+              {"esquerra": "Histograma", "correcta": "Gràfic que mostra la distribució de píxels per nivells de brillantor."},
+              {"esquerra": "Balance de color", "correcta": "Ajust individual dels nivells de color (vermell, verd, blau)."},
+              {"esquerra": "Clonar", "correcta": "Copiar píxels d'una àrea i pintar-los en una altra per eliminar objectes."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q16",
+            "tipus": "unica",
+            "text": "Quin és el principal objectiu d'aplicar un **filtre de desenfocament (blur)** selectiu en una imatge?",
+            "opcions": ["Augmentar la nitidesa de tota la imatge.", "Corregir errors de color.", "Reduir la mida de l'arxiu.", "Destacar un objecte principal suavitzant el fons."],
+            "correcta": "Destacar un objecte principal suavitzant el fons.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q17",
+            "tipus": "multiseleccio",
+            "text": "Quines accions formen part de la **postproducció bàsica** d'una fotografia?",
+            "opcions": ["Ajust de brillantor i contrast.", "Retallar i redimensionar.", "Eliminació de soroll digital.", "Creació d'un model 3D de l'escena.", "Aplicació de filtres artístics complexos."],
+            "correcta": ["Ajust de brillantor i contrast.", "Retallar i redimensionar.", "Eliminació de soroll digital."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q18",
+            "tipus": "unica",
+            "text": "Per a què serveix la funció 'Desfer' (Undo) en un editor d'imatges?",
+            "opcions": ["Guardar els canvis fets.", "Revertir l'última acció realitzada.", "Duplicar una capa.", "Aplicar un filtre predeterminat."],
+            "correcta": "Revertir l'última acció realitzada.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q19",
+            "tipus": "parelles",
+            "text": "Associa cada eina amb la seva funció principal:",
+            "parelles": [
+              {"esquerra": "Pinzell (Brush)", "correcta": "Pintar colors sobre la imatge."},
+              {"esquerra": "Goma d'esborrar (Eraser)", "correcta": "Esborrar píxels d'una capa."},
+              {"esquerra": "Lupa (Zoom)", "correcta": "Acostar o allunyar la vista de la imatge."},
+              {"esquerra": "Omplir (Fill)", "correcta": "Omplir una selecció o capa amb un color o patró."},
+              {"esquerra": "Varita màgica (Magic Wand)", "correcta": "Seleccionar àrees basades en similitud de color."}
+            ],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q20",
+            "tipus": "unica",
+            "text": "Quin tipus de format de fitxer és preferible per guardar un projecte d'edició d'imatges que conté capes i permet continuar editant en el futur?",
+            "opcions": ["JPEG", "PNG", "PSD (Photoshop Document)", "GIF"],
+            "correcta": "PSD (Photoshop Document)",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q21",
+            "tipus": "multiseleccio",
+            "text": "Quines tècniques s'utilitzen per **corregir els colors** en una imatge?",
+            "opcions": ["Ajustar el balanç de blancs.", "Utilitzar capes d'ajust de colors (Tono/Saturació, Balanç de color).", "Aplicar un filtre de desenfocament.", "Modificar els nivells o corbes.", "Invertir els colors de la imatge."],
+            "correcta": ["Ajustar el balanç de blancs.", "Utilitzar capes d'ajust de colors (Tono/Saturació, Balanç de color).", "Modificar els nivells o corbes."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q22",
+            "tipus": "unica",
+            "text": "Si una imatge està massa fosca, quina eina o ajust seria el més adequat per aclarir-la sense afectar excessivament el contrast?",
+            "opcions": ["Contrast", "Saturació", "Lluminositat (Brightness)", "Invertir"],
+            "correcta": "Lluminositat (Brightness)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q23",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu de la funció 'Escala de grisos'?",
+            "opcions": ["Augmentar la saturació dels colors.", "Convertir una imatge en blanc i negre.", "Aplicar un filtre vintage.", "Millorar la nitidesa de la imatge."],
+            "correcta": "Convertir una imatge en blanc i negre.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q24",
+            "tipus": "multiseleccio",
+            "text": "Quines són consideracions importants al **redimensionar una imatge** per a ús web?",
+            "opcions": ["Mantenir la proporció d'aspecte per evitar distorsions.", "No superar la resolució necessària per a la pantalla per evitar arxius grans.", "Utilitzar una resolució de 72 DPI (o inferior) per optimitzar la càrrega.", "Sempre augmentar la mida per millorar la qualitat.", "Guardar en un format amb compressió sense pèrdua com BMP."],
+            "correcta": ["Mantenir la proporció d'aspecte per evitar distorsions.", "No superar la resolució necessària per a la pantalla per evitar arxius grans.", "Utilitzar una resolució de 72 DPI (o inferior) per optimitzar la càrrega."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q25",
+            "tipus": "unica",
+            "text": "Quina eina s'utilitza per crear un degradat de colors en una selecció o capa?",
+            "opcions": ["Pinzell", "Cub de pintura", "Degradat (Gradient tool)", "Esborrador"],
+            "correcta": "Degradat (Gradient tool)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M2Q26",
+            "tipus": "parelles",
+            "text": "Relaciona els conceptes amb les tècniques d'edició:",
+            "parelles": [
+              {"esquerra": "Retoc de pell", "correcta": "Eina de curació o clonar."},
+              {"esquerra": "Canvi de fons", "correcta": "Selecció i màscara de capa."},
+              {"esquerra": "Correcció d'ulls vermells", "correcta": "Eina específica per eliminar el color vermell de les pupil·les."},
+              {"esquerra": "Augmentar la saturació", "correcta": "Ajust de Tono/Saturació."},
+              {"esquerra": "Eliminar distorsió de lent", "correcta": "Correcció de perspectiva."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q27",
+            "tipus": "unica",
+            "text": "Què implica el terme 'resolució destructiva' en l'edició d'imatges?",
+            "opcions": ["Que els canvis fets alteren permanentment els píxels originals.", "Que la imatge es pot recuperar fàcilment.", "Que la qualitat de la imatge augmenta.", "Que l'edició és reversible en qualsevol moment."],
+            "correcta": "Que els canvis fets alteren permanentment els píxels originals.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q28",
+            "tipus": "multiseleccio",
+            "text": "Quins són els usos més comuns de la funció 'historial' o 'historial de canvis' en un editor d'imatges?",
+            "opcions": ["Desfer múltiples accions.", "Revertir a un estat anterior de la imatge.", "Comparar diferents versions de l'edició.", "Publicar la imatge en xarxes socials.", "Desar un nou arxiu per cada pas de l'edició."],
+            "correcta": ["Desfer múltiples accions.", "Revertir a un estat anterior de la imatge.", "Comparar diferents versions de l'edició."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q29",
+            "tipus": "unica",
+            "text": "Per què és important calibrar un monitor regularment en l'edició d'imatges?",
+            "opcions": ["Per augmentar la velocitat de l'ordinador.", "Per assegurar que els colors que es veuen en pantalla són fidels a la realitat.", "Per estalviar energia.", "Per sincronitzar-lo amb la impressora."],
+            "correcta": "Per assegurar que els colors que es veuen en pantalla són fidels a la realitat.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q30",
+            "tipus": "parelles",
+            "text": "Relaciona cada terme amb la seva funció específica:",
+            "parelles": [
+              {"esquerra": "Exposició", "correcta": "Quantitat de llum en una imatge."},
+              {"esquerra": "Viñetatge", "correcta": "Enfosquiment de les vores d'una fotografia."},
+              {"esquerra": "Soroll (Noise)", "correcta": "Píxels aleatoris que degraden la qualitat de la imatge, especialment en condicions de poca llum."},
+              {"esquerra": "Filtre d'altres passos", "correcta": "Destaca les vores i detalls sense enfocar l'àrea general."},
+              {"esquerra": "Distorsió de lent", "correcta": "Deformació òptica causada per l'objectiu de la càmera."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q31",
+            "tipus": "unica",
+            "text": "Quina tècnica s'utilitza per ajustar la brillantor i el contrast de zones específiques d'una imatge, sense afectar la resta?",
+            "opcions": ["Ajust global de nivells.", "Ús de capes d'ajust amb màscares.", "Re-escalar la imatge.", "Aplicar un filtre de color a tota la imatge."],
+            "correcta": "Ús de capes d'ajust amb màscares.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q32",
+            "tipus": "multiseleccio",
+            "text": "Quins són els beneficis de treballar amb **objectes intel·ligents (Smart Objects)** en programes com Photoshop?",
+            "opcions": ["Permeten transformacions (escalar, rotar) no destructives.", "Permeten aplicar filtres de forma no destructiva.", "Redueixen la mida de l'arxiu de la imatge.", "S'integren millor amb formats vectorials (AI, EPS).", "Bloqueja la imatge perquè no es pugui editar accidentalment."],
+            "correcta": ["Permeten transformacions (escalar, rotar) no destructives.", "Permeten aplicar filtres de forma no destructiva.", "S'integren millor amb formats vectorials (AI, EPS)."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q33",
+            "tipus": "unica",
+            "text": "Quina eina o funció és essencial per a la **creació de panoràmiques** a partir de diverses fotografies?",
+            "opcions": ["HDR", "Panorama Stitching", "Time-lapse", "Focus Stacking"],
+            "correcta": "Panorama Stitching",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q34",
+            "tipus": "multiseleccio",
+            "text": "Quins són els principals objectius de la **correcció de color** en l'edició d'imatges?",
+            "opcions": ["Aconseguir colors realistes i naturals.", "Corregir dominants de color no desitjades.", "Preparar la imatge per a una sortida específica (impressió, web).", "Augmentar la vibració de tots els colors.", "Afegir un efecte artístic de coloració monocromàtica."],
+            "correcta": ["Aconseguir colors realistes i naturals.", "Corregir dominants de color no desitjades.", "Preparar la imatge per a una sortida específica (impressió, web)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q35",
+            "tipus": "unica",
+            "text": "Què és el 'tethering' en fotografia, relacionat amb l'edició d'imatges?",
+            "opcions": ["Una tècnica d'edició per unir imatges.", "La connexió d'una càmera a un ordinador per capturar i veure imatges directament en un editor.", "Un mètode per compartir imatges en línia.", "Un tipus de filtre de color."],
+            "correcta": "La connexió d'una càmera a un ordinador per capturar i veure imatges directament en un editor.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q36",
+            "tipus": "parelles",
+            "text": "Associa les eines amb el seu propòsit:",
+            "parelles": [
+              {"esquerra": "Dodge Tool", "correcta": "Aclara les zones d'una imatge."},
+              {"esquerra": "Burn Tool", "correcta": "Enfosqueix les zones d'una imatge."},
+              {"esquerra": "Sponge Tool", "correcta": "Augmenta o disminueix la saturació del color localment."},
+              {"esquerra": "Spot Healing Brush", "correcta": "Elimina ràpidament petites imperfeccions adaptant el contingut."},
+              {"esquerra": "Patch Tool", "correcta": "Reemplaça una àrea seleccionada amb píxels d'una altra àrea."},
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q37",
+            "tipus": "unica",
+            "text": "Quin mètode de selecció és més precís per aïllar objectes amb vores complexes o cabell?",
+            "opcions": ["Selecció rectangular.", "Varita màgica.", "Eina de lazo.", "Eina 'Seleccionar i aplicar màscara' / 'Refinar vora'."],
+            "correcta": "Eina 'Seleccionar i aplicar màscara' / 'Refinar vora'.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q38",
+            "tipus": "multiseleccio",
+            "text": "Quines són les etapes comunes en el flux de treball de retoc fotogràfic professional?",
+            "opcions": ["Correcció bàsica (exposició, balanç de blancs).", "Netetja (eliminació d'imperfeccions, soroll).", "Retoc de pell i detalls.", "Creació d'una nova fotografia des de zero.", "Finalització i exportació per a la sortida desitjada."],
+            "correcta": ["Correcció bàsica (exposició, balanç de blancs).", "Netetja (eliminació d'imperfeccions, soroll).", "Retoc de pell i detalls.", "Finalització i exportació per a la sortida desitjada."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M2Q39",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal de la **reducció de soroll** en l'edició d'imatges?",
+            "opcions": ["Fer la imatge més borrosa.", "Eliminar píxels aleatoris o gra d'alta ISO que degraden la qualitat de la imatge.", "Augmentar la brillantor general.", "Millorar la saturació del color."],
+            "correcta": "Eliminar píxels aleatoris o gra d'alta ISO que degraden la qualitat de la imatge.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M2Q40",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions sobre l'**edició no destructiva** són correctes?",
+            "opcions": ["Permet realitzar ajustos sense alterar permanentment els píxels originals.", "Les capes d'ajust en són un exemple.", "Requereix guardar múltiples versions de l'arxiu per conservar els canvis.", "És ideal per a fluxos de treball on es necessiten revisions constants.", "Sempre produeix arxius de mida més petita que l'edició destructiva."],
+            "correcta": ["Permet realitzar ajustos sense alterar permanentment els píxels originals.", "Les capes d'ajust en són un exemple.", "És ideal per a fluxos de treball on es necessiten revisions constants."],
+            "dificultat": "difícil"
+          }
+        ]
+      },
+      "modul_3": {
+        "titol": "Edició i creació de material multimèdia amb eines específiques",
+        "preguntes": [
+          {
+            "id": "C7M3Q1",
+            "tipus": "unica",
+            "text": "Quin tipus de programari és ideal per crear i editar pistes d'àudio, afegir efectes i barrejar diferents fonts de so?",
+            "opcions": ["Processador de text", "Full de càlcul", "Editor d'àudio", "Editor de vídeo"],
+            "correcta": "Editor d'àudio",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q2",
+            "tipus": "multiseleccio",
+            "text": "Quins dels següents són formats de fitxer d'àudio comuns?",
+            "opcions": ["DOCX", "MP3", "WAV", "PDF", "OGG"],
+            "correcta": ["MP3", "WAV", "OGG"],
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q3",
+            "tipus": "unica",
+            "text": "Què és la **freqüència de mostreig (sampling rate)** en l'àudio digital?",
+            "opcions": ["El nombre de bits per mostra de so.", "El nombre de mostres d'àudio preses per segon.", "La intensitat del so.", "La durada total de l'enregistrament."],
+            "correcta": "El nombre de mostres d'àudio preses per segon.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q4",
+            "tipus": "multiseleccio",
+            "text": "Quins tipus d'efectes d'àudio es poden aplicar per millorar o modificar una gravació?",
+            "opcions": ["Reverberació (Reverb)", "Equalització (EQ)", "Compressió", "Retall de píxels", "Correcció de color"],
+            "correcta": ["Reverberació (Reverb)", "Equalització (EQ)", "Compressió"],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q5",
+            "tipus": "unica",
+            "text": "Quin programari s'utilitza per crear i editar seqüències de vídeo, afegir transicions i efectes visuals?",
+            "opcions": ["Editor de text", "Editor de vídeo", "Editor d'imatges", "Editor de so"],
+            "correcta": "Editor de vídeo",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q6",
+            "tipus": "unica",
+            "text": "En edició de vídeo, què representa una **línia de temps (timeline)**?",
+            "opcions": ["La durada total del projecte de vídeo.", "Una representació visual de la seqüència de clips d'àudio i vídeo.", "La llista de tots els efectes aplicats.", "La vista prèvia del vídeo final."],
+            "correcta": "Una representació visual de la seqüència de clips d'àudio i vídeo.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q7",
+            "tipus": "multiseleccio",
+            "text": "Quins dels següents són formats de fitxer de vídeo comuns?",
+            "opcions": ["TXT", "MP4", "AVI", "EPUB", "MOV"],
+            "correcta": ["MP4", "AVI", "MOV"],
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q8",
+            "tipus": "unica",
+            "text": "Quina tècnica s'utilitza per suavitzar el canvi entre dos clips de vídeo o àudio?",
+            "opcions": ["Tall (Cut)", "Transició (Transition)", "Efecte", "Capes"],
+            "correcta": "Transició (Transition)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q9",
+            "tipus": "parelles",
+            "text": "Relaciona cada terme amb la seva definició en edició multimèdia:",
+            "parelles": [
+              {"esquerra": "Codec", "correcta": "Algorisme per comprimir i descomprimir dades multimèdia."},
+              {"esquerra": "Renderització", "correcta": "Procés de generar el fitxer multimèdia final a partir del projecte."},
+              {"esquerra": "Keyframe", "correcta": "Marc clau que defineix un canvi en animació o efectes."},
+              {"esquerra": "Compressió amb pèrdua", "correcta": "Reducció de la mida amb eliminació de dades, com en MP3 o JPEG."},
+              {"esquerra": "Compressió sense pèrdua", "correcta": "Reducció de la mida sense eliminació de dades, com en PNG o FLAC."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q10",
+            "tipus": "unica",
+            "text": "Quin és el propòsit d'afegir **subtítols** a un vídeo?",
+            "opcions": ["Millorar la qualitat visual.", "Fer el contingut accessible per a persones amb discapacitat auditiva o en entorns sorollosos.", "Augmentar la velocitat de reproducció.", "Aplicar un efecte artístic."],
+            "correcta": "Fer el contingut accessible per a persones amb discapacitat auditiva o en entorns sorollosos.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q11",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents afirmacions són certes sobre l'**equalització (EQ)** d'àudio?",
+            "opcions": ["Permet ajustar el volum general d'una pista.", "Permet augmentar o disminuir la intensitat de freqüències específiques.", "Pot ajudar a millorar la claredat d'un diàleg.", "És una tècnica exclusiva per a la reducció de soroll.", "Pot eliminar la necessitat de gravar amb un bon micròfon."],
+            "correcta": ["Permet augmentar o disminuir la intensitat de freqüències específiques.", "Pot ajudar a millorar la claredat d'un diàleg."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q12",
+            "tipus": "unica",
+            "text": "Quin tipus de software és Adobe Premiere Pro?",
+            "opcions": ["Editor d'imatges", "Editor d'àudio", "Editor de vídeo", "Eina de disseny gràfic"],
+            "correcta": "Editor de vídeo",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q13",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents característiques són importants en l'edició de vídeo per obtenir un resultat professional?",
+            "opcions": ["Un bon ritme d'edició.", "Transicions suaus i apropiades.", "Correcció de color i graduació.", "Ignorar la qualitat d'àudio.", "Afegir molts efectes sense criteri."],
+            "correcta": ["Un bon ritme d'edició.", "Transicions suaus i apropiades.", "Correcció de color i graduació."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q14",
+            "tipus": "unica",
+            "text": "Quina és la funció d'un **mesclador d'àudio (audio mixer)** en un editor de vídeo o àudio?",
+            "opcions": ["Convertir formats d'àudio.", "Controlar els nivells de volum, pan i efectes de múltiples pistes d'àudio.", "Eliminar el soroll de fons automàticament.", "Crear nous sons des de zero."],
+            "correcta": "Controlar els nivells de volum, pan i efectes de múltiples pistes d'àudio.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q15",
+            "tipus": "parelles",
+            "text": "Relaciona cada concepte amb la seva definició en edició de vídeo:",
+            "parelles": [
+              {"esquerra": "Clip", "correcta": "Fragment individual de vídeo o àudio."},
+              {"esquerra": "Transició", "correcta": "Efecte que uneix dos clips suaument."},
+              {"esquerra": "Efecte visual", "correcta": "Alteració de l'aparença d'un clip (p. ex., color, distorsió)."},
+              {"esquerra": "Títols", "correcta": "Text superposat en el vídeo per donar informació."},
+              {"esquerra": "Exportar", "correcta": "Guardar el projecte de vídeo en un format reproduïble."}
+            ],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q16",
+            "tipus": "unica",
+            "text": "Quina eina d'edició de vídeo s'utilitza per estabilitzar metratge tremolós?",
+            "opcions": ["Correcció de color", "Estabilització de vídeo", "Càmera lenta", "Zoom digital"],
+            "correcta": "Estabilització de vídeo",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q17",
+            "tipus": "multiseleccio",
+            "text": "Quines són les etapes habituals del procés de creació d'un vídeo?",
+            "opcions": ["Preproducció (guió, planificació).", "Gravació (enregistrament de metratge i àudio).", "Postproducció (edició, efectes, so).", "Distribució (publicació).", "Imprimir el vídeo en paper."],
+            "correcta": ["Preproducció (guió, planificació).", "Gravació (enregistrament de metratge i àudio).", "Postproducció (edició, efectes, so).", "Distribució (publicació)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q18",
+            "tipus": "unica",
+            "text": "Què és el **bitrate** en àudio i vídeo?",
+            "opcions": ["La qualitat de la imatge.", "La velocitat a la qual es transmeten les dades, afectant la qualitat i la mida de l'arxiu.", "La durada del fitxer.", "El nombre de pistes d'àudio."],
+            "correcta": "La velocitat a la qual es transmeten les dades, afectant la qualitat i la mida de l'arxiu.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q19",
+            "tipus": "multiseleccio",
+            "text": "Quines són les funcions d'una **mescla d'àudio (mixing)** en una producció multimèdia?",
+            "opcions": ["Ajustar els nivells de volum de cada pista.", "Aplicar efectes d'àudio (reverberació, eco) a pistes individuals.", "Panoramitzar (distribuir el so entre els canals esquerre i dret).", "Convertir el vídeo a un altre format.", "Afegir noves imatges al vídeo."],
+            "correcta": ["Ajustar els nivells de volum de cada pista.", "Aplicar efectes d'àudio (reverberació, eco) a pistes individuals.", "Panoramitzar (distribuir el so entre els canals esquerre i dret)."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q20",
+            "tipus": "unica",
+            "text": "Quin tipus de compressió redueix la mida de l'arxiu d'àudio sense eliminar cap dada original?",
+            "opcions": ["Lossy (amb pèrdua)", "Lossless (sense pèrdua)", "PCM", "MP3"],
+            "correcta": "Lossless (sense pèrdua)",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q21",
+            "tipus": "multiseleccio",
+            "text": "Quins són els elements típics d'un projecte d'edició de vídeo a la línia de temps?",
+            "opcions": ["Clips de vídeo.", "Clips d'àudio.", "Pistes de títols i gràfics.", "Capes d'ajust de color.", "Documents de text (Word)."],
+            "correcta": ["Clips de vídeo.", "Clips d'àudio.", "Pistes de títols i gràfics.", "Capes d'ajust de color."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q22",
+            "tipus": "unica",
+            "text": "Quina és la finalitat principal de la **normalització d'àudio**?",
+            "opcions": ["Reduir la qualitat del so.", "Ajustar el nivell de volum d'una pista d'àudio a un nivell òptim o estàndard.", "Afegir efectes d'eco.", "Eliminar completament el so."],
+            "correcta": "Ajustar el nivell de volum d'una pista d'àudio a un nivell òptim o estàndard.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q23",
+            "tipus": "parelles",
+            "text": "Associa les eines o conceptes amb el seu àmbit d'ús:",
+            "parelles": [
+              {"esquerra": "Audacity", "correcta": "Edició d'àudio."},
+              {"esquerra": "DaVinci Resolve", "correcta": "Edició de vídeo professional i correcció de color."},
+              {"esquerra": "Screen Recording", "correcta": "Captura de pantalla de vídeo."},
+              {"esquerra": "Chroma Key", "correcta": "Eliminar un fons de color per superposar un altre (pantalla verda)."},
+              {"esquerra": "Fade In/Out", "correcta": "Aparició o desaparició gradual d'àudio o vídeo."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q24",
+            "tipus": "unica",
+            "text": "Quin és el rol d'un **códec** en els fitxers multimèdia?",
+            "opcions": ["Reproduir el fitxer.", "Codificar i decodificar dades per a la compressió i reproducció.", "Afegir metadades al fitxer.", "Detectar virus en el fitxer."],
+            "correcta": "Codificar i decodificar dades per a la compressió i reproducció.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q25",
+            "tipus": "multiseleccio",
+            "text": "Quines són les raons per les quals un vídeo podria trigar molt a **renderitzar-se**?",
+            "opcions": ["Durada llarga del vídeo.", "Complexitat dels efectes i transicions.", "Baixa potència del hardware (CPU/GPU, RAM).", "Utilització d'un còdec sense compressió.", "Poca llum en la gravació original."],
+            "correcta": ["Durada llarga del vídeo.", "Complexitat dels efectes i transicions.", "Baixa potència del hardware (CPU/GPU, RAM).", "Utilització d'un còdec sense compressió."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q26",
+            "tipus": "unica",
+            "text": "Quin tipus de programari és més adequat per a la creació de **presentacions multimèdia interactives** amb àudio, vídeo i imatges?",
+            "opcions": ["Processador de text", "Full de càlcul", "Programari de presentacions (PowerPoint, Keynote)", "Editor de vídeo"],
+            "correcta": "Programari de presentacions (PowerPoint, Keynote)",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q27",
+            "tipus": "multiseleccio",
+            "text": "Quines tècniques s'utilitzen per **reduir la mida d'un fitxer de vídeo** sense comprometre excessivament la qualitat?",
+            "opcions": ["Reduir la resolució.", "Disminuir el bitrate.", "Utilitzar còdecs més eficients (ex: H.264, HEVC).", "Augmentar la freqüència de fotogrames.", "Exportar a un format sense compressió."],
+            "correcta": ["Reduir la resolució.", "Disminuir el bitrate.", "Utilitzar còdecs més eficients (ex: H.264, HEVC)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q28",
+            "tipus": "unica",
+            "text": "Quin és el principal benefici d'utilitzar una **biblioteca de mitjans** en un editor de vídeo?",
+            "opcions": ["Guardar el projecte de vídeo.", "Organitzar i gestionar tots els clips d'àudio, vídeo i imatges importats.", "Aplicar efectes automàticament.", "Publicar el vídeo en línia."],
+            "correcta": "Organitzar i gestionar tots els clips d'àudio, vídeo i imatges importats.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q29",
+            "tipus": "parelles",
+            "text": "Relaciona cada element de la interfície d'un editor de vídeo amb la seva funció:",
+            "parelles": [
+              {"esquerra": "Panell de previsualització", "correcta": "Mostra el clip o el projecte actual."},
+              {"esquerra": "Línia de temps (Timeline)", "correcta": "Organitza els clips en seqüència."},
+              {"esquerra": "Panell d'efectes", "correcta": "Conté filtres i transicions disponibles."},
+              {"esquerra": "Control de volum", "correcta": "Ajusta la intensitat del so."},
+              {"esquerra": "Marcadors (Markers)", "correcta": "Punts de referència en la línia de temps."}
+            ],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q30",
+            "tipus": "unica",
+            "text": "Quina tècnica s'utilitza per crear un vídeo amb la il·lusió de moviment accelerat a partir d'una seqüència d'imatges fixes?",
+            "opcions": ["Stop motion", "Slow motion", "Time-lapse", "Hyperlapse"],
+            "correcta": "Time-lapse",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q31",
+            "tipus": "multiseleccio",
+            "text": "Quins factors afecten la **qualitat d'un enregistrament d'àudio**?",
+            "opcions": ["Qualitat del micròfon.", "Acústica de l'entorn de gravació.", "Nivell de guany (gain).", "Format de fitxer d'imatge utilitzat.", "Processador de text obert en segon pla."],
+            "correcta": ["Qualitat del micròfon.", "Acústica de l'entorn de gravació.", "Nivell de guany (gain)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q32",
+            "tipus": "unica",
+            "text": "Què significa **renderitzar** un projecte de vídeo?",
+            "opcions": ["Afegir nous clips al projecte.", "Processar totes les edicions, efectes i transicions per crear el fitxer de vídeo final.", "Compartir el vídeo en línia.", "Eliminar els fitxers font del projecte."],
+            "correcta": "Processar totes les edicions, efectes i transicions per crear el fitxer de vídeo final.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q33",
+            "tipus": "multiseleccio",
+            "text": "Quins elements s'inclouen en la **postproducció d'àudio** d'un vídeo?",
+            "opcions": ["Correcció de diàlegs.", "Addició de música de fons.", "Efectes de so (sound effects).", "Etalonatge (color grading).", "Gravació de noves preses de vídeo."],
+            "correcta": ["Correcció de diàlegs.", "Addició de música de fons.", "Efectes de so (sound effects)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q34",
+            "tipus": "unica",
+            "text": "Quin és el propòsit principal de la **correcció de color (color correction)** en un vídeo?",
+            "opcions": ["Canviar completament l'atmosfera del vídeo.", "Ajustar els colors per a que siguin coherents i realistes entre diferents clips.", "Afegir efectes visuals dramàtics.", "Augmentar la velocitat de reproducció."],
+            "correcta": "Ajustar els colors per a que siguin coherents i realistes entre diferents clips.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M3Q35",
+            "tipus": "parelles",
+            "text": "Relaciona els elements de so amb la seva descripció:",
+            "parelles": [
+              {"esquerra": "Diàleg", "correcta": "Veus dels personatges o narració."},
+              {"esquerra": "Música", "correcta": "Partitura o cançons afegides per crear ambient."},
+              {"esquerra": "Efectes de so", "correcta": "Sons ambientals o específics per a accions (passos, explosions)."},
+              {"esquerra": "Ambience (ambient)", "correcta": "Sons de fons que donen context a una escena (trànsit, natura)."},
+              {"esquerra": "Foley", "correcta": "Sons gravats en postproducció per recrear accions (trencament de vidres)."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q36",
+            "tipus": "unica",
+            "text": "Quina afirmació és correcta sobre la **resolució de vídeo**?",
+            "opcions": ["Es refereix a la qualitat de l'àudio.", "Es mesura en píxels (amplada x alçada) i afecta la claredat de la imatge.", "Com més gran la resolució, menys espai ocupa el fitxer.", "Només és rellevant per a vídeos en 3D."],
+            "correcta": "Es mesura en píxels (amplada x alçada) i afecta la claredat de la imatge.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M3Q37",
+            "tipus": "multiseleccio",
+            "text": "Quins són els propòsits de les **màscares de vídeo** en un editor?",
+            "opcions": ["Ocultar parts d'un clip de vídeo per revelar la capa inferior.", "Crear efectes de transició personalitzats.", "Aplicar efectes o correccions a àrees específiques del fotograma.", "Duplicar un clip de vídeo.", "Reduir el bitrate del vídeo de manera no destructiva."],
+            "correcta": ["Ocultar parts d'un clip de vídeo per revelar la capa inferior.", "Crear efectes de transició personalitzats.", "Aplicar efectes o correccions a àrees específiques del fotograma."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q38",
+            "tipus": "unica",
+            "text": "Què és un **proxy** en el context d'edició de vídeo?",
+            "opcions": ["Un fitxer de vídeo de baixa resolució que s'utilitza per a l'edició, per després intercanviar-lo amb l'original d'alta resolució per al renderitzat final.", "Un tipus de format de compressió de vídeo.", "Una eina per afegir animacions 3D.", "Una plantilla de projecte predefinida."],
+            "correcta": "Un fitxer de vídeo de baixa resolució que s'utilitza per a l'edició, per després intercanviar-lo amb l'original d'alta resolució per al renderitzat final.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q39",
+            "tipus": "multiseleccio",
+            "text": "Quins aspectes són crucials per a la sincronització d'àudio i vídeo?",
+            "opcions": ["Assegurar que el so coincideix amb les imatges.", "Ajustar la velocitat de reproducció de l'àudio o vídeo.", "Utilitzar un generador de temps (timecode).", "Només és important per a enregistraments en directe.", "Que l'àudio tingui més reverberació que el vídeo."],
+            "correcta": ["Assegurar que el so coincideix amb les imatges.", "Ajustar la velocitat de reproducció de l'àudio o vídeo.", "Utilitzar un generador de temps (timecode)."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M3Q40",
+            "tipus": "unica",
+            "text": "Quina és la funció de la **cronomètrica (timing)** en l'edició de vídeo?",
+            "opcions": ["Mesurar la durada total del vídeo.", "Ajustar la durada dels clips i la seva posició a la línia de temps per controlar el ritme i el flux narratiu.", "Sincronitzar l'àudio amb els subtítols.", "Afegir efectes de càmera lenta o ràpida."],
+            "correcta": "Ajustar la durada dels clips i la seva posició a la línia de temps per controlar el ritme i el flux narratiu.",
+            "dificultat": "mitjà"
+          }
+        ]
+      },
+      "modul_4": {
+        "titol": "Integració de material multimèdia en produccions audiovisuals",
+        "preguntes": [
+          {
+            "id": "C7M4Q1",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal de la **integració de material multimèdia** en una producció audiovisual?",
+            "opcions": ["Augmentar la mida del fitxer final.", "Enriquir el contingut, millorar la narrativa i captar l'atenció de l'audiència.", "Fer la producció més complexa.", "Eliminar la necessitat de diàlegs."],
+            "correcta": "Enriquir el contingut, millorar la narrativa i captar l'atenció de l'audiència.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q2",
+            "tipus": "multiseleccio",
+            "text": "Quins tipus de material multimèdia es poden integrar en una presentació o vídeo?",
+            "opcions": ["Imatges fixes.", "Àudio (música, veu en off).", "Vídeos.", "Gràfics i animacions.", "Documents de text sense format."],
+            "correcta": ["Imatges fixes.", "Àudio (música, veu en off).", "Vídeos.", "Gràfics i animacions."],
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q3",
+            "tipus": "unica",
+            "text": "Quin factor és crucial per a l'efectivitat d'una presentació amb elements multimèdia?",
+            "opcions": ["La quantitat de transicions cridaneres.", "La mida de l'arxiu de la presentació.", "La coherència i rellevància del contingut multimèdia amb el missatge principal.", "Utilitzar el màxim de colors possible."],
+            "correcta": "La coherència i rellevància del contingut multimèdia amb el missatge principal.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q4",
+            "tipus": "multiseleccio",
+            "text": "Quines són les consideracions tècniques al incrustar un vídeo en una pàgina web?",
+            "opcions": ["Format de vídeo compatible amb navegadors (MP4, WebM).", "Mida de l'arxiu per a una càrrega ràpida.", "Optimització per a mòbils (responsive design).", "Utilitzar el format més antic possible.", "Ignorar els drets d'autor del vídeo."],
+            "correcta": ["Format de vídeo compatible amb navegadors (MP4, WebM).", "Mida de l'arxiu per a una càrrega ràpida.", "Optimització per a mòbils (responsive design)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q5",
+            "tipus": "unica",
+            "text": "Quin és un benefici de l'ús de **música de fons** en un vídeo o presentació?",
+            "opcions": ["Distreure l'audiència del contingut principal.", "Establir un ambient, donar èmfasi a moments clau i millorar l'experiència emocional.", "Augmentar el volum del diàleg.", "Fer el vídeo més curt."],
+            "correcta": "Establir un ambient, donar èmfasi a moments clau i millorar l'experiència emocional.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q6",
+            "tipus": "unica",
+            "text": "Per què és important la **resolució** de les imatges i vídeos integrats en una presentació?",
+            "opcions": ["Per complir amb les normes legals.", "Per assegurar que es veuen nítides i clares en la pantalla de projecció o reproducció.", "Per reduir la mida del fitxer.", "Per fer la presentació més ràpida."],
+            "correcta": "Per assegurar que es veuen nítides i clares en la pantalla de projecció o reproducció.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q7",
+            "tipus": "multiseleccio",
+            "text": "Quins són els avantatges d'utilitzar **plantilles (templates)** en la creació de presentacions multimèdia?",
+            "opcions": ["Garantir una coherència visual i de disseny.", "Estalviar temps en la creació.", "Proporcionar dissenys professionals predefinits.", "Fer que totes les presentacions tinguin el mateix aspecte.", "Eliminar la necessitat de crear contingut propi."],
+            "correcta": ["Garantir una coherència visual i de disseny.", "Estalviar temps en la creació.", "Proporcionar dissenys professionals predefinits."],
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q8",
+            "tipus": "unica",
+            "text": "Què és la **sincronització** en la integració de material multimèdia?",
+            "opcions": ["Assegurar que els elements d'àudio i vídeo coincideixen perfectament en el temps.", "Ajustar el volum de la música.", "Canviar el color de les imatges.", "Afegir text a una presentació."],
+            "correcta": "Assegurar que els elements d'àudio i vídeo coincideixen perfectament en el temps.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q9",
+            "tipus": "parelles",
+            "text": "Relaciona cada element amb la seva funció en una producció audiovisual:",
+            "parelles": [
+              {"esquerra": "Veu en off", "correcta": "Narració o comentari que no forma part de la imatge."},
+              {"esquerra": "Infografies", "correcta": "Representacions visuals de dades o informació complexa."},
+              {"esquerra": "Banda sonora", "correcta": "Música original o llicenciada per a una pel·lícula o vídeo."},
+              {"esquerra": "Efectes de so", "correcta": "Sons afegits per realçar accions o ambients."},
+              {"esquerra": "Animacions", "correcta": "Seqüències d'imatges que creen la il·lusió de moviment."}
+            ],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q10",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu de la **compressió de fitxers multimèdia** abans de la seva integració en una producció final?",
+            "opcions": ["Augmentar la qualitat visual.", "Reduir la mida de l'arxiu per facilitar la distribució i reproducció, mantenint una qualitat acceptable.", "Fer que els fitxers siguin incompatibles.", "Accelerar el procés de gravació."],
+            "correcta": "Reduir la mida de l'arxiu per facilitar la distribució i reproducció, mantenint una qualitat acceptable.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q11",
+            "tipus": "multiseleccio",
+            "text": "Quines són les recomanacions per a l'ús efectiu d'imatges en presentacions?",
+            "opcions": ["Utilitzar imatges d'alta resolució.", "Assegurar-se que les imatges són rellevants per al tema.", "Evitar l'ús excessiu de text sobre les imatges.", "Utilitzar imatges amb filigranes per protegir-les.", "Triar imatges que distreguin l'audiència."],
+            "correcta": ["Utilitzar imatges d'alta resolució.", "Assegurar-se que les imatges són rellevants per al tema.", "Evitar l'ús excessiu de text sobre les imatges."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q12",
+            "tipus": "unica",
+            "text": "Quina eina s'utilitza per crear un **storyboard** per a una producció audiovisual?",
+            "opcions": ["Editor de text.", "Programari de presentacions o dibuix.", "Full de càlcul.", "Editor de so."],
+            "correcta": "Programari de presentacions o dibuix.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q13",
+            "tipus": "multiseleccio",
+            "text": "Quines són les maneres habituals d'incrustar àudio en una pàgina web?",
+            "opcions": ["Utilitzar l'etiqueta HTML `<audio>`.", "Enllaçar a un fitxer d'àudio extern.", "Utilitzar un reproductor d'àudio de tercers (com SoundCloud).", "Incloure el codi de reproducció en JavaScript.", "Copiar i enganxar el text de la cançó."],
+            "correcta": ["Utilitzar l'etiqueta HTML `<audio>`.", "Enllaçar a un fitxer d'àudio extern.", "Utilitzar un reproductor d'àudio de tercers (com SoundCloud).", "Incloure el codi de reproducció en JavaScript."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q14",
+            "tipus": "unica",
+            "text": "Quin és el propòsit d'afegir **transicions fluides** entre escenes de vídeo?",
+            "opcions": ["Fer que el vídeo sigui més curt.", "Evitar salts bruscos i mantenir la continuïtat visual.", "Augmentar la brillantor de les escenes.", "Eliminar l'àudio del vídeo."],
+            "correcta": "Evitar salts bruscos i mantenir la continuïtat visual.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q15",
+            "tipus": "parelles",
+            "text": "Relaciona els conceptes amb les seves aplicacions en la integració multimèdia:",
+            "parelles": [
+              {"esquerra": "Accessibilitat", "correcta": "Subtítols, descripcions d'àudio per a persones amb discapacitat."},
+              {"esquerra": "Usabilitat", "correcta": "Fàcil navegació i interacció amb els elements multimèdia."},
+              {"esquerra": "Optimització", "correcta": "Reducció de la mida de fitxer per a millor rendiment."},
+              {"esquerra": "Responsive Design", "correcta": "Contingut multimèdia que s'adapta a diferents mides de pantalla."},
+              {"esquerra": "Call to action", "correcta": "Element multimèdia que incita a l'usuari a realitzar una acció."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q16",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu de la **reducció de dades (data reduction)** en fitxers multimèdia per a la web?",
+            "opcions": ["Augmentar la velocitat de descàrrega.", "Disminuir la qualitat del contingut.", "Estalviar espai d'emmagatzematge i millorar el rendiment de càrrega.", "Eliminar virus del fitxer."],
+            "correcta": "Estalviar espai d'emmagatzematge i millorar el rendiment de càrrega.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q17",
+            "tipus": "multiseleccio",
+            "text": "Quines són les millors pràctiques per a la integració d'àudio en una presentació?",
+            "opcions": ["Ajustar el volum perquè no sigui massa alt ni massa baix.", "Assegurar-se que l'àudio és de bona qualitat i sense sorolls de fons.", "Utilitzar àudio amb llicència o lliure de drets.", "Reproduir l'àudio en bucle constantment, fins i tot si distreu.", "No previsualitzar l'àudio abans de la presentació."],
+            "correcta": ["Ajustar el volum perquè no sigui massa alt ni massa baix.", "Assegurar-se que l'àudio és de bona qualitat i sense sorolls de fons.", "Utilitzar àudio amb llicència o lliure de drets."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q18",
+            "tipus": "unica",
+            "text": "Quina funció compleix el **script** o guió en una producció audiovisual?",
+            "opcions": ["Defineix els diàlegs, accions i escenes, servint de base per a la gravació i edició.", "Especifica els colors que s'utilitzaran.", "Determina la música de fons.", "Controla la durada del vídeo."],
+            "correcta": "Defineix els diàlegs, accions i escenes, servint de base per a la gravació i edició.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q19",
+            "tipus": "multiseleccio",
+            "text": "Quins són els reptes comuns en la **integració de vídeo en llocs web**?",
+            "opcions": ["Temps de càrrega lents per a arxius grans.", "Incompatibilitat de formats amb navegadors antics.", "Problemes de reproducció en dispositius mòbils.", "Dificultat per trobar contingut de vídeo.", "Capacitat de la xarxa de l'usuari."],
+            "correcta": ["Temps de càrrega lents per a arxius grans.", "Incompatibilitat de formats amb navegadors antics.", "Problemes de reproducció en dispositius mòbils.", "Capacitat de la xarxa de l'usuari."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q20",
+            "tipus": "unica",
+            "text": "Quina tècnica s'utilitza per superposar un vídeo sobre un altre, eliminant un color de fons (com el verd o el blau)?",
+            "opcions": ["PIP (Picture-in-Picture)", "Chroma Key (Pantalla verda/blava)", "Alpha Channel", "Blend Mode"],
+            "correcta": "Chroma Key (Pantalla verda/blava)",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q21",
+            "tipus": "multiseleccio",
+            "text": "Quines són les consideracions clau per a la **interactivitat** en produccions multimèdia (per exemple, un e-learning)?",
+            "opcions": ["Incorporar botons clicables.", "Afegir menús de navegació.", "Permetre que l'usuari controli la reproducció del contingut.", "No oferir opcions a l'usuari.", "Assegurar que totes les imatges tinguin efectes 3D."],
+            "correcta": ["Incorporar botons clicables.", "Afegir menús de navegació.", "Permetre que l'usuari controli la reproducció del contingut."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q22",
+            "tipus": "unica",
+            "text": "Què és un **mòdul de reproducció (player)** en el context d'una pàgina web?",
+            "opcions": ["Un fitxer de vídeo.", "Un element de programari que permet visualitzar i controlar el contingut multimèdia.", "Una eina d'edició de vídeo en línia.", "Un tipus de compressor d'àudio."],
+            "correcta": "Un element de programari que permet visualitzar i controlar el contingut multimèdia.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q23",
+            "tipus": "parelles",
+            "text": "Relaciona cada terme amb la seva funció en la planificació audiovisual:",
+            "parelles": [
+              {"esquerra": "Guia tècnic", "correcta": "Document que descriu aspectes tècnics de la producció (càmeres, il·luminació)."},
+              {"esquerra": "Script", "correcta": "Text amb diàlegs i descripcions d'escenes."},
+              {"esquerra": "Storyboard", "correcta": "Seqüència d'imatges que visualitzen la narrativa del vídeo."},
+              {"esquerra": "Postproducció", "correcta": "Fase d'edició, efectes i muntatge final."},
+              {"esquerra": "Màrqueting de continguts", "correcta": "Creació i distribució de contingut multimèdia per atraure una audiència."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q24",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal d'utilitzar **animacions de text** en un vídeo?",
+            "opcions": ["Reduir la mida del fitxer.", "Fer el text més difícil de llegir.", "Atraure l'atenció sobre informació clau i millorar l'atractiu visual.", "Substituir el diàleg."],
+            "correcta": "Atraure l'atenció sobre informació clau i millorar l'atractiu visual.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q25",
+            "tipus": "multiseleccio",
+            "text": "Quines són les consideracions de **disseny d'interfície (UI)** per a una producció multimèdia interactiva?",
+            "opcions": ["Botons clars i intuïtius.", "Combinació de colors atractiva.", "Tipografia llegible.", "Navegació complexa per desafiar a l'usuari.", "Ús de formats de fitxer obsolets."],
+            "correcta": ["Botons clars i intuïtius.", "Combinació de colors atractiva.", "Tipografia llegible."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q26",
+            "tipus": "unica",
+            "text": "Quin és el benefici de la **reproducció en streaming** per a contingut de vídeo i àudio en línia?",
+            "opcions": ["Requereix descarregar tot el fitxer abans de començar a reproduir-se.", "Permet la reproducció gairebé instantània del contingut sense necessitat de descàrrega completa.", "Només funciona en connexions a Internet molt lentes.", "No permet la pausa o l'avançament ràpid."],
+            "correcta": "Permet la reproducció gairebé instantània del contingut sense necessitat de descàrrega completa.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q27",
+            "tipus": "multiseleccio",
+            "text": "Quins elements són importants per a la **identitat visual** d'una producció audiovisual?",
+            "opcions": ["Logotips.", "Paleta de colors.", "Tipografia.", "Estil de transicions.", "Codi HTML del projecte."],
+            "correcta": ["Logotips.", "Paleta de colors.", "Tipografia.", "Estil de transicions."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q28",
+            "tipus": "unica",
+            "text": "Quina és la finalitat d'un **prototip** en la producció d'una aplicació multimèdia?",
+            "opcions": ["La versió final del producte.", "Una versió preliminar que simula el funcionament per a la validació i proves.", "Un document de requisits tècnics.", "Una eina de disseny gràfic."],
+            "correcta": "Una versió preliminar que simula el funcionament per a la validació i proves.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q29",
+            "tipus": "parelles",
+            "text": "Associa cada concepte amb el seu significat en el context web:",
+            "parelles": [
+              {"esquerra": "Embed code", "correcta": "Codi HTML per incrustar contingut multimèdia d'una plataforma externa."},
+              {"esquerra": "Autoplay", "correcta": "Reproducció automàtica de contingut multimèdia en carregar la pàgina."},
+              {"esquerra": "Loop", "correcta": "Reproducció repetida d'un fragment o de tot el contingut multimèdia."},
+              {"esquerra": "Thumbnail (miniatura)", "correcta": "Imatge petita que representa un vídeo o una galeria d'imatges."},
+              {"esquerra": "Lightbox", "correcta": "Finestra emergent que mostra contingut multimèdia sobre el fons atenuat de la pàgina."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q30",
+            "tipus": "unica",
+            "text": "Quin aspecte és fonamental per a la **distribució de contingut multimèdia en línia**?",
+            "opcions": ["La mida física del disc dur.", "La plataforma de distribució (YouTube, Vimeo, xarxes socials, web pròpia).", "La marca de la càmera utilitzada.", "El color del fons del vídeo."],
+            "correcta": "La plataforma de distribució (YouTube, Vimeo, xarxes socials, web pròpia).",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M4Q31",
+            "tipus": "multiseleccio",
+            "text": "Quins avantatges té la creació de **gràfics animats (motion graphics)** per a vídeos explicatius?",
+            "opcions": ["Simplifiquen conceptes complexos.", "Fan el contingut més atractiu visualment.", "Permeten actualitzar la informació sense tornar a gravar.", "Són menys costosos de produir que el vídeo en viu.", "Sempre requereixen un equip d'animació 3D complet."],
+            "correcta": ["Simplifiquen conceptes complexos.", "Fan el contingut més atractiu visualment.", "Permeten actualitzar la informació sense tornar a gravar.", "Són menys costosos de produir que el vídeo en viu."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q32",
+            "tipus": "unica",
+            "text": "Quina és la importància de les **metadades** en els fitxers multimèdia per a la distribució en línia?",
+            "opcions": ["Controlen la mida del fitxer.", "Milloren la capacitat de cerca i l'organització del contingut (títol, descripció, etiquetes).", "Determinen el volum de reproducció.", "Afegixen efectes visuals."],
+            "correcta": "Milloren la capacitat de cerca i l'organització del contingut (títol, descripció, etiquetes).",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q33",
+            "tipus": "multiseleccio",
+            "text": "Quins són els formats de fitxer més recomanables per a la **transmissió en streaming** de vídeo?",
+            "opcions": ["MP4 (amb còdec H.264 o HEVC).", "WebM.", "AVI (sense compressió).", "FLV (Flash Video).", "MOV (QuickTime)."],
+            "correcta": ["MP4 (amb còdec H.264 o HEVC).", "WebM.", "FLV (Flash Video)"],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q34",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal de la **prova d'usuari (user testing)** en la creació d'una aplicació multimèdia?",
+            "opcions": ["Identificar errors de codi i millorar la usabilitat i experiència de l'usuari.", "Augmentar els ingressos de l'aplicació.", "Reduir la mida de l'aplicació.", "Determinar el preu de venda."],
+            "correcta": "Identificar errors de codi i millorar la usabilitat i experiència de l'usuari.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q35",
+            "tipus": "parelles",
+            "text": "Relaciona cada plataforma amb el tipus de contingut multimèdia que hi sol allotjar:",
+            "parelles": [
+              {"esquerra": "YouTube", "correcta": "Principalment vídeos de tot tipus."},
+              {"esquerra": "Spotify", "correcta": "Música i podcasts."},
+              {"esquerra": "Instagram", "correcta": "Imatges i vídeos curts."},
+              {"esquerra": "Flickr", "correcta": "Fotografies."},
+              {"esquerra": "Vimeo", "correcta": "Vídeos d'alta qualitat, sovint per a professionals."}
+            ],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q36",
+            "tipus": "unica",
+            "text": "Quin concepte es refereix a la capacitat d'un disseny web o contingut multimèdia per adaptar-se a diferents mides de pantalla i dispositius?",
+            "opcions": ["Fixed layout", "Fluid design", "Responsive design", "Adaptive design"],
+            "correcta": "Responsive design",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q37",
+            "tipus": "multiseleccio",
+            "text": "Quins elements s'han de tenir en compte per assegurar l'**accessibilitat** d'una producció multimèdia?",
+            "opcions": ["Subtítols per a sords.", "Audiodescripcions per a cecs.", "Transcripcions de text del contingut d'àudio.", "Reproducció automàtica de tot el contingut.", "Ús de contrastos de color inadequats."],
+            "correcta": ["Subtítols per a sords.", "Audiodescripcions per a cecs.", "Transcripcions de text del contingut d'àudio."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q38",
+            "tipus": "unica",
+            "text": "Quina és la raó principal per la qual el format **WebP** és una bona opció per a imatges a la web?",
+            "opcions": ["No té compressió.", "Ofereix compressió amb i sense pèrdua, amb una mida d'arxiu generalment menor que JPEG o PNG mantenint alta qualitat.", "Només funciona en navegadors antics.", "No suporta transparència."],
+            "correcta": "Ofereix compressió amb i sense pèrdua, amb una mida d'arxiu generalment menor que JPEG o PNG mantenint alta qualitat.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M4Q39",
+            "tipus": "multiseleccio",
+            "text": "Quins són els beneficis de la **visualització de dades (data visualization)** amb gràfics i animacions en una presentació?",
+            "opcions": ["Facilitar la comprensió de dades complexes.", "Fer les dades més memorables.", "Permetre identificar tendències i patrons ràpidament.", "Eliminar la necessitat de presentar dades numèriques.", "Augmentar la mida del fitxer de la presentació."],
+            "correcta": ["Facilitar la comprensió de dades complexes.", "Fer les dades més memorables.", "Permetre identificar tendències i patrons ràpidament."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M4Q40",
+            "tipus": "unica",
+            "text": "Què és un **sistema de gestió de continguts (CMS)** en relació amb la integració multimèdia?",
+            "opcions": ["Una eina per editar vídeos en línia.", "Un programari que permet crear, gestionar i publicar contingut (inclòs multimèdia) en un lloc web sense programació.", "Un servei d'allotjament de vídeo.", "Un còdec de compressió d'imatges."],
+            "correcta": "Un programari que permet crear, gestionar i publicar contingut (inclòs multimèdia) en un lloc web sense programació.",
+            "dificultat": "mitjà"
+          }
+        ]
+      },
+      "modul_5": {
+        "titol": "Aspectes legals i socials del tractament de la informació gràfica, sonora i de la imatge en moviment",
+        "preguntes": [
+          {
+            "id": "C7M5Q1",
+            "tipus": "unica",
+            "text": "Què és el **dret d'autor (copyright)** en el context del material multimèdia?",
+            "opcions": ["El dret a copiar qualsevol obra.", "El dret exclusiu del creador d'una obra per reproduir-la, distribuir-la i comunicar-la públicament.", "Un permís per utilitzar obres sense restriccions.", "Un tipus de llicència de programari."],
+            "correcta": "El dret exclusiu del creador d'una obra per reproduir-la, distribuir-la i comunicar-la públicament.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q2",
+            "tipus": "multiseleccio",
+            "text": "Quines de les següents obres estan protegides per drets d'autor?",
+            "opcions": ["Fotografies.", "Cançons i composicions musicals.", "Vídeos i pel·lícules.", "Idees o conceptes abstractes.", "Dades públiques no subjectes a un format creatiu."],
+            "correcta": ["Fotografies.", "Cançons i composicions musicals.", "Vídeos i pel·lícules."],
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q3",
+            "tipus": "unica",
+            "text": "Què són les **llicències Creative Commons (CC)**?",
+            "opcions": ["Un tipus de programari de disseny gràfic.", "Llicències que permeten als creadors definir com es poden utilitzar les seves obres, oferint més flexibilitat que el copyright tradicional.", "Acords exclusius per a empreses de mitjans de comunicació.", "Lleis que prohibeixen compartir contingut en línia."],
+            "correcta": "Llicències que permeten als creadors definir com es poden utilitzar les seves obres, oferint més flexibilitat que el copyright tradicional.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q4",
+            "tipus": "multiseleccio",
+            "text": "Quins dels següents elements són part de les **condicions d'una llicència Creative Commons BY (Reconeixement)**?",
+            "opcions": ["S'ha de citar l'autor de l'obra original.", "Es pot utilitzar l'obra per a usos comercials.", "S'ha de compartir amb la mateixa llicència (ShareAlike).", "No es pot modificar l'obra.", "No s'ha de citar l'autor."],
+            "correcta": ["S'ha de citar l'autor de l'obra original.", "Es pot utilitzar l'obra per a usos comercials."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q5",
+            "tipus": "unica",
+            "text": "Quin concepte es refereix a l'ús d'una obra protegida per drets d'autor sense el permís del titular, en casos limitats i sota certes condicions (com a crítica, comentari, notícies, docència)?",
+            "opcions": ["Plagi", "Ús just (Fair Use / Fair Dealing)", "Pirateria", "Domini públic"],
+            "correcta": "Ús just (Fair Use / Fair Dealing)",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q6",
+            "tipus": "unica",
+            "text": "Què implica que una obra estigui en **domini públic**?",
+            "opcions": ["Que tothom la pot utilitzar amb finalitats comercials només.", "Que els seus drets d'autor han expirat o mai no van existir, i pot ser utilitzada lliurement.", "Que l'obra està protegida per una llicència Creative Commons molt restrictiva.", "Que només es pot utilitzar per a ús personal."],
+            "correcta": "Que els seus drets d'autor han expirat o mai no van existir, i pot ser utilitzada lliurement.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q7",
+            "tipus": "multiseleccio",
+            "text": "Quines són les conseqüències legals de la **infracció de drets d'autor**?",
+            "opcions": ["Multes econòmiques.", "Ordre judicial per cessar l'ús il·legal.", "Pena de presó en casos greus.", "Reconeixement públic del treball.", "Obligació de donar crèdit a l'autor original (si no s'havia fet)."],
+            "correcta": ["Multes econòmiques.", "Ordre judicial per cessar l'ús il·legal.", "Pena de presó en casos greus."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q8",
+            "tipus": "unica",
+            "text": "Quin document legal regula l'ús de la imatge de les persones, protegint la seva privacitat i el seu dret a la pròpia imatge?",
+            "opcions": ["Llei de la Propietat Intel·lectual.", "Llei Orgànica de Protecció de Dades (LOPD / RGPD) i el Dret a l'Honor, la Intimitat Personal i Familiar i a la Pròpia Imatge.", "Llei de Societats de Capital.", "Codi Civil."],
+            "correcta": "Llei Orgànica de Protecció de Dades (LOPD / RGPD) i el Dret a l'Honor, la Intimitat Personal i Familiar i a la Pròpia Imatge.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q9",
+            "tipus": "parelles",
+            "text": "Relaciona cada llicència Creative Commons amb la seva condició:",
+            "parelles": [
+              {"esquerra": "CC BY", "correcta": "Reconeixement (atribució)."},
+              {"esquerra": "CC SA", "correcta": "Compartir Igual (ShareAlike)."},
+              {"esquerra": "CC NC", "correcta": "No Comercial (NonCommercial)."},
+              {"esquerra": "CC ND", "correcta": "Sense Obra Derivada (NoDerivatives)."},
+              {"esquerra": "CC0 (Zero)", "correcta": "Domini públic (Sense reserves de drets)."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q10",
+            "tipus": "unica",
+            "text": "Quin és l'impacte social de la proliferació d'imatges i vídeos falsos o manipulats (deepfakes)?",
+            "opcions": ["Millora de la informació pública.", "Potencial per a la desinformació, la difamació i l'erosió de la confiança en els mitjans.", "Augment de la creativitat artística.", "Reducció de l'ús de les xarxes socials."],
+            "correcta": "Potencial per a la desinformació, la difamació i l'erosió de la confiança en els mitjans.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q11",
+            "tipus": "multiseleccio",
+            "text": "Quines són les consideracions ètiques a l'hora de publicar imatges o vídeos de persones en línia?",
+            "opcions": ["Obtenir consentiment (especialment de menors).", "Respectar la privacitat i la intimitat.", "Considerar el context i la dignitat de la persona.", "Publicar qualsevol imatge trobada en línia.", "Ignorar les peticions de retirada de la imatge."],
+            "correcta": ["Obtenir consentiment (especialment de menors).", "Respectar la privacitat i la intimitat.", "Considerar el context i la dignitat de la persona."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q12",
+            "tipus": "unica",
+            "text": "Quin rol juguen les **marques d'aigua (watermarks)** en les imatges digitals?",
+            "opcions": ["Millorar la qualitat de la imatge.", "Indicar la propietat de la imatge i dissuadir l'ús no autoritzat.", "Reduir la mida de l'arxiu.", "Accelerar la càrrega de la imatge al web."],
+            "correcta": "Indicar la propietat de la imatge i dissuadir l'ús no autoritzat.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q13",
+            "tipus": "multiseleccio",
+            "text": "Quines són les obligacions de l'usuari quan utilitza material sota una llicència **Creative Commons BY-NC-ND**?",
+            "opcions": ["Citar l'autor original.", "No utilitzar l'obra amb finalitats comercials.", "No crear obres derivades.", "Compartir qualsevol obra derivada sota la mateixa llicència.", "Pagar una tarifa per cada ús."],
+            "correcta": ["Citar l'autor original.", "No utilitzar l'obra amb finalitats comercials.", "No crear obres derivades."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q14",
+            "tipus": "unica",
+            "text": "Quina pràctica és més respectuosa amb els drets d'autor quan es vol incloure una cançó en un vídeo per a YouTube?",
+            "opcions": ["Descarregar la cançó de qualsevol lloc i afegir-la.", "Utilitzar només cançons llicenciades amb Creative Commons que permetin l'ús en vídeos o obtenir una llicència comercial.", "Gravar la cançó amb un telèfon mòbil per evitar la detecció.", "Afegir només uns segons de la cançó per evitar problemes."],
+            "correcta": "Utilitzar només cançons llicenciades amb Creative Commons que permetin l'ús en vídeos o obtenir una llicència comercial.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q15",
+            "tipus": "parelles",
+            "text": "Relaciona els conceptes amb les seves definicions legals/ètiques:",
+            "parelles": [
+              {"esquerra": "Plagi", "correcta": "Presentar l'obra d'algú altre com a pròpia, sense atribució."},
+              {"esquerra": "Sexting", "correcta": "Enviament de missatges, fotos o vídeos de contingut sexual via mòbil o internet."},
+              {"esquerra": "Ciberassetjament", "correcta": "Ús de la tecnologia per assetjar, amenaçar o avergonyir a algú."},
+              {"esquerra": "Fake News", "correcta": "Notícies falses, sovint amb intenció de desinformar o manipular."},
+              {"esquerra": "Deepfake", "correcta": "Contingut multimèdia (vídeo/àudio) manipulats amb IA per fer creure que una persona fa o diu quelcom que no ha fet."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q16",
+            "tipus": "unica",
+            "text": "Què és la **netiqueta** en el context de compartir material multimèdia en línia?",
+            "opcions": ["Una eina per editar fotos.", "Un conjunt de normes de comportament ètic i respectuós en entorns digitals.", "Un tipus de llicència de software.", "Un sistema de seguretat informàtica."],
+            "correcta": "Un conjunt de normes de comportament ètic i respectuós en entorns digitals.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q17",
+            "tipus": "multiseleccio",
+            "text": "Quines són les responsabilitats d'un usuari en relació amb la **privacitat de la informació** en línia, especialment amb imatges i vídeos?",
+            "opcions": ["Ser conscient de qui pot veure el contingut publicat.", "Configurar adequadament les opcions de privacitat en xarxes socials.", "No compartir informació personal de tercers sense el seu consentiment.", "Publicar qualsevol cosa que es trobi a Internet.", "Ignorar els avisos de privacitat de les plataformes."],
+            "correcta": ["Ser conscient de qui pot veure el contingut publicat.", "Configurar adequadament les opcions de privacitat en xarxes socials.", "No compartir informació personal de tercers sense el seu consentiment."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q18",
+            "tipus": "unica",
+            "text": "Quina és la importància del **consentiment informat** per a la publicació d'imatges o vídeos de persones?",
+            "opcions": ["És un tràmit burocràtic innecessari.", "Assegura que les persones retratades entenen i accepten l'ús que es farà de la seva imatge, protegint els seus drets.", "Només és necessari si es tracta de famosos.", "Fa la imatge més atractiva."],
+            "correcta": "Assegura que les persones retratades entenen i accepten l'ús que es farà de la seva imatge, protegint els seus drets.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q19",
+            "tipus": "multiseleccio",
+            "text": "Quins són els possibles riscos de **compartir excessivament** informació personal o imatges en línia?",
+            "opcions": ["Pèrdua de privacitat.", "Ciberassetjament.", "Robatori d'identitat.", "Serioses conseqüències legals per a l'usuari.", "Augment de la popularitat en xarxes socials (sense altres riscos)."],
+            "correcta": ["Pèrdua de privacitat.", "Ciberassetjament.", "Robatori d'identitat.", "Serioses conseqüències legals per a l'usuari."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q20",
+            "tipus": "unica",
+            "text": "Què es considera **material obscè o il·legal** en el context del contingut multimèdia en línia?",
+            "opcions": ["Qualsevol imatge amb poc color.", "Contingut que viola lleis de decència, incita a l'odi, la violència o l'explotació infantil.", "Contingut que no és divertit.", "Qualsevol vídeo que es publiqui sense permís."],
+            "correcta": "Contingut que viola lleis de decència, incita a l'odi, la violència o l'explotació infantil.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q21",
+            "tipus": "multiseleccio",
+            "text": "Quins són els criteris clau per avaluar la **credibilitat d'una font d'informació multimèdia**?",
+            "opcions": ["L'autor o organització darrere del contingut.", "La data de publicació.", "La presència de referències o fonts verificables.", "Si el contingut és molt entretingut.", "Si la pàgina web té molta publicitat."],
+            "correcta": ["L'autor o organització darrere del contingut.", "La data de publicació.", "La presència de referències o fonts verificables."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q22",
+            "tipus": "unica",
+            "text": "Quin impacte pot tenir la **sobreexposició mediàtica** d'un menor sense consentiment dels seus pares/tutors?",
+            "opcions": ["Augment de la seva fama.", "Pot posar en risc la seva seguretat, privacitat i benestar psicològic, i tenir conseqüències legals.", "No té cap impacte significatiu.", "Només afecta als adults."],
+            "correcta": "Pot posar en risc la seva seguretat, privacitat i benestar psicològic, i tenir conseqüències legals.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q23",
+            "tipus": "parelles",
+            "text": "Associa els termes amb els seus conceptes relacionats amb l'ús ètic de la informació:",
+            "parelles": [
+              {"esquerra": "Llibertat d'expressió", "correcta": "Dret a comunicar idees i opinions, amb límits com el respecte a l'honor i la intimitat."},
+              {"esquerra": "Responsabilitat digital", "correcta": "Actuar de manera ètica i legal en l'ús de tecnologies digitals."},
+              {"esquerra": "Biaix algorítmic", "correcta": "Errors o prejudicis en els resultats d'algoritmes, que poden portar a discriminació."},
+              {"esquerra": "Filtració de dades", "correcta": "Exposició accidental o intencionada de dades sensibles a persones no autoritzades."},
+              {"esquerra": "Dret a l'oblit", "correcta": "Dret a sol·licitar la supressió de dades personals en línia en certes circumstàncies."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q24",
+            "tipus": "unica",
+            "text": "Què és la **discriminació algorítmica** en el context del tractament d'imatges o vídeos (p. ex., reconeixement facial)?",
+            "opcions": ["Que un algorisme selecciona les millors imatges.", "Que un algorisme pot reproduir prejudicis socials, mostrant un rendiment esbiaixat en funció de raça, gènere, etc.", "Que un algorisme és molt eficient.", "Que un algorisme no pot distingir entre diferents colors."],
+            "correcta": "Que un algorisme pot reproduir prejudicis socials, mostrant un rendiment esbiaixat en funció de raça, gènere, etc.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q25",
+            "tipus": "multiseleccio",
+            "text": "Quines són les conseqüències socials de la **desinformació** i les notícies falses (fake news) propagades a través de contingut multimèdia?",
+            "opcions": ["Erosió de la confiança en els mitjans de comunicació.", "Polarització social i política.", "Impacte en la salut pública (ex: antivacunes).", "Millora de la capacitat crítica dels ciutadans.", "Enfortiment de la cohesió social."],
+            "correcta": ["Erosió de la confiança en els mitjans de comunicació.", "Polarització social i política.", "Impacte en la salut pública (ex: antivacunes)."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q26",
+            "tipus": "unica",
+            "text": "Quin és el risc d'utilitzar imatges o vídeos de fonts desconegudes o no verificades?",
+            "opcions": ["Sempre milloren la qualitat del projecte.", "Poden contenir programari maliciós, ser material protegit per drets d'autor o ser desinformació.", "Són més fàcils de manipular.", "Tenen una mida de fitxer més petita."],
+            "correcta": "Poden contenir programari maliciós, ser material protegit per drets d'autor o ser desinformació.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q27",
+            "tipus": "multiseleccio",
+            "text": "Quines accions pot prendre un usuari per mitigar la propagació de **notícies falses** amb contingut multimèdia?",
+            "opcions": ["Verificar la font abans de compartir.", "Buscar altres fonts que confirmin la informació.", "Ser crític amb els titulars sensacionalistes.", "Compartir ràpidament sense verificar.", "Només creure el que diuen les xarxes socials."],
+            "correcta": ["Verificar la font abans de compartir.", "Buscar altres fonts que confirmin la informació.", "Ser crític amb els titulars sensacionalistes."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q28",
+            "tipus": "unica",
+            "text": "Quin és el principi de la **llicència de programari lliure (open source)** en relació amb el multimèdia?",
+            "opcions": ["Que el programari es pot utilitzar sense cap cost per a qualsevol finalitat.", "Que el codi font del programari està disponible per ser modificat i redistribuït lliurement, sovint aplicable també a obres multimèdia creades amb ell.", "Que només pot ser utilitzat per empreses.", "Que el programari és molt difícil d'utilitzar."],
+            "correcta": "Que el codi font del programari està disponible per ser modificat i redistribuït lliurement, sovint aplicable també a obres multimèdia creades amb ell.",
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q29",
+            "tipus": "parelles",
+            "text": "Relaciona cada terme amb la seva definició en l'àmbit digital i ètic:",
+            "parelles": [
+              {"esquerra": "Rastreig digital (Digital Footprint)", "correcta": "Conjunt d'informació que una persona deixa darrere seu en utilitzar Internet i dispositius digitals."},
+              {"esquerra": "Censura", "correcta": "Supressió o restricció de la publicació de material per part d'una autoritat."},
+              {"esquerra": "Anonimat", "correcta": "Estat de no ser identificat o recognoscible."},
+              {"esquerra": "Regulació", "correcta": "Conjunt de normes o lleis que governen una activitat o un sector."},
+              {"esquerra": "Desinformació", "correcta": "Informació falsa o enganyosa que es difon, sovint amb intenció de manipular."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q30",
+            "tipus": "unica",
+            "text": "Quin aspecte és fonamental per a la **integritat de la informació** en el context multimèdia?",
+            "opcions": ["Que el fitxer sigui molt gran.", "Que la informació sigui precisa, completa i no hagi estat alterada sense avís.", "Que només es pugui veure en un tipus de dispositiu.", "Que el contingut sigui entretingut."],
+            "correcta": "Que la informació sigui precisa, completa i no hagi estat alterada sense avís.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q31",
+            "tipus": "multiseleccio",
+            "text": "Quines consideracions s'han de tenir per a la **privacitat dels nens** en relació amb la imatge i el vídeo en línia?",
+            "opcions": ["Cal el consentiment parental per a la publicació de la seva imatge.", "Els nens tenen dret a la protecció de la seva imatge i privacitat.", "Els adults tenen llibertat absoluta per publicar fotos de nens.", "Explicar als nens els riscos de compartir fotos i vídeos.", "No hi ha restriccions especials per als nens."],
+            "correcta": ["Cal el consentiment parental per a la publicació de la seva imatge.", "Els nens tenen dret a la protecció de la seva imatge i privacitat.", "Explicar als nens els riscos de compartir fotos i vídeos."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q32",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu de les **directrius de la comunitat** en plataformes com YouTube o TikTok?",
+            "opcions": ["Promoure contingut il·legal.", "Establir normes sobre el contingut permès i el comportament acceptable per mantenir un entorn segur i respectuós.", "Publicitar productes.", "Restringir la creativitat dels usuaris."],
+            "correcta": "Establir normes sobre el contingut permès i el comportament acceptable per mantenir un entorn segur i respectuós.",
+            "dificultat": "fàcil"
+          },
+          {
+            "id": "C7M5Q33",
+            "tipus": "multiseleccio",
+            "text": "Quines són les responsabilitats dels **creadors de contingut** digital en relació amb l'ètica i la legalitat?",
+            "opcions": ["Respectar els drets d'autor d'altres.", "Obtenir consentiment per a l'ús d'imatges de persones.", "Etiquetar clarament el contingut patrocinat o promocional.", "Difondre notícies falses si són virals.", "No preocupar-se per la veracitat de la informació."],
+            "correcta": ["Respectar els drets d'autor d'altres.", "Obtenir consentiment per a l'ús d'imatges de persones.", "Etiquetar clarament el contingut patrocinat o promocional."],
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q34",
+            "tipus": "unica",
+            "text": "Quina és la relació entre la **propietat intel·lectual** i l'**ús comercial** d'una obra?",
+            "opcions": ["Qualsevol obra pot ser utilitzada comercialment sense permís.", "L'ús comercial d'una obra protegida per drets d'autor generalment requereix el permís o llicència del titular dels drets.", "Només les obres amb llicència Creative Commons poden ser utilitzades comercialment.", "No hi ha relació entre ambdós conceptes."],
+            "correcta": "L'ús comercial d'una obra protegida per drets d'autor generalment requereix el permís o llicència del titular dels drets.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q35",
+            "tipus": "parelles",
+            "text": "Associa els tipus de delictes digitals amb exemples relacionats amb el multimèdia:",
+            "parelles": [
+              {"esquerra": "Vulneració de la privacitat", "correcta": "Publicar fotos íntimes d'algú sense el seu consentiment."},
+              {"esquerra": "Suplantació d'identitat", "correcta": "Utilitzar la imatge d'algú per crear un perfil fals en xarxes socials."},
+              {"esquerra": "Distribució de contingut il·legal", "correcta": "Compartir vídeos de violència extrema o pornografia infantil."},
+              {"esquerra": "Difamació", "correcta": "Publicar un vídeo amb afirmacions falses que danyen la reputació d'algú."},
+              {"esquerra": "Frau en línia", "correcta": "Utilitzar imatges enganyoses per promocionar un producte fals."}
+            ],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q36",
+            "tipus": "unica",
+            "text": "Quin és el paper de les **etiquetes (tags) i metadades** en la protecció de drets d'autor de les imatges digitals?",
+            "opcions": ["No tenen cap paper en la protecció de drets.", "Poden incloure informació sobre l'autor i els drets d'ús, ajudant a identificar la propietat i gestionar llicències.", "Fan la imatge més pesada.", "Només serveixen per organitzar l'arxiu."],
+            "correcta": "Poden incloure informació sobre l'autor i els drets d'ús, ajudant a identificar la propietat i gestionar llicències.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q37",
+            "tipus": "multiseleccio",
+            "text": "Quines són les responsabilitats de les **plataformes en línia** (xarxes socials, llocs d'allotjament de vídeos) respecte al contingut multimèdia publicat pels usuaris?",
+            "opcions": ["Moderar contingut il·legal o abusiu.", "Disposar de mecanismes per a la denúncia d'infraccions de drets d'autor.", "Protegir la privacitat dels usuaris i les seves dades.", "Ser responsables de cada paraula o imatge publicada.", "No tenir cap responsabilitat pel contingut dels usuaris."],
+            "correcta": ["Moderar contingut il·legal o abusiu.", "Disposar de mecanismes per a la denúncia d'infraccions de drets d'autor.", "Protegir la privacitat dels usuaris i les seves dades."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q38",
+            "tipus": "unica",
+            "text": "Què implica el concepte de **'huella digital' o 'rastre digital'** en el context del tractament de la imatge i el vídeo?",
+            "opcions": ["La mida física d'un arxiu d'imatge.", "Tota la informació (imatges, vídeos, publicacions) que una persona deixa en línia al llarg del temps, afectant la seva reputació digital.", "La marca d'aigua en una imatge.", "La resolució d'un vídeo."],
+            "correcta": "Tota la informació (imatges, vídeos, publicacions) que una persona deixa en línia al llarg del temps, afectant la seva reputació digital.",
+            "dificultat": "mitjà"
+          },
+          {
+            "id": "C7M5Q39",
+            "tipus": "multiseleccio",
+            "text": "Quins són els mecanismes legals o de plataforma per **denunciar contingut il·legal o que infringeix drets d'autor** en línia?",
+            "opcions": ["Formularis de denúncia a les plataformes (YouTube, Facebook, etc.).", "Notificacions de retirada per infracció de drets d'autor (DMCA).", "Contactar amb les autoritats policials en casos greus.", "Ignorar el contingut i esperar que desaparegui.", "Publicar més contingut il·legal per compensar."],
+            "correcta": ["Formularis de denúncia a les plataformes (YouTube, Facebook, etc.).", "Notificacions de retirada per infracció de drets d'autor (DMCA).", "Contactar amb les autoritats policials en casos greus."],
+            "dificultat": "difícil"
+          },
+          {
+            "id": "C7M5Q40",
+            "tipus": "unica",
+            "text": "Quin és l'objectiu principal de la **regulació de continguts digitals**?",
+            "opcions": ["Limitar l'ús d'Internet.", "Crear barreres per a la creació de contingut.", "Protegir els drets dels usuaris, fomentar un entorn digital segur i responsable, i prevenir activitats il·legals.", "Controlar els preus dels serveis digitals."],
+            "correcta": "Protegir els drets dels usuaris, fomentar un entorn digital segur i responsable, i prevenir activitats il·legals.",
+            "dificultat": "mitjà"
+          }
+        ]
+      }
+    };
+
+    let currentModule = 0;
+    let currentQuestionIndex = 0;
+    let currentQuestion = {};
+    let encerts = 0;
+    let preguntesRespostes = 0;
+    let selectedOptions = [];
+    let dragSrcEl = null;
+
+    const quizContainer = document.getElementById('quiz-container');
+    const questionElement = document.getElementById('question');
+    const optionsElement = document.getElementById('options');
+    const pairingSection = document.getElementById('pairing-section');
+    const pairingLeft = document.getElementById('pairing-left');
+    const pairingRight = document.getElementById('pairing-right');
+    const feedbackElement = document.getElementById('feedback');
+    const checkBtn = document.getElementById('checkBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const scoreElement = document.getElementById('score');
+    const questionCountElement = document.getElementById('question-count');
+    const progressBar = document.getElementById('progress-bar');
+    const barraNivells = document.getElementById('barra-nivells');
+
+    function iniciaNivell(modul) {
+      currentModule = modul;
+      currentQuestionIndex = 0;
+      encerts = 0;
+      preguntesRespostes = 0;
+      feedbackElement.textContent = "";
+      scoreElement.textContent = `Encerts: 0 / 0`;
+      updateProgress();
+      document.querySelector('h1').textContent = `Test ACTIC 3 – C5: ${preguntes[`modul_${currentModule}`].titol}`;
+      mostraPregunta();
+      barraNivells.classList.add('hidden'); // Oculta la barra de nivells
+      quizContainer.classList.remove('hidden'); // Mostra el contenidor del test
+    }
+
+    function mostraPregunta() {
+      if (currentQuestionIndex >= preguntes[`modul_${currentModule}`].preguntes.length) {
+        finalitzarTest();
+        return;
+      }
+
+      currentQuestion = preguntes[`modul_${currentModule}`].preguntes[currentQuestionIndex];
+      questionElement.textContent = currentQuestion.text;
+      optionsElement.innerHTML = '';
+      pairingSection.classList.add('hidden');
+      optionsElement.classList.remove('hidden');
+      selectedOptions = [];
+      feedbackElement.textContent = '';
+      checkBtn.classList.remove('hidden');
+      nextBtn.classList.add('hidden');
+
+      questionCountElement.textContent = `Pregunta ${currentQuestionIndex + 1} de ${preguntes[`modul_${currentModule}`].preguntes.length}`;
+
+      if (currentQuestion.tipus === "unica" || currentQuestion.tipus === "multiseleccio") {
+        currentQuestion.opcions.forEach((opcio, index) => {
+          const div = document.createElement('div');
+          div.classList.add('opcio', 'p-3', 'border', 'rounded-lg', 'cursor-pointer', 'hover:bg-gray-100');
+          div.textContent = opcio;
+          div.dataset.index = index;
+          div.addEventListener('click', () => seleccionaOpcio(div, opcio));
+          optionsElement.appendChild(div);
+        });
+      } else if (currentQuestion.tipus === "parelles") {
+        optionsElement.classList.add('hidden');
+        pairingSection.classList.remove('hidden');
+        pairingLeft.innerHTML = '';
+        pairingRight.innerHTML = '';
+
+        let leftItems = currentQuestion.parelles.map(p => ({ text: p.esquerra, id: p.esquerra }));
+        let rightItems = currentQuestion.parelles.map(p => ({ text: p.correcta, id: p.correcta }));
+
+        // Shuffle right items
+        rightItems.sort(() => Math.random() - 0.5);
+
+        leftItems.forEach(item => {
+          const div = document.createElement('div');
+          div.classList.add('parella-item', 'draggable', 'bg-blue-100', 'hover:bg-blue-200');
+          div.textContent = item.text;
+          div.setAttribute('draggable', true);
+          div.dataset.id = item.id;
+          div.addEventListener('dragstart', handleDragStart);
+          pairingLeft.appendChild(div);
+        });
+
+        rightItems.forEach(item => {
+          const div = document.createElement('div');
+          div.classList.add('parella-target', 'droppable', 'bg-gray-200', 'text-gray-700');
+          div.dataset.correcta = item.text; // Almacenamos la respuesta correcta aquí
+          div.dataset.acceptedId = ''; // Para almacenar el id del item arrastrado
+          div.textContent = "Arrossega aquí...";
+          div.addEventListener('dragover', handleDragOver);
+          div.addEventListener('dragleave', handleDragLeave);
+          div.addEventListener('drop', handleDrop);
+          pairingRight.appendChild(div);
+        });
+      }
+    }
+
+    function seleccionaOpcio(element, opcioText) {
+      if (currentQuestion.tipus === "unica") {
+        selectedOptions = [opcioText];
+        document.querySelectorAll('.opcio').forEach(opt => opt.classList.remove('seleccionada'));
+        element.classList.add('seleccionada');
+      } else if (currentQuestion.tipus === "multiseleccio") {
+        if (selectedOptions.includes(opcioText)) {
+          selectedOptions = selectedOptions.filter(o => o !== opcioText);
+          element.classList.remove('seleccionada');
+        } else {
+          selectedOptions.push(opcioText);
+          element.classList.add('seleccionada');
+        }
+      }
+    }
+
+    function comprovaResposta() {
+      bloquejaInteraccio();
+      preguntesRespostes++;
+
+      let isCorrect = false;
+      if (currentQuestion.tipus === "unica") {
+        isCorrect = selectedOptions[0] === currentQuestion.correcta;
+        document.querySelectorAll('.opcio').forEach(s => {
+          if (s.textContent === currentQuestion.correcta) {
+            s.classList.add("bg-green-200", "border-green-500");
+          } else if (selectedOptions.includes(s.textContent)) {
+            s.classList.add("bg-red-200", "border-red-500");
+          }
+        });
+      } else if (currentQuestion.tipus === "multiseleccio") {
+        isCorrect = selectedOptions.length === currentQuestion.correcta.length &&
+                    selectedOptions.every(opt => currentQuestion.correcta.includes(opt));
+        document.querySelectorAll('.opcio').forEach(s => {
+          if (currentQuestion.correcta.includes(s.textContent)) {
+            s.classList.add("bg-green-200", "border-green-500");
+          } else if (selectedOptions.includes(s.textContent)) {
+            s.classList.add("bg-red-200", "border-red-500");
+          }
+        });
+      } else if (currentQuestion.tipus === "parelles") {
+        let correctes = 0;
+        let userPairs = {}; // { targetText: draggedItemText }
+        const targetElements = document.querySelectorAll('#pairing-right .parella-target');
+
+        targetElements.forEach(target => {
+            const draggedItem = target.querySelector('.parella-item');
+            if (draggedItem) {
+                userPairs[target.dataset.correcta] = draggedItem.dataset.id;
+            }
+        });
+
+        currentQuestion.parelles.forEach(p => {
+            const target = Array.from(targetElements).find(t => t.dataset.correcta === p.correcta);
+            const draggedItem = target ? target.querySelector('.parella-item') : null;
+
+            if (draggedItem && draggedItem.dataset.id === p.esquerra) {
+                correctes++;
+                target.classList.add("bg-green-200", "border-green-500");
+                draggedItem.classList.add("bg-green-200", "border-green-500");
+            } else if (draggedItem) {
+                target.classList.add("bg-red-200", "border-red-500");
+                draggedItem.classList.add("bg-red-200", "border-red-500");
+            }
+            if (!draggedItem && target) { // If nothing was dropped, but there should be a correct answer
+                target.classList.add("bg-red-200", "border-red-500");
+            }
+        });
+        isCorrect = correctes === currentQuestion.parelles.length;
+        if (!isCorrect) {
+          let respostesCorrectesHtml = "<p class='text-sm text-gray-700 mt-1'>Respostes correctes:</p><ul>";
+          currentQuestion.parelles.forEach((p) => {
+              respostesCorrectesHtml += `<li>${p.esquerra}: <strong>${p.correcta}</strong></li>`;
+          });
+          respostesCorrectesHtml += "</ul>";
+          feedbackElement.innerHTML += respostesCorrectesHtml;
+        }
+      }
+
+      if (isCorrect) {
+        encerts++;
+        feedbackElement.innerHTML = "<p class='text-green-600 font-bold'>😊 Molt bé!</p>";
+      } else {
+        feedbackElement.innerHTML = "<p class='text-red-600 font-bold'>❌ Revisa les respostes.</p>";
+        // Opcional: Mostrar les respostes correctes per única/multiselecció
+        if (currentQuestion.tipus === "unica" && selectedOptions[0] !== currentQuestion.correcta) {
+            feedbackElement.innerHTML += `<p class='text-sm text-gray-700 mt-1'>La resposta correcta era: <strong>${currentQuestion.correcta}</strong></p>`;
+        } else if (currentQuestion.tipus === "multiseleccio" && !isCorrect) {
+            feedbackElement.innerHTML += `<p class='text-sm text-gray-700 mt-1'>Les respostes correctes eren: <strong>${currentQuestion.correcta.join(', ')}</strong></p>`;
+        }
+      }
+      scoreElement.textContent = `Encerts: ${encerts} / ${preguntesRespostes}`;
+      updateProgress();
+      nextBtn.classList.remove("hidden");
+      checkBtn.classList.add("hidden");
+    }
+
+    function bloquejaInteraccio() {
+      document.querySelectorAll('.opcio').forEach(opt => {
+        opt.classList.add('bloquejada');
+      });
+      document.querySelectorAll('.parella-item').forEach(item => {
+        item.setAttribute('draggable', false);
+        item.classList.add('bloquejada');
+      });
+      document.querySelectorAll('.parella-target').forEach(target => {
+        target.removeEventListener('dragover', handleDragOver);
+        target.removeEventListener('dragleave', handleDragLeave);
+        target.removeEventListener('drop', handleDrop);
+      });
+    }
+
+    function avancaPregunta() {
+      currentQuestionIndex++;
+      mostraPregunta();
+    }
+
+    function finalitzarTest() {
+      questionElement.textContent = `Test finalitzat! Has aconseguit ${encerts} de ${preguntes[`modul_${currentModule}`].preguntes.length} preguntes correctes.`;
+      optionsElement.innerHTML = '';
+      pairingSection.classList.add('hidden');
+      feedbackElement.textContent = '';
+      checkBtn.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+      questionCountElement.textContent = '';
+      scoreElement.textContent = `Resultat final: ${encerts} / ${preguntes[`modul_${currentModule}`].preguntes.length}`;
+      barraNivells.classList.remove('hidden'); // Mostra la barra de nivells de nou
+    }
+
+    function updateProgress() {
+      const totalQuestions = preguntes[`modul_${currentModule}`].preguntes.length;
+      const progress = (preguntesRespostes / totalQuestions) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    // Drag and Drop functions for 'parelles'
+    function handleDragStart(e) {
+      dragSrcEl = this;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', this.dataset.id);
+      this.classList.add('dragging');
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault(); // Necessari per permetre el drop
+      e.dataTransfer.dropEffect = 'move';
+      this.classList.add('drag-over');
+    }
+
+    function handleDragLeave(e) {
+      this.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      this.classList.remove('drag-over');
+
+      if (e.target.classList.contains('parella-target')) {
+        const data = e.dataTransfer.getData('text/plain');
+        const draggedElement = document.querySelector(`[data-id="${data}"]`);
+
+        // Move the dragged element from its original container if it's currently in a target
+        const currentParent = draggedElement.parentElement;
+        if (currentParent.classList.contains('parella-target')) {
+            currentParent.textContent = "Arrossega aquí...";
+            currentParent.dataset.acceptedId = '';
+            pairingLeft.appendChild(draggedElement); // Move back to left if it was in another target
+        }
+
+        // Check if the target already has an item
+        if (this.dataset.acceptedId !== '') {
+            const existingItem = document.querySelector(`[data-id="${this.dataset.acceptedId}"]`);
+            if (existingItem) {
+                pairingLeft.appendChild(existingItem); // Move existing item back to left
+            }
+        }
+
+        // Place the dragged element in the new target
+        this.innerHTML = ''; // Clear "Arrossega aquí..."
+        this.appendChild(draggedElement);
+        this.dataset.acceptedId = data; // Store the ID of the item accepted by this target
+      }
+      dragSrcEl.classList.remove('dragging');
+    }
+
+
+    checkBtn.addEventListener('click', comprovaResposta);
+    nextBtn.addEventListener('click', avancaPregunta);
+
+    // Iniciar amb el mòdul 1 per defecte en carregar la pàgina
+    document.addEventListener('DOMContentLoaded', () => {
+        // Hide quiz container initially
+        quizContainer.classList.add('hidden');
+        // Show module selection buttons
+        barraNivells.classList.remove('hidden');
+    });
+
+  </script>
+</body>
+</html>
