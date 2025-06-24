@@ -166,5 +166,3 @@ function updateProgressBar(respostes, total) {
   const percent = (respostes / total) * 100;
   document.getElementById("progress-bar").style.width = `${percent}%`;
 }
-
-}
