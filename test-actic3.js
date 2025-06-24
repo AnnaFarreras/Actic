@@ -187,11 +187,18 @@ function mostrarFeedback(encert, correcta, pregunta) {
     estatUsuari[seccioActual].encerts++;
     feedback.innerHTML = "<span class='text-green-600'>Molt bé! Has encertat! 😊</span>";
   } else {
-    const correcteText = correcta.map(i => {
-      if (pregunta.tipus === "relacionar") return `${pregunta.parells[i][0]} → ${pregunta.parells[i][1]}`;
-      if (pregunta.tipus === "completar" || pregunta.tipus === "unica" || pregunta.tipus === "multiseleccio") return pregunta.opcions[i];
-      return i;
-    }).join("<br>");
+    let correcteText = "";
+
+    if (pregunta.tipus === "relacionar") {
+      correcteText = correcta
+        .map((val, idx) => `${pregunta.parells[idx][0]} → ${pregunta.parells[val][1]}`)
+        .join("<br>");
+    } else if (pregunta.tipus === "completar") {
+      correcteText = pregunta.opcions[correcta[0]];
+    } else {
+      correcteText = correcta.map(i => pregunta.opcions[i]).join("<br>");
+    }
+
     feedback.innerHTML = `<span class='text-red-600'>Ohhh! Ho sento. La resposta correcta és:<br><span class="text-sm text-gray-800">${correcteText}</span></span>`;
   }
 }
