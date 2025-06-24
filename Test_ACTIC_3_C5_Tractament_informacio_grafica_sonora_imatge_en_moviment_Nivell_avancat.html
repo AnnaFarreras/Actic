@@ -128,7 +128,7 @@
         Object.keys(dadesJSON).forEach((clau) => {
           const boto = document.createElement("button");
           boto.textContent = dadesJSON[clau].titol;
-          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-1 py-1 rounded text-center leading-tight whitespace-normal break-words max-w-[10ch]";
+          boto.className = "bg-blue-500/50 hover:bg-blue-500 text-xs px-2 py-1 rounded text-center break-words whitespace-normal min-w-[8rem] max-w-[10rem]";
 
           boto.onclick = () => {
             document.querySelectorAll("#sectionButtons button").forEach((b) => b.classList.remove("bg-blue-600", "text-white"));
@@ -184,14 +184,34 @@
             const encert = correcta.includes(seleccionada);
 
             opcionsDiv.querySelectorAll("label").forEach((el, i) => {
+              const input = el.querySelector("input");
+              input.disabled = true;
               el.classList.remove("bg-green-100", "bg-red-100", "border-green-500", "border-red-500");
-              if (correcta.includes(i)) el.classList.add("bg-green-100", "border-green-500");
-              if (i === seleccionada && !correcta.includes(i)) el.classList.add("bg-red-100", "border-red-500");
+
+              if (correcta.includes(i)) {
+                el.classList.add("bg-green-100", "border-green-500");
+              }
+              if (i === seleccionada && !correcta.includes(i)) {
+                el.classList.add("bg-red-100", "border-red-500");
+              }
             });
 
-            if (encert) estatUsuari[seccioActual].encerts++;
+            const feedback = document.createElement("p");
+            feedback.className = "mt-3 text-sm font-medium";
+            if (encert) {
+              feedback.innerHTML = "✅ Molt bé! Has encertat! 😊";
+              feedback.classList.add("text-green-600");
+            } else {
+              const correcteText = correcta.map(i => pregunta.opcions[i]).join(" / ");
+              feedback.innerHTML = `❌ Ohhh! Ho sento. La resposta correcta és: <strong>${correcteText}</strong>`;
+              feedback.classList.add("text-red-600");
+            }
+            opcionsDiv.parentElement.appendChild(feedback);
+
             estatUsuari[seccioActual].respostes[pregunta.id] = [seleccionada];
+            if (encert) estatUsuari[seccioActual].encerts++;
             localStorage.setItem("progresACTIC3", JSON.stringify(estatUsuari));
+
             document.getElementById("seguentBtn").classList.remove("hidden");
           });
         });
