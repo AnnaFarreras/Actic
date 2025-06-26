@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test repàs GIMP (ACTIC C5) - Competència C5</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center p-2">
+  <div id="app" class="w-full max-w-6xl bg-white p-4 rounded-xl shadow-lg text-sm">
+        <h1 class="text-2xl font-bold mb-4 text-center">Test repàs GIMP (ACTIC C5) - Competència C5</h1>
+    <div id="barra-nivells" class="flex gap-2 flex-wrap justify-center mb-4">
+      <button onclick="iniciaNivell(1)" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Nivell 1: Conceptes Bàsics i Entorn</button>
+      <button onclick="iniciaNivell(2)" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Nivell 2: Eines d'Edició i Selecció</button>
+      <button onclick="iniciaNivell(3)" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-700">Nivell 3: Capes, Mascares i Text</button>
+      <button onclick="iniciaNivell(4)" class="bg-purple-500 text-white px-3 py-1 rounded hover:bg-purple-700">Nivell 4: Efectes, Exportació i Gestió</button>
+      <button onclick="iniciaNivell(5)" class="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-700">Nivell 5: Eines Avançades i Gestió de Color</button>
+    </div>
+
+    <div id="quiz-container" class="mb-4"></div>
+    <div class="flex justify-between items-center mt-6">
+      <div id="score" class="text-sm text-gray-600">Encerts: 0 / 0 (Intents: 0)</div>
+      <button id="next-btn" class="hidden bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Següent</button>
+    </div>
+  </div>
+
+  <script>
+    const nivells = {
+      1: [
+        {
+          tipus: "test",
+          pregunta: "Quin és el format de fitxer natiu de GIMP que guarda totes les capes i informació d'imatge?",
+          opcions: [
+            ".jpg",
+            ".png",
+            ".xcf",
+            ".gif"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "En GIMP, la finestra principal que conté les eines, capes i l'àrea de dibuix es coneix com a ___.",
+          opcions: ["Paleta", "Caixa d'eines", "Finestra d'imatge", "Panell"],
+          correcta: "Finestra d'imatge"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina és la funció principal de la 'Caixa d'eines' (Toolbox) en GIMP?",
+          opcions: [
+            "Mostrar l'historial de les accions",
+            "Contenir les opcions de configuració del programa",
+            "Accedir ràpidament a les eines de manipulació d'imatges",
+            "Gestionar els colors i paletes"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Per a què serveix principalment l'eina de 'Retallar' (Crop Tool) en GIMP?",
+          opcions: [
+            "Ajustar la mida de la imatge sense canviar les proporcions",
+            "Eliminar parts no desitjades d'una imatge alterant les seves dimensions",
+            "Reduir la resolució d'una imatge",
+            "Rotar una imatge"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona el format d'imatge amb el seu ús típic:",
+          parelles: [
+            { esquerra: ".JPG", opcions: ["Imatges amb transparència", "Fotografies amb compressió", "Gràfics vectorials"], correcta: "Fotografies amb compressió" },
+            { esquerra: ".PNG", opcions: ["Animacions", "Imatges amb transparència", "Documents de text"], correcta: "Imatges amb transparència" },
+            { esquerra: ".GIF", opcions: ["Fotografies d'alta qualitat", "Animacions senzilles", "Imatges per imprimir"], correcta: "Animacions senzilles" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina característica bàsica defineix una imatge de mapa de bits (raster) en GIMP?",
+          opcions: [
+            "Està formada per objectes geomètrics",
+            "La seva qualitat es manté independentment de l'escala",
+            "Està composta per una quadrícula de píxels",
+            "És ideal per a logotips i icones"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "Per canviar la mida d'una imatge sense perdre proporcions, s'ha de mantenir la relació d'___.",
+          opcions: ["aspecte", "color", "capa", "filtre"],
+          correcta: "aspecte"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin menú utilitzaries per 'Obrir' o 'Desar' un fitxer d'imatge en GIMP?",
+          opcions: [
+            "Edita",
+            "Selecciona",
+            "Fitxer",
+            "Eines"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols revertir l'última acció realitzada en GIMP, quina drecera de teclat o opció de menú utilitzaries?",
+          opcions: [
+            "Ctrl+Z (Edita > Desfés)",
+            "Ctrl+Y (Edita > Refés)",
+            "Ctrl+C (Edita > Copia)",
+            "Ctrl+X (Edita > Retalla)"
+          ],
+          correcta: 0
+        },
+        {
+          tipus: "completar",
+          frase: "Un document d'imatge amb 72 ppp (píxels per polzada) és adequat principalment per a publicació ___.",
+          opcions: ["impresa", "web", "gran format", "fotogràfica professional"],
+          correcta: "web"
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona la drecera de teclat amb la seva funció bàsica en GIMP:",
+          parelles: [
+            { esquerra: "Ctrl + S", opcions: ["Copiar", "Desar", "Tallar"], correcta: "Desar" },
+            { esquerra: "Ctrl + C", opcions: ["Enganxar", "Copiar", "Retallar"], correcta: "Copiar" },
+            { esquerra: "Ctrl + V", opcions: ["Desar", "Retallar", "Enganxar"], correcta: "Enganxar" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin mode de color s'utilitza més habitualment per a imatges destinades a ser visualitzades en pantalles?",
+          opcions: [
+            "CMYK",
+            "RGB",
+            "Escala de grisos",
+            "Indexat"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "completar",
+          frase: "El diàleg de 'Preferències' de GIMP et permet personalitzar aspectes com els temes de la interfície i els ___ de memòria.",
+          opcions: ["colors", "accessos ràpids", "límits", "píxels"],
+          correcta: "límits"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina de les següents afirmacions sobre GIMP és correcta?",
+          opcions: [
+            "És un programari de pagament.",
+            "És un editor d'imatges vectorial.",
+            "És un programari de codi obert i gratuït.",
+            "Només funciona en sistemes operatius Linux."
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Per visualitzar l'histograma d'una imatge i analitzar la distribució tonal, a quin diàleg o panell aniries?",
+          opcions: [
+            "Capes",
+            "Pinzells",
+            "Histograma",
+            "Colors"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona l'element de la interfície de GIMP amb la seva funció:",
+          parelles: [
+            { esquerra: "Pestanyes", opcions: ["Organitzar diàlegs", "Emmagatzemar pinzells", "Mostrar historial"], correcta: "Organitzar diàlegs" },
+            { esquerra: "Finestres acoblables", opcions: ["Àrees que contenen diàlegs", "Àrees per dibuixar", "Àrees per eines"], correcta: "Àrees que contenen diàlegs" },
+            { esquerra: "Barra de menús", opcions: ["Accés a opcions i funcions", "Llista d'eines", "Vista prèvia de la imatge"], correcta: "Accés a opcions i funcions" }
+          ]
+        }
+      ],
+      2: [
+        {
+          tipus: "test",
+          pregunta: "Quina eina de selecció és la més adequada per seleccionar objectes amb vores nítides i contrastades?",
+          opcions: [
+            "Selecció el·líptica",
+            "Selecció lliure (Lasso)",
+            "Selecció difusa (Vareta màgica)",
+            "Selecció per color"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "L'eina de ___ (Heal Tool) s'utilitza per eliminar imperfeccions en una imatge, prenent mostres d'una àrea propera.",
+          opcions: ["pinzell", "clonar", "curació", "desenfocament"],
+          correcta: "curació"
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols ajustar la brillantor i el contrast d'una imatge, a quin menú aniries en GIMP?",
+          opcions: [
+            "Eines",
+            "Colors",
+            "Filtres",
+            "Selecciona"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "test",
+          pregunta: "Per clonar una part d'una imatge i replicar-la en una altra àrea, quina eina utilitzaries?",
+          opcions: [
+            "Eina de pinzell",
+            "Eina de clonar (Clone Tool)",
+            "Eina de retoc (Smudge Tool)",
+            "Eina d'esborrar"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona l'eina amb la seva funció principal:",
+          parelles: [
+            { esquerra: "Eina de pinzell", opcions: ["Dibuixar i pintar", "Moure capes", "Seleccionar àrees"], correcta: "Dibuixar i pintar" },
+            { esquerra: "Eina de moure", opcions: ["Dibuixar línies", "Rotar imatges", "Moure capes o seleccions"], correcta: "Moure capes o seleccions" },
+            { esquerra: "Eina de selecció lliure", opcions: ["Crear seleccions manuals", "Seleccionar rectangles", "Seleccionar colors"], correcta: "Crear seleccions manuals" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina eina et permet ajustar la saturació, tonalitat i lluminositat de colors específics en una imatge?",
+          opcions: [
+            "Llindars",
+            "Corbes",
+            "Tonalitat-Saturació",
+            "Brillantor i Contrast"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "L'eina de ___ (Scale Tool) permet canviar la mida d'una capa o selecció amb opcions d'interpolació.",
+          opcions: ["rotar", "escala", "cisalla", "perspectiva"],
+          correcta: "escala"
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols eliminar el fons d'una imatge que té un color sòlid, quina eina seria més eficient?",
+          opcions: [
+            "Tisores intel·ligents",
+            "Selecció per color",
+            "Pinzell",
+            "Eina de text"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina de les següents accions NO es pot realitzar amb l'eina de 'Transformació Unificada' (Unified Transform Tool)?",
+          opcions: [
+            "Escalar",
+            "Rotar",
+            "Aplicar filtres artístics",
+            "Cisallar"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "Per eliminar el soroll o desenfocar una àrea específica d'una imatge, s'utilitza l'eina de ___ i enfocament (Blur/Sharpen Tool).",
+          opcions: ["pinzell", "difuminar", "desenfocament", "esponja"],
+          correcta: "desenfocament"
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona cada ajust de color amb la seva descripció:",
+          parelles: [
+            { esquerra: "Brillantor/Contrast", opcions: ["Ajustar la intensitat dels colors", "Modificar la claredat i la diferència entre tons", "Alterar la gamma tonal de la imatge"], correcta: "Modificar la claredat i la diferència entre tons" },
+            { esquerra: "Tonalitat/Saturació", opcions: ["Canviar el to i la puresa dels colors", "Il·luminar o enfosquir una imatge", "Corregir el balanç de blancs"], correcta: "Canviar el to i la puresa dels colors" },
+            { esquerra: "Balanç de color", opcions: ["Equilibrar els components de color (vermell, verd, blau)", "Ajustar la nitidesa de la imatge", "Convertir la imatge a escala de grisos"], correcta: "Equilibrar els components de color (vermell, verd, blau)" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "L'eina 'Corbes' (Curves) en GIMP s'utilitza per a:",
+          opcions: [
+            "Aplicar un degradat de color",
+            "Ajustar la tonalitat i saturació de la imatge",
+            "Controlar la distribució tonal i el contrast amb precisió",
+            "Blanquejar àrees específiques"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "Per seleccionar àrees irregulars amb gran precisió, l'eina de '___ intel·ligents' (Intelligent Scissors) és molt útil.",
+          opcions: ["vareta", "tisores", "llaç", "màgica"],
+          correcta: "tisores"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina de les següents eines és ideal per pintar sobre una imatge amb un motiu o 'patró' predefinit?",
+          opcions: [
+            "Eina de pinzell",
+            "Eina de farciment de galleda",
+            "Eina de tamponar (Clone Tool)",
+            "Eina de goma"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols corregir la perspectiva d'una fotografia, quina eina utilitzaries?",
+          opcions: [
+            "Eina d'escala",
+            "Eina de girar",
+            "Eina de perspectiva",
+            "Eina de cisallar"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona el tipus de selecció amb la seva aplicació:",
+          parelles: [
+            { esquerra: "Selecció el·líptica", opcions: ["Àrees rectangulars", "Àrees circulars o ovalades", "Àrees irregulars"], correcta: "Àrees circulars o ovalades" },
+            { esquerra: "Selecció difusa", opcions: ["Seleccionar per color similar", "Seleccionar a mà alçada", "Seleccionar objectes complexos"], correcta: "Seleccionar per color similar" },
+            { esquerra: "Selecció rectangular", opcions: ["Dibuixar seleccions lliures", "Seleccionar formes quadrades o rectangulars", "Seleccionar àrees amb vores definides"], correcta: "Seleccionar formes quadrades o rectangulars" }
+          ]
+        }
+      ],
+      3: [
+        {
+          tipus: "test",
+          pregunta: "En GIMP, quina funció principal té una 'màscara de capa' (Layer Mask)?",
+          opcions: [
+            "Canviar el mode de fusió de la capa",
+            "Permetre ocultar o mostrar parts d'una capa de forma no destructiva",
+            "Aplicar un efecte visual a tota la capa",
+            "Bloquejar la capa per evitar edicions"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "completar",
+          frase: "Per crear text en una imatge, s'utilitza l'eina de ___ (Text Tool).",
+          opcions: ["pinzell", "ploma", "text", "lápiz"],
+          correcta: "text"
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols combinar diverses capes en una sola sense perdre la informació de píxels, quina opció utilitzaries?",
+          opcions: [
+            "Suprimeix capa",
+            "Duplica capa",
+            "Fusiona capes visibles",
+            "Afegeix màscara de capa"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin 'mode de fusió' de capa permet que els píxels de la capa superior enfosqueixin els de la capa inferior?",
+          opcions: [
+            "Pantalla",
+            "Multiplicar",
+            "Superposar",
+            "Normal"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona cada concepte de capa amb la seva descripció:",
+          parelles: [
+            { esquerra: "Opacitat de capa", opcions: ["La transparència de la capa", "El color de la capa", "El nom de la capa"], correcta: "La transparència de la capa" },
+            { esquerra: "Capa d'ajustament", opcions: ["Capa amb text editable", "Capa que aplica efectes no destructius", "Capa amb una imatge en brut"], correcta: "Capa que aplica efectes no destructius" },
+            { esquerra: "Grup de capes", opcions: ["Una sola capa per a edició", "Una carpeta per organitzar capes", "Un tipus especial de màscara"], correcta: "Una carpeta per organitzar capes" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Per afegir un efecte de degradat (gradient) a una selecció o capa, quina eina o opció faries servir?",
+          opcions: [
+            "Eina de pinzell",
+            "Eina de farciment de galleda",
+            "Eina de degradat (Gradient Tool)",
+            "Eina de blanquejar"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "En GIMP, les capes serveixen per treballar amb diferents elements d'una imatge de forma ___.",
+          opcions: ["conjunta", "destructiva", "independent", "automàtica"],
+          correcta: "independent"
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols que el text en una capa segueixi una ruta corba, quina funcionalitat de GIMP utilitzaries?",
+          opcions: [
+            "Efectes de text",
+            "Text al llarg d'una ruta",
+            "Transformació de text",
+            "Estils de capa"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin panell és essencial per visualitzar i gestionar l'ordre i la visibilitat de les capes en una imatge?",
+          opcions: [
+            "Panell de pinzells",
+            "Panell de patrons",
+            "Panell de capes",
+            "Panell de colors"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "Quan crees una màscara de capa, pintar amb blanc sobre la màscara ___ la part corresponent de la capa.",
+          opcions: ["oculta", "elimina", "revela", "desenfoca"],
+          correcta: "revela"
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona el tipus d'eina amb la seva aplicació en el text:",
+          parelles: [
+            { esquerra: "Eina de text", opcions: ["Crear text editable", "Rasteritzar text", "Aplicar efectes al text"], correcta: "Crear text editable" },
+            { esquerra: "Eina de moure", opcions: ["Canviar la font del text", "Moure el bloc de text", "Canviar la mida del text"], correcta: "Moure el bloc de text" },
+            { esquerra: "Eina d'escala", opcions: ["Rotar el text", "Canviar la mida del text", "Canviar el color del text"], correcta: "Canviar la mida del text" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Per què és important utilitzar capes quan edites imatges complexes?",
+          opcions: [
+            "Per reduir la mida del fitxer.",
+            "Per fer edicions destructives.",
+            "Per mantenir elements separats i poder editar-los independentment.",
+            "Per accelerar el procés de guardat."
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "L'opacitat d'una capa es pot ajustar per fer-la més o menys ___.",
+          opcions: ["gran", "brillant", "transparent", "clara"],
+          correcta: "transparent"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin mode de fusió de capa és ideal per afegir un element lluminós que il·lumini la capa inferior?",
+          opcions: [
+            "Multiplicar",
+            "Superposar",
+            "Pantalla",
+            "Normal"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Per afegir una nova capa transparent, quina opció de menú utilitzaries?",
+          opcions: [
+            "Capa > Duplica capa",
+            "Capa > Nova capa...",
+            "Capa > Elimina capa",
+            "Capa > Capa a mida de la imatge"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona l'operació de capa amb la seva descripció:",
+          parelles: [
+            { esquerra: "Duplicar capa", opcions: ["Crear una còpia exacta de la capa", "Combinar dues capes", "Moure una capa de lloc"], correcta: "Crear una còpia exacta de la capa" },
+            { esquerra: "Moure capa", opcions: ["Canviar l'ordre de la capa", "Canviar la posició de la capa en el llenç", "Fer la capa invisible"], correcta: "Canviar la posició de la capa en el llenç" },
+            { esquerra: "Bloquejar capa", opcions: ["Fer la capa invisible", "Evitar modificacions accidentals", "Aplicar un filtre a la capa"], correcta: "Evitar modificacions accidentals" }
+          ]
+        }
+      ],
+      4: [
+        {
+          tipus: "test",
+          pregunta: "Quin tipus de 'filtre' s'utilitza per aplicar efectes artístics com 'Oli sobre llenç' o 'Pixelar'?",
+          opcions: [
+            "Filtres de millora",
+            "Filtres de desenfocament",
+            "Filtres artístics",
+            "Filtres de renderització"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "L'opció 'Exporta com...' en GIMP s'utilitza per guardar la imatge en un format de fitxer diferent de l'___, com JPG o PNG.",
+          opcions: ["temporani", "natiu", "binari", "comprimits"],
+          correcta: "natiu"
+        },
+        {
+          tipus: "test",
+          pregunta: "Per afegir un efecte de 'Vinyeta' que enfosqueixi les vores d'una imatge, a quin menú o categoria de filtres aniries?",
+          opcions: [
+            "Filtres > Desenfoque",
+            "Filtres > Millora",
+            "Filtres > Llum i ombra",
+            "Filtres > Distorsions"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin filtre s'utilitza habitualment per eliminar o reduir el soroll digital en fotografies?",
+          opcions: [
+            "Enfocament",
+            "Desenfoque Gaussiano",
+            "Reducció de soroll",
+            "Filtre de detecció de vores"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona el filtre amb el seu efecte principal:",
+          parelles: [
+            { esquerra: "Desenfoque Gaussiano", opcions: ["Crea un efecte de soroll", "Suavitza la imatge i crea un desenfocament", "Aguditza les vores"], correcta: "Suavitza la imatge i crea un desenfocament" },
+            { esquerra: "Enfocament", opcions: ["Afegeix un efecte de pintura", "Augmenta la nitidesa de les vores", "Distorsiona la imatge"], correcta: "Augmenta la nitidesa de les vores" },
+            { esquerra: "Pixelar", opcions: ["Converteix la imatge en un patró de petits quadrats", "Crea una il·luminació dramàtica", "Elimina colors"], correcta: "Converteix la imatge en un patró de petits quadrats" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina eina permet aplicar transformacions (rotació, escala, cisalla, perspectiva) d'una sola vegada en una capa?",
+          opcions: [
+            "Eina de girar",
+            "Eina de retallar",
+            "Eina de transformació unificada",
+            "Eina de distorsió"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "Per automatitzar una seqüència d'accions repetitives en GIMP, s'utilitzen els ___.",
+          opcions: ["macros", "scripts", "filtres", "plugins"],
+          correcta: "scripts"
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols canviar la 'resolució' d'una imatge sense canviar les seves dimensions en píxels, quin diàleg utilitzaries?",
+          opcions: [
+            "Imatge > Escala la imatge...",
+            "Imatge > Mida del llenç...",
+            "Imatge > Resolució d'impressió...",
+            "Imatge > Mode"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin programari recomanat s'esmenta al document per al tractament d'imatges de propietat (no lliure)?",
+          opcions: [
+            "GIMP",
+            "ADOBE PHOTOSHOP",
+            "LIVES",
+            "Picassa"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "completar",
+          frase: "Abans d'exportar una imatge per a web, és recomanable optimitzar-la per reduir la seva ___.",
+          opcions: ["resolució", "qualitat", "mida de fitxer", "color"],
+          correcta: "mida de fitxer"
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona cada tipus d'imatge o fitxer amb el programari recomanat al document:",
+          parelles: [
+            { esquerra: "Tractament d'imatges (lliure)", opcions: ["VLAN", "GIMP", "ADOBE PREMIERE"], correcta: "GIMP" },
+            { esquerra: "Edició de vídeo (lliure)", opcions: ["LIVES", "ADOBE PHOTOSHOP", "CDex"], correcta: "LIVES" },
+            { esquerra: "Reproductor so i vídeo (lliure)", opcions: ["BSPlayer", "PINNACLE STUDIO", "COWON JETAUDIO"], correcta: "BSPlayer" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Per guardar una imatge en format JPG, quina opció de diàleg de exportació t'ajudaria a controlar la qualitat de la compressió?",
+          opcions: [
+            "Guardar com a XCF",
+            "Exporta com...",
+            "Guardar una còpia",
+            "Obrir com a capes"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "completar",
+          frase: "Els 'plugins' en GIMP s'utilitzen per afegir noves ___ al programa.",
+          opcions: ["finestres", "funcionalitats", "imatges", "fonts"],
+          correcta: "funcionalitats"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina de les següents opcions és una transformació geomètrica que canvia la forma d'un objecte estirant-lo en una direcció?",
+          opcions: [
+            "Rotar",
+            "Escalar",
+            "Cisallar (Shear)",
+            "Perspectiva"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Quan exportes una imatge per a web, per què és important considerar la mida del fitxer?",
+          opcions: [
+            "Perquè el disseny sigui més complex.",
+            "Perquè la imatge tingui més píxels.",
+            "Perquè es carregui ràpidament a la pàgina web.",
+            "Per tenir una major resolució."
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona l'ús amb el tipus d'exportació:",
+          parelles: [
+            { esquerra: "Imatge amb transparència per a web", opcions: ["JPG", "GIF", "PNG"], correcta: "PNG" },
+            { esquerra: "Fotografia amb compressió per a web", opcions: ["XCF", "PNG", "JPG"], correcta: "JPG" },
+            { esquerra: "Animació senzilla", opcions: ["PNG", "GIF", "JPG"], correcta: "GIF" }
+          ]
+        }
+      ],
+      5: [ // Nou nivell afegit per a més exhaustivitat
+        {
+          tipus: "test",
+          pregunta: "Quina eina utilitzaries per mesurar distàncies o angles en una imatge?",
+          opcions: [
+            "Eina de regla",
+            "Eina de selecció rectangular",
+            "Eina de mesurar (Measure Tool)",
+            "Eina d'alineació"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "Per crear un efecte de vora esmolada o realçar detalls fins, s'aplica el filtre de ___ (Sharpen).",
+          opcions: ["desenfocament", "soroll", "enfocament", "pixelat"],
+          correcta: "enfocament"
+        },
+        {
+          tipus: "test",
+          pregunta: "Si vols corregir la distorsió de lent en una fotografia, quin menú de GIMP podria contenir aquesta opció?",
+          opcions: [
+            "Colors",
+            "Eines",
+            "Filtres > Distorsions",
+            "Selecciona"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin tipus de 'guies' poden ser útils per alinear objectes i elements en el teu disseny?",
+          opcions: [
+            "Guies de color",
+            "Guies de capa",
+            "Guies de composició",
+            "Guies intel·ligents (Smart Guides)"
+          ],
+          correcta: 3
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona l'eina amb la seva funcionalitat avançada:",
+          parelles: [
+            { esquerra: "Eina de camins (Paths Tool)", opcions: ["Crear seleccions a mà alçada", "Dibuixar formes vectorials i seleccions complexes", "Retocar imperfeccions"], correcta: "Dibuixar formes vectorials i seleccions complexes" },
+            { esquerra: "Eina d'alineació (Align Tool)", opcions: ["Organitzar capes", "Alinear i distribuir elements en el llenç", "Aplicar efectes de text"], correcta: "Alinear i distribuir elements en el llenç" },
+            { esquerra: "Eina de gotes de color (Color Picker)", opcions: ["Seleccionar un color de la imatge", "Omplir una àrea amb un color", "Ajustar la saturació"], correcta: "Seleccionar un color de la imatge" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Per què és important utilitzar 'modes de color' (per exemple, RGB) de forma adequada en GIMP?",
+          opcions: [
+            "Per a reduir la mida del fitxer.",
+            "Per a assegurar la precisió del color en diferents dispositius (pantalles, impressió).",
+            "Per a aplicar filtres artístics.",
+            "Per a fer la imatge més transparent."
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "completar",
+          frase: "La 'Història de Desfés' (Undo History) et permet navegar per les ___ que has realitzat en la imatge.",
+          opcions: ["capes", "eines", "accions", "seleccions"],
+          correcta: "accions"
+        },
+        {
+          tipus: "test",
+          pregunta: "Quin diàleg de GIMP mostra una llista de tots els pinzells disponibles i et permet crear-ne de nous?",
+          opcions: [
+            "Diàleg de capes",
+            "Diàleg de patrons",
+            "Diàleg de pinzells",
+            "Diàleg d'historial"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Per què és útil utilitzar 'grups de capes' en un projecte complex de GIMP?",
+          opcions: [
+            "Per a augmentar la resolució de la imatge.",
+            "Per a fer les capes invisibles.",
+            "Per a organitzar i gestionar millor un gran nombre de capes.",
+            "Per a bloquejar automàticament les capes."
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "completar",
+          frase: "La 'paleta de colors' et permet seleccionar i gestionar els colors de ___ i de fons.",
+          opcions: ["capa", "primer pla", "filtre", "text"],
+          correcta: "primer pla"
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona el concepte amb la seva descripció en GIMP:",
+          parelles: [
+            { esquerra: "Canal Alpha", opcions: ["Representa el color vermell", "Controla la transparència", "Defineix el to"], correcta: "Controla la transparència" },
+            { esquerra: "Histograma", opcions: ["Gràfic de la distribució tonal", "Eina de selecció ràpida", "Llista de filtres aplicats"], correcta: "Gràfic de la distribució tonal" },
+            { esquerra: "Mida del llenç", opcions: ["Dimensions de la capa activa", "Dimensions totals de la imatge", "Mida del pinzell"], correcta: "Dimensions totals de la imatge" }
+          ]
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina opció de GIMP et permet revertir la imatge a la seva última versió guardada?",
+          opcions: [
+            "Edita > Desfés",
+            "Fitxer > Reverteix",
+            "Fitxer > Tanca",
+            "Fitxer > Importa"
+          ],
+          correcta: 1
+        },
+        {
+          tipus: "completar",
+          frase: "L'eina de '___' (Bucket Fill) s'utilitza per omplir una àrea tancada amb un color sòlid o un patró.",
+          opcions: ["pinzell", "esborrar", "farciment", "degradat"],
+          correcta: "farciment"
+        },
+        {
+          tipus: "test",
+          pregunta: "Per afegir un efecte de 'ombra paral·lela' (Drop Shadow) a un element, a quin menú de GIMP aniries?",
+          opcions: [
+            "Colors",
+            "Eines",
+            "Filtres > Llum i ombra",
+            "Selecciona"
+          ],
+          correcta: 2
+        },
+        {
+          tipus: "test",
+          pregunta: "Quina drecera de teclat permet commutar la visibilitat de la 'Caixa d'eines' i els 'Diàlegs acoblables'?",
+          opcions: [
+            "Ctrl + T",
+            "Tab",
+            "Ctrl + Alt + G",
+            "F1"
+          ],
+          correcta: 1 // La tecla Tabula (Tab) oculta/mostra els panells.
+        },
+        {
+          tipus: "relacionar",
+          pregunta: "Relaciona el concepte de color amb la seva definició:",
+          parelles: [
+            { esquerra: "Tonalitat (Hue)", opcions: ["La claredat o foscor d'un color", "La puresa o intensitat d'un color", "El color pur (vermell, verd, blau)"], correcta: "El color pur (vermell, verd, blau)" },
+            { esquerra: "Saturació", opcions: ["La brillantor del color", "La puresa o intensitat d'un color", "El nom del color"], correcta: "La puresa o intensitat d'un color" },
+            { esquerra: "Luminositat (Value/Lightness)", opcions: ["La claredat o foscor d'un color", "La quantitat de color", "El to del color"], correcta: "La claredat o foscor d'un color" }
+          ]
+        }
+      ]
+    };
+
+    let preguntesOriginalsNivell = []; // Store the initial set of questions for a level
+    let preguntesARepassar = [];      // Questions that still need to be answered correctly
+    let encertsUnics = 0;             // Number of unique questions answered correctly
+    let totalIntents = 0;             // Total number of attempts (correct or incorrect)
+
+    let quizContainer;
+    let nextBtn;
+    let score;
+    let progressBar;
+    let progressFill;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      quizContainer = document.getElementById("quiz-container");
+      nextBtn = document.getElementById("next-btn");
+      score = document.getElementById("score");
+
+      progressBar = document.createElement("div");
+      progressBar.className = "w-full bg-gray-300 h-2 rounded overflow-hidden mt-4";
+      progressFill = document.createElement("div");
+      progressFill.className = "h-full bg-blue-500";
+      progressFill.style.width = "0%";
+      progressBar.appendChild(progressFill);
+      quizContainer.before(progressBar); // Add progress bar before quiz container
+
+      nextBtn.addEventListener("click", mostraPregunta);
+    });
+
+    // Funció per barrejar un array (Fisher-Yates shuffle)
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function iniciaNivell(n) {
+      if (!Array.isArray(nivells[n])) {
+        alert("Aquest nivell no està disponible o no conté preguntes.");
+        return;
+      }
+      
+      preguntesOriginalsNivell = [...nivells[n]]; // Make a copy of original questions
+      preguntesARepassar = [...nivells[n]];      // All questions start in the "to review" pool
+      shuffleArray(preguntesARepassar);           // Initial shuffle
+      
+      encertsUnics = 0;
+      totalIntents = 0;
+      totalPreguntesNivell = preguntesOriginalsNivell.length; // Total unique questions for the level
+
+      score.textContent = `Encerts: ${encertsUnics} / ${totalPreguntesNivell} (Intents: ${totalIntents})`;
+      updateProgress(); // Reset progress bar to 0%
+      mostraPregunta(); // Start the first question
+    }
+
+    function mostraPregunta() {
+      quizContainer.innerHTML = ""; // Neteja el contenidor abans de mostrar nova pregunta
+      nextBtn.classList.add("hidden"); // Oculta el botó "Següent"
+
+      if (preguntesARepassar.length === 0) {
+        // El nivell s'ha completat quan no queden preguntes per repassar
+        quizContainer.innerHTML = `
+          <div class="text-center">
+            <p class="text-xl font-semibold mb-4">🎉 Has completat el nivell!</p>
+            <p class="mb-4">Has encertat les ${totalPreguntesNivell} preguntes úniques en ${totalIntents} intents.</p>
+            <button onclick="window.location.reload()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Tornar als nivells</button>
+          </div>`;
+        return;
+      }
+
+      // Sempre agafem la primera pregunta de l'array 'preguntesARepassar' després de la barreja
+      const actual = preguntesARepassar[0];
+      quizContainer.currentQuestion = actual; // Assigna la pregunta actual per a la validació
+      quizContainer.dataset.currentQuestionType = actual.tipus; // Guarda el tipus de pregunta
+
+      if (actual.tipus === "test") {
+        const opcionsHTML = actual.opcions.map((text, i) => `
+          <button onclick="validaResposta(${i}, this)" class="w-full text-left px-4 py-2 mb-2 border rounded bg-gray-100 hover:bg-gray-200 opc">${text}</button>
+        `).join("");
+        quizContainer.innerHTML = `<p class="mb-4 font-medium">${actual.pregunta}</p><div id="opcions-container">${opcionsHTML}</div><div id="feedback" class="mt-4 text-center"></div>`;
+      } else if (actual.tipus === "completar") {
+        const selectHTML = `<select id="select-frase" class="mx-1 border rounded px-2 py-1">
+          <option value="">-- Selecciona --</option> ${actual.opcions.map(o => `<option>${o}</option>`).join("")}
+        </select>`;
+        const fraseAmbSelect = actual.frase.replace("___", selectHTML);
+        quizContainer.innerHTML = `<p class="mb-4">${fraseAmbSelect}</p>
+          <button id="comprovar-btn" onclick="validaCompletar()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-2">Comprovar</button>
+          <div id="feedback" class="mt-4 text-center"></div>`;
+      } else if (actual.tipus === "relacionar") {
+        let html = `<p class="mb-4">${actual.pregunta}</p><div class="space-y-4" id="relacionar-container">`;
+        actual.parelles.forEach((p, i) => {
+          html += `<div>${p.esquerra}: <select data-index="${i}" class="border rounded px-2 py-1">
+            <option value="">-- Selecciona --</option> ${p.opcions.map(o => `<option>${o}</option>`).join("")}</select></div>`;
+        });
+        html += `</div><button id="comprovar-btn" onclick="validaRelacionar()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Comprovar</button><div id="feedback" class="mt-4 text-center"></div>`;
+        quizContainer.innerHTML = html;
+      }
+    }
+
+    // Funció per bloquejar la interacció amb les opcions de la pregunta actual
+    function bloquejaInteraccio() {
+        const tipus = quizContainer.dataset.currentQuestionType;
+        if (tipus === "test") {
+            const botons = quizContainer.querySelectorAll(".opc");
+            botons.forEach(btn => btn.disabled = true);
+        } else if (tipus === "completar") {
+            const selectElement = document.getElementById("select-frase");
+            if(selectElement) selectElement.disabled = true;
+            const comprovarBtn = document.getElementById("comprovar-btn");
+            if(comprovarBtn) comprovarBtn.disabled = true;
+        } else if (tipus === "relacionar") {
+            const selects = quizContainer.querySelectorAll("#relacionar-container select");
+            selects.forEach(s => s.disabled = true);
+            const comprovarBtn = document.getElementById("comprovar-btn");
+            if(comprovarBtn) comprovarBtn.disabled = true;
+        }
+    }
+
+    function validaResposta(index, clickedButton) {
+      // Si el botó 'Següent' ja és visible, vol dir que ja s'ha respost i validat
+      if (!nextBtn.classList.contains("hidden")) {
+        return;
+      }
+
+      totalIntents++; // Incrementa el comptador d'intents
+      const feedback = document.getElementById("feedback");
+      const actual = quizContainer.currentQuestion; // Accedeix a la pregunta actual
+
+      if (index === actual.correcta) {
+        encertsUnics++; // Incrementa només si és la primera vegada que s'encerta aquesta pregunta
+        feedback.innerHTML = "<p class='text-green-600 font-bold'>😊 Correcte!</p>";
+        clickedButton.classList.remove("bg-gray-100", "hover:bg-gray-200");
+        clickedButton.classList.add("bg-green-200", "border-green-500");
+        
+        // La pregunta s'ha encertat, la treiem de la llista de preguntes a repassar
+        preguntesARepassar.shift(); // Elimina la primera pregunta (que és l'actual)
+        shuffleArray(preguntesARepassar); // Barreja la resta per al següent torn
+      } else {
+        feedback.innerHTML = "<p class='text-red-600 font-bold'>😢 Incorrecte!</p>";
+        clickedButton.classList.remove("bg-gray-100", "hover:bg-gray-200");
+        clickedButton.classList.add("bg-red-200", "border-red-500");
+
+        // Ressalta la resposta correcta
+        const opcions = quizContainer.querySelectorAll(".opc");
+        opcions[actual.correcta].classList.add("bg-green-200", "border-green-500");
+        
+        // La pregunta incorrecta es queda a la llista, es barreja per reaparèixer més tard
+        shuffleArray(preguntesARepassar);
+      }
+      score.textContent = `Encerts: ${encertsUnics} / ${totalPreguntesNivell} (Intents: ${totalIntents})`;
+      updateProgress();
+      nextBtn.classList.remove("hidden"); // Mostra el botó "Següent"
+      bloquejaInteraccio(); // Bloqueja les opcions per evitar més clics
+    }
+
+    function validaCompletar() {
+      if (!nextBtn.classList.contains("hidden")) {
+        return;
+      }
+      
+      totalIntents++;
+      const select = document.getElementById("select-frase");
+      const valor = select ? select.value : ""; // Comprova si l'element existeix
+      const feedback = document.getElementById("feedback");
+      const actual = quizContainer.currentQuestion;
+
+      if (valor === actual.correcta) {
+        encertsUnics++;
+        feedback.innerHTML = "<p class='text-green-600 font-bold'>😊 Correcte!</p>";
+        if(select) select.classList.add("bg-green-200", "border-green-500");
+        
+        preguntesARepassar.shift();
+        shuffleArray(preguntesARepassar);
+      } else {
+        feedback.innerHTML = "<p class='text-red-600 font-bold'>😢 Incorrecte!</p>";
+        if(select) select.classList.add("bg-red-200", "border-red-500");
+        feedback.innerHTML += `<p class="text-sm text-gray-700 mt-1">La resposta correcta era: <strong>${actual.correcta}</strong></p>`;
+        
+        shuffleArray(preguntesARepassar);
+      }
+      score.textContent = `Encerts: ${encertsUnics} / ${totalPreguntesNivell} (Intents: ${totalIntents})`;
+      updateProgress();
+      nextBtn.classList.remove("hidden");
+      bloquejaInteraccio();
+    }
+
+    function validaRelacionar() {
+      if (!nextBtn.classList.contains("hidden")) {
+        return;
+      }
+
+      totalIntents++;
+      const selects = quizContainer.querySelectorAll("select[data-index]");
+      let correctesParcials = 0;
+      const feedback = document.getElementById("feedback");
+      const actual = quizContainer.currentQuestion;
+
+      selects.forEach((s, i) => {
+        if (s.value === actual.parelles[i].correcta) {
+            correctesParcials++;
+            s.classList.add("bg-green-200", "border-green-500");
+        } else {
+            s.classList.add("bg-red-200", "border-red-500");
+        }
+      });
+      
+      if (correctesParcials === actual.parelles.length) {
+        encertsUnics++;
+        feedback.innerHTML = "<p class='text-green-600 font-bold'>😊 Molt bé!</p>";
+        
+        preguntesARepassar.shift();
+        shuffleArray(preguntesARepassar);
+      } else {
+        feedback.innerHTML = "<p class='text-red-600 font-bold'>❌ Revisa les respostes.</p>";
+        let respostesCorrectesHtml = `<p class="text-sm text-gray-700 mt-1">Respostes correctes (${correctesParcials} de ${actual.parelles.length} encertades):</p><ul>`;
+        actual.parelles.forEach((p) => {
+            respostesCorrectesHtml += `<li>${p.esquerra}: <strong>${p.correcta}</strong></li>`;
+        });
+        respostesCorrectesHtml += "</ul>";
+        feedback.innerHTML += respostesCorrectesHtml;
+        
+        shuffleArray(preguntesARepassar);
+      }
+      score.textContent = `Encerts: ${encertsUnics} / ${totalPreguntesNivell} (Intents: ${totalIntents})`;
+      updateProgress();
+      nextBtn.classList.remove("hidden");
+      bloquejaInteraccio();
+    }
+
+    function updateProgress() {
+      // El percentatge es calcula en base a les preguntes úniques encertades respecte al total de preguntes del nivell
+      const percentatge = totalPreguntesNivell > 0 ? (encertsUnics / totalPreguntesNivell) * 100 : 0;
+      progressFill.style.width = `${percentatge}%`;
+    }
+  </script>
+</body>
+</html>
