@@ -3,16 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temari ACTIC 3 – C5 · Mòdul 1: Manipulació d’imatges fixes</title>
+  <title>Temari ACTIC 3 – C5</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function toggleIndex(modul) {
+      const index = document.getElementById(`index-${modul}`);
+      index.classList.toggle('hidden');
+    }
+  </script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
   <div class="max-w-4xl mx-auto py-8 px-4">
     <h1 class="text-3xl font-bold mb-4 text-center">Temari ACTIC 3 – C5</h1>
-    <h2 class="text-xl font-semibold text-blue-600 mb-6">Mòdul 1: Manipulació d’imatges fixes (R5.1)</h2>
 
-    <nav class="mb-6">
-      <ul class="list-disc ml-6 space-y-1 text-blue-700">
+    <!-- Barra horitzontal de mòduls -->
+    <div class="flex flex-wrap justify-center gap-2 mb-6">
+      <button onclick="toggleIndex(1)" class="bg-blue-600 text-white px-4 py-0.5 rounded hover:bg-blue-700">Mòdul 1</button>
+      <button onclick="toggleIndex(2)" class="bg-green-600 text-white px-4 py-0.5 rounded hover:bg-green-700">Mòdul 2</button>
+      <button onclick="toggleIndex(3)" class="bg-purple-600 text-white px-4 py-0.5 rounded hover:bg-purple-700">Mòdul 3</button>
+      <button onclick="toggleIndex(4)" class="bg-yellow-600 text-white px-4 py-0.5 rounded hover:bg-yellow-700">Mòdul 4</button>
+    </div>
+
+    <!-- Índexs desplegables -->
+    <nav id="index-1" class="hidden mb-6 bg-white border rounded p-4 shadow text-blue-700">
+      <ul class="list-disc ml-6 space-y-1">
         <li><a href="#1" class="hover:underline">1. Tipus d’imatges: vectorials i mapa de bits</a></li>
         <li><a href="#2" class="hover:underline">2. Formats i compressió</a></li>
         <li><a href="#3" class="hover:underline">3. Resolució, mida i profunditat de color</a></li>
@@ -23,6 +37,16 @@
         <li><a href="#8" class="hover:underline">8. Capes, màscares i eines de selecció</a></li>
         <li><a href="#9" class="hover:underline">9. Retoc i correcció de color</a></li>
         <li><a href="#10" class="hover:underline">10. Conceptes avançats: perfil ICC, gamma, aliasing</a></li>
+      </ul>
+    </nav>
+
+    <nav id="index-2" class="hidden mb-6 bg-white border rounded p-4 shadow text-green-700">
+      <ul class="list-disc ml-6 space-y-1">
+        <li><a href="#video1" class="hover:underline">1. Formats de vídeo i còdecs</a></li>
+        <li><a href="#video2" class="hover:underline">2. Elements d’un projecte de vídeo</a></li>
+        <li><a href="#video3" class="hover:underline">3. Edició bàsica de vídeo</a></li>
+        <li><a href="#video4" class="hover:underline">4. Títols i subtítols</a></li>
+        <li><a href="#video5" class="hover:underline">5. Exportació i compressió</a></li>
       </ul>
     </nav>
 
@@ -94,7 +118,34 @@
         <li><strong>Perfil ICC</strong>: perfil de color per a coherència entre dispositius.</li>
       </ul>
     </section>
-
+    <!-- CONTINGUT MÒDUL 2 -->
+    <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#16a34a;">Mòdul 2: Manipulació d’imatges en moviment (R5.2)</h2>
+    <section id="video1" class="mb-6">
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Formats de vídeo i còdecs</h3>
+      <p>Els formats més habituals són <strong>MP4</strong>, <strong>AVI</strong>, <strong>MOV</strong> i <strong>MKV</strong>. Cada format pot utilitzar diferents <strong>còdecs</strong> (compressors/descompressors), com <strong>H.264</strong> o <strong>VP9</strong>. El còdec determina la qualitat i la mida final del vídeo.</p>
+      <p><em>Exemple pràctic:</em> en <strong>LiVES</strong> o <strong>Premiere</strong>, pots escollir format i còdec a l’hora d’exportar el projecte.</p>
+    </section>
+    <section id="video2" class="mb-6">
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Elements d’un projecte de vídeo</h3>
+      <p>Un projecte de vídeo conté una <strong>línia de temps (timeline)</strong>, <strong>clips de vídeo</strong>, <strong>àudio</strong>, <strong>transicions</strong> i <strong>efectes</strong>. Es treballa per <strong>pistes</strong>, on es poden apilar vídeos i sons.</p>
+      <p><em>Programari:</em> LiVES o Adobe Premiere permeten organitzar clips arrossegant-los a la línia de temps.</p>
+    </section>
+    <section id="video3" class="mb-6">
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Edició bàsica de vídeo</h3>
+      <p>Inclou accions com <strong>tallar, dividir i unir clips</strong>, <strong>afegir transicions</strong> (fundits, esvaïments), i aplicar <strong>efectes visuals</strong>. També es pot modificar la velocitat del clip o aplicar estabilització.</p>
+      <p><em>LiVES:</em> Utilitza les eines de la barra per fer retalls i transicions bàsiques.</p>
+    </section>
+    <section id="video4" class="mb-6">
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Títols i subtítols</h3>
+      <p>És possible afegir textos animats, noms, crèdits o subtítols. Alguns programes permeten carregar arxius <code>.srt</code> per als subtítols o crear-los manualment.</p>
+      <p><em>Premiere:</em> Usa l'eina <strong>Text</strong> per inserir títols sobre el vídeo.</p>
+    </section>
+    <section id="video5" class="mb-6">
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Exportació i compressió</h3>
+      <p>Quan es finalitza un projecte, cal <strong>exportar-lo</strong> en un format adequat. Es pot escollir la resolució (1080p, 720p...), la qualitat i el còdec per controlar el pes del fitxer. Sempre cal considerar on es publicarà: web, xarxes, presentació, etc.</p>
+      <p><em>Consell:</em> per web, utilitza <strong>MP4 amb còdec H.264</strong>; per qualitat màxima, exporta amb còdecs sense pèrdua si l'espai ho permet.</p>
+    </section>
   </div>
 </body>
 </html>
+
