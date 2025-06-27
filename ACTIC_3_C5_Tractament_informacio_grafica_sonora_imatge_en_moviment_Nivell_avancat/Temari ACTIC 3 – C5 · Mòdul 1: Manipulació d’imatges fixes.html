@@ -6,11 +6,32 @@
   <title>Temari ACTIC 3 – C5</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script>
-    function toggleIndex(modul) {
-      const index = document.getElementById(`index-${modul}`);
-      index.classList.toggle('hidden');
-    }
-  </script>
+let modulActiu = null;
+
+function toggleIndex(modul) {
+  const indexActual = document.getElementById(`index-${modul}`);
+  const contentActual = document.getElementById(`content-${modul}`);
+
+  // Si clico el mateix mòdul
+  if (modulActiu === modul) {
+    if (indexActual) indexActual.classList.toggle('hidden');
+    return;
+  }
+
+  // Tancar tot
+  for (let i = 1; i <= 4; i++) {
+    const index = document.getElementById(`index-${i}`);
+    const content = document.getElementById(`content-${i}`);
+    if (index) index.classList.add('hidden');
+    if (content) content.classList.add('hidden');
+  }
+
+  // Obrir el nou mòdul
+  if (indexActual) indexActual.classList.remove('hidden');
+  if (contentActual) contentActual.classList.remove('hidden');
+  modulActiu = modul;
+}
+</script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
   <div class="max-w-4xl mx-auto py-8 px-4">
@@ -25,6 +46,22 @@
     </div>
 
     <!-- Índexs desplegables -->
+<nav id="index-4" class="hidden mb-6 bg-white border rounded p-4 shadow text-yellow-700">
+  <ul class="list-disc ml-6 space-y-1">
+    <li><a href="#media1" class="hover:underline">1. Reproductors i formats multimèdia</a></li>
+    <li><a href="#media2" class="hover:underline">2. Compatibilitat entre formats</a></li>
+    <li><a href="#media3" class="hover:underline">3. Configuració i còdecs</a></li>
+    <li><a href="#media4" class="hover:underline">4. Problemes habituals de reproducció</a></li>
+  </ul>
+</nav>
+<nav id="index-3" class="hidden mb-6 bg-white border rounded p-4 shadow text-purple-700">
+  <ul class="list-disc ml-6 space-y-1">
+    <li><a href="#audio1" class="hover:underline">1. Formats d’àudio i compressió</a></li>
+    <li><a href="#audio2" class="hover:underline">2. Gravació i edició de so</a></li>
+    <li><a href="#audio3" class="hover:underline">3. Mescla, efectes i neteja</a></li>
+    <li><a href="#audio4" class="hover:underline">4. Exportació i compatibilitat</a></li>
+  </ul>
+</nav>
     <nav id="index-1" class="hidden mb-6 bg-white border rounded p-4 shadow text-blue-700">
       <ul class="list-disc ml-6 space-y-1">
         <li><a href="#1" class="hover:underline">1. Tipus d’imatges: vectorials i mapa de bits</a></li>
@@ -50,41 +87,44 @@
       </ul>
     </nav>
 
+    <!-- CONTINGUT MÒDUL 1 -->
+<div id="content-1" class="hidden">
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#2563eb;">Mòdul 1: Manipulació d’imatges fixes (R5.1)</h2>
     <section id="1" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">1. Tipus d’imatges: vectorials i mapa de bits</h3>
-      <p>Les <strong>imatges de mapa de bits</strong> estan compostes per píxels. Són ideals per a fotografies i tenen limitacions quan s’amplien, ja que poden perdre qualitat. Les <strong>imatges vectorials</strong> es basen en fórmules matemàtiques i es poden escalar sense pèrdua. Ideals per logotips, icones, esquemes.</p>
-    </section>
-
-    <section id="2" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">2. Formats i compressió</h3>
-      <p>Formats habituals:</p>
-      <ul class="list-disc ml-6">
-        <li><strong>JPEG</strong>: compressió amb pèrdua, bo per a fotografies.</li>
-        <li><strong>PNG</strong>: compressió sense pèrdua, amb transparència.</li>
-        <li><strong>GIF</strong>: 256 colors, animacions simples.</li>
-        <li><strong>TIFF</strong>: alta qualitat, ús professional.</li>
-        <li><strong>BMP</strong>: gran mida, sense compressió.</li>
-        <li><strong>SVG</strong>: vectorial, ideal per web.</li>
-      </ul>
-    </section>
-
-    <section id="3" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">3. Resolució, mida i profunditat de color</h3>
-      <p>La <strong>resolució</strong> s’expressa en ppi (pantalla) o dpi (impressió). Una profunditat de color de <strong>8 bits</strong> permet 256 colors; amb <strong>24 bits</strong> s’obtenen 16,7 milions de colors. La <strong>mida del fitxer</strong> depèn de la resolució, el format i la compressió.</p>
-    </section>
-
-    <section id="4" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">4. Modes de color i canal alfa</h3>
-      <p><strong>RGB</strong> (pantalles), <strong>CMYK</strong> (impressió), <strong>HSV</strong> i escala de grisos són modes habituals. El <strong>canal alfa</strong> controla la transparència d’un píxel.</p>
-    </section>
-
-    <section id="5" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">5. Fonts d’adquisició: càmera, escàner, internet</h3>
-      <p>Les imatges poden obtenir-se amb <strong>càmeres digitals</strong>, <strong>escàners</strong>, o descarregant-les d’internet, sempre respectant els <strong>drets d’ús</strong>. També es poden crear digitalment amb programari.</p>
-    </section>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Tipus d’imatges: vectorials i mapa de bits</h3>
+  <p>Les <strong>imatges de mapa de bits</strong> estan compostes per píxels. Són ideals per a fotografies i tenen limitacions quan s’amplien, ja que poden perdre qualitat. Les <strong>imatges vectorials</strong> es basen en fórmules matemàtiques i es poden escalar sense pèrdua. Ideals per logotips, icones, esquemes.</p>
+  <p><em>Programari relacionat:</em> GIMP per a imatges de mapa de bits; Inkscape o Illustrator per a vectorials.</p>
+</section>
+<section id="2" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Formats i compressió</h3>
+  <ul class="list-disc ml-6">
+    <li><strong>JPEG</strong>: compressió amb pèrdua, bo per a fotografies.</li>
+    <li><strong>PNG</strong>: compressió sense pèrdua, amb transparència.</li>
+    <li><strong>GIF</strong>: 256 colors, animacions simples.</li>
+    <li><strong>TIFF</strong>: alta qualitat, ús professional.</li>
+    <li><strong>BMP</strong>: gran mida, sense compressió.</li>
+    <li><strong>SVG</strong>: vectorial, ideal per web.</li>
+  </ul>
+  <p><em>Consell pràctic:</em> Utilitza JPEG per a fotos web i PNG per a gràfics amb transparència.</p>
+</section>
+<section id="3" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Resolució, mida i profunditat de color</h3>
+  <p>La <strong>resolució</strong> s’expressa en ppi (pantalla) o dpi (impressió). Una profunditat de color de <strong>8 bits</strong> permet 256 colors; amb <strong>24 bits</strong> s’obtenen 16,7 milions de colors. La <strong>mida del fitxer</strong> depèn de la resolució, el format i la compressió.</p>
+  <p><em>Aplicació:</em> En GIMP, consulta la resolució a <code>Imatge > Escala d'imatge</code>.</p>
+</section>
+<section id="4" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Modes de color i canal alfa</h3>
+  <p><strong>RGB</strong> (pantalles), <strong>CMYK</strong> (impressió), <strong>HSV</strong> i escala de grisos són modes habituals. El <strong>canal alfa</strong> controla la transparència d’un píxel.</p>
+  <p><em>Programari:</em> A GIMP, el mode de color es canvia a <code>Imatge > Mode</code>.</p>
+</section>
+<section id="5" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Fonts d’adquisició: càmera, escàner, internet</h3>
+  <p>Les imatges poden obtenir-se amb <strong>càmeres digitals</strong>, <strong>escàners</strong>, o descarregant-les d’internet, sempre respectant els <strong>drets d’ús</strong>. També es poden crear digitalment amb programari.</p>
+  <p><em>Recursos recomanats:</em> Pexels, Unsplash (imatges lliures de drets).</p>
+</section>
 
     <section id="6" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">6. Edició amb programari (GIMP / Photoshop)</h3>
+        <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">6. Edició amb programari (GIMP / Photoshop)</h3>
       <p>Cal saber utilitzar programes com <strong>GIMP</strong> (lliure) o <strong>Photoshop</strong> (comercial) per:</p>
       <ul class="list-disc ml-6">
         <li>Obrir, desar, exportar en diferents formats</li>
@@ -96,30 +136,32 @@
     </section>
 
     <section id="7" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">7. Transformacions bàsiques i avançades</h3>
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">7. Transformacions bàsiques i avançades</h3>
       <p>Inclou canvis d’escala, gir, perspectiva, reflexió, deformació. També: copiar/enganxar parts d’una imatge, o ajustar l’enquadrament (retall).</p>
     </section>
 
     <section id="8" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">8. Capes, màscares i eines de selecció</h3>
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">8. Capes, màscares i eines de selecció</h3>
       <p>Les <strong>capes</strong> permeten edició independent. Les <strong>màscares de capa</strong> amaguen o mostren parts. Eines de selecció: <em>marc, vareta, llaç, tisores</em> per editar àrees específiques.</p>
     </section>
 
     <section id="9" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">9. Retoc i correcció de color</h3>
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">9. Retoc i correcció de color</h3>
       <p>Brillantor/contrast, saturació, nivells i corbes. Correcció del balanç de blancs. Eliminació de dominants. Amb GIMP/Photoshop: menús <em>Colors</em>, <em>Eines > Retoc</em>.</p>
     </section>
 
     <section id="10" class="mb-6">
-      <h3 class="text-lg font-bold mb-2">10. Conceptes avançats: perfil ICC, gamma, aliasing</h3>
+      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">10. Conceptes avançats: perfil ICC, gamma, aliasing</h3>
       <ul class="list-disc ml-6">
         <li><strong>Gamma</strong>: relació entre valor numèric i brillantor percebuda.</li>
         <li><strong>Aliasing</strong>: vores dentades, es corregeix amb <em>antialiasing</em>.</li>
         <li><strong>Perfil ICC</strong>: perfil de color per a coherència entre dispositius.</li>
       </ul>
-    </section>
+          </section>
+  </div>
     <!-- CONTINGUT MÒDUL 2 -->
-    <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#16a34a;">Mòdul 2: Manipulació d’imatges en moviment (R5.2)</h2>
+<div id="content-2" class="hidden">
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#16a34a;">Mòdul 2: Manipulació d’imatges en moviment (R5.2)</h2>
     <section id="video1" class="mb-6">
       <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Formats de vídeo i còdecs</h3>
       <p>Els formats més habituals són <strong>MP4</strong>, <strong>AVI</strong>, <strong>MOV</strong> i <strong>MKV</strong>. Cada format pot utilitzar diferents <strong>còdecs</strong> (compressors/descompressors), com <strong>H.264</strong> o <strong>VP9</strong>. El còdec determina la qualitat i la mida final del vídeo.</p>
@@ -141,11 +183,68 @@
       <p><em>Premiere:</em> Usa l'eina <strong>Text</strong> per inserir títols sobre el vídeo.</p>
     </section>
     <section id="video5" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Exportació i compressió</h3>
-      <p>Quan es finalitza un projecte, cal <strong>exportar-lo</strong> en un format adequat. Es pot escollir la resolució (1080p, 720p...), la qualitat i el còdec per controlar el pes del fitxer. Sempre cal considerar on es publicarà: web, xarxes, presentació, etc.</p>
-      <p><em>Consell:</em> per web, utilitza <strong>MP4 amb còdec H.264</strong>; per qualitat màxima, exporta amb còdecs sense pèrdua si l'espai ho permet.</p>
-    </section>
-  </div>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Exportació i compressió</h3>
+  <p>Quan es finalitza un projecte, cal <strong>exportar-lo</strong> en un format adequat. Es pot escollir la resolució (1080p, 720p...), la qualitat i el còdec per controlar el pes del fitxer. Sempre cal considerar on es publicarà: web, xarxes, presentació, etc.</p>
+  <p><em>Consell:</em> per web, utilitza <strong>MP4 amb còdec H.264</strong>; per qualitat màxima, exporta amb còdecs sense pèrdua si l'espai ho permet.</p>
+</section>
+</div>
+  <!-- CONTINGUT MÒDUL 3 -->
+<div id="content-3" class="hidden">
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#7e22ce;">Mòdul 3: Tractament d’àudio (R5.3)</h2>
+
+  <section id="audio1" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Formats d’àudio i compressió</h3>
+    <p>Els formats habituals inclouen <strong>WAV</strong> (sense compressió), <strong>MP3</strong> i <strong>OGG</strong> (compressió amb pèrdua). La qualitat depèn de la taxa de bits (kbps). Format WAV és ideal per a edició, MP3 per a distribució.</p>
+    <p><em>Programari:</em> Audacity per importar i exportar en diferents formats. CDex per convertir CD d'àudio a arxius digitals.</p>
+  </section>
+
+  <section id="audio2" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Gravació i edició de so</h3>
+    <p>Amb <strong>Audacity</strong> pots gravar àudio des de micròfon o entrada de línia. Permet seleccionar, tallar, copiar, enganxar i silenciar segments d’àudio, així com aplicar fundits d’entrada/sortida.</p>
+  </section>
+
+  <section id="audio3" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Mescla, efectes i neteja</h3>
+    <p>Inclou ajustos com la <strong>normalització</strong>, <strong>reducció de soroll</strong>, <strong>canvi de to o velocitat</strong>, i <strong>efectes</strong> com reverberació o eco. És possible mesclar múltiples pistes i ajustar volums.</p>
+    <p><em>Exemple:</em> Mescla una veu amb música de fons i ajusta el nivell de cada pista amb l’eina de mescla.</p>
+  </section>
+
+  <section id="audio4" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Exportació i compatibilitat</h3>
+    <p>Es pot exportar a MP3, WAV o altres formats segons l’ús previst. Cal tenir instal·lat el codificador <strong>LAME</strong> per exportar MP3 des d’Audacity.</p>
+    <p><em>Consell:</em> per mantenir qualitat, exporta en WAV durant l’edició i converteix a MP3 al final.</p>
+  </section>
+</div>
+
+<!-- CONTINGUT MÒDUL 4 -->
+<div id="content-4" class="hidden">
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#ca8a04;">Mòdul 4: Reproducció multimèdia i compatibilitat (R5.4)</h2>
+
+  <section id="media1" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Reproductors i formats multimèdia</h3>
+    <p>Els reproductors més habituals són <strong>VLC</strong>, <strong>BSPlayer</strong> i <strong>Windows Media Player</strong>. Aquests poden obrir una àmplia gamma de formats: <code>.mp4</code>, <code>.mp3</code>, <code>.avi</code>, <code>.mkv</code>, <code>.ogg</code>, etc.</p>
+    <p><em>VLC:</em> és multiplataforma i compatible amb la majoria de formats, ideal per a l’ús general.</p>
+  </section>
+
+  <section id="media2" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Compatibilitat entre formats</h3>
+    <p>Alguns dispositius només suporten formats específics (ex. <code>.mp4</code> per mòbils). És important saber convertir entre formats utilitzant eines com <strong>HandBrake</strong> o <strong>FFmpeg</strong>.</p>
+  </section>
+
+  <section id="media3" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Configuració i còdecs</h3>
+    <p>Els còdecs permeten comprimir i descomprimir àudio i vídeo. Si un fitxer no es pot reproduir, sovint és per manca de còdec. VLC ja els inclou tots. En altres casos cal instal·lar paquets com K-Lite Codec Pack.</p>
+  </section>
+
+  <section id="media4" class="mb-6">
+    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Problemes habituals de reproducció</h3>
+    <p>Errors comuns: àudio desincronitzat, falta d’imatge, codecs no reconeguts, subtítols que no apareixen. Cal revisar la compatibilitat del fitxer, els codecs instal·lats i les opcions del reproductor.</p>
+    <p><em>Solució pràctica:</em> obrir el fitxer amb VLC i, si cal, convertir-lo a un format més compatible.</p>
+  </section>
+</div>
+
+</div>
 </body>
 </html>
+
 
