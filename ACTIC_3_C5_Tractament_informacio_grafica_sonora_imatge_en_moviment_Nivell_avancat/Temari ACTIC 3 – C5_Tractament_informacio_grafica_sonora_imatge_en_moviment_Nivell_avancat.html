@@ -12,13 +12,13 @@ function toggleIndex(modul) {
   const indexActual = document.getElementById(`index-${modul}`);
   const contentActual = document.getElementById(`content-${modul}`);
 
-  // Si clico el mateix mòdul
   if (modulActiu === modul) {
     if (indexActual) indexActual.classList.toggle('hidden');
+    if (contentActual) contentActual.classList.toggle('hidden');
+    modulActiu = null;
     return;
   }
 
-  // Tancar tot
   for (let i = 1; i <= 4; i++) {
     const index = document.getElementById(`index-${i}`);
     const content = document.getElementById(`content-${i}`);
@@ -26,224 +26,1565 @@ function toggleIndex(modul) {
     if (content) content.classList.add('hidden');
   }
 
-  // Obrir el nou mòdul
   if (indexActual) indexActual.classList.remove('hidden');
   if (contentActual) contentActual.classList.remove('hidden');
   modulActiu = modul;
 }
-</script>
+  </script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
   <div class="max-w-4xl mx-auto py-8 px-4">
     <h1 class="text-3xl font-bold mb-4 text-center">Temari ACTIC 3 – C5</h1>
 
-    <!-- Barra horitzontal de mòduls -->
-    <div class="flex flex-wrap justify-center gap-2 mb-6">
-      <button onclick="toggleIndex(1)" class="bg-blue-600 text-white px-4 py-0.5 rounded hover:bg-blue-700">Mòdul 1</button>
-      <button onclick="toggleIndex(2)" class="bg-green-600 text-white px-4 py-0.5 rounded hover:bg-green-700">Mòdul 2</button>
-      <button onclick="toggleIndex(3)" class="bg-purple-600 text-white px-4 py-0.5 rounded hover:bg-purple-700">Mòdul 3</button>
-      <button onclick="toggleIndex(4)" class="bg-yellow-600 text-white px-4 py-0.5 rounded hover:bg-yellow-700">Mòdul 4</button>
-    </div>
+<!-- Barra de navegació de mòduls -->
+<div class="flex justify-center gap-4 mb-8">
+  <button onclick="toggleIndex(1)" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Mòdul 1</button>
+  <button onclick="toggleIndex(2)" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Mòdul 2</button>
+  <button onclick="toggleIndex(3)" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Mòdul 3</button>
+  <button onclick="toggleIndex(4)" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg yellow-600">Mòdul 4</button>
+</div>
 
-    <!-- Índexs desplegables -->
-<nav id="index-4" class="hidden mb-6 bg-white border rounded p-4 shadow text-yellow-700">
-  <ul class="list-disc ml-6 space-y-1">
-    <li><a href="#media1" class="hover:underline">1. Reproductors i formats multimèdia</a></li>
-    <li><a href="#media2" class="hover:underline">2. Compatibilitat entre formats</a></li>
-    <li><a href="#media3" class="hover:underline">3. Configuració i còdecs</a></li>
-    <li><a href="#media4" class="hover:underline">4. Problemes habituals de reproducció</a></li>
+    <!-- CONTINGUT NET I VALIDAT DEL MÒDUL 1 -->
+    <div id="content-1" class="hidden">
+      <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#2563eb;">Mòdul 1: Manipulació d’imatges fixes (R5.1)</h2>
+
+      <!-- Índex Mòdul 1 -->
+<nav id="index-1" class="hidden mb-6 bg-white border rounded p-4 shadow text-blue-700">
+  <ul>  
+    <li><a href="#1" class="hover:underline">1. Tipus d’imatges: vectorials i mapa de bits</a></li>
+    <li><a href="#2" class="hover:underline">2. Formats i compressió</a></li>
+    <li><a href="#3" class="hover:underline">3. Resolució, mida i profunditat de color</a></li>
+    <li><a href="#4" class="hover:underline">4. Modes de color i canal alfa</a></li>
+    <li><a href="#5" class="hover:underline">5. Fonts d’adquisició: càmera, escàner, internet</a></li>
+    <li><a href="#6" class="hover:underline">6. Edició amb programari (GIMP / Photoshop)</a></li>
+    <li><a href="#7" class="hover:underline">7. Transformacions bàsiques i avançades</a></li>
+    <li><a href="#8" class="hover:underline">8. Capes, màscares i eines de selecció</a></li>
+    <li><a href="#9" class="hover:underline">9. Retoc i correcció de color</a></li>
+    <li><a href="#10" class="hover:underline">10. Conceptes avançats: perfil ICC, gamma, aliasing</a></li>
+    <li><a href="#11" class="hover:underline">11. Emprar eines de dibuix</a></li>
+    <li><a href="#12" class="hover:underline">12. Emprar filtres de transformació d’imatges</a></li>
+    <li><a href="#13" class="hover:underline">13. Definir motius de fons</a></li>
+    <li><a href="#14" class="hover:underline">14. Crear objectes gràfics per a aplicacions interactives</a></li>
+    <li><a href="#15" class="hover:underline">15. Crear objectes vectorials</a></li>
+    <li><a href="#16" class="hover:underline">16. Crear filtres d’imatges avançats</a></li>
+    <li><a href="#17" class="hover:underline">17. Automatitzar tasques</a></li>
   </ul>
 </nav>
-<nav id="index-3" class="hidden mb-6 bg-white border rounded p-4 shadow text-purple-700">
-  <ul class="list-disc ml-6 space-y-1">
-    <li><a href="#audio1" class="hover:underline">1. Formats d’àudio i compressió</a></li>
-    <li><a href="#audio2" class="hover:underline">2. Gravació i edició de so</a></li>
-    <li><a href="#audio3" class="hover:underline">3. Mescla, efectes i neteja</a></li>
-    <li><a href="#audio4" class="hover:underline">4. Exportació i compatibilitat</a></li>
-  </ul>
-</nav>
-    <nav id="index-1" class="hidden mb-6 bg-white border rounded p-4 shadow text-blue-700">
-      <ul class="list-disc ml-6 space-y-1">
-        <li><a href="#1" class="hover:underline">1. Tipus d’imatges: vectorials i mapa de bits</a></li>
-        <li><a href="#2" class="hover:underline">2. Formats i compressió</a></li>
-        <li><a href="#3" class="hover:underline">3. Resolució, mida i profunditat de color</a></li>
-        <li><a href="#4" class="hover:underline">4. Modes de color i canal alfa</a></li>
-        <li><a href="#5" class="hover:underline">5. Fonts d’adquisició: càmera, escàner, internet</a></li>
-        <li><a href="#6" class="hover:underline">6. Edició amb programari (GIMP / Photoshop)</a></li>
-        <li><a href="#7" class="hover:underline">7. Transformacions bàsiques i avançades</a></li>
-        <li><a href="#8" class="hover:underline">8. Capes, màscares i eines de selecció</a></li>
-        <li><a href="#9" class="hover:underline">9. Retoc i correcció de color</a></li>
-        <li><a href="#10" class="hover:underline">10. Conceptes avançats: perfil ICC, gamma, aliasing</a></li>
-      </ul>
-    </nav>
 
-    <nav id="index-2" class="hidden mb-6 bg-white border rounded p-4 shadow text-green-700">
-      <ul class="list-disc ml-6 space-y-1">
-        <li><a href="#video1" class="hover:underline">1. Formats de vídeo i còdecs</a></li>
-        <li><a href="#video2" class="hover:underline">2. Elements d’un projecte de vídeo</a></li>
-        <li><a href="#video3" class="hover:underline">3. Edició bàsica de vídeo</a></li>
-        <li><a href="#video4" class="hover:underline">4. Títols i subtítols</a></li>
-        <li><a href="#video5" class="hover:underline">5. Exportació i compressió</a></li>
-      </ul>
-    </nav>
-
-    <!-- CONTINGUT MÒDUL 1 -->
-<div id="content-1" class="hidden">
-  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#2563eb;">Mòdul 1: Manipulació d’imatges fixes (R5.1)</h2>
-    <section id="1" class="mb-6">
+<!-- Secció 1 -->
+<section id="1-1" class="mb-6">
   <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Tipus d’imatges: vectorials i mapa de bits</h3>
-  <p>Les <strong>imatges de mapa de bits</strong> estan compostes per píxels. Són ideals per a fotografies i tenen limitacions quan s’amplien, ja que poden perdre qualitat. Les <strong>imatges vectorials</strong> es basen en fórmules matemàtiques i es poden escalar sense pèrdua. Ideals per logotips, icones, esquemes.</p>
-  <p><em>Programari relacionat:</em> GIMP per a imatges de mapa de bits; Inkscape o Illustrator per a vectorials.</p>
-</section>
-<section id="2" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Formats i compressió</h3>
-  <ul class="list-disc ml-6">
-    <li><strong>JPEG</strong>: compressió amb pèrdua, bo per a fotografies.</li>
-    <li><strong>PNG</strong>: compressió sense pèrdua, amb transparència.</li>
-    <li><strong>GIF</strong>: 256 colors, animacions simples.</li>
-    <li><strong>TIFF</strong>: alta qualitat, ús professional.</li>
-    <li><strong>BMP</strong>: gran mida, sense compressió.</li>
-    <li><strong>SVG</strong>: vectorial, ideal per web.</li>
+
+  <p>Les imatges digitals poden classificar-se en dos grans grups: <strong>imatges de mapa de bits</strong> i <strong>imatges vectorials</strong>. Cadascun d’aquests formats es basa en una estructura i ús diferents i són utilitzats per finalitats específiques dins l’àmbit gràfic, editorial i web.</p>
+
+  <h4 class="font-semibold mt-4">📌 Imatges de mapa de bits (bitmap)</h4>
+  <p>Una imatge de mapa de bits està formada per una graella de píxels. Cada píxel conté informació de color. Quan ampliem una imatge bitmap, els píxels es fan visibles i la qualitat d’imatge disminueix. Per aquest motiu, no són adequades per a grans ampliacions.</p>
+  <p><strong>Ús habitual:</strong> fotografies, pintures digitals, captures de pantalla, escanejats.</p>
+  <p><strong>Formats típics:</strong> JPEG, PNG, BMP, TIFF.</p>
+  <p><strong>Com es crea:</strong> Amb editors com <code>GIMP</code> (lliure) o <code>Adobe Photoshop</code>. A GIMP, pots començar una imatge nova a <code>Fitxer > Nova</code> i utilitzar eines com el pinzell, el llapis o l'eina de selecció per modificar píxels directament.</p>
+
+  <h4 class="font-semibold mt-4">📌 Imatges vectorials</h4>
+  <p>Les imatges vectorials es construeixen mitjançant formes geomètriques (línies, cercles, polígons) definides per equacions matemàtiques. La seva resolució és <strong>independent</strong> del tamany, i per tant poden escalar-se indefinidament sense pèrdua de qualitat.</p>
+  <p><strong>Ús habitual:</strong> logotips, icones, gràfics tècnics, infografies.</p>
+  <p><strong>Formats típics:</strong> SVG, EPS, PDF (vectorial), AI.</p>
+  <p><strong>Com es crea:</strong> Amb programari com <code>Inkscape</code> (lliure) o <code>Adobe Illustrator</code>. Per exemple, a Inkscape pots crear un cercle amb l’eina de cercles (F5) i modificar-lo mitjançant nodes.</p>
+
+  <h4 class="font-semibold mt-4">🆚 Diferències clau</h4>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Escalabilitat:</strong> Les imatges vectorials no perden qualitat; les bitmap sí.</li>
+    <li><strong>Edició:</strong> Les bitmap es retouquen píxel a píxel; les vectorials, amb formes i traços.</li>
+    <li><strong>Aplicacions:</strong> Bitmap per fotos realistes; vectorials per gràfics nets i precisos.</li>
   </ul>
-  <p><em>Consell pràctic:</em> Utilitza JPEG per a fotos web i PNG per a gràfics amb transparència.</p>
-</section>
-<section id="3" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Resolució, mida i profunditat de color</h3>
-  <p>La <strong>resolució</strong> s’expressa en ppi (pantalla) o dpi (impressió). Una profunditat de color de <strong>8 bits</strong> permet 256 colors; amb <strong>24 bits</strong> s’obtenen 16,7 milions de colors. La <strong>mida del fitxer</strong> depèn de la resolució, el format i la compressió.</p>
-  <p><em>Aplicació:</em> En GIMP, consulta la resolució a <code>Imatge > Escala d'imatge</code>.</p>
-</section>
-<section id="4" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Modes de color i canal alfa</h3>
-  <p><strong>RGB</strong> (pantalles), <strong>CMYK</strong> (impressió), <strong>HSV</strong> i escala de grisos són modes habituals. El <strong>canal alfa</strong> controla la transparència d’un píxel.</p>
-  <p><em>Programari:</em> A GIMP, el mode de color es canvia a <code>Imatge > Mode</code>.</p>
-</section>
-<section id="5" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Fonts d’adquisició: càmera, escàner, internet</h3>
-  <p>Les imatges poden obtenir-se amb <strong>càmeres digitals</strong>, <strong>escàners</strong>, o descarregant-les d’internet, sempre respectant els <strong>drets d’ús</strong>. També es poden crear digitalment amb programari.</p>
-  <p><em>Recursos recomanats:</em> Pexels, Unsplash (imatges lliures de drets).</p>
-</section>
 
-    <section id="6" class="mb-6">
-        <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">6. Edició amb programari (GIMP / Photoshop)</h3>
-      <p>Cal saber utilitzar programes com <strong>GIMP</strong> (lliure) o <strong>Photoshop</strong> (comercial) per:</p>
-      <ul class="list-disc ml-6">
-        <li>Obrir, desar, exportar en diferents formats</li>
-        <li>Redimensionar i retallar imatges</li>
-        <li>Aplicar filtres i efectes bàsics</li>
-        <li>Treballar amb capes</li>
-        <li>Afegir text o formes</li>
-      </ul>
-    </section>
-
-    <section id="7" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">7. Transformacions bàsiques i avançades</h3>
-      <p>Inclou canvis d’escala, gir, perspectiva, reflexió, deformació. També: copiar/enganxar parts d’una imatge, o ajustar l’enquadrament (retall).</p>
-    </section>
-
-    <section id="8" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">8. Capes, màscares i eines de selecció</h3>
-      <p>Les <strong>capes</strong> permeten edició independent. Les <strong>màscares de capa</strong> amaguen o mostren parts. Eines de selecció: <em>marc, vareta, llaç, tisores</em> per editar àrees específiques.</p>
-    </section>
-
-    <section id="9" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">9. Retoc i correcció de color</h3>
-      <p>Brillantor/contrast, saturació, nivells i corbes. Correcció del balanç de blancs. Eliminació de dominants. Amb GIMP/Photoshop: menús <em>Colors</em>, <em>Eines > Retoc</em>.</p>
-    </section>
-
-    <section id="10" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">10. Conceptes avançats: perfil ICC, gamma, aliasing</h3>
-      <ul class="list-disc ml-6">
-        <li><strong>Gamma</strong>: relació entre valor numèric i brillantor percebuda.</li>
-        <li><strong>Aliasing</strong>: vores dentades, es corregeix amb <em>antialiasing</em>.</li>
-        <li><strong>Perfil ICC</strong>: perfil de color per a coherència entre dispositius.</li>
-      </ul>
-          </section>
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Et demanen crear un logotip que es veurà a diversos suports: una lona de 2 metres, una web i un bolígraf promocional.</p>
+    <p><strong>Pregunta:</strong> Quin tipus d’imatge faries servir i com ho dissenyaries?</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Utilitzaria una imatge vectorial per garantir la màxima qualitat a totes les escales. Dissenyaria el logotip a Inkscape o Illustrator, treballant amb formes i tipografies escalables, i l’exportaria com a SVG o EPS.</p>
   </div>
-    <!-- CONTINGUT MÒDUL 2 -->
-<div id="content-2" class="hidden">
-  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#16a34a;">Mòdul 2: Manipulació d’imatges en moviment (R5.2)</h2>
-    <section id="video1" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Formats de vídeo i còdecs</h3>
-      <p>Els formats més habituals són <strong>MP4</strong>, <strong>AVI</strong>, <strong>MOV</strong> i <strong>MKV</strong>. Cada format pot utilitzar diferents <strong>còdecs</strong> (compressors/descompressors), com <strong>H.264</strong> o <strong>VP9</strong>. El còdec determina la qualitat i la mida final del vídeo.</p>
-      <p><em>Exemple pràctic:</em> en <strong>LiVES</strong> o <strong>Premiere</strong>, pots escollir format i còdec a l’hora d’exportar el projecte.</p>
-    </section>
-    <section id="video2" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Elements d’un projecte de vídeo</h3>
-      <p>Un projecte de vídeo conté una <strong>línia de temps (timeline)</strong>, <strong>clips de vídeo</strong>, <strong>àudio</strong>, <strong>transicions</strong> i <strong>efectes</strong>. Es treballa per <strong>pistes</strong>, on es poden apilar vídeos i sons.</p>
-      <p><em>Programari:</em> LiVES o Adobe Premiere permeten organitzar clips arrossegant-los a la línia de temps.</p>
-    </section>
-    <section id="video3" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Edició bàsica de vídeo</h3>
-      <p>Inclou accions com <strong>tallar, dividir i unir clips</strong>, <strong>afegir transicions</strong> (fundits, esvaïments), i aplicar <strong>efectes visuals</strong>. També es pot modificar la velocitat del clip o aplicar estabilització.</p>
-      <p><em>LiVES:</em> Utilitza les eines de la barra per fer retalls i transicions bàsiques.</p>
-    </section>
-    <section id="video4" class="mb-6">
-      <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Títols i subtítols</h3>
-      <p>És possible afegir textos animats, noms, crèdits o subtítols. Alguns programes permeten carregar arxius <code>.srt</code> per als subtítols o crear-los manualment.</p>
-      <p><em>Premiere:</em> Usa l'eina <strong>Text</strong> per inserir títols sobre el vídeo.</p>
-    </section>
-    <section id="video5" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Exportació i compressió</h3>
-  <p>Quan es finalitza un projecte, cal <strong>exportar-lo</strong> en un format adequat. Es pot escollir la resolució (1080p, 720p...), la qualitat i el còdec per controlar el pes del fitxer. Sempre cal considerar on es publicarà: web, xarxes, presentació, etc.</p>
-  <p><em>Consell:</em> per web, utilitza <strong>MP4 amb còdec H.264</strong>; per qualitat màxima, exporta amb còdecs sense pèrdua si l'espai ho permet.</p>
+
+  <div class="flex gap-4 items-center justify-center mb-6">
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">Mapa de bits (ampliat)</p>
+      <div class="bg-gray-300 w-full h-32 flex items-center justify-center text-gray-600 text-xs">[📷 Imatge pixelada amb pèrdua]</div>
+    </div>
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">Vectorial (escalat)</p>
+      <div class="bg-gray-100 border w-full h-32 flex items-center justify-center text-gray-600 text-xs">[🔷 Imatge neta i escalable]</div>
+    </div>
+  </div>
+</section>
+
+<!-- Secció 2 -->
+<section id="1-2" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Formats i compressió</h3>
+
+  <p>Els formats d’imatge digitals determinen com s’emmagatzema la informació visual i quina compressió s’hi aplica. És fonamental saber escollir el format correcte segons l’ús final (web, impressió, edició, arxiu).</p>
+
+  <h4 class="font-semibold mt-4">📁 Formats amb compressió amb pèrdua</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>JPEG (.jpg):</strong> molt utilitzat per a fotografies. Utilitza compressió amb pèrdua (es descarta informació per reduir mida). No admet transparències. A més compressió, menys qualitat.</li>
+    <li><strong>GIF (.gif):</strong> compressió limitada (256 colors). Apte per a gràfics senzills i animacions curtes. Suporta transparència bàsica.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📁 Formats amb compressió sense pèrdua</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>PNG (.png):</strong> ideal per a gràfics web, logotips i imatges amb transparència. Compressió eficient sense pèrdua de qualitat.</li>
+    <li><strong>TIFF (.tif):</strong> usat en entorns professionals. Manté tota la qualitat original. Sovint utilitzat per escaneig i impressió de màxima fidelitat.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📁 Formats especials</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>SVG:</strong> format vectorial per a gràfics escalables, especialment útil per a web.</li>
+    <li><strong>BMP:</strong> format antic, sense compressió. Fitxers grans i poc pràctics.</li>
+    <li><strong>WebP:</strong> format modern desenvolupat per Google. Compressió eficient amb i sense pèrdua. Suport creixent.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎯 Bones pràctiques</h4>
+  <ul class="list-disc ml-6">
+    <li>Per a web: PNG per icones i elements gràfics; JPEG per fotografies.</li>
+    <li>Per a impressió: TIFF o PNG d’alta resolució.</li>
+    <li>Evita regravar JPEG múltiples vegades per no degradar la qualitat.</li>
+    <li>GIMP: <code>Fitxer > Exporta com</code> permet triar format i ajustar la compressió JPEG (control lliscant 0–100).</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Tens una imatge amb fons transparent que vols col·locar en una pàgina web, i una foto de 5 MB que vols enviar per correu sense perdre gaire qualitat.</p>
+    <p><strong>Resposta:</strong> Exporta la imatge amb transparència com a PNG per mantenir-la intacta. Comprimeix la fotografia amb JPEG (compressió 70–80%) per reduir la mida i conservar un bon equilibri qualitat/pes.</p>
+  </div>
+
+  <div class="flex gap-4 items-center justify-center mb-6">
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">PNG amb transparència</p>
+      <div class="bg-checkerboard w-full h-32 flex items-center justify-center text-gray-600 text-xs">[🔲 Logo sense fons]</div>
+    </div>
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">JPEG comprimit</p>
+      <div class="bg-gray-200 border w-full h-32 flex items-center justify-center text-gray-600 text-xs">[🖼️ Foto optimitzada]</div>
+    </div>
+  </div>
+</section>
+
+<!-- Secció 3 -->
+<section id="1-3" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Resolució, mida i profunditat de color</h3>
+
+  <p>Quan es treballa amb imatges digitals, és fonamental entendre tres conceptes clau que afecten la qualitat i l’ús de les imatges: la <strong>resolució</strong>, la <strong>mida</strong> i la <strong>profunditat de color</strong>.</p>
+
+  <h4 class="font-semibold mt-4">📐 Resolució</h4>
+  <p>La resolució determina la densitat de píxels d’una imatge i es mesura habitualment en <strong>ppi (pixels per inch)</strong> per a pantalles i <strong>dpi (dots per inch)</strong> per a impressió. Una imatge amb alta resolució té més píxels per polzada, i per tant, més detall.</p>
+  <ul class="list-disc ml-6">
+    <li><strong>72 ppi:</strong> resolució per a ús web o pantalla.</li>
+    <li><strong>300 ppi:</strong> resolució òptima per a impressió de qualitat.</li>
+  </ul>
+  <p><strong>Com comprovar-ho:</strong> A GIMP, ves a <code>Imatge > Escala d’imatge</code>. Allà podràs veure i modificar la resolució en ppi.</p>
+
+  <h4 class="font-semibold mt-4">📏 Mida de la imatge</h4>
+  <p>La mida s’expressa en píxels (amplada × alçada), però també pot traduir-se en centímetres o mil·límetres si es té en compte la resolució. Per exemple, una imatge de 3000x2000 píxels a 300 ppi tindrà una mida impresa d’uns 25x17 cm.</p>
+
+  <h4 class="font-semibold mt-4">🎨 Profunditat de color</h4>
+  <p>La profunditat de color indica quants bits s’utilitzen per representar el color de cada píxel. A major profunditat, més colors disponibles:</p>
+  <ul class="list-disc ml-6">
+    <li><strong>8 bits:</strong> 256 colors o tons de gris.</li>
+    <li><strong>24 bits:</strong> 16,7 milions de colors (8 bits per canal RGB).</li>
+    <li><strong>32 bits:</strong> RGB + canal alfa (transparència).</li>
+  </ul>
+  <p><strong>En GIMP:</strong> pots consultar la profunditat de color des de <code>Imatge > Mode</code> i escollir RGB, escala de grisos o indexat.</p>
+
+  <h4 class="font-semibold mt-4">💡 Relació amb la mida del fitxer</h4>
+  <p>Una resolució alta i una gran profunditat de color fan que el fitxer sigui més gran. Cal equilibrar qualitat i mida segons l’ús previst (pantalla, impressió, web, correu...).</p>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> T’has descarregat dues imatges: una té 300 ppi i ocupa 5 MB, l’altra en té 72 ppi i només 400 KB. Vols imprimir-les en bona qualitat per una revista.</p>
+    <p><strong>Resposta esperada:</strong> L’imatge de 300 ppi i més pes és adequada per impressió, ja que garanteix detall i qualitat. La de 72 ppi està pensada per pantalla i pot quedar pixelada al ser impresa. També cal assegurar-se que té almenys 24 bits de profunditat per representar bé els colors.</p>
+  </div>
+
+  <div class="flex gap-4 items-center justify-center mb-6">
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">Imatge a 72 ppi (pantalla)</p>
+      <div class="bg-gray-200 border w-full h-32 flex items-center justify-center text-gray-600 text-xs">[🖥️ Poc detall]</div>
+    </div>
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">Imatge a 300 ppi (impressió)</p>
+      <div class="bg-gray-100 border w-full h-32 flex items-center justify-center text-gray-600 text-xs">[🖨️ Alta definició]</div>
+    </div>
+  </div>
+</section>
+
+<section id="1-4" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Modes de color i canal alfa</h3>
+
+  <p>Un mode de color defineix com es representen els colors en una imatge digital. Cadascun utilitza un espai de color i una estructura pròpia per combinar els canals de color. És essencial escollir el mode adequat segons si la imatge s’usarà per pantalla, impressió o edició.</p>
+
+  <h4 class="font-semibold mt-4">🌈 RGB (Red, Green, Blue)</h4>
+  <p>És el mode estàndard per a imatges digitals en pantalles (ordinadors, mòbils, TV). Cada píxel combina llum vermella, verda i blava. Es poden representar fins a 16,7 milions de colors.</p>
+  <p><strong>Ús:</strong> web, fotografia digital, vídeo, interfícies.</p>
+
+  <h4 class="font-semibold mt-4">🖨️ CMYK (Cyan, Magenta, Yellow, blacK)</h4>
+  <p>Utilitzat en impressió comercial. Barreja pigments en comptes de llum. No es pot representar a pantalla exactament com es veurà imprès. Són colors subtractius.</p>
+  <p><strong>Ús:</strong> cartells, fullets, packaging, publicitat impresa.</p>
+
+  <h4 class="font-semibold mt-4">🎨 HSV (Hue, Saturation, Value)</h4>
+  <p>Una representació alternativa del color basada en la percepció humana. Útil per ajustar tons i saturació de forma intuïtiva.</p>
+  <p><strong>Ús:</strong> edició creativa, selecció de colors personalitzats.</p>
+
+  <h4 class="font-semibold mt-4">⚫ Escala de grisos</h4>
+  <p>Només conté informació de lluminositat. Cada píxel té un valor entre negre (0) i blanc (255). Molt útil per a imatges monocromàtiques o tècniques.</p>
+  <p><strong>Ús:</strong> escaneig de documents, retoc artístic, reducció de mida.</p>
+
+  <h4 class="font-semibold mt-4">🔍 Canal alfa</h4>
+  <p>És el canal de transparència en una imatge. Indica si un píxel és totalment opac, totalment transparent o semitransparent. Només aplicable en formats que admeten transparència (PNG, TIFF, PSD).</p>
+  <p><strong>Ús:</strong> composició de capes, exportació per web amb fons transparent.</p>
+
+  <h4 class="font-semibold mt-4">🛠️ Canvi de mode a GIMP</h4>
+  <ul class="list-disc ml-6">
+    <li>Per veure o canviar el mode de color: <code>Imatge > Mode</code>.</li>
+    <li>Per afegir un canal alfa: <code>Capa > Transparència > Afegeix canal alfa</code>.</li>
+    <li>Per eliminar fons amb transparència: utilitza selecció + <code>Supr</code> (amb canal alfa actiu).</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs dissenyant un logotip per una empresa. Volen usar-lo tant a la seva pàgina web com per imprimir-lo en marxandatge (samarretes i bosses).</p>
+    <p><strong>Pregunta:</strong> En quin mode de color hauries de treballar i què hauries de tenir en compte amb el canal alfa?</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Dissenyar en RGB per ús digital i després convertir a CMYK per impressió, assegurant que els colors es mantinguin coherents. Si el logotip ha de tenir fons transparent (per exemple, sobre una samarreta de color), cal afegir un canal alfa i exportar com PNG (digital) o TIFF/PSD (impressió amb transparència).</p>
+  </div>
+
+  <div class="flex gap-4 items-center justify-center mb-6">
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">RGB (pantalla)</p>
+      <div class="bg-blue-100 w-full h-32 flex items-center justify-center text-gray-600 text-xs">[💻 Colors vius]</div>
+    </div>
+    <div class="flex-1 text-center">
+      <p class="text-sm mb-1">CMYK (impressió)</p>
+      <div class="bg-yellow-100 w-full h-32 flex items-center justify-center text-gray-600 text-xs">[🖨️ Colors mat]</div>
+    </div>
+  </div>
+</section>
+
+<section id="1-5" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Fonts d’adquisició: càmera, escàner, internet</h3>
+
+  <p>Les imatges digitals poden obtenir-se a partir de diverses fonts. Conèixer les característiques de cadascuna permet adaptar el flux de treball a les necessitats de qualitat, legalitat i eficiència.</p>
+
+  <h4 class="font-semibold mt-4">📸 Càmera digital</h4>
+  <p>Genera imatges directament en format digital (JPEG, RAW). El resultat depèn de la resolució del sensor, l’òptica i els ajustos de captura.</p>
+  <ul class="list-disc ml-6">
+    <li><strong>Ús:</strong> fotografia professional, esdeveniments, retrats.</li>
+    <li><strong>Format recomanat:</strong> RAW per a màxima qualitat (requereix revelat digital), JPEG per ús immediat.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🖨️ Escàner</h4>
+  <p>Permet digitalitzar documents físics (fotos, il·lustracions, textos). Cal configurar la resolució adequada:</p>
+  <ul class="list-disc ml-6">
+    <li><strong>300 ppi:</strong> per impressió o arxiu de qualitat.</li>
+    <li><strong>150 ppi:</strong> per ús en pantalla o correu electrònic.</li>
+    <li><strong>Format:</strong> TIFF (qualitat màxima), PNG (compressió sense pèrdua), JPEG (compressió amb pèrdua).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🌐 Imatges d’internet</h4>
+  <p>Es poden obtenir mitjançant descàrrega directa o captura de pantalla. És fonamental respectar els <strong>drets d’autor</strong>.</p>
+  <ul class="list-disc ml-6">
+    <li><strong>Fonts lliures:</strong> Pexels, Unsplash, Pixabay (ús comercial permès).</li>
+    <li><strong>Formats comuns:</strong> PNG i JPEG.</li>
+    <li><strong>Verificació:</strong> Consulta llicències i condicions d’ús a cada web.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">💡 Consells pràctics</h4>
+  <ul class="list-disc ml-6">
+    <li>Utilitza eines com <code>Snipping Tool</code>, <code>Shutter</code> o <code>Cmd+Shift+4</code> (Mac) per fer captures de pantalla.</li>
+    <li>Per metadades de càmera: fes servir <code>ExifTool</code> o visualitza propietats del fitxer.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has de digitalitzar una foto antiga per a una exposició i també vols incloure una imatge gràfica d’una icona web en un fulletó.</p>
+    <p><strong>Pregunta:</strong> Quina font d’adquisició és més adequada per a cada cas i amb quin format exportaries?</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Utilitzaria un escàner a 300 ppi per a la foto antiga i exportaria en TIFF o PNG. Per a la icona, la descarregaria d’un recurs lliure com Unsplash i la exportaria en PNG per mantenir la transparència i qualitat.</p>
+  </div>
+</section>
+
+<section id="1-6" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">6. Edició amb programari (GIMP / Photoshop)</h3>
+
+  <p>L’edició d’imatges digitals es pot fer amb programari lliure com <strong>GIMP</strong> o amb opcions comercials com <strong>Adobe Photoshop</strong>. Aquestes eines permeten des de retocs bàsics fins a manipulació complexa, mitjançant una interfície d’eines, menús i capes.</p>
+
+  <h4 class="font-semibold mt-4">✂️ Retallar, girar i redimensionar</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>GIMP:</strong> Usa l’eina de selecció rectangular i ves a <code>Imatge > Retalla a la selecció</code>.</li>
+    <li><strong>Photoshop:</strong> Utilitza l’eina "Crop" (Retallar) a la barra lateral.</li>
+    <li>Per girar o escalar: <code>Imatge > Transforma > Escala / Gira</code> (GIMP) o <code>Edit > Transform</code> (Photoshop).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔤 Afegir text, aplicar filtres i efectes</h4>
+  <ul class="list-disc ml-6">
+    <li>Selecciona l’eina de text (una "A") per escriure sobre la imatge. Pots escollir font, mida i alineació.</li>
+    <li>Per aplicar filtres artístics: <code>Filtres > Artístics</code> o <code>Filtres > Difuminats</code>.</li>
+    <li>Photoshop: <code>Filter > Artistic</code> o <code>Filter > Blur</code>.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎛️ Modificar brillantor, contrast i color</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Brillantor/Contrast:</strong> GIMP: <code>Colors > Brillantor i Contrast</code>.</li>
+    <li><strong>Corbes i Nivells:</strong> per controlar la gamma tonal de la imatge.</li>
+    <li><strong>Tons/Saturació:</strong> ajusta colors dominants i intensitat.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🧩 Treballar amb seleccions i capes</h4>
+  <ul class="list-disc ml-6">
+    <li>Les <strong>seleccions</strong> permeten editar només una part de la imatge: rectangular, el·líptica, lliure, per color.</li>
+    <li>Les <strong>capes</strong> són com fulls apilats: es poden moure, ocultar, combinar o aplicar màscares.</li>
+    <li>Es recomana sempre treballar amb còpies en capes separades per evitar pèrdua d’informació.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has obert una fotografia antiga en GIMP. Necessites retallar el marc, corregir el color apagat i afegir-hi un títol al peu.</p>
+    <p><strong>Resposta esperada:</strong> Fes una selecció rectangular i usa <code>Imatge > Retalla</code>. Aplica <code>Colors > Brillantor i Contrast</code> i <code>Colors > Tons/Saturació</code> per recuperar color. Afegeix text amb l’eina de text i escull una font llegible.</p>
+  </div>
+</section>
+
+<section id="1-7" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">7. Transformacions bàsiques i avançades</h3>
+
+  <p>Les transformacions permeten modificar la forma, orientació i estructura d’una imatge. A GIMP i Photoshop, trobem tant transformacions bàsiques (girar, escalar) com d’altres més avançades (perspectiva, distorsió, volums).</p>
+
+  <h4 class="font-semibold mt-4">🔁 Transformacions bàsiques</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Girar:</strong> GIMP: <code>Eines > Transformació > Gira</code>; Photoshop: <code>Edit > Transform > Rotate</code>.</li>
+    <li><strong>Escalar:</strong> GIMP: <code>Eines > Transformació > Escala</code>; Photoshop: <code>Edit > Transform > Scale</code>.</li>
+    <li><strong>Reflexió horitzontal/vertical:</strong> útil per simetries i efectes mirall.</li>
+    <li><strong>Retallar:</strong> redueix la imatge a una àrea seleccionada.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📐 Transformacions avançades</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Perspectiva:</strong> canvia la projecció de la imatge. A GIMP: <code>Eines > Transformació > Perspectiva</code>.</li>
+    <li><strong>Distorsió i gàbia:</strong> deformació lliure. Photoshop: <code>Edit > Puppet Warp</code>.</li>
+    <li><strong>Rotació 3D:</strong> disponible amb capes intel·ligents a Photoshop.</li>
+    <li><strong>Transformació unificada:</strong> permet combinar escalar, girar i moure.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎯 Consells</h4>
+  <ul class="list-disc ml-6">
+    <li>Treballa amb capes duplicades per conservar l’original.</li>
+    <li>Utilitza guies i la graella per alinear amb precisió.</li>
+    <li>Aplica transformacions no destructives sempre que sigui possible.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs editant una fotografia d’un edifici que es veu tort per l’angle des d’on s’ha pres. També vols ajustar-ne la mida per encaixar en una portada DIN-A4.</p>
+    <p><strong>Resposta esperada:</strong> Aplica una transformació de perspectiva per corregir la inclinació. Utilitza <code>Escala</code> per ajustar les dimensions exactes. Fes servir guies per verificar l’alineació i exporta amb la resolució correcta.</p>
+  </div>
+</section>
+
+
+<section id="1-8" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">8. Capes, màscares i eines de selecció</h3>
+
+  <p>Les capes, màscares i seleccions són conceptes fonamentals per fer edició no destructiva i amb control total sobre parts específiques de la imatge. Tots dos programes (GIMP i Photoshop) utilitzen aquest sistema jeràrquic per gestionar elements visuals.</p>
+
+  <h4 class="font-semibold mt-4">📚 Capes</h4>
+  <ul class="list-disc ml-6">
+    <li>Funcionen com a fulls transparents apilats. L’ordre de les capes afecta la visibilitat dels elements.</li>
+    <li><strong>Afegir nova capa:</strong> <code>Capa > Nova capa</code> (GIMP); <code>Layer > New > Layer</code> (Photoshop).</li>
+    <li>Poden tenir transparència, estils de capa, opacitat i mode de fusió.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎭 Màscares de capa</h4>
+  <ul class="list-disc ml-6">
+    <li>Permeten ocultar o mostrar parts d’una capa sense esborrar-les.</li>
+    <li><strong>Afegir màscara:</strong> <code>Capa > Màscara > Afegeix màscara de capa</code> (GIMP); <code>Layer > Layer Mask > Reveal All</code> (Photoshop).</li>
+    <li>Amb pinzell negre “amagues”, amb blanc “reveleixes”.</li>
+    <li>Es pot fer degradats o transicions suaus entre zones visibles i amagades.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔲 Eines de selecció</h4>
+  <ul class="list-disc ml-6">
+    <li>Permeten actuar només sobre una zona concreta de la imatge.</li>
+    <li><strong>Tipus de selecció:</strong> rectangular, el·líptica, lliure (llassament), per color, màgic.</li>
+    <li>Es poden combinar, invertir (<code>Selecciona > Invertir</code>), difuminar vores (<code>Selecciona > Difumina</code>).</li>
+    <li>Les seleccions es poden convertir en màscares o en capes noves.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Vols eliminar el fons d’una fotografia i substituir-lo per un degradat suau, mantenint només la figura principal.</p>
+    <p><strong>Resposta esperada:</strong> Utilitza l’eina de selecció per color o selecció difusa per escollir el fons. Inverteix la selecció per mantenir la figura. Crea una màscara de capa i aplica un degradat dins la màscara per fer una fusió suau amb el nou fons.</p>
+  </div>
+</section>
+
+
+<section id="1-9" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">9. Formats d’exportació i ús final de les imatges</h3>
+
+  <p>Un cop finalitzada l’edició, cal exportar la imatge en el format adequat segons l’ús final (web, impressió, animació, etc.). Cada format té avantatges i limitacions.</p>
+
+  <h4 class="font-semibold mt-4">🌐 Per a web</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>JPEG:</strong> ideal per fotografies. Compressió amb pèrdua, mida petita.</li>
+    <li><strong>PNG:</strong> útil per gràfics amb transparències. Compressió sense pèrdua.</li>
+    <li><strong>WebP:</strong> format modern amb millor compressió. Suport limitat en navegadors antics.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🖨️ Per a impressió</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>TIFF:</strong> qualitat màxima, sense compressió o amb compressió sense pèrdua.</li>
+    <li><strong>PDF:</strong> útil per enviar imatges dins documents.</li>
+    <li><strong>Resolució recomanada:</strong> 300 ppi.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔄 Exportació a GIMP i Photoshop</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>GIMP:</strong> <code>Fitxer > Exporta com</code> i escull el format.</li>
+    <li><strong>Photoshop:</strong> <code>File > Export > Export As...</code> o <code>Save for Web</code>.</li>
+    <li>Comprova la resolució (<code>Imatge > Escala d’imatge</code> o <code>Image > Image Size</code>).</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has dissenyat una infografia per compartir a xarxes socials i també per imprimir com a pòster.</p>
+    <p><strong>Resposta esperada:</strong> Exporta en PNG (per web, qualitat i transparència) i TIFF (per impressió). Verifica la mida i resolució a 300 ppi per impressió i ajusta a 72 ppi per pantalla.</p>
+  </div>
+</section>
+
+<section id="1-10" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">10. Impressió, publicació i reutilització</h3>
+
+  <p>Després d’editar i exportar, cal tenir en compte com es distribuirà la imatge: impressió, publicació en línia o reutilització futura. Cada opció comporta requisits específics.</p>
+
+  <h4 class="font-semibold mt-4">🖨️ Impressió</h4>
+  <ul class="list-disc ml-6">
+    <li>Usa format TIFF o PDF per garantir màxima qualitat.</li>
+    <li>Colors en mode CMYK, no RGB.</li>
+    <li>Resolució mínima: 300 ppi.</li>
+    <li>Comprova marges i sagnats (especialment per impressió comercial).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🌍 Publicació digital</h4>
+  <ul class="list-disc ml-6">
+    <li>Formats recomanats: JPEG, PNG, WebP.</li>
+    <li>Compressió optimitzada per càrrega ràpida.</li>
+    <li>Afegir metadades per millorar l’accessibilitat i el SEO (títol, descripció).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">♻️ Reutilització</h4>
+  <ul class="list-disc ml-6">
+    <li>Desa una còpia en format editable (XCF per GIMP, PSD per Photoshop).</li>
+    <li>Organitza les capes i nomena-les correctament.</li>
+    <li>Conserva l’arxiu font per modificar en el futur sense perdre qualitat.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has creat un cartell per una fira i l’has de publicar a Instagram, imprimir en A3 i adaptar-lo a una presentació en PowerPoint.</p>
+    <p><strong>Resposta esperada:</strong> Exporta en PNG per xarxes socials, TIFF o PDF per impressió i JPEG a 150 ppi per inserir a PowerPoint. Desa una còpia en XCF o PSD per modificar futures versions.</p>
+  </div>
+</section>
+
+<section id="1-11" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">11. Emprar eines de dibuix</h3>
+
+  <p>Les eines de dibuix permeten crear il·lustracions, esquemes o gràfics personalitzats mitjançant línies, formes i colors. Tant GIMP com Photoshop disposen d’un conjunt d’eines que permeten dibuixar de forma lliure o precisa.</p>
+
+  <h4 class="font-semibold mt-4">🖌️ Eines bàsiques de dibuix</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Pinzell (Brush):</strong> per pintar a mà alçada amb diferents formes, duresa i opacitat.</li>
+    <li><strong>Llapis (Pencil):</strong> dibuix amb vores dures, ideal per píxel art.</li>
+    <li><strong>Goma d’esborrar:</strong> elimina parts d’una capa o màscara, si hi ha canal alfa actiu.</li>
+    <li><strong>Color:</strong> pots triar el color de traç i de fons. A GIMP es fa amb el selector de color a la caixa d’eines.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📐 Dibuix precís</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Eina de línies:</strong> utilitza l’eina camins o traç de selecció per crear línies rectes.</li>
+    <li><strong>Formes:</strong> crea rectangles, cercles i altres formes amb l’eina de selecció i després omple o traça.</li>
+    <li><strong>Guies i graella:</strong> actives des de <code>Visualitza > Mostra la graella</code> o <code>Guies > Nova guia</code>.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎨 Personalització del pinzell</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Escull mida, opacitat i espaiat</strong> a les opcions d’eina.</li>
+    <li>Fes servir pinzells personalitzats o crea’n de nous des de <code>Edita > Pinzells</code> (GIMP).</li>
+    <li>A Photoshop, pots descarregar i carregar col·leccions de pinzells.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has de crear un icona original per una aplicació, dibuixant-la completament a mà dins el programari.</p>
+    <p><strong>Resposta esperada:</strong> Utilitza l’eina de pinzell per definir el contorn i el llapis per detalls nítids. Ajusta l’opacitat i mida del pinzell. Traça formes geomètriques amb guies i completa amb degradats o ombres suaus.</p>
+  </div>
+</section>
+
+<section id="1-12" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">12. Emprar filtres de transformació d’imatges</h3>
+  <p>Els filtres de transformació permeten modificar l’estructura de la imatge aplicant efectes visuals automàtics. Són útils per a processos artístics, creatius o de correcció d’imatge.</p>
+  <h4 class="font-semibold mt-4">🔄 Tipus de filtres</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Filtres de distorsió:</strong> ones, girs, desplaçament.</li>
+    <li><strong>Filtres artístics:</strong> pintura a l’oli, còmic, dibuix a llapis.</li>
+    <li><strong>Filtres de llum i ombra:</strong> relleu, projecció, brillantor especular.</li>
+    <li><strong>Filtres de mapa:</strong> aplicació d’una textura o patró sobre una imatge base.</li>
+  </ul>
+  <h4 class="font-semibold mt-4">🎛️ Com aplicar-los</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>GIMP:</strong> <code>Filtres > Distorsió</code>, <code>Filtres > Artístic</code>, <code>Filtres > Llum i ombra</code>.</li>
+    <li><strong>Photoshop:</strong> <code>Filter > Distort</code>, <code>Filter > Artistic</code>, <code>Filter > Render</code>.</li>
+    <li>Es recomana aplicar filtres sobre capes duplicades per evitar pèrdua d’informació original.</li>
+  </ul>
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Vols transformar una fotografia en una il·lustració estil còmic per una portada de revista.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Duplica la capa original. Aplica un filtre artístic com “Còmic” o “Dibuix a llapis” i ajusta els nivells de llum/contrast per millorar el contorn. Combina capes si cal.</p>
+  </div>
+</section>
+
+<section id="1-13" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">13. Definir motius de fons</h3>
+
+  <p>Els motius de fons (patterns o textures) s’utilitzen per omplir superfícies amb dissenys repetitius. Són útils per crear fons, textures o efectes decoratius coherents.</p>
+
+  <h4 class="font-semibold mt-4">📄 Com crear un motiu personalitzat</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Dissenya un fragment:</strong> crea una imatge petita que pugui repetir-se sense talls visibles.</li>
+    <li><strong>GIMP:</strong> selecciona la imatge i desa-la com a patró: <code>Edita > Copia com a patró</code> o guarda-la a la carpeta <code>~/.config/GIMP/2.10/patterns</code>.</li>
+    <li><strong>Photoshop:</strong> selecciona la zona i tria <code>Edit > Define Pattern</code>.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎨 Aplicar un motiu a una capa</h4>
+  <ul class="list-disc ml-6">
+    <li>Usa l’eina de cubell de farcit amb el mode "Pattern" o aplica com a estil de capa.</li>
+    <li>Per modificar la mida del patró, cal redimensionar-lo abans de definir-lo.</li>
+    <li>També pots aplicar-lo mitjançant màscares o seleccions específiques.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs creant una postal digital i vols afegir-li un fons amb textura de paper reciclat repetitiva.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Escaneja o crea una petita imatge amb textura de paper. Desa-la com a patró a GIMP o Photoshop. Aplica-la amb el cubell de farcit en mode patró sobre una nova capa de fons.</p>
+  </div>
+</section>
+
+<section id="1-14" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">14. Crear objectes gràfics per a aplicacions interactives</h3>
+
+  <p>Els objectes gràfics per a aplicacions interactives són dissenys vectorials o mapes de bits pensats per ser utilitzats en interfícies, aplicacions, jocs o webs. Aquests objectes han de tenir una mida optimitzada, ser visuals i funcionals.</p>
+
+  <h4 class="font-semibold mt-4">🧱 Tipus d’objectes gràfics</h4>
+  <ul class="list-disc ml-6">
+    <li>Icones (PNG, SVG)</li>
+    <li>Botons, menús, pictogrames</li>
+    <li>Sprites per a animacions</li>
+    <li>Fons o elements decoratius</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Com crear-los</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>GIMP:</strong> crea un nou document amb fons transparent i dibuixa-hi l’element. Exporta com PNG (bitmap) o usa altres formats si cal.</li>
+    <li><strong>Inkscape:</strong> per crear objectes gràfics vectorials (SVG). Més útil per interfícies responsives.</li>
+    <li><strong>Photoshop:</strong> usa formes vectorials, estils de capa i grups per crear elements modulars reutilitzables.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📏 Recomanacions</h4>
+  <ul class="list-disc ml-6">
+    <li>Usa mides estàndard (per exemple, 24x24, 48x48 px per icones).</li>
+    <li>Aplica una retícula o graella per alinear correctament.</li>
+    <li>Exporta sempre amb fons transparent si ha d’anar sobre altres dissenys.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs dissenyant una aplicació mòbil i necessites una icona de configuració de 48x48 píxels amb fons transparent.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Crea un nou fitxer de 48x48 px amb fons transparent a GIMP. Dibuixa la icona amb eines de línia i forma. Desa com a PNG. Assegura’t que els marges són coherents i centrats.</p>
+  </div>
+</section>
+
+<section id="1-15" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">15. Crear objectes vectorials</h3>
+
+  <p>Els objectes vectorials són imatges basades en formes geomètriques (línies, corbes, polígons) que es poden escalar indefinidament sense perdre qualitat. Són ideals per a logotips, il·lustracions tècniques, icones i interfícies gràfiques.</p>
+
+  <h4 class="font-semibold mt-4">🛠️ Eines per crear vectorials</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Inkscape:</strong> programari lliure especialitzat en SVG.</li>
+    <li><strong>GIMP:</strong> permet treballar amb vectors mitjançant l’eina "Camins", però no és un editor vectorial pur.</li>
+    <li><strong>Photoshop:</strong> usa formes i camins, però el millor entorn per vectors és Adobe Illustrator.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">✏️ Creació pas a pas</h4>
+  <ul class="list-disc ml-6">
+    <li>Traça formes bàsiques amb eines geomètriques.</li>
+    <li>Combina i edita nodes per crear formes complexes.</li>
+    <li>Aplica traç i omplert (colors, degradats, transparència).</li>
+    <li>Desa en format SVG per mantenir la natura vectorial.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📌 Avantatges</h4>
+  <ul class="list-disc ml-6">
+    <li>No perden qualitat al redimensionar-se.</li>
+    <li>Fitxers lleugers i editables.</li>
+    <li>Compatibles amb entorns web i impressió vectorial.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has de crear un logotip vectorial per una entitat cultural que es pugui imprimir en formats grans i petits.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Dissenya’l amb Inkscape utilitzant formes geomètriques, traç vectorial i tipografia editable. Desa en SVG i exporta en PNG per previsualització.</p>
+  </div>
+</section>
+
+<section id="1-16" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">16. Crear filtres d’imatges avançats</h3>
+
+  <p>Els filtres d’imatges avançats permeten transformar, millorar o alterar l’estètica d’una imatge utilitzant tècniques complexes. A diferència dels filtres bàsics, poden combinar diverses operacions com desenfocaments selectius, combinacions de capes, mapes de relleu o efectes artístics.</p>
+
+  <h4 class="font-semibold mt-4">⚙️ Exemples de filtres avançats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Mapa de relleu (bump map):</strong> afegeix sensació de volum a partir de textures.</li>
+    <li><strong>Desenfocament gaussià combinat amb màscares:</strong> per enfocar parts específiques.</li>
+    <li><strong>Filtres compostos:</strong> combinació de diversos efectes (llum, color, distorsió) amb capes duplicades.</li>
+    <li><strong>Mapatge de degradat (gradient map):</strong> transforma colors segons una escala personalitzada.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Com aplicar-los</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>GIMP:</strong> utilitza <code>Filtres > Mapes</code>, <code>Filtres > Artístics</code> i <code>Filtres > Genera</code>.</li>
+    <li><strong>Photoshop:</strong> accedeix mitjançant <code>Filter Gallery</code>, <code>Smart Filters</code> i màscares de filtre.</li>
+    <li>Combina filtres amb capes de fusió i màscares per controlar l’efecte.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has de crear un cartell nocturn amb una imatge urbana i vols donar-li un aspecte neó amb relleu i color intens.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Duplica la capa de base, aplica un mapa de relleu per destacar contorns, després un gradient map amb colors brillants. Combina capes amb modes de fusió (superposa, llum suau) i afegeix una ombra projectada per donar efecte neó.</p>
+  </div>
+</section>
+
+<section id="1-17" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">17. Automatitzar tasques</h3>
+
+  <p>Automatitzar tasques consisteix a crear accions repetitives que es poden executar de manera automàtica, estalviant temps i reduint errors. Això és especialment útil per a processos com redimensionar, renombrar, aplicar filtres o exportar lots d’imatges.</p>
+
+  <h4 class="font-semibold mt-4">⚙️ Opcions d'automatització</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>GIMP:</strong> usa <code>Script-Fu</code> o <code>Python-Fu</code> per automatitzar operacions. També pots instal·lar plugins com BIMP (Batch Image Manipulation Plugin).</li>
+    <li><strong>Photoshop:</strong> permet enregistrar <strong>Accions</strong> (<code>Finestra > Accions</code>) i executar-les sobre múltiples fitxers amb <code>Fitxer > Automatitza > Batch</code>.</li>
+    <li><strong>Aplicacions externes:</strong> com ImageMagick per línia de comandes o scripts de shell.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Exemple d’ús</h4>
+  <ul class="list-disc ml-6">
+    <li>Crear una acció que canviï el tamany a 800 px d’amplada, afegeixi una marca d’aigua i guardi com a JPEG amb qualitat 85%.</li>
+    <li>Executar la seqüència sobre una carpeta sencera d’imatges.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has rebut 200 imatges que han de ser redimensionades, amb el nom canviat i exportades a un format específic per pujar-les a un gestor de continguts.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: En Photoshop, crea una acció que redimensioni i guardi amb nom nou. Usa la funció de lot (Batch) per aplicar-la a totes les imatges. A GIMP, fes servir BIMP per configurar la seqüència. Alternativament, amb ImageMagick pots aplicar-ho via terminal.</p>
+  </div>
 </section>
 </div>
-  <!-- CONTINGUT MÒDUL 3 -->
-<div id="content-3" class="hidden">
-  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#7e22ce;">Mòdul 3: Tractament d’àudio (R5.3)</h2>
 
-  <section id="audio1" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Formats d’àudio i compressió</h3>
-    <p>Els formats habituals inclouen <strong>WAV</strong> (sense compressió), <strong>MP3</strong> i <strong>OGG</strong> (compressió amb pèrdua). La qualitat depèn de la taxa de bits (kbps). Format WAV és ideal per a edició, MP3 per a distribució.</p>
-    <p><em>Programari:</em> Audacity per importar i exportar en diferents formats. CDex per convertir CD d'àudio a arxius digitals.</p>
-  </section>
+<!-- Contenidor del Mòdul 2 -->
+<div id="content-2" class="hidden">
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#16a34a;">Mòdul 2: So digital i edició sonora (R5.2)</h2>
 
-  <section id="audio2" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Gravació i edició de so</h3>
-    <p>Amb <strong>Audacity</strong> pots gravar àudio des de micròfon o entrada de línia. Permet seleccionar, tallar, copiar, enganxar i silenciar segments d’àudio, així com aplicar fundits d’entrada/sortida.</p>
-  </section>
+  <!-- Índex Mòdul 2 -->
+  <nav id="index-2" class="mb-6 bg-white border rounded p-4 shadow text-green-700">
+    <ul>
+      <li><a href="#modul2-1" class="hover:underline">1. Tipus de fitxers d’àudio i vídeo</a></li>
+      <li><a href="#modul2-2" class="hover:underline">2. Captura i conversió d’àudio i vídeo</a></li>
+      <li><a href="#modul2-3" class="hover:underline">3. Edició d’àudio i vídeo</a></li>
+      <li><a href="#modul2-4" class="hover:underline">4. Publicació i reutilització de fitxers multimèdia</a></li>
+      <li><a href="#modul2-5" class="hover:underline">5. Edició avançada de so</a></li>
+      <li><a href="#modul2-6" class="hover:underline">6. Ús responsable i drets d’ús del material sonor</a></li>
+      <li><a href="#modul2-7" class="hover:underline">7. Cas pràctic final i integració</a></li>
+    </ul>
+  </nav>
 
-  <section id="audio3" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Mescla, efectes i neteja</h3>
-    <p>Inclou ajustos com la <strong>normalització</strong>, <strong>reducció de soroll</strong>, <strong>canvi de to o velocitat</strong>, i <strong>efectes</strong> com reverberació o eco. És possible mesclar múltiples pistes i ajustar volums.</p>
-    <p><em>Exemple:</em> Mescla una veu amb música de fons i ajusta el nivell de cada pista amb l’eina de mescla.</p>
-  </section>
+<section id="modul2-1" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 1. Tipus de fitxers d’àudio i vídeo. Formats habituals</h3>
 
-  <section id="audio4" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Exportació i compatibilitat</h3>
-    <p>Es pot exportar a MP3, WAV o altres formats segons l’ús previst. Cal tenir instal·lat el codificador <strong>LAME</strong> per exportar MP3 des d’Audacity.</p>
-    <p><em>Consell:</em> per mantenir qualitat, exporta en WAV durant l’edició i converteix a MP3 al final.</p>
-  </section>
+  <p>Els arxius d’àudio i vídeo poden estar codificats en diversos formats, cadascun amb característiques específiques que determinen qualitat, compressió i compatibilitat.</p>
+
+  <h4 class="font-semibold mt-4">🔊 Formats d’àudio</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>WAV:</strong> sense compressió, alta qualitat, arxius grans. Útil per a edició professional.</li>
+    <li><strong>MP3:</strong> compressió amb pèrdua, mida reduïda, àmpliament compatible.</li>
+    <li><strong>OGG:</strong> alternativa lliure a MP3, bona qualitat i compressió.</li>
+    <li><strong>AAC:</strong> més eficient que MP3, emprat en plataformes com iTunes.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎥 Formats de vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>MP4 (H.264):</strong> molt utilitzat per streaming i web, bona qualitat/compressió.</li>
+    <li><strong>AVI:</strong> antic, sense compressió per defecte, pot generar arxius molt grans.</li>
+    <li><strong>MKV:</strong> contenidor modern, permet diversos canals d’àudio i subtítols.</li>
+    <li><strong>WEBM:</strong> format obert per web, optimitzat per navegadors.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Eines per treballar amb aquests formats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Audacity:</strong> per a edició d’àudio (WAV, MP3, OGG).</li>
+    <li><strong>VLC:</strong> reproductor i convertidor d’àudio i vídeo.</li>
+    <li><strong>Shotcut / Kdenlive / DaVinci Resolve:</strong> edició de vídeo multipista.</li>
+    <li><strong>FFmpeg:</strong> eina de línia de comandes per convertir i processar qualsevol format.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> T’han demanat de preparar un podcast i penjar-lo en una plataforma web. També et demanen una versió del mateix àudio amb màxima qualitat per emissió per ràdio.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Exporta en MP3 (compressió equilibrada) per a la versió web, i WAV (sense compressió) per a la versió de ràdio. Comprova amb Audacity els nivells de volum i exporta amb metadades correctes.</p>
+  </div>
+</section>
+
+<section id="modul2-2" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 2. Captura i conversió d’àudio i vídeo</h3>
+
+  <p>La captura i conversió de continguts multimèdia són processos essencials per reutilitzar material audiovisual, adaptar-lo a diferents suports i garantir-ne la compatibilitat.</p>
+
+  <h4 class="font-semibold mt-4">🎙️ Captura d’àudio</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Audacity:</strong> permet enregistrar àudio des de micròfon, línia d’entrada o sistemes virtuals (loopback).</li>
+    <li>Es pot ajustar el nivell d’entrada, eliminar soroll de fons i aplicar filtres bàsics.</li>
+    <li><strong>Configuració:</strong> Tria el dispositiu d’entrada correcte a <code>Edició > Preferències > Dispositius</code>.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📹 Captura de vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>OBS Studio:</strong> enregistrament des d’una webcam, una finestra d’aplicació o pantalla completa.</li>
+    <li><strong>VLC:</strong> pot capturar fluxos de vídeo i enregistrar-los a disc (<code>Mitjà > Dispositiu de captura</code>).</li>
+    <li><strong>Configuració:</strong> tria resolució i font d’àudio sincronitzada.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔁 Conversió de formats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>FFmpeg:</strong> eina de línia de comandes molt potent per convertir àudio i vídeo entre qualsevol format.</li>
+    <li><code>ffmpeg -i entrada.avi sortida.mp4</code> converteix un vídeo AVI a MP4.</li>
+    <li><strong>HandBrake:</strong> interfície gràfica per convertir vídeos (inclou plantilles per YouTube, dispositius mòbils, etc.).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📌 Consells tècnics</h4>
+  <ul class="list-disc ml-6">
+    <li>En àudio, evita formats amb pèrdua si després s’ha d’editar (usa WAV o FLAC).</li>
+    <li>En vídeo, ajusta el bitrate segons el mitjà de reproducció (streaming, arxiu local, mòbil).</li>
+    <li>Revisa sempre sincronització àudio-vídeo abans de publicar.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has gravat una xerrada amb OBS Studio, però el vídeo ocupa molt espai i vols comprimir-lo per penjar-lo a una web.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Obre el vídeo a HandBrake, selecciona una plantilla web (p. ex. "Fast 1080p30"), redueix el bitrate si cal, i exporta com MP4. Alternativament, amb FFmpeg: <code>ffmpeg -i xerrada.mkv -vcodec libx264 -crf 23 sortida.mp4</code>.</p>
+  </div>
+</section>
+
+<section id="modul2-3" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 3. Edició d’àudio i vídeo</h3>
+
+  <p>L’edició d’àudio i vídeo consisteix a modificar, retallar, millorar i combinar fragments per crear un producte final coherent i comunicatiu. Aquesta tasca es pot fer amb programari lliure o comercial, i requereix una comprensió bàsica de la línia de temps, capes i efectes.</p>
+
+  <h4 class="font-semibold mt-4">🎚️ Edició d’àudio amb Audacity</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Importar àudio:</strong> <code>Fitxer > Importa > Àudio</code>.</li>
+    <li><strong>Selecció i retall:</strong> selecciona amb el cursor i fes <code>Retalla</code> o <code>Silencia</code>.</li>
+    <li><strong>Normalització i eliminació de soroll:</strong> <code>Efectes > Normalitza</code> i <code>Efectes > Reducció de soroll</code>.</li>
+    <li><strong>Exportació:</strong> <code>Fitxer > Exporta com MP3/WAV</code>, configurant la qualitat.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎞️ Edició de vídeo amb Shotcut (o Kdenlive)</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Importar fitxers:</strong> arrossega vídeos, imatges o àudio a la línia de temps.</li>
+    <li><strong>Retallar i dividir clips:</strong> usa el punt de tall i elimina segments innecessaris.</li>
+    <li><strong>Afegir transicions i filtres:</strong> arrossega dos clips junts per crear una transició; aplica filtres de vídeo o àudio.</li>
+    <li><strong>Afegir text:</strong> crea una capa de text amb el filtre corresponent.</li>
+    <li><strong>Exportació:</strong> tria el format de sortida: MP4, WebM, MOV, etc. i configura la resolució.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🧰 Recursos complementaris</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>FFmpeg:</strong> útil per automatitzar tasques com tallar àudio o canviar la resolució sense editor gràfic.</li>
+    <li><strong>OBS Studio:</strong> també permet una edició mínima durant l’enregistrament (superposicions, transicions).</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has d’editar una entrevista en vídeo: tallar silencis, afegir el nom del convidat i una música d’introducció.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Importa el vídeo a Shotcut. Divideix els clips per eliminar silencis. Afegeix una pista de text amb el nom del convidat. Importa l’arxiu d’àudio i afegeix-lo com a pista d’introducció. Exporta en MP4 a resolució 720p per web.</p>
+  </div>
+</section>
+
+<section id="modul2-4" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 4. Publicació i reutilització de fitxers multimèdia</h3>
+
+  <p>Després de crear contingut multimèdia, és fonamental entendre com publicar-lo i conservar-lo per a futurs usos, adaptant-lo al canal de difusió i garantint-ne la qualitat i accessibilitat.</p>
+
+  <h4 class="font-semibold mt-4">🌍 Publicació de fitxers d’àudio i vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Plataformes d’àudio:</strong> iVoox, Spotify, SoundCloud (per podcasts i música).</li>
+    <li><strong>Plataformes de vídeo:</strong> YouTube, Vimeo, TikTok.</li>
+    <li><strong>Format recomanat:</strong> MP3 o AAC per àudio, MP4 H.264 per vídeo (compatibilitat i qualitat).</li>
+    <li><strong>Configuració:</strong> resolució mínima 720p per vídeo; bitrate entre 128-192 kbps per àudio web.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">♻️ Reutilització i adaptació</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Desa originals en format editable:</strong> WAV per àudio, projectes Shotcut/Kdenlive per vídeo.</li>
+    <li><strong>Conversió posterior:</strong> usa HandBrake o FFmpeg per generar noves versions adaptades.</li>
+    <li><strong>Afegir metadades:</strong> autor, títol, drets d’ús, descripció (amb Audacity o VLC).</li>
+    <li><strong>Accessibilitat:</strong> subtítols (SRT), transcripció d’àudio, contrast de colors en vídeos.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔐 Llicències i drets</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Creative Commons:</strong> permet especificar condicions de reutilització (atribució, ús comercial, modificació).</li>
+    <li><strong>Obres lliures de drets:</strong> consulta bancs com Pixabay, Freesound, Pexels, etc.</li>
+    <li><strong>Evita contingut amb copyright sense autorització expressa.</strong></li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has editat un vídeo informatiu per a un centre educatiu i el vols penjar al web, però també adaptar-lo a xarxes socials i arxivar-lo correctament.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Exporta a MP4 H.264 per web i a resolució 720p per xarxes. Desa l’arxiu del projecte original. Afegeix subtítols i metadades. Publica amb llicència Creative Commons si s’escau i guarda una còpia en resolució completa per a arxiu.</p>
+  </div>
+</section>
+
+<section id="modul2-5" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 5. Edició avançada de so: pistes, transicions i millores de qualitat</h3>
+
+  <p>Per treballar l’àudio de manera professional és essencial dominar l’edició multipista, els efectes de transició, l’equalització i el tractament de la qualitat del so. Aquestes eines permeten crear resultats polits, nets i adaptats a contextos com ràdio, vídeo, podcasts o presentacions multimèdia.</p>
+
+  <h4 class="font-semibold mt-4">🎛️ Edició multipista amb Audacity</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Afegir pistes:</strong> <code>Pista > Afegeix nova pista d’àudio (estèreo o mono)</code>.</li>
+    <li><strong>Retallar pistes:</strong> selecciona amb el cursor i prem <code>Supr</code> o <code>Retalla</code>.</li>
+    <li><strong>Afegir pistes existents:</strong> <code>Fitxer > Importa > Àudio</code> (cada arxiu es mostra com pista nova).</li>
+    <li><strong>Moure pistes:</strong> arrossega-les amb l’eina de temps per sincronitzar.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔁 Transicions i efectes</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Fusió suau:</strong> aplica <code>Efectes > Entrada progressiva</code> o <code>Sortida progressiva</code>.</li>
+    <li><strong>Mescla:</strong> ajusta el volum de cada pista per fer transicions naturals entre àudios.</li>
+    <li><strong>Silenci:</strong> afegeix intervals de silenci per separar seccions.</li>
+    <li><strong>Desplaçament:</strong> sincronitza veu i música arrossegant les pistes fins a ajustar-les visualment.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎚️ Equalització i qualitat de so</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Reducció de soroll:</strong> <code>Efectes > Reducció de soroll</code> (es mostra un procés en dos passos).</li>
+    <li><strong>Equalitzador gràfic:</strong> <code>Efectes > Equalització</code> o <code>Efectes > Equalitzador gràfic</code>.</li>
+    <li><strong>Amplificació i normalització:</strong> millora el volum general sense distorsió.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📤 Exportació en diversos formats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>MP3:</strong> per ús web i dispositius mòbils.</li>
+    <li><strong>WAV:</strong> qualitat sense compressió, ideal per ràdio o edició posterior.</li>
+    <li><strong>OGG o FLAC:</strong> opcions lliures amb qualitat excel·lent.</li>
+    <li><code>Fitxer > Exporta > Escull format</code> i configura els paràmetres de compressió o metadades.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Tens una gravació de veu principal i vols afegir-hi música de fons amb un inici suau, reduir soroll i exportar en dos formats.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Importa la gravació i la música a dues pistes. Aplica “sortida progressiva” a la música, sincronitza amb la veu i redueix el soroll de fons. Exporta en MP3 per web i WAV per arxiu original.</p>
+  </div>
+</section>
+
+<section id="modul2-6" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 6. Ús responsable i drets d’ús del material sonor</h3>
+
+  <p>L’ús de material d’àudio digital ha de respectar sempre els drets de propietat intel·lectual i la privadesa. Fer ús de música, enregistraments o efectes sense autorització pot comportar conseqüències legals i ètiques.</p>
+
+  <h4 class="font-semibold mt-4">⚖️ Drets d’autor i llicències</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Copyright:</strong> tots els drets reservats per defecte; cal permís explícit per usar-lo.</li>
+    <li><strong>Creative Commons:</strong> permet usos parcialment lliures si es compleixen les condicions (atribució, no comercial, sense modificacions, etc.).</li>
+    <li><strong>Domini públic:</strong> sense restriccions; es pot usar lliurement.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔊 Recursos d’àudio lliures de drets</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Freesound.org:</strong> biblioteca col·laborativa de sons.</li>
+    <li><strong>Free Music Archive:</strong> música per projectes sense ànim de lucre.</li>
+    <li><strong>Pixabay / Bensound:</strong> àudio i música amb llicències d’ús flexible.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔐 Privadesa i enregistraments</h4>
+  <ul class="list-disc ml-6">
+    <li>No gravis converses ni veus alienes sense consentiment.</li>
+    <li>Si edites àudio d'altres persones, informa sobre com i on es publicarà.</li>
+    <li>Evita incloure informació personal o sensible en gravacions públiques.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs preparant un podcast i vols incloure una peça musical trobada a Internet com a introducció.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Verifica la llicència de la música. Si és amb copyright, busca una alternativa lliure de drets (com a Freesound o Pixabay). Afegeix crèdits si cal. No utilitzis música amb ús restringit sense permís.</p>
+  </div>
+</section>
+
+<section id="modul2-7" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 7. Cas pràctic final i integració d’habilitats d’edició de so</h3>
+
+  <p>Aquesta secció consolida els coneixements del mòdul mitjançant una activitat pràctica completa que inclou captura, edició, millora, sincronització i exportació d’un projecte sonor real. L’objectiu és posar en pràctica totes les eines i bones pràctiques vistes anteriorment.</p>
+
+  <h4 class="font-semibold mt-4">🎯 Objectius</h4>
+  <ul class="list-disc ml-6">
+    <li>Capturar o importar una narració de veu i una peça musical lliure de drets.</li>
+    <li>Editar la veu per eliminar errors, aplicar efectes i ajustar el volum.</li>
+    <li>Sincronitzar la música amb la veu, aplicant entrades i sortides suaus.</li>
+    <li>Afegir una tercera pista amb efectes sonors (transicions o ambientació).</li>
+    <li>Exportar en MP3 i WAV, amb metadades correctes.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Programari recomanat</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Audacity:</strong> per a tota l’edició multipista i exportació.</li>
+    <li><strong>Freesound.org:</strong> per a efectes sonors gratuïts.</li>
+    <li><strong>FFmpeg:</strong> per automatitzar versions o conversió ràpida.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Et demanen un àudio de 60 segons per una falca publicitària de ràdio que ha de contenir veu, música i efectes de transició, optimitzat per ràdio i xarxes socials.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Grava la veu o importa-la. Afegeix música de fons amb “entrada progressiva”. Aplica equalització i normalització. Afegeix efectes sonors sincronitzats amb moments clau. Exporta en WAV per ràdio i MP3 per xarxes, afegint metadades d’autor i descripció.</p>
+  </div>
+</section>
 </div>
 
-<!-- CONTINGUT MÒDUL 4 -->
+
+<!-- Contenidor del Mòdul 3 -->
+<div id="content-3" class="hidden">
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#7e22ce;">Mòdul 3: Edició avançada de vídeo (R5.3)</h2>
+
+  <!-- Índex Mòdul 3 -->
+  <nav id="index-3" class="mb-6 bg-white border rounded p-4 shadow text-sky-700">
+    <ul>
+      <li><a href="#modul3-1" class="hover:underline">1. Formats de vídeo i extensions</a></li>
+      <li><a href="#modul3-2" class="hover:underline">2. Panells i components de l’editor de vídeo</a></li>
+      <li><a href="#modul3-3" class="hover:underline">3. Captura de vídeo des de càmera o dispositiu extern</a></li>
+      <li><a href="#modul3-4" class="hover:underline">4. Edició de vídeo: retall, àudio, seqüències, transicions</a></li>
+      <li><a href="#modul3-5" class="hover:underline">5. Extracció i substitució de so en vídeo</a></li>
+      <li><a href="#modul3-6" class="hover:underline">6. Afegir text: títols, crèdits i sobreimpressions</a></li>
+      <li><a href="#modul3-7" class="hover:underline">7. Efectes visuals, velocitat i pauses</a></li>
+      <li><a href="#modul3-8" class="hover:underline">8. Pistes múltiples de vídeo i àudio</a></li>
+      <li><a href="#modul3-9" class="hover:underline">9. Exportació i formats finals</a></li>
+      <li><a href="#modul3-10" class="hover:underline">10. Cas pràctic final</a></li>
+    </ul>
+  </nav>
+
+<section id="modul3-1" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 3 - 1. Formats de vídeo i extensions</h3>
+
+  <p>Els formats de vídeo determinen la qualitat, mida i compatibilitat del fitxer. Cada format pot usar diferents còdecs de compressió i contenidors per adaptar-se a plataformes, dispositius i propòsits específics (edició, emissió, web...).</p>
+
+  <h4 class="font-semibold mt-4">📦 Contenidors habituals</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>.MP4:</strong> el més comú per la web i mòbils. Usa sovint el còdec H.264/H.265. Alta compatibilitat.</li>
+    <li><strong>.AVI:</strong> antic però encara utilitzat. Sovint amb còdecs DivX o Xvid. Arxius grans.</li>
+    <li><strong>.MKV:</strong> contenidor modern i versàtil. Permet múltiples pistes d’àudio i subtítols.</li>
+    <li><strong>.MOV:</strong> format d’Apple. Alta qualitat, usat amb còdec ProRes en entorns professionals.</li>
+    <li><strong>.WEBM:</strong> optimitzat per navegadors. Lliure i eficient, ideal per vídeo en línia.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎥 Còdecs de vídeo més utilitzats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>H.264:</strong> estàndard dominant. Bona compressió amb qualitat alta.</li>
+    <li><strong>H.265 (HEVC):</strong> millor compressió, però menys compatible amb dispositius antics.</li>
+    <li><strong>VP9:</strong> còdec lliure utilitzat per YouTube en vídeos WebM.</li>
+    <li><strong>ProRes:</strong> d’alta qualitat, ús professional (Apple Final Cut, edició de cinema).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🧰 Consells pràctics</h4>
+  <ul class="list-disc ml-6">
+    <li>Per a ús general i web: grava o exporta en <strong>MP4 (H.264)</strong>.</li>
+    <li>Per a edició: treballa en <strong>MOV o AVI sense compressió</strong> per evitar pèrdua de qualitat.</li>
+    <li>Per a streaming: considera <strong>WEBM (VP9)</strong> si vols opció lliure i lleugera.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has de preparar un vídeo de formació per a penjar-lo a una plataforma web i també lliurar-lo a una empresa que vol editar-lo amb Final Cut Pro.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Exporta dues versions. Una en <strong>MP4 amb còdec H.264</strong> per a la web, i una altra en <strong>MOV amb còdec ProRes</strong> per a l’edició professional.</p>
+  </div>
+</section>
+
+<section id="modul3-2" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 3 - 2. Panells i components de l’editor de vídeo</h3>
+
+  <p>Un editor de vídeo modern com <strong>Shotcut</strong>, <strong>Kdenlive</strong> o <strong>DaVinci Resolve</strong> està dividit en panells que permeten gestionar diferents aspectes del projecte. Conèixer la funció de cada component t’ajuda a treballar de forma eficient.</p>
+
+  <h4 class="font-semibold mt-4">🗂️ Panells habituals</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Projecte / Fitxers:</strong> on s’importen els clips, àudio, imatges i altres recursos multimèdia.</li>
+    <li><strong>Monitor:</strong> vista prèvia del clip seleccionat o del muntatge final.</li>
+    <li><strong>Línia de temps (Timeline):</strong> espai de treball principal per col·locar clips i ordenar-los al llarg del temps.</li>
+    <li><strong>Pistes:</strong> línies paral·leles on es col·loquen vídeos, àudios, textos, etc. Cada pista pot tenir efectes independents.</li>
+    <li><strong>Inspector / Efectes:</strong> mostra les propietats d’un clip seleccionat: mida, posició, opacitat, velocitat, efectes aplicats.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎞️ Elements clau d’edició</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Clips:</strong> fragments de vídeo o àudio que poden retallar-se, moure’s, dividir-se i duplicar-se.</li>
+    <li><strong>Fotogrames clau (keyframes):</strong> permeten animar propietats com la posició, el zoom, l’opacitat, etc.</li>
+    <li><strong>Transicions:</strong> efectes visuals entre dos clips, com fosa, esvaïment, lliscament.</li>
+    <li><strong>Efectes de vídeo:</strong> ajustos de color, correcció d’exposició, filtres artístics, estabilització, etc.</li>
+    <li><strong>Pistes de so:</strong> suporten música, locució o efectes; es poden retallar, suavitzar o aplicar-hi filtres.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📍 Exemple pràctic</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Importar:</strong> arrossega arxius a la finestra de projecte.</li>
+    <li><strong>Editar:</strong> col·loca clips a la línia de temps, retalla amb l’eina de tisores, afegeix transicions arrossegant un clip sobre un altre.</li>
+    <li><strong>Afegir efectes:</strong> selecciona un clip i ves a <code>Filtres > Afegeix</code> per aplicar modificacions visuals o sonores.</li>
+    <li><strong>Treballar amb pistes múltiples:</strong> afegeix capes noves per a títols, àudio de fons, efectes sonors, etc.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Vols editar un vídeo amb veu en off, música de fons i títols animats. Necessites controlar el volum i les transicions visuals.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Importa els clips, veu i música. Col·loca'ls a pistes separades a la línia de temps. Usa panells per ajustar volums, aplicar filtres i afegir títols amb fotogrames clau.</p>
+  </div>
+</section>
+
+<section id="modul3-3" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 3. Captura de vídeo des de càmera o dispositiu extern
+  </h3>
+
+  <p>Capturar vídeo d’una càmera externa o dispositiu és essencial per digitalitzar continguts, fer enregistraments en directe o utilitzar material propi en projectes multimèdia.</p>
+
+  <h4 class="font-semibold mt-4">📹 Fonts de captura comunes</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Càmeres DV o MiniDV:</strong> connectades via FireWire (IEEE 1394), habituals en entorns semi-professionals.</li>
+    <li><strong>Càmeres USB:</strong> habituals en videoconferències o captures bàsiques.</li>
+    <li><strong>Capturadores HDMI o USB:</strong> permeten enregistrar senyal de càmeres reflex, consoles o altres fonts en alta qualitat.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Procediment general</h4>
+  <ul class="list-disc ml-6">
+    <li>Connecta el dispositiu per USB o HDMI.</li>
+    <li>Obre un programa com <strong>OBS Studio</strong>, <strong>Kdenlive</strong> o <strong>Shotcut</strong>.</li>
+    <li>Selecciona la font de vídeo: <code>Dispositiu de captura de vídeo</code>.</li>
+    <li>Comença a gravar o capturar segons el programari.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔁 Alternatives</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>OBS Studio:</strong> ideal per streaming i enregistrament en directe.</li>
+    <li><strong>VLC:</strong> permet capturar dispositius d’entrada i gravar-los.</li>
+    <li><strong>FFmpeg:</strong> eina avançada per capturar via línia de comandes.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has de gravar una presentació amb la teva càmera reflex i utilitzar el vídeo en un projecte didàctic.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Connecta la càmera via HDMI a una capturadora USB. Obre OBS Studio, selecciona la font i grava. Exporta en MP4 o MOV segons la finalitat.</p>
+  </div>
+</section>
+
+<section id="modul3-4" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 4. Edició de vídeo: retall, àudio, seqüències, transicions
+  </h3>
+
+  <p>L’edició de vídeo consisteix en seleccionar, retallar, reorganitzar i millorar clips per obtenir un resultat narratiu i visualment coherent. Es poden afegir efectes, música, títols i transicions per enriquir el missatge audiovisual.</p>
+
+  <h4 class="font-semibold mt-4">✂️ Accions bàsiques d’edició</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Retallar clips:</strong> selecciona el clip i utilitza les eines de tall o arrossega els extrems.</li>
+    <li><strong>Dividir:</strong> col·loca el cursor a la línia de temps i fes clic a <code>Edita > Divideix</code> o usa la tecla S (segons el programari).</li>
+    <li><strong>Esborrar:</strong> selecciona i prem <code>Suprimir</code>.</li>
+    <li><strong>Reordenar:</strong> arrossega clips a una nova posició a la línia de temps.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔊 Edició d’àudio integrada</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Separar àudio del vídeo:</strong> clic dret > <code>Desenllaça àudio</code>.</li>
+    <li><strong>Editar el volum:</strong> selecciona la pista d’àudio i ajusta l’escala o aplica un filtre.</li>
+    <li><strong>Afegir música:</strong> importa un arxiu d’àudio i col·loca’l en una pista independent.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">⛓️ Transicions i seqüències</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Afegir transició:</strong> arrossega un clip sobre un altre (Shotcut) o usa la biblioteca de transicions.</li>
+    <li><strong>Tipus habituals:</strong> fosa en negre, dissolvència, tall dur, esvaïment, desplaçament.</li>
+    <li><strong>Sincronitzar àudio i vídeo:</strong> ajusta manualment o utilitza eines automàtiques (en alguns programes).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎞️ Recomanació de programari</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> gratuït i molt visual, ideal per usuaris d’ACTIC 3.</li>
+    <li><strong>Kdenlive:</strong> potent i modular, amb suport per a múltiples pistes i efectes avançats.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Tens 3 clips de vídeo i vols crear una peça fluïda amb una música de fons i una petita transició entre escenes.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Importa els clips, retalla’ls, ordena’ls i aplica transicions suaus (com una fosa). Afegeix música en una pista nova i ajusta el volum per no tapar la veu si n’hi ha.</p>
+  </div>
+</section>
+
+<section id="modul3-5" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 5. Extracció i substitució de so en vídeo
+  </h3>
+
+  <p>És molt habitual haver d’extreure o substituir l’àudio d’un vídeo per millorar-ne la qualitat, afegir-hi música nova, doblatge o eliminar sons no desitjats.</p>
+
+  <h4 class="font-semibold mt-4">📤 Extreure l’àudio d’un vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Amb Shotcut:</strong> Exporta només la pista d’àudio: <code>Exporta > Format: MP3 o WAV</code>.</li>
+    <li><strong>Amb VLC:</strong> <code>Mèdia > Convertir / Desar > Escull àudio com a perfil</code>.</li>
+    <li><strong>Amb FFmpeg:</strong> línia d’ordres: <code>ffmpeg -i video.mp4 -q:a 0 -map a audio.mp3</code>.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔄 Substituir o modificar l’àudio</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Desenllaçar l’àudio original:</strong> clic dret al clip > <code>Desenllaça àudio</code>.</li>
+    <li><strong>Eliminar el so antic:</strong> un cop desenllaçat, selecciona i suprimeix la pista d’àudio.</li>
+    <li><strong>Afegir nova pista de so:</strong> importa música, locució o efectes i col·loca’ls a una nova pista.</li>
+    <li><strong>Sincronització:</strong> ajusta la posició del nou so amb el vídeo manualment o amb punts de referència.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎚️ Millores d’àudio opcionals</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Normalització de volum:</strong> iguala nivells per evitar pics o sons massa baixos.</li>
+    <li><strong>Filtres d’àudio:</strong> aplica eco, equalització, reverberació o eliminació de soroll.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Tens un vídeo amb soroll ambiental molest. Vols substituir el so per una narració pròpia i música suau de fons.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Extreu el vídeo, desenllaça i elimina l’àudio. Afegeix una pista amb la teva veu i una altra amb música ambiental. Ajusta volums i exporta el resultat final.</p>
+  </div>
+</section>
+
+<section id="modul3-6" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 6. Afegir text: títols, crèdits i sobreimpressions
+  </h3>
+
+  <p>El text en un vídeo és fonamental per contextualitzar, reforçar idees o donar informació addicional. Es pot col·locar com a títol inicial, crèdits finals o sobreimpressions en qualsevol moment del vídeo.</p>
+
+  <h4 class="font-semibold mt-4">✍️ Tipus de textos habituals</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Títols d’inici:</strong> introducció del projecte o capítol.</li>
+    <li><strong>Crèdits finals:</strong> informació d’autoria, fonts, col·laboradors, etc.</li>
+    <li><strong>Text sobreimprès:</strong> noms, subtítols, localitzacions, dades clau.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Com afegir text</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> Afegeix una pista nova, selecciona el clip i aplica filtre <code>Text: simple</code> o <code>Text: HTML</code>.</li>
+    <li><strong>Kdenlive:</strong> Usa l’eina <code>Títol</code> per crear una nova composició de text independent.</li>
+    <li><strong>DaVinci Resolve:</strong> A la línia de temps, afegeix un clip de text des de la biblioteca “Text+”.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎨 Personalització</h4>
+  <ul class="list-disc ml-6">
+    <li>Tria font, mida, color, posició i efectes d’entrada/sortida.</li>
+    <li>Pots animar el text amb <strong>fotogrames clau</strong> (moviment, opacitat...).</li>
+    <li>Aplica ombres o fons per millorar la llegibilitat.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎯 Bones pràctiques</h4>
+  <ul class="list-disc ml-6">
+    <li>Evita textos massa llargs.</li>
+    <li>Centra el text o col·loca’l de manera que no tapi elements visuals importants.</li>
+    <li>Respecta el contrast i la durada de visualització (mínim 3–5 segons).</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs editant un vídeo de formació i vols afegir un títol d’inici, el nom de la persona entrevistada i els crèdits finals amb música.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Crea un clip de text per al títol i col·loca’l abans del vídeo. Durant l’entrevista, afegeix sobreimpressions amb el nom i càrrec. Afegeix una pista final amb crèdits animats i música de fons suau.</p>
+  </div>
+</section>
+
+<section id="modul3-7" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 7. Efectes visuals, velocitat i pauses
+  </h3>
+
+  <p>Els efectes visuals i els ajustos de velocitat són eines creatives essencials per millorar l’impacte narratiu d’un vídeo. Permeten afegir dinamisme, transicions impactants i adaptacions temporals per reforçar el missatge.</p>
+
+  <h4 class="font-semibold mt-4">✨ Efectes visuals comuns</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Fusió (fade):</strong> esvaïment suau a negre o entre clips.</li>
+    <li><strong>Blurs i filtres:</strong> desenfocar, canvi de color, efectes cinematogràfics.</li>
+    <li><strong>Croma (pantalla verda):</strong> substitució de fons amb <code>Chroma Key</code>.</li>
+    <li><strong>Correcció de color:</strong> ajustar exposició, contrast, temperatura i saturació.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">⏩ Velocitat del vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Accelerar:</strong> pot donar un efecte còmic o mostrar processos llargs de manera resumida.</li>
+    <li><strong>Ralentir (càmera lenta):</strong> destaca accions clau o emocions.</li>
+    <li><strong>Congelar fotograma:</strong> manté una imatge estàtica durant uns segons (freeze frame).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Com aplicar-los</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> afegeix <code>Filtres > Velocitat</code> o <code>Filtres > Freeze</code> a un clip.</li>
+    <li><strong>Kdenlive:</strong> botó dret sobre clip > <code>Canvia la velocitat</code> o utilitza efectes com <code>Fade in/out</code>.</li>
+    <li><strong>DaVinci Resolve:</strong> utilitza la línia de temps i panell d’efectes per fer canvis avançats.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎬 Recomanacions d’ús</h4>
+  <ul class="list-disc ml-6">
+    <li>No abusis dels efectes: poden distreure si no aporten valor narratiu.</li>
+    <li>Combina velocitat i so per obtenir un impacte cohesionat.</li>
+    <li>Congela fotogrames en moments clau per donar èmfasi.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs editant una demostració de procés i vols mostrar el muntatge ràpidament, destacar un error clau i afegir un efecte final.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Aplica acceleració a la part del muntatge, congela un fotograma en el moment de l’error i afegeix una fosa final. Ajusta la música i efectes per acompanyar el canvi de ritme.</p>
+  </div>
+</section>
+
+<section id="modul3-8" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 8. Pistes múltiples de vídeo i àudio
+  </h3>
+
+  <p>Treballar amb múltiples pistes permet combinar diverses fonts de vídeo i àudio en un sol projecte. És essencial per editar vídeos amb narració, música, efectes sonors, gràfics o imatges superposades.</p>
+
+  <h4 class="font-semibold mt-4">🎬 Tipus de pistes</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Pistes de vídeo:</strong> contenen clips visuals, imatges o textos animats.</li>
+    <li><strong>Pistes d’àudio:</strong> poden incloure música de fons, narració o efectes de so.</li>
+    <li><strong>Capçaleres i màscares:</strong> es poden afegir com pistes especials (segons el programari).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔧 Gestió de pistes</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Afegeix pistes:</strong> clic dret a la línia de temps > <code>Afegeix pista de vídeo/àudio</code>.</li>
+    <li><strong>Canvia l’ordre:</strong> arrossega les pistes cap amunt o avall si el programa ho permet.</li>
+    <li><strong>Silencia o amaga:</strong> per controlar quina pista es veu o escolta durant l’edició.</li>
+    <li><strong>Bloqueja:</strong> evita modificar per error una pista ja completada.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎨 Ús creatiu de pistes múltiples</h4>
+  <ul class="list-disc ml-6">
+    <li>Superposar imatges o logotips sobre el vídeo principal.</li>
+    <li>Afegir subtítols o anotacions en pistes separades.</li>
+    <li>Sincronitzar veu en off amb accions visuals.</li>
+    <li>Aplicar efectes diferents a cada pista (blur, opacitat, color...).</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">💻 Eines útils per pistes</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> permet afegir tantes pistes com vulguis i gestionar-les amb filtres específics.</li>
+    <li><strong>Kdenlive:</strong> ofereix gestió avançada de capes, jerarquies i keyframes per pista.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Estàs editant una presentació on vols mostrar un vídeo principal, una locució i imatges amb transicions per reforçar idees.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Col·loca el vídeo base a la pista 1, la veu en off a la pista d’àudio, i les imatges a la pista 2 (vídeo). Aplica transicions i ajusta l’ordre temporal perquè tot estigui sincronitzat.</p>
+  </div>
+</section>
+
+<section id="modul3-9" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 9. Exportació i formats finals
+  </h3>
+
+  <p>Un cop finalitzat el muntatge, el pas final és exportar el projecte a un format de vídeo final. Cal escollir els paràmetres adequats segons l’ús previst: qualitat, mida, compatibilitat i compressió.</p>
+
+  <h4 class="font-semibold mt-4">📦 Formats més utilitzats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>MP4 (H.264):</strong> ideal per web, dispositius mòbils i xarxes socials.</li>
+    <li><strong>MOV (ProRes):</strong> qualitat alta per a entorns professionals (Final Cut, postproducció).</li>
+    <li><strong>AVI:</strong> poc comprimit, útil per arxius màster.</li>
+    <li><strong>WEBM:</strong> alternativa lliure i optimitzada per navegadors.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">⚙️ Paràmetres d’exportació</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Resolució:</strong> 1920x1080 (Full HD), 1280x720 (HD), 3840x2160 (4K).</li>
+    <li><strong>Freqüència de fotogrames:</strong> 25 fps (estàndard europeu), 30 fps (web), 60 fps (fluïdesa màxima).</li>
+    <li><strong>Taxa de bits (bitrate):</strong> més alta = millor qualitat, però fitxer més gran.</li>
+    <li><strong>Àudio:</strong> format MP3 o AAC, 128–320 kbps, estèreo.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Com exportar</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> <code>Exporta > Avançat</code> per triar resolució, còdec i contenidor.</li>
+    <li><strong>Kdenlive:</strong> <code>Renderitza > Perfil de sortida</code> (pots crear un perfil personalitzat).</li>
+    <li><strong>DaVinci Resolve:</strong> <code>Deliver > Custom export</code> amb previsualització del pes final.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">💡 Recomanacions</h4>
+  <ul class="list-disc ml-6">
+    <li>Prova una exportació curta per verificar qualitat i compatibilitat abans de renderitzar el projecte complet.</li>
+    <li>Guarda una còpia sense compressió per futurs retocs (format màster).</li>
+    <li>Afegeix metadades: autor, títol, drets, descripció.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has acabat un vídeo per publicar a YouTube i també necessites enviar una versió de qualitat per televisió local.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Exporta una versió en MP4 (H.264, 1080p, 30 fps) per a YouTube i una altra en MOV (ProRes, 25 fps, qualitat màxima) per a emissió professional.</p>
+  </div>
+</section>
+
+<section id="modul3-10" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 3 - 10. Cas pràctic final d’edició de vídeo
+  </h3>
+
+  <p>Aquesta secció integra totes les competències treballades al llarg del mòdul mitjançant una activitat realista. L’objectiu és consolidar el coneixement pràctic en l’ús d’un editor de vídeo, des de la importació fins a l’exportació final.</p>
+
+  <h4 class="font-semibold mt-4">🎯 Reptes del projecte</h4>
+  <ul class="list-disc ml-6">
+    <li>Importar diversos clips de vídeo i àudio.</li>
+    <li>Retallar, ordenar i afegir transicions entre escenes.</li>
+    <li>Separar l’àudio original, substituir-lo i sincronitzar nova veu o música.</li>
+    <li>Afegir textos: títol inicial, crèdits finals i sobreimpressions informatives.</li>
+    <li>Aplicar efectes visuals i controlar velocitat de clips específics.</li>
+    <li>Gestionar diverses pistes de vídeo i àudio amb coherència.</li>
+    <li>Exportar en dos formats: un optimitzat per web i un màster per emissió.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Eines recomanades</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> entorn intuïtiu per a muntatges amb múltiples pistes i filtres.</li>
+    <li><strong>Kdenlive:</strong> ideal per editar projectes complexos amb efectes animats i àudio avançat.</li>
+    <li><strong>OBS Studio:</strong> si cal capturar fragments externs o fer gravacions pròpies per incloure.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Proposta pràctica</h4>
+    <p><strong>Situació:</strong> Has de crear un vídeo de 2 minuts per presentar un projecte educatiu. Ha d’incloure: introducció amb títol animat, clips curts, sobreimpressions de text, àudio explicatiu, música de fons i crèdits finals.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Importa els clips, retalla’ls i ordena’ls. Afegeix el títol inicial animat, textos informatius sincronitzats, veu en off i música. Aplica transicions suaus i exporta en MP4 i MOV.</p>
+  </div>
+</section>
+</div>
+
+
+<!-- Contenidor del Mòdul 4 -->
 <div id="content-4" class="hidden">
   <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#ca8a04;">Mòdul 4: Reproducció multimèdia i compatibilitat (R5.4)</h2>
 
-  <section id="media1" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Reproductors i formats multimèdia</h3>
-    <p>Els reproductors més habituals són <strong>VLC</strong>, <strong>BSPlayer</strong> i <strong>Windows Media Player</strong>. Aquests poden obrir una àmplia gamma de formats: <code>.mp4</code>, <code>.mp3</code>, <code>.avi</code>, <code>.mkv</code>, <code>.ogg</code>, etc.</p>
-    <p><em>VLC:</em> és multiplataforma i compatible amb la majoria de formats, ideal per a l’ús general.</p>
-  </section>
+  <!-- Índex Mòdul 4 -->
+  <nav id="index-4" class="mb-6 bg-white border rounded p-4 shadow text-sky-700">
+  <ul>
+    <li><a href="#modul4-1" class="hover:underline">1. Aplicacions per integrar imatge, àudio i vídeo</a></li>
+    <li><a href="#modul4-2" class="hover:underline">2. Formats i exportació multimèdia</a></li>
+    <li><a href="#modul4-3" class="hover:underline">3. Preparació de projectes multimèdia interactius</a></li>
+    <li><a href="#modul4-4" class="hover:underline">4. Bones pràctiques d’integració multimèdia</a></li>
+    <li><a href="#modul4-5" class="hover:underline">5. Cas pràctic final: projecte multimèdia complet</a></li>
+  </ul>
+  </nav>
 
-  <section id="media2" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Compatibilitat entre formats</h3>
-    <p>Alguns dispositius només suporten formats específics (ex. <code>.mp4</code> per mòbils). És important saber convertir entre formats utilitzant eines com <strong>HandBrake</strong> o <strong>FFmpeg</strong>.</p>
-  </section>
+<section id="modul4-1" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 4 - 1. Aplicacions per integrar imatge, àudio i vídeo
+  </h3>
 
-  <section id="media3" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Configuració i còdecs</h3>
-    <p>Els còdecs permeten comprimir i descomprimir àudio i vídeo. Si un fitxer no es pot reproduir, sovint és per manca de còdec. VLC ja els inclou tots. En altres casos cal instal·lar paquets com K-Lite Codec Pack.</p>
-  </section>
+  <p>Hi ha eines especialitzades que permeten crear projectes multimèdia complexos on s’integren imatges, àudio i vídeo en una mateixa línia narrativa. Aquestes aplicacions permeten combinar formats, sincronitzar recursos i exportar continguts finals d’alta qualitat.</p>
 
-  <section id="media4" class="mb-6">
-    <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Problemes habituals de reproducció</h3>
-    <p>Errors comuns: àudio desincronitzat, falta d’imatge, codecs no reconeguts, subtítols que no apareixen. Cal revisar la compatibilitat del fitxer, els codecs instal·lats i les opcions del reproductor.</p>
-    <p><em>Solució pràctica:</em> obrir el fitxer amb VLC i, si cal, convertir-lo a un format més compatible.</p>
-  </section>
-</div>
+  <h4 class="font-semibold mt-4">🔧 Aplicacions recomanades</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Shotcut:</strong> Permet importar diferents formats multimèdia i treballar amb pistes múltiples per combinar imatges fixes, clips de vídeo i àudio.</li>
+    <li><strong>Kdenlive:</strong> Ideal per a projectes educatius o documentals amb suport per a subtítols, capes, efectes visuals i so avançat.</li>
+    <li><strong>OBS Studio:</strong> Integra en temps real imatge de càmera, so de micro, captures de pantalla i elements gràfics.</li>
+    <li><strong>PowerPoint (amb funcions de vídeo):</strong> Permet inserir vídeos, àudio i animacions per a presentacions multimèdia.</li>
+  </ul>
 
-</div>
+  <h4 class="font-semibold mt-4">🎯 Capacitats clau</h4>
+  <ul class="list-disc ml-6">
+    <li>Importar formats d’imatge (.jpg, .png), àudio (.mp3, .wav) i vídeo (.mp4, .mov).</li>
+    <li>Organitzar els recursos en una línia de temps amb múltiples pistes.</li>
+    <li>Sincronitzar veu en off amb accions visuals.</li>
+    <li>Afegir textos i gràfics animats o estàtics per complementar el missatge.</li>
+    <li>Aplicar efectes de transició, fons musicals i ajustar la durada de cada element.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Vols crear una presentació de projecte amb fotos de fons, música suau, veu narrada i un clip de vídeo curt per reforçar la idea principal.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Usa Shotcut o Kdenlive per importar imatges, gravar la narració i inserir la música. Organitza-ho en pistes separades i afegeix el clip de vídeo. Exporta en format MP4 per compartir-lo fàcilment.</p>
+  </div>
+</section>
+
+<section id="modul4-2" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 4 - 2. Formats i exportació multimèdia
+  </h3>
+
+  <p>L’exportació final d’un projecte multimèdia implica escollir formats que siguin compatibles amb la finalitat (web, presentació, emissió, arxiu). És important entendre les diferències entre formats per imatge, àudio i vídeo.</p>
+
+  <h4 class="font-semibold mt-4">🖼️ Formats d’imatge</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>JPEG (.jpg):</strong> Imatge comprimida, ideal per fotografies, amb pèrdua de qualitat.</li>
+    <li><strong>PNG:</strong> Suporta transparència i compressió sense pèrdua. Recomanat per gràfics i interfícies.</li>
+    <li><strong>GIF:</strong> Per animacions simples i gràfics de baixa resolució.</li>
+    <li><strong>SVG:</strong> Imatges vectorials per a ús web i icones escalables.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎧 Formats d’àudio</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>MP3:</strong> Compressió amb pèrdua. Bona qualitat i compatibilitat universal.</li>
+    <li><strong>WAV:</strong> Sense compressió. Molt alta qualitat, ideal per edició.</li>
+    <li><strong>OGG:</strong> Lliure i eficaç, similar a MP3 però amb millor rendiment.</li>
+    <li><strong>AAC:</strong> Estàndard per a dispositius Apple i plataformes modernes.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎞️ Formats de vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>MP4 (H.264):</strong> El més utilitzat per a xarxes socials, web i mòbils.</li>
+    <li><strong>MOV:</strong> Alta qualitat. Preferit en entorns Mac / Final Cut.</li>
+    <li><strong>WEBM:</strong> Lliure, optimitzat per navegadors com Chrome i Firefox.</li>
+    <li><strong>AVI:</strong> Compatible amb molts dispositius, però sovint amb mida gran.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📤 Paràmetres a configurar en l’exportació</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Resolució:</strong> 720p, 1080p, 4K segons el mitjà de difusió.</li>
+    <li><strong>Qualitat de compressió:</strong> més compressió redueix mida però pot empitjorar la imatge o el so.</li>
+    <li><strong>Format de contenidor:</strong> arxiu final que pot contenir vídeo + àudio (ex: MP4, MKV).</li>
+    <li><strong>Compatibilitat:</strong> verifica que el format exportat sigui compatible amb el dispositiu o plataforma.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has creat un projecte multimèdia per una fira educativa i vols presentar-lo en un projector, penjar-lo a YouTube i lliurar-lo en format arxiu a l’organització.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Exporta en MP4 (H.264) per a YouTube i ús general. Prepara una versió MOV d’alta qualitat per a projecció. Si cal enviar-lo com arxiu editable, guarda el projecte i els recursos en una carpeta comprimida.</p>
+  </div>
+</section>
+
+<section id="modul4-3" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 4 - 3. Preparació de projectes multimèdia interactius
+  </h3>
+
+  <p>Els projectes multimèdia interactius permeten que l’usuari interactuï amb el contingut: triar seqüències, accedir a informació addicional, fer clic a enllaços, respondre preguntes o navegar lliurement per l’estructura del projecte.</p>
+
+  <h4 class="font-semibold mt-4">🧩 Formats de projectes interactius</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Presentacions interactives:</strong> amb enllaços, àudio, vídeo i navegació no lineal (ex: PowerPoint, LibreOffice Impress).</li>
+    <li><strong>Projectes HTML5:</strong> creats amb eines com H5P o Genially. Funcionen al navegador, compatibles amb LMS com Moodle.</li>
+    <li><strong>DVD amb menús:</strong> permet triar escenes, idiomes o veure capítols específics.</li>
+    <li><strong>Apps multimèdia:</strong> jocs educatius o tutorials amb continguts audiovisuals.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📌 Eines per crear interactivitat</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Genially:</strong> entorn en línia per crear infografies, vídeos interactius i quizzes.</li>
+    <li><strong>H5P:</strong> biblioteca de components interactius (testos, vídeos, timelines...).</li>
+    <li><strong>DVDStyler:</strong> per crear menús i DVD amb navegació.</li>
+    <li><strong>PowerPoint:</strong> amb accions, enllaços, àudio i vídeos incrustats.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Bones pràctiques</h4>
+  <ul class="list-disc ml-6">
+    <li>Planifica l’estructura abans de crear (esquema o guió).</li>
+    <li>Inclou indicadors clars de navegació (botons, títols, instruccions).</li>
+    <li>Evita sobrecàrrega de text o àudio simultani.</li>
+    <li>Fes proves en diversos dispositius per verificar compatibilitat.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Et demanen preparar un material educatiu per explicar un tema científic, amb vídeo, gràfics i preguntes interactives.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Crea una presentació amb Genially o H5P, afegeix clips de vídeo, imatges, àudio narrat i preguntes interactives. Publica-ho com HTML5 o integra-ho en Moodle.</p>
+  </div>
+</section>
+
+<section id="modul4-4" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 4 - 4. Bones pràctiques d’integració multimèdia
+  </h3>
+
+  <p>Per garantir que un projecte multimèdia sigui efectiu, atractiu i accessible, cal seguir bones pràctiques en la integració dels elements visuals, sonors i textuals. L’objectiu és millorar la comprensió, la retenció i l’experiència de l’usuari.</p>
+
+  <h4 class="font-semibold mt-4">🧠 Simplicitat i claredat</h4>
+  <ul class="list-disc ml-6">
+    <li>Evita la saturació d’elements en una mateixa escena o pantalla.</li>
+    <li>Utilitza només els recursos que aportin valor comunicatiu.</li>
+    <li>Mantén una estructura jeràrquica clara: títols, subtítols, blocs.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🎨 Disseny visual coherent</h4>
+  <ul class="list-disc ml-6">
+    <li>Tria una paleta de colors harmonitzada i fonts llegibles.</li>
+    <li>Mantén alineacions i espais consistents entre elements.</li>
+    <li>Aplica el mateix estil gràfic a icones, títols i fons.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🔉 Qualitat de so i vídeo</h4>
+  <ul class="list-disc ml-6">
+    <li>Evita àudios amb soroll de fons o volums desiguals.</li>
+    <li>Utilitza imatges i vídeos amb resolució adequada (mínim 720p).</li>
+    <li>Comprimeix adequadament per no perdre qualitat excessiva.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">♿ Accessibilitat i usabilitat</h4>
+  <ul class="list-disc ml-6">
+    <li>Afegeix subtítols als vídeos o narracions importants.</li>
+    <li>Inclou text alternatiu en imatges si el format ho permet.</li>
+    <li>Evita canvis sobtats de so o llum que puguin dificultar l’accés.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">📤 Distribució i compatibilitat</h4>
+  <ul class="list-disc ml-6">
+    <li>Exporta en formats compatibles amb tots els dispositius (MP4, PDF, HTML5).</li>
+    <li>Prova el resultat final en ordinadors, mòbils i navegadors diferents.</li>
+    <li>Inclou una versió offline si cal treballar sense connexió.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Cas pràctic</h4>
+    <p><strong>Situació:</strong> Has creat un vídeo amb imatges, àudio i text, però un usuari et comenta que no entén la veu ni pot seguir les explicacions perquè el text desapareix massa ràpid.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Allarga la durada de visualització del text, afegeix subtítols sincronitzats amb la narració i revisa el volum i la claredat de la veu. Comprova que tot sigui llegible en dispositius petits.</p>
+  </div>
+</section>
+
+  <section id="modul4-5" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+    Mòdul 4 - 5. Cas pràctic final: projecte multimèdia complet
+  </h3>
+
+  <p>Aquesta activitat final et permet aplicar de manera integrada totes les habilitats apreses durant el mòdul: selecció de formats, edició de vídeo, inserció de so i imatge, creació d’interactivitat i exportació correcta.</p>
+
+  <h4 class="font-semibold mt-4">🎯 Objectius de la pràctica</h4>
+  <ul class="list-disc ml-6">
+    <li>Crear un vídeo de presentació amb imatges, clips i veu narrada.</li>
+    <li>Afegir títols, crèdits i informació contextual amb text animat o sobreimprès.</li>
+    <li>Aplicar una estructura coherent, amb bona qualitat visual i sonora.</li>
+    <li>Fer-lo interactiu si cal (amb enllaços, capítols o menús).</li>
+    <li>Exportar-lo en diferents formats segons la destinació: web, presentació o arxiu.</li>
+  </ul>
+
+  <h4 class="font-semibold mt-4">🛠️ Recursos recomanats</h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Editor de vídeo:</strong> Shotcut, Kdenlive, DaVinci Resolve.</li>
+    <li><strong>So i àudio:</strong> Audacity per tractar la veu i música de fons.</li>
+    <li><strong>Fonts d’imatges:</strong> Unsplash, Pixabay, Freepik (amb llicència correcta).</li>
+    <li><strong>Interactivitat (opcional):</strong> Genially, H5P o PowerPoint.</li>
+  </ul>
+
+  <div class="bg-white border-l-4 border-blue-600 shadow p-4 my-4">
+    <h4 class="font-bold text-blue-700 mb-2">🧪 Proposta de projecte</h4>
+    <p><strong>Situació:</strong> Has de presentar un projecte educatiu o cultural. El format ha de combinar narració, fotografies, clips curts, títols i música. Vols penjar-lo a una web, projectar-lo i enviar-lo a una entitat.</p>
+    <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Organitza el material en un editor de vídeo amb pistes separades. Edita la veu, afegeix títols i crèdits, i exporta versions adaptades per web (MP4), emissió (MOV) i arxiu editable (carpeta del projecte).</p>
+  </div>
+</section>
+
+    </div>
+  
+    </div>
+  </div>
 </body>
 </html>
 
