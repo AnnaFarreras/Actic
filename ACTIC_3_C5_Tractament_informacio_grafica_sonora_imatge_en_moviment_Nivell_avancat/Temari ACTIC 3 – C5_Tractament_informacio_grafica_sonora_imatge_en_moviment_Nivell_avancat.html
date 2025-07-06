@@ -1,55 +1,30 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Temari ACTIC 3 – C5</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script>
-let modulActiu = null;
-
-function toggleIndex(modul) {
-  const indexActual = document.getElementById(`index-${modul}`);
-  const contentActual = document.getElementById(`content-${modul}`);
-
-  if (modulActiu === modul) {
-    if (indexActual) indexActual.classList.toggle('hidden');
-    if (contentActual) contentActual.classList.toggle('hidden');
-    modulActiu = null;
-    return;
-  }
-
-  for (let i = 1; i <= 4; i++) {
-    const index = document.getElementById(`index-${i}`);
-    const content = document.getElementById(`content-${i}`);
-    if (index) index.classList.add('hidden');
-    if (content) content.classList.add('hidden');
-  }
-
-  if (indexActual) indexActual.classList.remove('hidden');
-  if (contentActual) contentActual.classList.remove('hidden');
-  modulActiu = modul;
-}
-  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900 font-sans">
-  <div class="max-w-4xl mx-auto py-8 px-4">
-    <h1 class="text-3xl font-bold mb-4 text-center">Temari ACTIC 3 – C5</h1>
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-5xl mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">Temari ACTIC 3 – C5</h1>
 
-<!-- Barra de navegació de mòduls -->
-<div class="flex justify-center gap-4 mb-8">
-  <button onclick="toggleIndex(1)" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Mòdul 1</button>
-  <button onclick="toggleIndex(2)" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Mòdul 2</button>
-  <button onclick="toggleIndex(3)" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Mòdul 3</button>
-  <button onclick="toggleIndex(4)" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg yellow-600">Mòdul 4</button>
-</div>
+    <!-- Botons de mòduls -->
+    <div class="flex flex-wrap gap-2 justify-center mb-6">
+      <button onclick="toggleIndex(1)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Mòdul 1</button>
+      <button onclick="toggleIndex(2)" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Mòdul 2</button>
+      <button onclick="toggleIndex(3)" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded">Mòdul 3</button>
+      <button onclick="toggleIndex(4)" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Mòdul 4</button>
+    </div>
 
     <!-- CONTINGUT NET I VALIDAT DEL MÒDUL 1 -->
     <div id="content-1" class="hidden">
-      <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#2563eb;">Mòdul 1: Manipulació d’imatges fixes (R5.1)</h2>
+      <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#4f46e5;">Mòdul 1: Manipulació d’imatges fixes (R5.1)</h2>
 
       <!-- Índex Mòdul 1 -->
-<nav id="index-1" class="hidden mb-6 bg-white border rounded p-4 shadow text-blue-700">
+<nav id="index-1" class="hidden mb-6 bg-white border rounded p-4 shadow text-sky-600">
   <ul>  
     <li><a href="#1" class="hover:underline">1. Tipus d’imatges: vectorials i mapa de bits</a></li>
     <li><a href="#2" class="hover:underline">2. Formats i compressió</a></li>
@@ -73,7 +48,7 @@ function toggleIndex(modul) {
 
 <!-- Secció 1 -->
 <section id="1-1" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">1. Tipus d’imatges: vectorials i mapa de bits</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">1. Tipus d’imatges: vectorials i mapa de bits</h3>
 
   <p>Les imatges digitals poden classificar-se en dos grans grups: <strong>imatges de mapa de bits</strong> i <strong>imatges vectorials</strong>. Cadascun d’aquests formats es basa en una estructura i ús diferents i són utilitzats per finalitats específiques dins l’àmbit gràfic, editorial i web.</p>
 
@@ -117,7 +92,7 @@ function toggleIndex(modul) {
 
 <!-- Secció 2 -->
 <section id="1-2" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">2. Formats i compressió</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">2. Formats i compressió</h3>
 
   <p>Els formats d’imatge digitals determinen com s’emmagatzema la informació visual i quina compressió s’hi aplica. És fonamental saber escollir el format correcte segons l’ús final (web, impressió, edició, arxiu).</p>
 
@@ -168,7 +143,7 @@ function toggleIndex(modul) {
 
 <!-- Secció 3 -->
 <section id="1-3" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">3. Resolució, mida i profunditat de color</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">3. Resolució, mida i profunditat de color</h3>
 
   <p>Quan es treballa amb imatges digitals, és fonamental entendre tres conceptes clau que afecten la qualitat i l’ús de les imatges: la <strong>resolució</strong>, la <strong>mida</strong> i la <strong>profunditat de color</strong>.</p>
 
@@ -214,7 +189,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-4" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">4. Modes de color i canal alfa</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">4. Modes de color i canal alfa</h3>
 
   <p>Un mode de color defineix com es representen els colors en una imatge digital. Cadascun utilitza un espai de color i una estructura pròpia per combinar els canals de color. És essencial escollir el mode adequat segons si la imatge s’usarà per pantalla, impressió o edició.</p>
 
@@ -265,7 +240,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-5" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">5. Fonts d’adquisició: càmera, escàner, internet</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">5. Fonts d’adquisició: càmera, escàner, internet</h3>
 
   <p>Les imatges digitals poden obtenir-se a partir de diverses fonts. Conèixer les característiques de cadascuna permet adaptar el flux de treball a les necessitats de qualitat, legalitat i eficiència.</p>
 
@@ -307,7 +282,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-6" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">6. Edició amb programari (GIMP / Photoshop)</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">6. Edició amb programari (GIMP / Photoshop)</h3>
 
   <p>L’edició d’imatges digitals es pot fer amb programari lliure com <strong>GIMP</strong> o amb opcions comercials com <strong>Adobe Photoshop</strong>. Aquestes eines permeten des de retocs bàsics fins a manipulació complexa, mitjançant una interfície d’eines, menús i capes.</p>
 
@@ -347,7 +322,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-7" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">7. Transformacions bàsiques i avançades</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">7. Transformacions bàsiques i avançades</h3>
 
   <p>Les transformacions permeten modificar la forma, orientació i estructura d’una imatge. A GIMP i Photoshop, trobem tant transformacions bàsiques (girar, escalar) com d’altres més avançades (perspectiva, distorsió, volums).</p>
 
@@ -383,7 +358,7 @@ function toggleIndex(modul) {
 
 
 <section id="1-8" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">8. Capes, màscares i eines de selecció</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">8. Capes, màscares i eines de selecció</h3>
 
   <p>Les capes, màscares i seleccions són conceptes fonamentals per fer edició no destructiva i amb control total sobre parts específiques de la imatge. Tots dos programes (GIMP i Photoshop) utilitzen aquest sistema jeràrquic per gestionar elements visuals.</p>
 
@@ -419,7 +394,7 @@ function toggleIndex(modul) {
 
 
 <section id="1-9" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">9. Formats d’exportació i ús final de les imatges</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">9. Formats d’exportació i ús final de les imatges</h3>
 
   <p>Un cop finalitzada l’edició, cal exportar la imatge en el format adequat segons l’ús final (web, impressió, animació, etc.). Cada format té avantatges i limitacions.</p>
 
@@ -452,7 +427,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-10" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">10. Impressió, publicació i reutilització</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">10. Impressió, publicació i reutilització</h3>
 
   <p>Després d’editar i exportar, cal tenir en compte com es distribuirà la imatge: impressió, publicació en línia o reutilització futura. Cada opció comporta requisits específics.</p>
 
@@ -486,7 +461,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-11" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">11. Emprar eines de dibuix</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">11. Emprar eines de dibuix</h3>
 
   <p>Les eines de dibuix permeten crear il·lustracions, esquemes o gràfics personalitzats mitjançant línies, formes i colors. Tant GIMP com Photoshop disposen d’un conjunt d’eines que permeten dibuixar de forma lliure o precisa.</p>
 
@@ -520,7 +495,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-12" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">12. Emprar filtres de transformació d’imatges</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">12. Emprar filtres de transformació d’imatges</h3>
   <p>Els filtres de transformació permeten modificar l’estructura de la imatge aplicant efectes visuals automàtics. Són útils per a processos artístics, creatius o de correcció d’imatge.</p>
   <h4 class="font-semibold mt-4">🔄 Tipus de filtres</h4>
   <ul class="list-disc ml-6">
@@ -543,7 +518,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-13" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">13. Definir motius de fons</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">13. Definir motius de fons</h3>
 
   <p>Els motius de fons (patterns o textures) s’utilitzen per omplir superfícies amb dissenys repetitius. Són útils per crear fons, textures o efectes decoratius coherents.</p>
 
@@ -569,7 +544,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-14" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">14. Crear objectes gràfics per a aplicacions interactives</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">14. Crear objectes gràfics per a aplicacions interactives</h3>
 
   <p>Els objectes gràfics per a aplicacions interactives són dissenys vectorials o mapes de bits pensats per ser utilitzats en interfícies, aplicacions, jocs o webs. Aquests objectes han de tenir una mida optimitzada, ser visuals i funcionals.</p>
 
@@ -603,7 +578,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-15" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">15. Crear objectes vectorials</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">15. Crear objectes vectorials</h3>
 
   <p>Els objectes vectorials són imatges basades en formes geomètriques (línies, corbes, polígons) que es poden escalar indefinidament sense perdre qualitat. Són ideals per a logotips, il·lustracions tècniques, icones i interfícies gràfiques.</p>
 
@@ -637,7 +612,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-16" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">16. Crear filtres d’imatges avançats</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">16. Crear filtres d’imatges avançats</h3>
 
   <p>Els filtres d’imatges avançats permeten transformar, millorar o alterar l’estètica d’una imatge utilitzant tècniques complexes. A diferència dels filtres bàsics, poden combinar diverses operacions com desenfocaments selectius, combinacions de capes, mapes de relleu o efectes artístics.</p>
 
@@ -664,7 +639,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="1-17" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">17. Automatitzar tasques</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">17. Automatitzar tasques</h3>
 
   <p>Automatitzar tasques consisteix a crear accions repetitives que es poden executar de manera automàtica, estalviant temps i reduint errors. Això és especialment útil per a processos com redimensionar, renombrar, aplicar filtres o exportar lots d’imatges.</p>
 
@@ -707,7 +682,7 @@ function toggleIndex(modul) {
   </nav>
 
 <section id="modul2-1" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 1. Tipus de fitxers d’àudio i vídeo. Formats habituals</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 1. Tipus de fitxers d’àudio i vídeo. Formats habituals</h3>
 
   <p>Els arxius d’àudio i vídeo poden estar codificats en diversos formats, cadascun amb característiques específiques que determinen qualitat, compressió i compatibilitat.</p>
 
@@ -743,7 +718,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul2-2" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 2. Captura i conversió d’àudio i vídeo</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 2. Captura i conversió d’àudio i vídeo</h3>
 
   <p>La captura i conversió de continguts multimèdia són processos essencials per reutilitzar material audiovisual, adaptar-lo a diferents suports i garantir-ne la compatibilitat.</p>
 
@@ -783,7 +758,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul2-3" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 3. Edició d’àudio i vídeo</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 3. Edició d’àudio i vídeo</h3>
 
   <p>L’edició d’àudio i vídeo consisteix a modificar, retallar, millorar i combinar fragments per crear un producte final coherent i comunicatiu. Aquesta tasca es pot fer amb programari lliure o comercial, i requereix una comprensió bàsica de la línia de temps, capes i efectes.</p>
 
@@ -818,7 +793,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul2-4" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 4. Publicació i reutilització de fitxers multimèdia</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 4. Publicació i reutilització de fitxers multimèdia</h3>
 
   <p>Després de crear contingut multimèdia, és fonamental entendre com publicar-lo i conservar-lo per a futurs usos, adaptant-lo al canal de difusió i garantint-ne la qualitat i accessibilitat.</p>
 
@@ -853,7 +828,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul2-5" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 5. Edició avançada de so: pistes, transicions i millores de qualitat</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 5. Edició avançada de so: pistes, transicions i millores de qualitat</h3>
 
   <p>Per treballar l’àudio de manera professional és essencial dominar l’edició multipista, els efectes de transició, l’equalització i el tractament de la qualitat del so. Aquestes eines permeten crear resultats polits, nets i adaptats a contextos com ràdio, vídeo, podcasts o presentacions multimèdia.</p>
 
@@ -896,7 +871,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul2-6" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 6. Ús responsable i drets d’ús del material sonor</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 6. Ús responsable i drets d’ús del material sonor</h3>
 
   <p>L’ús de material d’àudio digital ha de respectar sempre els drets de propietat intel·lectual i la privadesa. Fer ús de música, enregistraments o efectes sense autorització pot comportar conseqüències legals i ètiques.</p>
 
@@ -929,7 +904,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul2-7" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 2 - 7. Cas pràctic final i integració d’habilitats d’edició de so</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 2 - 7. Cas pràctic final i integració d’habilitats d’edició de so</h3>
 
   <p>Aquesta secció consolida els coneixements del mòdul mitjançant una activitat pràctica completa que inclou captura, edició, millora, sincronització i exportació d’un projecte sonor real. L’objectiu és posar en pràctica totes les eines i bones pràctiques vistes anteriorment.</p>
 
@@ -960,7 +935,7 @@ function toggleIndex(modul) {
 
 <!-- Contenidor del Mòdul 3 -->
 <div id="content-3" class="hidden">
-  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#7e22ce;">Mòdul 3: Edició avançada de vídeo (R5.3)</h2>
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#0284c7;">Mòdul 3: Edició avançada de vídeo (R5.3)</h2>
 
   <!-- Índex Mòdul 3 -->
   <nav id="index-3" class="mb-6 bg-white border rounded p-4 shadow text-sky-700">
@@ -979,7 +954,7 @@ function toggleIndex(modul) {
   </nav>
 
 <section id="modul3-1" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 3 - 1. Formats de vídeo i extensions</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 3 - 1. Formats de vídeo i extensions</h3>
 
   <p>Els formats de vídeo determinen la qualitat, mida i compatibilitat del fitxer. Cada format pot usar diferents còdecs de compressió i contenidors per adaptar-se a plataformes, dispositius i propòsits específics (edició, emissió, web...).</p>
 
@@ -1015,7 +990,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-2" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">Mòdul 3 - 2. Panells i components de l’editor de vídeo</h3>
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">Mòdul 3 - 2. Panells i components de l’editor de vídeo</h3>
 
   <p>Un editor de vídeo modern com <strong>Shotcut</strong>, <strong>Kdenlive</strong> o <strong>DaVinci Resolve</strong> està dividit en panells que permeten gestionar diferents aspectes del projecte. Conèixer la funció de cada component t’ajuda a treballar de forma eficient.</p>
 
@@ -1053,7 +1028,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-3" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 3. Captura de vídeo des de càmera o dispositiu extern
   </h3>
 
@@ -1089,7 +1064,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-4" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 4. Edició de vídeo: retall, àudio, seqüències, transicions
   </h3>
 
@@ -1131,7 +1106,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-5" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 5. Extracció i substitució de so en vídeo
   </h3>
 
@@ -1166,7 +1141,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-6" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 6. Afegir text: títols, crèdits i sobreimpressions
   </h3>
 
@@ -1208,7 +1183,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-7" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 7. Efectes visuals, velocitat i pauses
   </h3>
 
@@ -1251,7 +1226,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-8" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 8. Pistes múltiples de vídeo i àudio
   </h3>
 
@@ -1294,7 +1269,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-9" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 9. Exportació i formats finals
   </h3>
 
@@ -1338,7 +1313,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul3-10" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 3 - 10. Cas pràctic final d’edició de vídeo
   </h3>
 
@@ -1373,7 +1348,7 @@ function toggleIndex(modul) {
 
 <!-- Contenidor del Mòdul 4 -->
 <div id="content-4" class="hidden">
-  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#ca8a04;">Mòdul 4: Reproducció multimèdia i compatibilitat (R5.4)</h2>
+  <h2 class="text-xl font-bold text-white mb-6 px-4 py-1 rounded" style="background-color:#eab308;">Mòdul 4: Reproducció multimèdia i compatibilitat (R5.4)</h2>
 
   <!-- Índex Mòdul 4 -->
   <nav id="index-4" class="mb-6 bg-white border rounded p-4 shadow text-sky-700">
@@ -1387,7 +1362,7 @@ function toggleIndex(modul) {
   </nav>
 
 <section id="modul4-1" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 4 - 1. Aplicacions per integrar imatge, àudio i vídeo
   </h3>
 
@@ -1418,7 +1393,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul4-2" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 4 - 2. Formats i exportació multimèdia
   </h3>
 
@@ -1464,7 +1439,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul4-3" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 4 - 3. Preparació de projectes multimèdia interactius
   </h3>
 
@@ -1502,7 +1477,7 @@ function toggleIndex(modul) {
 </section>
 
 <section id="modul4-4" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 4 - 4. Bones pràctiques d’integració multimèdia
   </h3>
 
@@ -1550,8 +1525,8 @@ function toggleIndex(modul) {
   </div>
 </section>
 
-  <section id="modul4-5" class="mb-6">
-  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:rgba(0,0,0,0.5);">
+<section id="modul4-5" class="mb-6">
+  <h3 class="text-lg font-bold text-white mb-2 px-4 py-0.5 rounded" style="background-color:#1d4ed8bf;">
     Mòdul 4 - 5. Cas pràctic final: projecte multimèdia complet
   </h3>
 
@@ -1580,12 +1555,59 @@ function toggleIndex(modul) {
     <p class="mt-2 italic text-sm text-gray-700">Resposta esperada: Organitza el material en un editor de vídeo amb pistes separades. Edita la veu, afegeix títols i crèdits, i exporta versions adaptades per web (MP4), emissió (MOV) i arxiu editable (carpeta del projecte).</p>
   </div>
 </section>
-
     </div>
-  
+
+    <!-- Botons generals de navegació per seccions -->
+    <div id="navegacio-seccions" class="hidden flex justify-between my-8">
+      <button onclick="canviaSeccio(-1)" class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded">← Anterior</button>
+      <button onclick="canviaSeccio(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Següent →</button>
     </div>
   </div>
+
+  <script>
+    let modulActiu = null;
+    let seccioIndex = 0;
+
+    function toggleIndex(modul) {
+      const indexActual = document.getElementById(`index-${modul}`);
+      const contentActual = document.getElementById(`content-${modul}`);
+
+      if (modulActiu === modul) {
+        if (indexActual) indexActual.classList.toggle('hidden');
+        return;
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        const index = document.getElementById(`index-${i}`);
+        const content = document.getElementById(`content-${i}`);
+        if (index) index.classList.add('hidden');
+        if (content) content.classList.add('hidden');
+      }
+
+      if (indexActual) indexActual.classList.remove('hidden');
+      if (contentActual) contentActual.classList.remove('hidden');
+      modulActiu = modul;
+
+      const seccions = contentActual.querySelectorAll("section");
+      seccions.forEach((s, i) => s.classList.toggle("hidden", i !== 0));
+      seccioIndex = 0;
+
+      const nav = document.getElementById("navegacio-seccions");
+      if (nav) nav.classList.remove("hidden");
+    }
+
+    function canviaSeccio(pas) {
+      const content = document.getElementById(`content-${modulActiu}`);
+      if (!content) return;
+      const seccions = content.querySelectorAll("section");
+      if (seccions.length === 0) return;
+
+      seccioIndex += pas;
+      if (seccioIndex < 0) seccioIndex = 0;
+      if (seccioIndex >= seccions.length) seccioIndex = seccions.length - 1;
+
+      seccions.forEach((s, i) => s.classList.toggle("hidden", i !== seccioIndex));
+    }
+  </script>
 </body>
 </html>
-
-
